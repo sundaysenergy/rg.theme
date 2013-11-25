@@ -8,11 +8,11 @@ build:
           sudo npm install less -g
           export TIMESTAMP=$(date +"%s" | md5sum|awk '{ print $1 }')
           lessc --clean-css style.less>rg-${TIMESTAMP}.css
-          ruby -e 'require "pp"; require "json"; data = Hash.new; data["hash"] = ENV["TIMESTAMP"]; data["files"] = Dir.glob("**/*.{less|css}"); pp data'
 deploy:
   steps:
     - script:
         name: Deploy to cloudfiles
         code: |
+          ruby -e 'require "pp"; require "json"; require "net/http"; require "uri"; url = URI(ENV["CLOUDANT_URL"]); Net::HTTP.start(url.host, url.port){|http| response = http.head('/'); puts response }; data = Hash.new; data["hash"] = ENV["TIMESTAMP"]; data["files"] = Dir.glob("**/*.{css,js}");'
           sudo pip install turbolift
           turbolift -a ${CLOUDFILES_APIKEY} -u ${CLOUDFILES_USERNAME} --os-rax-auth ord upload --sync -s ${WERCKER_ROOT}/rg*.css -c ${CLOUDFILES_CONTAINER}
