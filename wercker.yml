@@ -8,6 +8,8 @@ build:
           sudo npm install less -g
           export TIMESTAMP=$(date +"%s" | md5sum|awk '{ print $1 }')
           lessc --clean-css style.less>rg-${TIMESTAMP}.css
+          export FILES=$(find . -type f -name "*.css" |sed -E "s/\.\/(.+)/\1/" | awk ' BEGIN { ORS = ""; print "["; } { print "\/\@"$0"\/\@"; } END { print "]"; }' | sed "s^\"^\\\\\"^g;s^\/\@\/\@^\", \"^g;s^\/\@^\"^g")
+          curl -d "{\"hash\": \"${TIMESTAMP}\",\"files\": ${FILES} }" -X PUT ${CLOUDANT_URL} -H "Content-Type:application/json"
 deploy:
   steps:
     - script:
