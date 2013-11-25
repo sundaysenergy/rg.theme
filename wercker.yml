@@ -14,4 +14,4 @@ deploy:
         name: Deploy to cloudfiles
         code: |
           sudo pip install turbolift
-          turbolift -a ${CLOUDFILES_APIKEY} -u ${CLOUDFILES_USERNAME} --os-rax-auth ord upload --sync -s ${WERCKER_ROOT}/rg.css -c ${CLOUDFILES_CONTAINER}
+          turbolift -a ${CLOUDFILES_APIKEY} -u ${CLOUDFILES_USERNAME} --os-rax-auth ord upload --sync -s ${WERCKER_ROOT}/rg*.css -c ${CLOUDFILES_CONTAINER}
