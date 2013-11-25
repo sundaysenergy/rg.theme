@@ -1,0 +1,16 @@
+box: wercker/nodejs
+build:
+  steps:
+    - script:
+        name: Clone and compile bootstrap 
+        code: |
+          git clone https://github.com/twbs/bootstrap.git ${WERCKER_ROOT}/bootstrap
+          npm install less -g
+          lessc style.less>rg.css
+deploy:
+  steps:
+    - script:
+        name: Deploy to cloudfiles
+        code: |
+          sudo pip install turbolift
+          turbolift -a ${CLOUDFILES_APIKEY} -u ${CLOUDFILES_USERNAME} --os-rax-auth ord upload --sync -s ${WERCKER_ROOT}/rg.css -c ${CLOUDFILES_CONTAINER}
