@@ -5,7 +5,7 @@ build:
         name: Clone and compile bootstrap 
         code: |
           git clone https://github.com/twbs/bootstrap.git ${WERCKER_ROOT}/bootstrap
-          npm install less -g
+          sudo npm install less -g
           lessc style.less>rg.css
 deploy:
   steps:
