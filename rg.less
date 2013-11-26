@@ -1,0 +1,198 @@
+body {
+  background: rgba(249,249,249,1);
+  color:rgba(36,36,35,1);
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+li{
+  list-style-type: none;
+}
+footer {
+  text-align: center;
+}
+main{
+  display: block;
+}
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+}
+.jumbotron h1 {
+  font-size: 100px;
+  line-height: 1;
+}
+.jumbotron .lead {
+  font-size: 24px;
+  line-height: 1.25;
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 60px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+
+/* Customize the navbar links to be fill the entire space of the .navbar */
+.masthead nav > ul {
+  margin-top: 40px;
+  padding: 0 0 10px 0;
+  list-style: none;
+  text-align: center;
+}
+
+.masthead nav ul li {
+  list-style: none;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  border-top: #000000 solid 2px;
+  padding: 4px 0px;
+  font-weight: 500;
+}
+.masthead nav ul li a{
+  color: #000000;
+  font-family: serif;
+}
+
+/*.masthead nav ul.navbar > li {
+  border-bottom: 1px solid black;
+  padding: 10px 0;
+}*/
+
+.masthead nav ul li ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: none;
+  padding: 8px 0px 0px;
+}
+
+.masthead nav ul li ul li {
+  display: inline-block;
+  border-top: none;
+}
+.masthead nav ul li ul li + li{
+  margin-left: 14px;
+}
+.masthead nav ul li:hover > ul{
+  display: block
+}
+
+/* ===== Styles for jquery carousel ===== */
+/* LAYOUT */
+#l-collection{
+  overflow: hidden;
+}
+
+/* MODULES */
+#collection{
+}
+ul#collection{
+}
+ul#collection li {
+  float: left;
+  display: block;
+  overflow: hidden;
+  margin-right: 10px;
+  position: relative;
+}
+.cotton{
+  background-color: grey;
+}
+.horsehair{
+  background-color: aqua;
+}
+.wool{
+  background-color: fuchsia;
+}
+.alpaca{
+  background-color: navy;
+}
+.linen{
+  background-color: red;
+}
+/* PANEL STYLES*/
+.collection-panel{
+  border-top: 2px solid black;
+  text-align: center;
+}
+.collection-panel *:not(li){
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.pagination p + p:before{
+  content: "/ ";
+}
+.collection-panel-wrap{
+  margin: 0 auto;
+}
+#rightarrow{
+  float: right;
+}
+#leftarrow{
+  float: left;
+}
+/* FILTER */
+#filter{
+  float: left;
+  position: absolute;
+  z-index: 4;
+  margin-left: -115px;
+  margin-top: 20px;
+}
+#filter:hover{
+  background-color: #ffffff;
+  box-shadow: 0px 0px 1px 2px #e8e8e8;
+}
+#filter ul{
+  text-align: left;
+  padding-left: 9px;
+  padding-right: 9px;
+  margin-top: 6px;
+}
+#filter ul:before{
+  content: "Filter";
+  
+}
+#filter ul li{
+  display: none;
+}
+#filter:hover li{
+  display: list-item;
+}
+#filter ul li a:before{
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border: 1px solid rgba(160,160,160,1);
+  margin-right: 9px;
+  content: "";
+}
+#filter ul li a.active:before{
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background-color: rgba(160,160,160,1);
+  margin-right: 9px;
+  content: "";
+}
+/* STATES */
+
+/* ===== Styles for jquery carousel ===== */
+
+/* CUSTOM HEADER STYLES FOR SKELETON MOCKUP */
+.masthead h3 {
+  background: white;
+  border: 1px solid rgba(232,233,234,1);
+  text-align: center;
+}
+
+.text-centered { text-align: center; }
