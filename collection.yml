@@ -4,4 +4,8 @@ default:
   js: [rg.js]
 pages:
   pricelist:
-    js: [backgrid.js]
+    css: [test.less]
+    js: []
+  login:
+    css: []
+    js: []
