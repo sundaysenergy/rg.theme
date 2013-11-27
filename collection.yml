@@ -1,0 +1,7 @@
+---
+default:
+  css: [style.less]
+  js: [rg.js]
+pages:
+  pricelist:
+    js: [backgrid.js]
