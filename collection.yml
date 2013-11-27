@@ -7,5 +7,5 @@ pages:
     css: [test.less]
     js: []
   login:
-    css: []
+    css: [test.less]
     js: []
