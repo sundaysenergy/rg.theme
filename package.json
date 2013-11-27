@@ -1,0 +1,6 @@
+{
+  "name" : "rg-theme",
+  "dependencies" : {
+    "plates"   :  "https://github.com/sundaysenergy/wercker-helpers/tarball/master"
+  }
+}
