@@ -2,10 +2,9 @@
 default:
   css: [style.less]
   js: [rg.js]
-pages:
-  pricelist:
-    css: [test.less]
-    js: []
-  login:
-    css: [test.less]
-    js: []
+pricelist:
+  css: [test.less]
+  js: []
+login:
+  css: [test.less]
+  js: []
