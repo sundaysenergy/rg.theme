@@ -13,10 +13,6 @@ deploy:
     - script:
         name: Deploy to cloudfiles
         code: |
-          echo "disabled"
-          sudo pip install turbolift
-          npm install findit2
-          git clone https://github.com/sundaysenergy/wercker-helpers.git
-          mv ${WERCKER_ROOT}/wercker-helpers/update_assets.js ${WERCKER_ROOT}
-          node update_assets.js
-          turbolift -a ${CLOUDFILES_APIKEY} -u ${CLOUDFILES_USERNAME} --os-rax-auth ord upload --sync -s "${WERCKER_GIT_COMMIT}" -c ${CLOUDFILES_CONTAINER}
+          # sudo pip install turbolift
+          # turbolift -a ${CLOUDFILES_APIKEY} -u ${CLOUDFILES_USERNAME} --os-rax-auth ord upload --sync -s "${WERCKER_GIT_COMMIT}" -c ${CLOUDFILES_CONTAINER}
+          node ./node_modules/cape-theme-deploy/update_assets.js
