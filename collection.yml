@@ -4,7 +4,7 @@ default:
   js: [rg.js]
 pricelist:
   css: [test.less]
-  js: []
+  js: [list.min.js,list.pagination.min.js]
 login:
-  css: [test.less]
+  css: []
   js: []
