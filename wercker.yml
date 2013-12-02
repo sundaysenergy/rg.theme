@@ -13,6 +13,4 @@ deploy:
     - script:
         name: Deploy to cloudfiles
         code: |
-          # sudo pip install turbolift
-          # turbolift -a ${CLOUDFILES_APIKEY} -u ${CLOUDFILES_USERNAME} --os-rax-auth ord upload --sync -s "${WERCKER_GIT_COMMIT}" -c ${CLOUDFILES_CONTAINER}
-          node ./node_modules/cape-theme-deploy/update_assets.js
+        node ./node_modules/cape-theme-deploy/update_assets.js
