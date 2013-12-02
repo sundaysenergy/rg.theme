@@ -1,4 +1,4 @@
-# Wercker configuration for R&G theme generation.
+# Wercker configuration for R&G theme generation
 box: wercker/nodejs
 build:
   steps:
