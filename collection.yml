@@ -3,8 +3,8 @@ default:
   css: [style.less]
   js: [rg.js]
 pricelist:
-  css: [test.less]
-  js: [list.min.js,list.pagination.min.js,list.fuzzysearch.min.js]
+  css: []
+  js: [list.min.js, list.fuzzysearch.min.js, pricelist.js]
 login:
   css: []
   js: []
