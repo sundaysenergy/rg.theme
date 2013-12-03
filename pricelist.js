@@ -1,4 +1,4 @@
-/*** Files for pricelist functionality ***/
+/*** JS for pricelist functionality ***/
 
 $.getJSON('http://rg.cape.io/trade/pricelist.json', function(data) {
   console.log(data);

@@ -1,0 +1,22 @@
+body {
+  padding-top: 20px;
+}
+th {
+  white-space: nowrap;
+}
+#textiles {
+  text-align: center;
+}
+#textiles table {
+  text-align: left;
+}
+.pricelist {
+  padding-top: 50px;
+}
+.pager li>a, .pager li>span {
+  background: transparent;
+  border: 0;
+}
+.pager .disabled>a, .pager .disabled>a:hover, .pager .disabled>a:focus, .pager .disabled>span {
+  background: transparent;
+}
