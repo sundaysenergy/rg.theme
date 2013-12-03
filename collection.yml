@@ -8,3 +8,6 @@ pricelist:
 login:
   css: []
   js: []
+admin:
+  css: []
+  js: [admin.js]
