@@ -3,6 +3,7 @@ body {
 }
 th {
   white-space: nowrap;
+  cursor: pointer;
 }
 #textiles {
   text-align: center;
