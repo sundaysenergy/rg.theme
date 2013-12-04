@@ -2,6 +2,9 @@
 default:
   css: [style.less]
   js: [rg.js]
+pricelist_compiled:
+  css: [pricelist.css]
+  js: [list.min.js, list.fuzzysearch.min.js, pricelist_compiled.js]
 pricelist:
   css: [pricelist.css]
   js: [list.min.js, list.fuzzysearch.min.js, pricelist.js]
