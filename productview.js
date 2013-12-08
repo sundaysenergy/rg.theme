@@ -77,25 +77,28 @@ $(document).ready(function() {
     });
     // Toggle to slide view mode
     $('#slide').on('click touch', function(e) {
+      e.preventDefault();
       productlist.page = 3;
       productlist.update();
       $('.list').addClass('slider');
     });
     // Toggle to thumb view mode
     $('#thumbs').on('click touch', function(e) {
+      e.preventDefault();
       productlist.page = 40;
       productlist.update();
+      // If we have fewer visible items than page size and matching != visible (one page with only a few items)
       if ((productlist.visibleItems.length < productlist.page) && 
           (productlist.visibleItems.length != productlist.matchingItems.length)) {
         var remainder = productlist.matchingItems.length;
         var pagesize = productlist.page;
-        while (remainder > pagesize) { 
-          remainder = remainder - pagesize; 
-        }
+        // Calculate the remainder -- switch to math based method below
+        while (remainder > pagesize) { remainder = remainder - pagesize; }
         productlist.show(productlist.matchingItems.length-remainder+1, pagesize);
       }  else {
+        // Calculate the closets multiple of 40 by casting as an integer
         var startpos = parseInt(productlist.i / 40) * 40;
-        productlist.show(startpos, productlist.page);
+        productlist.show(startpos+1, productlist.page);
       }
       productlist.update();
       $('.list').removeClass('slider');
