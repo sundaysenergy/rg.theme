@@ -84,6 +84,7 @@ $(document).ready(function() {
     // Toggle to thumb view mode
     $('#thumbs').on('click touch', function(e) {
       productlist.page = 40;
+      productlist.update();
       if ((productlist.visibleItems.length < productlist.page) && 
           (productlist.visibleItems.length != productlist.matchingItems.length)) {
         var remainder = productlist.matchingItems.length;
