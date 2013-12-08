@@ -54,8 +54,8 @@ $(document).ready(function() {
       });
       // If our position is less than the number of entries per page, assume we are on page #1
       // Unless we're viewing three at a time -- go to zero then
-      if ((parseInt(productlist.i) < parseInt(productlist.page)) ||
-          ((productlist.page == 3) && (parseInt(productlist.i<0)))) {
+      if (((parseInt(productlist.i) < parseInt(productlist.page)) &&
+          (productlist.page != 3)) || (productlist.i<1)) {
         $('.previous').addClass('disabled').off('click touch');
       }
       // If our position plus the size of the page is greater than length, we're showing the last entries
