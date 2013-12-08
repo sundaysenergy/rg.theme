@@ -25,7 +25,17 @@ $(document).ready(function() {
 
     // When the list is updated, we need to rework the pager buttons
     productlist.on('updated', function() {
-      $('#pagecount').html((parseInt(productlist.i / productlist.page) + 1)).append(' / ').append(parseInt(productlist.matchingItems.length / productlist.page) + 1);
+      if (productlist.page == 3) {
+        $('#pagecount')
+        .html(productlist.i + 1)
+        .append(' / ')
+        .append(productlist.matchingItems.length);
+      } else {
+        $('#pagecount')
+        .html((parseInt(productlist.i / productlist.page) + 1))
+        .append(' / ')
+        .append(parseInt(productlist.matchingItems.length / productlist.page) + 1);
+      }
       $('.previous, .next').removeClass('disabled');
       $('.next').off('click touch').on('click touch', function(e) {
         var n = parseInt(productlist.page);
