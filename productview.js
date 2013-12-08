@@ -24,14 +24,17 @@ $(document).ready(function() {
 
     // When the list is updated, we need to rework the pager buttons
     productlist.on('updated', function() {
+      // Update i if we have fewer items than the starting position
       if (productlist.i > productlist.matchingItems.length) {
         productlist.i = productlist.matchingItems.length;
       }
+      // Page counter for slide view
       if (productlist.page == 3) {
         $('#pagecount')
         .html(productlist.i)
         .append(' / ')
         .append(productlist.matchingItems.length);
+      // Page counter for thumbnail view
       } else {
         $('#pagecount')
         .html((parseInt(productlist.i / productlist.page) + 1))
@@ -41,7 +44,8 @@ $(document).ready(function() {
       $('.previous, .next').removeClass('disabled');
       $('.next').off('click touch').on('click touch', function(e) {
         var n = parseInt(productlist.page);
-        // If we're viewing three at a time, only increment by one item
+        // If we're viewing three at a time, only increment by one item.
+        // Otherwise, increment by one page.
         if (n == 3) { n = 1; }
         productlist.show(parseInt(productlist.i)+n, parseInt(productlist.page));
       });
@@ -99,8 +103,15 @@ $(document).ready(function() {
     $('#slide').on('click touch', function(e) {
       e.preventDefault();
       productlist.page = 3;
+      $('.slider li.firstitem').remove();
       productlist.i = productlist.i-1; // We want to "center" the active item.
       productlist.update();
+      // If it's the first item, simulate centering
+      if (productlist.i == 0) {
+        $('.slider').prepend('<li class="firstitem"></li>');
+      } else {
+        $('.slider li.firstitem').remove();
+      }
       $('.list').addClass('slider');
     });
     // Toggle to thumb view mode
