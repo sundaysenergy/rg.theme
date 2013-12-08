@@ -25,6 +25,9 @@ $(document).ready(function() {
 
     // When the list is updated, we need to rework the pager buttons
     productlist.on('updated', function() {
+      if (productlist.i > productlist.matchingItems.length) {
+        productlist.i = productlist.matchingItems.length;
+      }
       if (productlist.page == 3) {
         $('#pagecount')
         .html(productlist.i + 1)
