@@ -93,6 +93,9 @@ $(document).ready(function() {
           remainder = remainder - pagesize; 
         }
         productlist.show(productlist.matchingItems.length-remainder+1, pagesize);
+      }  else {
+        var startpos = parseInt(productlist.i / 40) * 40;
+        productlist.show(startpos, productlist.page);
       }
       productlist.update();
       $('.list').removeClass('slider');
