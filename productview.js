@@ -62,6 +62,11 @@ $(document).ready(function() {
       if ((parseInt(productlist.i) + parseInt(productlist.page)) > productlist.matchingItems.length) {
         $('.next').addClass('disabled').off('click touch');
       }
+      if (productlist.i == 0) {
+        $('.slider').prepend('<li class="firstitem"></li>');
+      } else {
+        $('.slider li.firstitem').remove();
+      }
     });
 
     // Manually trigger an update
