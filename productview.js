@@ -15,11 +15,10 @@ $(document).ready(function() {
         var max_height = 0;
         $('#products .list li').each(function() {
           var cur_height = $(this).height();
-          if (cur_height > max_height) {
-            max_height = cur_height;
-          }
+          if (cur_height > max_height) { max_height = cur_height; }
         });
         $('#products .list li').css('height', max_height);
+        $('#products .list li').css('max-height', max_height);
       })();
     });
 
@@ -100,6 +99,7 @@ $(document).ready(function() {
     $('#slide').on('click touch', function(e) {
       e.preventDefault();
       productlist.page = 3;
+      productlist.i = productlist.i-1; // We want to "center" the active item.
       productlist.update();
       $('.list').addClass('slider');
     });
@@ -113,15 +113,16 @@ $(document).ready(function() {
           (productlist.visibleItems.length != productlist.matchingItems.length)) {
         var remainder = productlist.matchingItems.length;
         var pagesize = productlist.page;
-        // Calculate the remainder -- switch to math based method below
+        // Calculate the remainder -- switch to math based method below sometime.
         while (remainder > pagesize) { remainder = remainder - pagesize; }
         productlist.show(productlist.matchingItems.length-remainder+1, pagesize);
       }  else {
-        // Calculate the closets multiple of 40 by casting as an integer
+        // Calculate the nearest multiple of 40 by casting as an integer without going over. Like The Price is Right.
         var startpos = parseInt(productlist.i / 40) * 40;
         productlist.show(startpos+1, productlist.page);
       }
       productlist.update();
+      $('.slider li.firstitem').remove();
       $('.list').removeClass('slider');
     });
   });
