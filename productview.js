@@ -104,7 +104,7 @@ $(document).ready(function() {
       e.preventDefault();
       productlist.page = 3;
       $('.slider li.firstitem').remove();
-      productlist.i = productlist.i; // We want to "center" the active item.
+      productlist.i = productlist.i-1; // We want to "center" the active item.
       console.log(productlist.i);
       productlist.update();
       // If it's the first item, simulate centering
