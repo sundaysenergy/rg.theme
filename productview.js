@@ -68,6 +68,7 @@ $(document).ready(function() {
       if (productlist.i <= 0) {
         $('.slider').prepend('<li class="firstitem"></li>');
       } else {
+        console.log("Removing #1");
         $('.slider li.firstitem').remove();
       }
     });
@@ -103,15 +104,14 @@ $(document).ready(function() {
     $('#slide').on('click touch', function(e) {
       e.preventDefault();
       productlist.page = 3;
-      $('.slider li.firstitem').remove();
       productlist.i = productlist.i-1; // We want to "center" the active item.
-      console.log(productlist.i);
       productlist.update();
       // If it's the first item, simulate centering
       if (productlist.i == 0) {
         console.log("got there!");
         $('.slider').prepend('<li class="firstitem"></li>');
       } else {
+        console.log("Removing #2");
         $('.slider li.firstitem').remove();
       }
       $('.list').addClass('slider');
@@ -137,6 +137,7 @@ $(document).ready(function() {
         productlist.show(startpos+1, productlist.page);
       }
       productlist.update();
+      console.log("Removing #3");
       $('.slider li.firstitem').remove();
       $('.list').removeClass('slider');
       $('#slide').removeClass('disabled');
