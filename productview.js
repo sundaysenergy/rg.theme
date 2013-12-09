@@ -31,7 +31,7 @@ $(document).ready(function() {
       // Page counter for slide view
       if (productlist.page == 3) {
         $('#pagecount')
-        .html(productlist.i)
+        .html(productlist.i+1)
         .append(' / ')
         .append(productlist.matchingItems.length);
       // Page counter for thumbnail view
@@ -65,7 +65,7 @@ $(document).ready(function() {
       if ((parseInt(productlist.i) + parseInt(productlist.page)) > productlist.matchingItems.length) {
         $('.next').addClass('disabled').off('click touch');
       }
-      if (productlist.i == 0) {
+      if (productlist.i <= 0) {
         $('.slider').prepend('<li class="firstitem"></li>');
       } else {
         $('.slider li.firstitem').remove();
@@ -104,15 +104,19 @@ $(document).ready(function() {
       e.preventDefault();
       productlist.page = 3;
       $('.slider li.firstitem').remove();
-      productlist.i = productlist.i-1; // We want to "center" the active item.
+      productlist.i = productlist.i; // We want to "center" the active item.
+      console.log(productlist.i);
       productlist.update();
       // If it's the first item, simulate centering
       if (productlist.i == 0) {
+        console.log("got there!");
         $('.slider').prepend('<li class="firstitem"></li>');
       } else {
         $('.slider li.firstitem').remove();
       }
       $('.list').addClass('slider');
+      $('#slide').addClass('disabled');
+      $('#thumbs').removeClass('disabled');
     });
     // Toggle to thumb view mode
     $('#thumbs').on('click touch', function(e) {
@@ -135,6 +139,8 @@ $(document).ready(function() {
       productlist.update();
       $('.slider li.firstitem').remove();
       $('.list').removeClass('slider');
+      $('#slide').removeClass('disabled');
+      $('#thumbs').addClass('disabled');
     });
   });
 });
