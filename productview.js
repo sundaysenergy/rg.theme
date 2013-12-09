@@ -89,12 +89,12 @@ $(document).ready(function() {
       } else {
         $('.slider li.firstitem').remove();
       }
-      $('.list li').on('click touch', function(e) {
+      $('.list li').off('click touch').on('click touch', function(e) {
         // Grab and compile template -- move this to global once we get it working.
         var id = $(this).find('.id').html();
         var item = { item : productlist.get('id', id)[0].values() };
         $('.itemoverlay').slideToggle().html(item_template.render(item));
-        $('button.close').on('click touch', function(e) {
+        $('button.close').off('click touch').on('click touch', function(e) {
           $('.itemoverlay').slideToggle();
         });
       });
