@@ -184,5 +184,19 @@ $(document).ready(function() {
       $('#slide').removeClass('disabled');
       $('#thumbs').addClass('disabled');
     });
+
+    $('ul.collection-filter li a').on('click touch', function(e) {
+      e.preventDefault();
+      var m = $(this).attr('href').replace('#','');
+      productlist.filter();
+      productlist.filter(function(item) {
+        if (item.values().collection.toLowerCase().indexOf(m) >= 0) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      return false;
+    });
   });
 });
