@@ -65,14 +65,13 @@ $(document).ready(function() {
       if ((parseInt(productlist.i) + parseInt(productlist.page)) > productlist.matchingItems.length) {
         if (productlist.page != 3) {
           $('.next').addClass('disabled').off('click touch');
-        } else if (productlist.i == productlist.page-1) {
+        } else if (productlist.i == (productlist.page-1)) {
           $('.next').addClass('disabled').off('click touch');
         }
       }
       if (productlist.i <= 0) {
         $('.slider').prepend('<li class="firstitem"></li>');
       } else {
-        console.log("Removing #1");
         $('.slider li.firstitem').remove();
       }
     });
@@ -104,6 +103,9 @@ $(document).ready(function() {
         });
         if (productlist.page == 3) { productlist.i = productlist.i-1; }
         productlist.update();
+      } else {
+        if (productlist.page == 3) { productlist.i = productlist.i-1; }
+        productlist.update();
       }
     });
     // Toggle to slide view mode
@@ -115,10 +117,8 @@ $(document).ready(function() {
       // If it's the first item, simulate centering
       $('.list').addClass('slider');
       if (productlist.i == 0) {
-        console.log("got there!");
         $('.slider').prepend('<li class="firstitem"></li>');
       } else {
-        console.log("Removing #2");
         $('.slider li.firstitem').remove();
       }
       $('#slide').addClass('disabled');
