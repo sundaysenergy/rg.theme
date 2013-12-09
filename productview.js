@@ -98,6 +98,8 @@ $(document).ready(function() {
           }
           return match;
         });
+        if (productlist.page == 3) { productlist.i = productlist.i-1; }
+        productlist.update();
       }
     });
     // Toggle to slide view mode
