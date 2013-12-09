@@ -107,6 +107,7 @@ $(document).ready(function() {
       productlist.i = productlist.i-1; // We want to "center" the active item.
       productlist.update();
       // If it's the first item, simulate centering
+      $('.list').addClass('slider');
       if (productlist.i == 0) {
         console.log("got there!");
         $('.slider').prepend('<li class="firstitem"></li>');
@@ -114,7 +115,6 @@ $(document).ready(function() {
         console.log("Removing #2");
         $('.slider li.firstitem').remove();
       }
-      $('.list').addClass('slider');
       $('#slide').addClass('disabled');
       $('#thumbs').removeClass('disabled');
     });
