@@ -1,7 +1,7 @@
 ---
 default:
   css: [style.less]
-  js: [rg.js]
+  js: [rg.js,hash.js]
 productview:
   css: [productview.less]
   js: [hogan-2.0.0.js, list.min.js, productview.js]
