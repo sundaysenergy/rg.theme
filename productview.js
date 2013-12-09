@@ -95,9 +95,9 @@ $(document).ready(function() {
         var id = $(this).find('.id').html();
         var item = { item : productlist.get('id', id)[0].values() };
         item.item.img_large = item.item.img.replace('640','1536');
-        $('.itemoverlay').slideToggle().html(item_template.render(item));
+        $('.itemoverlay').show().html(item_template.render(item));
         $('button.close').off('click touch').on('click touch', function(e) {
-          $('.itemoverlay').slideToggle();
+          $('.itemoverlay').hide();
           $('body').css('overflow','auto');
         });
       });
