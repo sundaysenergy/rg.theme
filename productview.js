@@ -90,6 +90,7 @@ $(document).ready(function() {
         $('.slider li.firstitem').remove();
       }
       $('.list li').off('click touch').on('click touch', function(e) {
+        $('body').css('overflow','hidden');
         // Grab and compile template -- move this to global once we get it working.
         var id = $(this).find('.id').html();
         var item = { item : productlist.get('id', id)[0].values() };
@@ -97,6 +98,7 @@ $(document).ready(function() {
         $('.itemoverlay').slideToggle().html(item_template.render(item));
         $('button.close').off('click touch').on('click touch', function(e) {
           $('.itemoverlay').slideToggle();
+          $('body').css('overflow','auto');
         });
       });
     }); // end productlist.on('updated')
