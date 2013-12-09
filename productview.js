@@ -1,11 +1,25 @@
 $(document).ready(function() {
+  // Download and compile the template for item view.
+  var item_template;
+  $.ajax({
+    url: "http://rg.cape.io/templates/item.html",
+    context: document.body,
+    async: false,
+    error:  function (jqXHR, textStatus, errorThrown) {
+              console.log(errorThrown);
+            }
+  }).done(function(data) {
+    item_template = Hogan.compile(data);
+  });
+  
   // Retrieve a list of items from cape
   $.getJSON('http://rg.cape.io/items/items.json', function(data) {
     var options = {
-      valueNames: [ 'image', 'content' ],
-      item: '<li><img class="img"><br><span class="content"></span></li>',
+      valueNames: [ 'image', 'content', 'id' ],
+      item: '<li><span style="display:none" class="id"></span><img class="img"><br><span class="content"></span></li>',
       page: 40
     };
+
 
     // Create a new list
     var productlist = new List('products', options, data);
@@ -21,6 +35,7 @@ $(document).ready(function() {
         $('#products .list li').css('max-height', max_height);
       })();
     });
+
 
     // When the list is updated, we need to rework the pager buttons
     productlist.on('updated', function() {
@@ -74,10 +89,21 @@ $(document).ready(function() {
       } else {
         $('.slider li.firstitem').remove();
       }
-    });
+      $('.list li').on('click touch', function(e) {
+        // Grab and compile template -- move this to global once we get it working.
+        var id = $(this).find('.id').html();
+        var item = { item : productlist.get('id', id)[0].values() };
+        $('.itemoverlay').slideToggle().html(item_template.render(item));
+        $('button.close').on('click touch', function(e) {
+          $('.itemoverlay').slideToggle();
+        });
+      });
+    }); // end productlist.on('updated')
+
 
     // Manually trigger an update
     productlist.update();
+
 
     // When we check or uncheck a box, recalculate search terms
     $('input[type=checkbox]').on('click touch', function(e) {
@@ -101,13 +127,16 @@ $(document).ready(function() {
           }
           return match;
         });
+        // If we're in slide mode, shift one to the right
         if (productlist.page == 3) { productlist.i = productlist.i-1; }
         productlist.update();
       } else {
+        // If we're in slide mode, shift one to the right
         if (productlist.page == 3) { productlist.i = productlist.i-1; }
         productlist.update();
       }
     });
+
     // Toggle to slide view mode
     $('#slide').on('click touch', function(e) {
       e.preventDefault();
@@ -116,14 +145,18 @@ $(document).ready(function() {
       productlist.update();
       // If it's the first item, simulate centering
       $('.list').addClass('slider');
+      /* If we are showing the first item, adding a dummy to push it one to the right
+         Otherwise, make sure we remove all dummies */
       if (productlist.i == 0) {
         $('.slider').prepend('<li class="firstitem"></li>');
       } else {
         $('.slider li.firstitem').remove();
       }
+      // Only allow one button to be enabled at a time
       $('#slide').addClass('disabled');
       $('#thumbs').removeClass('disabled');
     });
+
     // Toggle to thumb view mode
     $('#thumbs').on('click touch', function(e) {
       e.preventDefault();
@@ -143,7 +176,6 @@ $(document).ready(function() {
         productlist.show(startpos+1, productlist.page);
       }
       productlist.update();
-      console.log("Removing #3");
       $('.slider li.firstitem').remove();
       $('.list').removeClass('slider');
       $('#slide').removeClass('disabled');
