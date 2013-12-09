@@ -63,7 +63,11 @@ $(document).ready(function() {
       }
       // If our position plus the size of the page is greater than length, we're showing the last entries
       if ((parseInt(productlist.i) + parseInt(productlist.page)) > productlist.matchingItems.length) {
-        $('.next').addClass('disabled').off('click touch');
+        if (productlist.page != 3) {
+          $('.next').addClass('disabled').off('click touch');
+        } else if (productlist.i == productlist.page) {
+          $('.next').addClass('disabled').off('click touch');
+        }
       }
       if (productlist.i <= 0) {
         $('.slider').prepend('<li class="firstitem"></li>');
