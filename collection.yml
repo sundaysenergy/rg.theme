@@ -7,7 +7,7 @@ productview:
   js: [list.min.js, productview.js]
 pricelist:
   css: [pricelist.css]
-  js: [list.min.js, list.fuzzysearch.min.js, pricelist.js]
+  js: [hogan-2.0.0.js, list.min.js, list.fuzzysearch.min.js, pricelist.js]
 login:
   css: []
   js: []
