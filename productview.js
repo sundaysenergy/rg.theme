@@ -65,7 +65,7 @@ $(document).ready(function() {
       if ((parseInt(productlist.i) + parseInt(productlist.page)) > productlist.matchingItems.length) {
         if (productlist.page != 3) {
           $('.next').addClass('disabled').off('click touch');
-        } else if (productlist.i == productlist.page) {
+        } else if (productlist.i == productlist.page-1) {
           $('.next').addClass('disabled').off('click touch');
         }
       }
