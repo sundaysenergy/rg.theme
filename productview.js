@@ -154,7 +154,7 @@ $(document).ready(function() {
           $('.rel-previous').off('click touch').on('click touch', function(e) {
             relatedlist.show(parseInt(relatedlist.i)-1, parseInt(relatedlist.page));
           });
-          if (parseInt(relatedlist.i) < parseInt(relatedlist.page)) {
+          if (parseInt(relatedlist.i)+1 < parseInt(relatedlist.page)) {
             $('.rel-previous').addClass('disabled').off('click touch');
           }
           if ((parseInt(relatedlist.i) + parseInt(relatedlist.page)) > relatedlist.matchingItems.length) {
