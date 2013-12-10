@@ -37,6 +37,43 @@ $(document).ready(function() {
     });
 
 
+    /*** PROCESS FILTERS ON HASHCHANGE ***/
+    $(window).on('hashchange', function(e) {
+      e.preventDefault();
+      f = hash.get('attributes');
+      var collection = hash.get('collection');
+      var attributes = [];
+      if (typeof(f) != 'undefined') {
+        attributes = f.split(',');
+      }
+      productlist.filter();
+      if ((typeof(f) != 'undefined') || (typeof(collection) != 'undefined')) {
+        productlist.filter(function(item) {
+          var match = false;
+          // Reduce function that could be made search any by removing the else statement
+          if (typeof(collection) != 'undefined') {
+            if (item.values().collection.toLowerCase().indexOf(collection.toLowerCase()) >= 0) {
+              match = true;
+            }
+          }
+          if (match || (typeof(collection) == 'undefined')) {
+            if (attributes.length > 0) {
+              for (var i = 0; i<attributes.length; i++) {
+                if (item.values().content.toLowerCase().indexOf(attributes[i].toLowerCase()) >= 0) {
+                  match = true;
+                } else {
+                  match = false;
+                  break;
+                }
+              }
+            }
+          }
+          return match;
+        });
+      }
+      return false;
+    });
+
     // When the list is updated, we need to rework the pager buttons
     productlist.on('updated', function() {
       // Update i if we have fewer items than the starting position
@@ -117,28 +154,14 @@ $(document).ready(function() {
       });
       // If we have terms filter, otherwise the filter reset will start us fresh
       if (f.length > 0) {
-        productlist.filter(function(item) {
-          var match = false;
-          // Reduce function that could be made search any by removing the else statement
-          for (var i = 0; i<f.length; i++) {
-            if (item.values().content.toLowerCase().indexOf(f[i].toLowerCase()) >= 0) {
-              match = true;
-            } else {
-              match = false;
-              break;
-            }
-          }
-          return match;
-        });
-        // If we're in slide mode, shift one to the right
-        if (productlist.page == 3) { productlist.i = productlist.i-1; }
-        productlist.update();
+        hash.add({attributes : f.join(',') });
       } else {
-        // If we're in slide mode, shift one to the right
-        if (productlist.page == 3) { productlist.i = productlist.i-1; }
-        productlist.update();
+        hash.remove('attributes');
       }
+      if (productlist.page == 3) { productlist.i = productlist.i-1; }
+      productlist.update();
     });
+
 
     // Toggle to slide view mode
     $('#slide').on('click touch', function(e) {
@@ -185,17 +208,12 @@ $(document).ready(function() {
       $('#thumbs').addClass('disabled');
     });
 
+
+    // Add collection value to hash
     $('ul.collection-filter li a').on('click touch', function(e) {
       e.preventDefault();
       var m = $(this).attr('href').replace('#','');
-      productlist.filter();
-      productlist.filter(function(item) {
-        if (item.values().collection.toLowerCase().indexOf(m) >= 0) {
-          return true;
-        } else {
-          return false;
-        }
-      });
+      hash.add({ collection: m });
       return false;
     });
   });
