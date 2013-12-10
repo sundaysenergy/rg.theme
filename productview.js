@@ -139,6 +139,30 @@ $(document).ready(function() {
         var item = { item : productlist.get('id', id)[0].values() };
         item.item.img_large = item.item.img.replace('640','1536');
         $('.itemoverlay').show().html(item_template.render(item));
+
+        // Turn the related items block into a paginated list
+        var options = {
+          valueNames: [ 'related-item' ],
+          page: 3
+        };
+        var relatedlist = new List('related-products', options);
+        relatedlist.on('updated', function() {
+          $('.rel-previous, .rel-next').removeClass('disabled');
+          $('.rel-next').off('click touch').on('click touch', function(e) {
+            relatedlist.show(parseInt(relatedlist.i)+1, parseInt(relatedlist.page));
+          });
+          $('.rel-previous').off('click touch').on('click touch', function(e) {
+            relatedlist.show(parseInt(relatedlist.i)-1, parseInt(relatedlist.page));
+          });
+          if (parseInt(relatedlist.i) < parseInt(relatedlist.page)) {
+            $('.rel-previous').addClass('disabled').off('click touch');
+          }
+          if ((parseInt(relatedlist.i) + parseInt(relatedlist.page)) > relatedlist.matchingItems.length) {
+            $('.rel-next').addClass('disabled').off('click touch');
+          }
+        });
+        relatedlist.update();
+
         $('button.close').off('click touch').on('click touch', function(e) {
           $('.itemoverlay').hide();
           $('body').css('overflow','auto');
