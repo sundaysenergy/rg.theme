@@ -13,7 +13,7 @@ $(document).ready(function() {
   });
   
   // Retrieve a list of items from cape
-  $.getJSON('http://rg.cape.io/items/items-color.json', function(data) {
+  $.getJSON('http://rg.cape.io/items/items-color.json', function(combined) {
     var options = {
       valueNames: [ 'image', 'content', 'id' ],
       item: '<li><span style="display:none" class="id"></span><img class="img"><br><span class="content"></span></li>',
