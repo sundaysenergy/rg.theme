@@ -212,7 +212,7 @@ $(document).ready(function() {
     // Add collection value to hash
     $('ul.collection-filter li a').on('click touch', function(e) {
       e.preventDefault();
-      var m = $(this).attr('href').replace('#','');
+      var m = $(this).attr('href').replace('/collection.html#','');
       hash.add({ collection: m });
       return false;
     });
