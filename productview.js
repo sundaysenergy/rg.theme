@@ -144,6 +144,19 @@ $(document).ready(function() {
     // Manually trigger an update
     productlist.update();
 
+    if (window.location.hash.length > 0) {
+      console.log('uh?');
+      var g = hash.get('attributes');
+      if (typeof(g) != 'undefined') {
+        var f = g.split(',');
+        for (var i=0; i<f.length; i++) {
+          console.log(f[i]);
+          console.log(i);
+          $('#attributes').find(":checkbox[value=" + f[i] +"]").attr('checked',true);
+        }
+      }
+      $(window).trigger('hashchange');
+    }
 
     // When we check or uncheck a box, recalculate search terms
     $('input[type=checkbox]').on('click touch', function(e) {
@@ -217,4 +230,7 @@ $(document).ready(function() {
       return false;
     });
   });
+  if (window.location.hash.length > 0) {
+    $.trigger('hashchange');
+  }
 });
