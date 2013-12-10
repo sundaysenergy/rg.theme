@@ -117,10 +117,11 @@ $(document).ready(function() {
         relatedlist.update();
         $('button.close').off('click touch').on('click touch', function(e) {
           $('.itemoverlay').hide();
+          hash.remove('detailedview');
           $('body').css('overflow','auto');
         });
       }
-            
+
       return false;
     });
 
@@ -212,6 +213,7 @@ $(document).ready(function() {
 
         $('button.close').off('click touch').on('click touch', function(e) {
           $('.itemoverlay').hide();
+          hash.remove('detailedview');
           $('body').css('overflow','auto');
         });
       });
