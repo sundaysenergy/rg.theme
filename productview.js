@@ -20,44 +20,33 @@ $(document).ready(function() {
       page: 40
     };
 
-
     // Create a new list
     var productlist = new List('products', options, data);
-    // Hacky thing to set the height -- Remove this later.
-    productlist.on('updated', function() {
-      (function() {
-        var max_height = 0;
-        $('#products .list li').each(function() {
-          var cur_height = $(this).height();
-          if (cur_height > max_height) { max_height = cur_height; }
-        });
-        $('#products .list li').css('height', max_height);
-        $('#products .list li').css('max-height', max_height);
-      })();
-    });
 
-
-    /*** PROCESS FILTERS ON HASHCHANGE ***/
+    // Process filters on hashchange
     $(window).on('hashchange', function(e) {
       e.preventDefault();
       f = hash.get('attributes');
       var collection = hash.get('collection');
       var attributes = [];
-      if (typeof(f) != 'undefined') {
-        attributes = f.split(',');
-      }
+      if (typeof(f) != 'undefined') { attributes = f.split(','); }
+      // Clear any existing filter
       productlist.filter();
+      // If either attributes or collection are undefined, we have filter elements to process
       if ((typeof(f) != 'undefined') || (typeof(collection) != 'undefined')) {
         productlist.filter(function(item) {
           var match = false;
-          // Reduce function that could be made search any by removing the else statement
+          // If we have a collection, see if the item matches the selected collection
           if (typeof(collection) != 'undefined') {
             if (item.values().collection.toLowerCase().indexOf(collection.toLowerCase()) >= 0) {
               match = true;
             }
           }
+          // If we've either matched the collection, or there is no collection specified, proceed.
+          // Assumption is that anything else means the collection is specified, but failed to match.
           if (match || (typeof(collection) == 'undefined')) {
             if (attributes.length > 0) {
+              // For each attribute, see if we have a match. If not, set false and break.
               for (var i = 0; i<attributes.length; i++) {
                 if (item.values().content.toLowerCase().indexOf(attributes[i].toLowerCase()) >= 0) {
                   match = true;
@@ -93,6 +82,7 @@ $(document).ready(function() {
         .append(' / ')
         .append(parseInt(productlist.matchingItems.length / productlist.page) + 1);
       }
+      // Reset our paginator
       $('.previous, .next').removeClass('disabled');
       $('.next').off('click touch').on('click touch', function(e) {
         var n = parseInt(productlist.page);
@@ -121,14 +111,16 @@ $(document).ready(function() {
           $('.next').addClass('disabled').off('click touch');
         }
       }
+      // Add or remove dummy element for first item in slide view.
       if (productlist.i <= 0) {
         $('.slider').prepend('<li class="firstitem"></li>');
       } else {
         $('.slider li.firstitem').remove();
       }
+      // For each visible li in the list, create a click handler that toggles visibility
+      // and compiles the mustache for the current item.
       $('.list li').off('click touch').on('click touch', function(e) {
         $('html,body').css('overflow','hidden').height($(window).height());
-        // Grab and compile template -- move this to global once we get it working.
         var id = $(this).find('.id').html();
         var item = { item : productlist.get('id', id)[0].values() };
         item.item.img_large = item.item.img.replace('640','1536');
@@ -144,17 +136,17 @@ $(document).ready(function() {
     // Manually trigger an update
     productlist.update();
 
+    // Process the hash if we're just loading the page and have values
     if (window.location.hash.length > 0) {
-      console.log('uh?');
       var g = hash.get('attributes');
       if (typeof(g) != 'undefined') {
         var f = g.split(',');
+        // Toggle checkboxes for any attributes that are found.
         for (var i=0; i<f.length; i++) {
-          console.log(f[i]);
-          console.log(i);
           $('#attributes').find(":checkbox[value=" + f[i] +"]").attr('checked',true);
         }
       }
+      // Trigger a hashchange event to actually process the filter
       $(window).trigger('hashchange');
     }
 
@@ -230,7 +222,4 @@ $(document).ready(function() {
       return false;
     });
   });
-  if (window.location.hash.length > 0) {
-    $.trigger('hashchange');
-  }
 });
