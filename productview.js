@@ -32,6 +32,18 @@ $(document).ready(function() {
       var i = item.id.split("-");
       i.pop();
       item.itemcolors = _.bind(findColors, colors, i.join("-"));
+      item.linkitem = function () {
+                        var attributes = hash.get('attributes');
+                        var collection = hash.get('collection');
+                        var returnhash = '';
+                        if (_.isUndefined(attributes) == false) {
+                          returnhash = returnhash + 'attributes=' + attributes + '&';
+                        }
+                        if (_.isUndefined(collection) == false) {
+                          returnhash = returnhash + 'collection=' + collection + '&';
+                        }
+                        return returnhash;
+                      };
     });
 
     // Create a new list
