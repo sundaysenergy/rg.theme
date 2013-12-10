@@ -13,12 +13,26 @@ $(document).ready(function() {
   });
   
   // Retrieve a list of items from cape
-  $.getJSON('http://rg.cape.io/items/items.json', function(data) {
+  $.getJSON('http://rg.cape.io/items/items-color.json', function(data) {
     var options = {
       valueNames: [ 'image', 'content', 'id' ],
       item: '<li><span style="display:none" class="id"></span><img class="img"><br><span class="content"></span></li>',
       page: 40
     };
+
+    var data = combined.items;
+    var colors = combined.colors;
+
+    // Function for calculating related products in different colors
+    var findColors = function(itemno) { 
+      var variations = this[itemno];
+      return _.map(variations, function(v) { return itemno + '-' + v; });
+    }
+    _.forEach(data, function(item) {
+      var i = item.id.split("-");
+      i.pop();
+      item.itemcolors = _.bind(findColors, colors, i.join("-"));
+    });
 
     // Create a new list
     var productlist = new List('products', options, data);
