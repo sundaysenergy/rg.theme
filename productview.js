@@ -35,12 +35,16 @@ $(document).ready(function() {
       item.linkitem = function () {
                         var attributes = hash.get('attributes');
                         var collection = hash.get('collection');
+                        var dpos = hash.get('dpos');
                         var returnhash = '';
                         if (_.isUndefined(attributes) == false) {
                           returnhash = returnhash + 'attributes=' + attributes + '&';
                         }
                         if (_.isUndefined(collection) == false) {
                           returnhash = returnhash + 'collection=' + collection + '&';
+                        }
+                        if (_.isUndefined(dpos) == false) {
+                          returnhash = returnhash + 'dpos=' + dpos + '&';
                         }
                         return returnhash;
                       };
