@@ -94,17 +94,24 @@ $(document).ready(function() {
         var item = { item : productlist.get('id', id)[0].values() };
         item.item.img_large = item.item.img.replace('640','1536');
         $('.itemoverlay').show().html(item_template.render(item));
+        var n = hash.get('dpos');
+        if (_.isUndefined(n)) {
+          n = 1;
+        }
         var options = {
           valueNames: [ 'related-item' ],
-          page: 3
+          page: 3,
+          i: n
         };
         var relatedlist = new List('related-products', options);
         relatedlist.on('updated', function() {
           $('.rel-previous, .rel-next').removeClass('disabled');
           $('.rel-next').off('click touch').on('click touch', function(e) {
+            hash.add({dpos:relatedlist.i+1});
             relatedlist.show(parseInt(relatedlist.i)+1, parseInt(relatedlist.page));
           });
           $('.rel-previous').off('click touch').on('click touch', function(e) {
+            hash.add({dpos:relatedlist.i-1});
             relatedlist.show(parseInt(relatedlist.i)-1, parseInt(relatedlist.page));
           });
           if (parseInt(relatedlist.i)+1 < parseInt(relatedlist.page)) {
@@ -118,6 +125,7 @@ $(document).ready(function() {
         $('button.close').off('click touch').on('click touch', function(e) {
           $('.itemoverlay').hide();
           hash.remove('detailedview');
+          hash.remove('dpos');
           $('body').css('overflow','auto');
         });
       }
