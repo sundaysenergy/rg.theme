@@ -304,7 +304,7 @@ $(document).ready(function() {
     // Add collection value to hash
     $('ul.collection-filter li a').on('click touch', function(e) {
       e.preventDefault();
-      var m = $(this).attr('href').replace('/collection.html#','').split('=')[1];
+      var m = $(this).attr('href').split('=')[1];
       hash.add({ collection: m });
       return false;
     });
