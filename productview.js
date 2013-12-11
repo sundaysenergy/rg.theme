@@ -36,6 +36,7 @@ $(document).ready(function() {
                         var attributes = hash.get('attributes');
                         var collection = hash.get('collection');
                         var dpos = hash.get('dpos');
+                        var pos = hash.get('pos');
                         var returnhash = '';
                         if (_.isUndefined(attributes) == false) {
                           returnhash = returnhash + 'attributes=' + attributes + '&';
@@ -45,6 +46,9 @@ $(document).ready(function() {
                         }
                         if (_.isUndefined(dpos) == false) {
                           returnhash = returnhash + 'dpos=' + dpos + '&';
+                        }
+                        if (_.isUndefined(pos) == false) {
+                          returnhash = returnhash + 'pos=' + pos + '&';
                         }
                         return returnhash;
                       };
@@ -90,6 +94,11 @@ $(document).ready(function() {
           return match;
         });
       }
+      var pos = hash.get('pos');
+      if (_.isUndefined(pos)) {
+        pos = 1;
+      }
+      productlist.show(pos, parseInt(productlist.page));
 
       // Testing. Code should be combined with li click handler
       if (_.isUndefined(hash.get('detailedview')) == false) {
@@ -146,7 +155,7 @@ $(document).ready(function() {
       // Page counter for slide view
       if (productlist.page == 3) {
         $('#pagecount')
-        .html(productlist.i+1)
+        .html(parseInt(productlist.i)+1)
         .append(' / ')
         .append(productlist.matchingItems.length);
       // Page counter for thumbnail view
@@ -163,13 +172,15 @@ $(document).ready(function() {
         // If we're viewing three at a time, only increment by one item.
         // Otherwise, increment by one page.
         if (n == 3) { n = 1; }
-        productlist.show(parseInt(productlist.i)+n, parseInt(productlist.page));
+        console.log(productlist,n);
+        hash.add({pos:parseInt(productlist.i)+parseInt(n)});
       });
       $('.previous').off('click touch').on('click touch', function(e) {
         var n = parseInt(productlist.page);
         // If we're viewing three at a time, only increment by one item
         if (n == 3) { n = 1; }
-        productlist.show(parseInt(productlist.i)-n, parseInt(productlist.page));
+        console.log(productlist,n);
+        hash.add({pos:parseInt(productlist.i)-parseInt(n)});
       });
       // If our position is less than the number of entries per page, assume we are on page #1
       // Unless we're viewing three at a time -- go to zero then
@@ -239,13 +250,12 @@ $(document).ready(function() {
     $('#slide').on('click touch', function(e) {
       e.preventDefault();
       productlist.page = 3;
-      productlist.i = productlist.i-1; // We want to "center" the active item.
-      productlist.update();
+      var pos = parseInt(productlist.i)-1; // We want to "center" the active item.
       // If it's the first item, simulate centering
       $('.list').addClass('slider');
       /* If we are showing the first item, adding a dummy to push it one to the right
          Otherwise, make sure we remove all dummies */
-      if (productlist.i == 0) {
+      if (pos == 0) {
         $('.slider').prepend('<li class="firstitem"></li>');
       } else {
         $('.slider li.firstitem').remove();
@@ -253,6 +263,7 @@ $(document).ready(function() {
       // Only allow one button to be enabled at a time
       $('#slide').addClass('disabled');
       $('#thumbs').removeClass('disabled');
+      hash.add({pos:pos});
     });
 
     // Toggle to thumb view mode
@@ -260,6 +271,7 @@ $(document).ready(function() {
       e.preventDefault();
       productlist.page = 40;
       productlist.update();
+      var pos = 0;
       // If we have fewer visible items than page size and matching != visible (one page with only a few items)
       if ((productlist.visibleItems.length < productlist.page) && 
           (productlist.visibleItems.length != productlist.matchingItems.length)) {
@@ -267,17 +279,16 @@ $(document).ready(function() {
         var pagesize = productlist.page;
         // Calculate the remainder -- switch to math based method below sometime.
         while (remainder > pagesize) { remainder = remainder - pagesize; }
-        productlist.show(productlist.matchingItems.length-remainder+1, pagesize);
+        pos = parseInt(productlist.matchingItems.length-remainder+1);
       }  else {
         // Calculate the nearest multiple of 40 by casting as an integer without going over. Like The Price is Right.
-        var startpos = parseInt(productlist.i / 40) * 40;
-        productlist.show(startpos+1, productlist.page);
+        pos = parseInt(productlist.i / 40) * 40 + 1;
       }
-      productlist.update();
       $('.slider li.firstitem').remove();
       $('.list').removeClass('slider');
       $('#slide').removeClass('disabled');
       $('#thumbs').addClass('disabled');
+      hash.add({pos:pos});
     });
 
 
@@ -289,4 +300,4 @@ $(document).ready(function() {
       return false;
     });
   });
-});
+}); 
