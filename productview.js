@@ -111,11 +111,11 @@ $(document).ready(function() {
         relatedlist.on('updated', function() {
           $('.rel-previous, .rel-next').removeClass('disabled');
           $('.rel-next').off('click touch').on('click touch', function(e) {
-            hash.add({dpos:relatedlist.i+1});
+            hash.add({dpos:parseInt(relatedlist.i)+1});
             relatedlist.show(parseInt(relatedlist.i)+1, parseInt(relatedlist.page));
           });
           $('.rel-previous').off('click touch').on('click touch', function(e) {
-            hash.add({dpos:relatedlist.i-1});
+            hash.add({dpos:parseInt(relatedlist.i)-1});
             relatedlist.show(parseInt(relatedlist.i)-1, parseInt(relatedlist.page));
           });
           if (parseInt(relatedlist.i)+1 < parseInt(relatedlist.page)) {
