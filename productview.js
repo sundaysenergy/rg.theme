@@ -235,6 +235,7 @@ $(document).ready(function() {
       $('#attributes :checkbox:checked').each(function(i) {
         f.push($(this).val());
       });
+      hash.remove('pos');
       // If we have terms filter, otherwise the filter reset will start us fresh
       if (f.length > 0) {
         hash.add({attributes : f.join(',') });
@@ -296,6 +297,7 @@ $(document).ready(function() {
     $('ul.collection-filter li a').on('click touch', function(e) {
       e.preventDefault();
       var m = $(this).attr('href').split('=')[1];
+      hash.remove('pos');
       hash.add({ collection: m });
       return false;
     });
