@@ -56,6 +56,10 @@ $(document).ready(function() {
       if (typeof(f) != 'undefined') { attributes = f.split(','); }
       // Clear any existing filter
       productlist.filter();
+      // Unhide all of the filter buttons
+      $('.checkbox-inline:hidden').each(function(i) {
+        $(this).show();
+      });
       // If either attributes or collection are undefined, we have filter elements to process
       if ((typeof(f) != 'undefined') || (typeof(collection) != 'undefined')) {
         productlist.filter(function(item) {
@@ -82,6 +86,19 @@ $(document).ready(function() {
             }
           }
           return match;
+        });
+
+        // Check unchecked filter buttons for matches. Hide if no matches
+        $('#attributes :checkbox:not(:checked)').each(function(i) {
+          var a = $(this)[0].value;
+          var m = _.filter(productlist.matchingItems, function(item) {
+                                                            if (item.values().content.toLowerCase().indexOf(a.toLowerCase()) >= 0) {
+                                                              return true;
+                                                            } else {
+                                                              return false;
+                                                            }
+                                                          });
+          if (m.length == 0) $(this).parent().hide();
         });
       }
       var pos = hash.get('pos');
@@ -202,19 +219,6 @@ $(document).ready(function() {
     // Manually trigger an update
     productlist.update();
 
-    // Process the hash if we're just loading the page and have values
-    if (window.location.hash.length > 0) {
-      var g = hash.get('attributes');
-      if (typeof(g) != 'undefined') {
-        var f = g.split(',');
-        // Toggle checkboxes for any attributes that are found.
-        for (var i=0; i<f.length; i++) {
-          $('#attributes').find(":checkbox[value=" + f[i] +"]").attr('checked',true);
-        }
-      }
-      // Trigger a hashchange event to actually process the filter
-      $(window).trigger('hashchange');
-    }
 
     // When we check or uncheck a box, recalculate search terms
     $('input[type=checkbox]').on('click touch', function(e) {
@@ -228,12 +232,27 @@ $(document).ready(function() {
       if (f.length > 0) {
         hash.add({attributes : f.join(',') });
       } else {
-        hash.add({scroll:false});
+        hash.add({scroll:'n'});
         hash.remove('attributes');
       }
       if (productlist.page == 3) { productlist.i = productlist.i-1; }
       productlist.update();
     });
+
+
+    // Process the hash if we're just loading the page and have values
+    if (window.location.hash.length > 0) {
+      var g = hash.get('attributes');
+      if (typeof(g) != 'undefined') {
+        var f = g.split(',');
+        // Toggle checkboxes for any attributes that are found.
+        for (var i=0; i<f.length; i++) {
+          $('#attributes').find(":checkbox[value=" + f[i] +"]").attr('checked',true);
+        }
+      }
+      // Trigger a hashchange event to actually process the filter
+      $(window).trigger('hashchange');
+    }
 
 
     // Toggle to slide view mode
