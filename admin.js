@@ -67,7 +67,7 @@ $(document).ready(function() {
       $("<img />").attr({ 'src' : url, "class" : "img-responsive" }).appendTo('.fileinfo');
       $("<img />").attr({ 'src' : url_far, "class" : "img-responsive" }).appendTo('.fileinfo');
     });
-  })
+  });
   /* Capture enter since typeahead doesn't natively do anything with it.
      We are grabbing the first item in the list and setting the query. */
   .on('keyup', function(e) {
