@@ -2,7 +2,6 @@
 
 $(document).ready(function() {
   /* Initialize the dropzones */
-  var image_host = 'http://02d1247353ac267cd867-724dd3ec3ecad6ced51d604f25311902.r22.cf2.rackcdn.com.img.labori.us/300x300/';
   var dz_closeup = $('.closeup form').dropzone({ 
                                 url: "http://h2.cape.io/upload", 
                                 maxFiles: 1, 
@@ -27,31 +26,6 @@ $(document).ready(function() {
   .on('typeahead:selected typeahead:autocompleted', function(e, data) {
     /* Show file inputs and retrieve json for specific item */
     $('.closeup, .faraway').show();
-
-
-    /***** Failed attempt to post directly to cloudfiles *****/
-    // $.getJSON('http://cf.webscript.io/token', function(data) {
-      // $('form').each(function(i) {
-      //   $(this).attr('action', data.url);
-      // });
-      // for(var k in data) {
-      //   $('<input>').attr({
-      //       type: 'hidden',
-      //       name: k,
-      //       value: data[k]
-      //   }).prependTo('.closeup form');
-      // }
-      // for(var k in data) {
-      //   $('<input>').attr({
-      //       type: 'hidden',
-      //       name: k,
-      //       value: data[k]
-      //   }).prependTo('.faraway form');
-      // }
-    // });
-    /***** End failed attempt *****/
-
-
     $('form').each(function(i) {
       $(this).find('input[name=id]').remove();
       $('<input>').attr({
@@ -60,14 +34,14 @@ $(document).ready(function() {
          value: data.value
       }).prependTo($(this));
     });
-    // $.getJSON('http://rg.cape.io/items/' + data.value + '/info.json', function(result) {
-    //   $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
-    //   var url = result.img.normal["320"],
-    //       url_far = result.img.far["320"];
-    //   $("<img />").attr({ 'src' : url, "class" : "img-responsive" }).appendTo('.fileinfo');
-    //   $("<img />").attr({ 'src' : url_far, "class" : "img-responsive" }).appendTo('.fileinfo');
-    // });
-  });
+    $.getJSON('http://rg.cape.io/items/' + data.value + '/info.json', function(result) {
+      $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
+      var url = result.img.normal["320"],
+          url_far = result.img.far["320"];
+      $("<img />").attr({ 'src' : url, "class" : "img-responsive" }).appendTo('.fileinfo');
+      $("<img />").attr({ 'src' : url_far, "class" : "img-responsive" }).appendTo('.fileinfo');
+    });
+  })
   /* Capture enter since typeahead doesn't natively do anything with it.
      We are grabbing the first item in the list and setting the query. */
   .on('keyup', function(e) {
@@ -86,15 +60,12 @@ $(document).ready(function() {
            value: itemid
         }).prependTo($(this));
       });
-      $.getJSON('http://rg.cape.io/items/' + itemid + '.json', function(result) {
+      $.getJSON('http://rg.cape.io/items/' + itemid + '/info.json', function(result) {
         $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
-        var url = image_host + itemid + ".jpg",
-            url_far = image_host + itemid + "_far.jpg";
-        console.log(url, url_far);
-        $.getJSON('http://rg.webscript.io/exists', { 'itemid': itemid }, function(data) {
-          if (data.near == 200) { $("<img />").attr({ 'src' : url, "class" : "img-responsive" }).appendTo('.fileinfo'); }
-          if (data.far == 200) { $("<img />").attr({ 'src' : url_far, "class" : "img-responsive" }).appendTo('.fileinfo'); }
-        });
+        var url = result.img.normal["320"],
+            url_far = result.img.far["320"];
+        $("<img />").attr({ 'src' : url, "class" : "img-responsive" }).appendTo('.fileinfo');
+        $("<img />").attr({ 'src' : url_far, "class" : "img-responsive" }).appendTo('.fileinfo');
       });
     }
   });
