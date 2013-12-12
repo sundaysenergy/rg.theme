@@ -62,8 +62,8 @@ $(document).ready(function() {
     });
     $.getJSON('http://rg.cape.io/items/' + data.value + '/info.json', function(result) {
       $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
-      var url = result.img.normal.320,
-          url_far = result.img.far.320;
+      var url = result.img.normal["320"],
+          url_far = result.img.far["320"];
       $("<img />").attr({ 'src' : url, "class" : "img-responsive" }).appendTo('.fileinfo');
       $("<img />").attr({ 'src' : url_far, "class" : "img-responsive" }).appendTo('.fileinfo');
     });
