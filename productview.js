@@ -29,9 +29,12 @@ $(document).ready(function() {
       return _.map(variations, function(v) { return itemno + '-' + v; });
     }
     _.forEach(data, function(item) {
+      // Remove the last part of the product number, which designates variation of a themed item
       var i = item.id.split("-");
       i.pop();
+      // Generate an associated list of color options that include the original item number
       item.itemcolors = _.bind(findColors, colors, i.join("-"));
+      // We need to generate links for our thumbnails that do not include detailedview twice
       item.linkitem = function () {
                         var returnhash = '';
                         _.forEach(_.keys(hash.get()), function(k) {
