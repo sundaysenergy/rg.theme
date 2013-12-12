@@ -13,4 +13,4 @@ login:
   js: []
 admin:
   css: [admin.less]
-  js: [hogan-2.0.0.js, typeahead.js, dropzone.js]
+  js: [hogan-2.0.0.js, typeahead.js, dropzone.js, admin.js]
