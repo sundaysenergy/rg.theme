@@ -34,6 +34,7 @@ $(document).ready(function() {
          value: data.value
       }).prependTo($(this));
     });
+    $.ajaxSetup({ cache:false });
     $.getJSON('http://rg.cape.io/items/' + data.value + '/info.json', function(result) {
       $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
       var url = result.img.normal["320"],
@@ -41,6 +42,7 @@ $(document).ready(function() {
       $("<img />").attr({ 'src' : url, "class" : "img-responsive" }).appendTo('.fileinfo');
       $("<img />").attr({ 'src' : url_far, "class" : "img-responsive" }).appendTo('.fileinfo');
     });
+    $.ajaxSetup({ cache:true });
   })
   /* Capture enter since typeahead doesn't natively do anything with it.
      We are grabbing the first item in the list and setting the query. */
@@ -60,6 +62,7 @@ $(document).ready(function() {
            value: itemid
         }).prependTo($(this));
       });
+      $.ajaxSetup({ cache:false });
       $.getJSON('http://rg.cape.io/items/' + itemid + '/info.json', function(result) {
         $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
         var url = result.img.normal["320"],
@@ -67,6 +70,7 @@ $(document).ready(function() {
         $("<img />").attr({ 'src' : url, "class" : "img-responsive" }).appendTo('.fileinfo');
         $("<img />").attr({ 'src' : url_far, "class" : "img-responsive" }).appendTo('.fileinfo');
       });
+      $.ajaxSetup({ cache:true });
     }
   });
   if (window.location.hash) {
