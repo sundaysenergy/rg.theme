@@ -49,6 +49,9 @@ $(document).ready(function() {
 
     // Process filters on hashchange
     $(window).on('hashchange', function(e) {
+      if (_.isUndefined(hash.get('detailedview'))) {
+        $('.itemoverlay').hide();
+      }
       e.preventDefault();
       f = hash.get('attributes');
       var collection = hash.get('collection');
