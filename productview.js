@@ -162,14 +162,12 @@ $(document).ready(function() {
         // If we're viewing three at a time, only increment by one item.
         // Otherwise, increment by one page.
         if (n == 3) { n = 1; }
-        console.log(productlist,n);
         hash.add({pos:parseInt(productlist.i)+parseInt(n)});
       });
       $('.previous').off('click touch').on('click touch', function(e) {
         var n = parseInt(productlist.page);
         // If we're viewing three at a time, only increment by one item
         if (n == 3) { n = 1; }
-        console.log(productlist,n);
         hash.add({pos:parseInt(productlist.i)-parseInt(n)});
       });
       // If our position is less than the number of entries per page, assume we are on page #1
@@ -230,6 +228,7 @@ $(document).ready(function() {
       if (f.length > 0) {
         hash.add({attributes : f.join(',') });
       } else {
+        hash.add({scroll:false});
         hash.remove('attributes');
       }
       if (productlist.page == 3) { productlist.i = productlist.i-1; }
