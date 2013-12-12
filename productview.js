@@ -33,23 +33,10 @@ $(document).ready(function() {
       i.pop();
       item.itemcolors = _.bind(findColors, colors, i.join("-"));
       item.linkitem = function () {
-                        var attributes = hash.get('attributes');
-                        var collection = hash.get('collection');
-                        var dpos = hash.get('dpos');
-                        var pos = hash.get('pos');
                         var returnhash = '';
-                        if (_.isUndefined(attributes) == false) {
-                          returnhash = returnhash + 'attributes=' + attributes + '&';
-                        }
-                        if (_.isUndefined(collection) == false) {
-                          returnhash = returnhash + 'collection=' + collection + '&';
-                        }
-                        if (_.isUndefined(dpos) == false) {
-                          returnhash = returnhash + 'dpos=' + dpos + '&';
-                        }
-                        if (_.isUndefined(pos) == false) {
-                          returnhash = returnhash + 'pos=' + pos + '&';
-                        }
+                        _.forEach(_.keys(hash.get()), function(k) {
+                          if (k != 'detailedview') returnhash = returnhash + k + '=' + hash.get(k) + '&';
+                        });
                         return returnhash;
                       };
     });
