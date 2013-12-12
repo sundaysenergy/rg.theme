@@ -60,22 +60,12 @@ $(document).ready(function() {
          value: data.value
       }).prependTo($(this));
     });
-    $.getJSON('http://rg.cape.io/items/' + data.value + '.json', function(result) {
+    $.getJSON('http://rg.cape.io/items/' + data.value + '/info.json', function(result) {
       $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
-      var url = image_host + data.value + ".jpg",
-          url_far = image_host + data.value + "_far.jpg";
-      console.log(url,url_far);
-      $.getJSON('http://rg.cape.io/items/' + data.value + '.json', function(result) {
-        $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
-        var url = image_host + data.value + ".jpg",
-            url_far = image_host + data.value + "_far.jpg";
-        console.log(url, url_far);
-        $.getJSON('http://rg.webscript.io/exists', { 'itemid': data.value }, function(data) {
-          console.log(data);
-          if (data.near == 200) { $("<img />").attr({ 'src' : url, "class" : "img-responsive" }).appendTo('.fileinfo'); }
-          if (data.far == 200) { $("<img />").attr({ 'src' : url_far, "class" : "img-responsive" }).appendTo('.fileinfo'); }
-        });
-      });
+      var url = result.img.normal.320,
+          url_far = result.img.far.320;
+      $("<img />").attr({ 'src' : url, "class" : "img-responsive" }).appendTo('.fileinfo');
+      $("<img />").attr({ 'src' : url_far, "class" : "img-responsive" }).appendTo('.fileinfo');
     });
   })
   /* Capture enter since typeahead doesn't natively do anything with it.
