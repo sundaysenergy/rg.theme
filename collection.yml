@@ -13,4 +13,4 @@ login:
   js: []
 admin:
   css: [admin.css]
-  js: [dropzone.js, admin.js]
+  js: [typeahead.js, dropzone.js, admin.js]
