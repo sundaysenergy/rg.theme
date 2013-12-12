@@ -51,6 +51,7 @@ $(document).ready(function() {
     $(window).on('hashchange', function(e) {
       if (_.isUndefined(hash.get('detailedview'))) {
         $('.itemoverlay').hide();
+        $('body').css('overflow','auto');
       }
       e.preventDefault();
       f = hash.get('attributes');
@@ -152,7 +153,6 @@ $(document).ready(function() {
           $('body').css('overflow','auto');
         });
       }
-
       return false;
     });
 
