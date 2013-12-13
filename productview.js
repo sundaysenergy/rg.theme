@@ -269,8 +269,8 @@ $(document).ready(function() {
         $('.slider li.firstitem').remove();
       }
       // Only allow one button to be enabled at a time
-      $('#slide').addClass('disabled');
-      $('#thumbs').removeClass('disabled');
+      $('#slide').toggle();
+      $('#thumbs').toggle();
       hash.add({pos:pos});
     });
 
@@ -294,8 +294,8 @@ $(document).ready(function() {
       }
       $('.slider li.firstitem').remove();
       $('.list').removeClass('slider');
-      $('#slide').removeClass('disabled');
-      $('#thumbs').addClass('disabled');
+      $('#slide').toggle();
+      $('#thumbs').toggle();
       hash.add({pos:pos});
     });
 
