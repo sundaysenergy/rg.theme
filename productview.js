@@ -95,14 +95,10 @@ $(document).ready(function() {
         // Check unchecked filter buttons for matches. Hide if no matches
         $('#attributes :checkbox:not(:checked)').each(function(i) {
           var a = $(this)[0].value;
-          var m = _.filter(productlist.matchingItems, function(item) {
-                                                            if (item.values().content.toLowerCase().indexOf(a.toLowerCase()) >= 0) {
-                                                              return true;
-                                                            } else {
-                                                              return false;
-                                                            }
-                                                          });
-          if (m.length == 0) $(this).parent().hide();
+          var m = _.some(productlist.matchingItems, function(item) {
+            if (item.values().content.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
+          });
+          if (m == false) $(this).parent().hide();
         });
       }
       var pos = hash.get('pos');
@@ -262,7 +258,7 @@ $(document).ready(function() {
     $('#slide').on('click touch', function(e) {
       e.preventDefault();
       productlist.page = 3;
-      var pos = parseInt(productlist.i)-1; // We want to "center" the active item.
+      var pos = parseInt(productlist.i)-1;
       // If it's the first item, simulate centering
       $('.list').addClass('slider');
       /* If we are showing the first item, adding a dummy to push it one to the right
@@ -304,7 +300,7 @@ $(document).ready(function() {
     });
 
 
-    // Add collection value to hash
+    // Add collection value to hash -- doing this instead of href in case filters are set
     $('ul.collection-filter li a').on('click touch', function(e) {
       e.preventDefault();
       var m = $(this).attr('href').split('=')[1];
@@ -313,6 +309,7 @@ $(document).ready(function() {
       return false;
     });
 
+    // Keep the dropdown menu from closing after an option is selected
     $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
       e.stopPropagation();
     });
