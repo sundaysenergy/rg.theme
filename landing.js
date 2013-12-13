@@ -27,14 +27,14 @@ $(document).ready(function() {
       $('.carousel-indicators li:nth-of-type(1)').addClass('active');
       $('.carousel').carousel();
       $("area").hover(function() {
-          var altText = $(this).data("id");
-          $('.item-hover').html("Hovering " + altText);
+          // var altText = $(this).data("id");
+          // $('.item-hover').html("Hovering " + altText);
       }, function() {
-          $('.item-hover').empty();
+          // $('.item-hover').html();
       })
       .click(function() {
-          var altText = $(this).data("id");
-          $('.item-info').html("Clicked " + altText);
+        var itemid = $(this).data("id");
+        hash.add(detailedview:itemid);
       });
     });
   });
