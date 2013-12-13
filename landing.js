@@ -22,7 +22,7 @@ $(document).ready(function() {
           item.items[i-1].rightc = (section * (parseInt(i)))-1;
         }
       });
-      $.when($('.carousel').append(item_template.render({slides:data}))).then(function() {
+      $.when($('.carousel').html(item_template.render({slides:data}))).then(function() {
         $('.carousel-inner').css('height', '500px');
         $('.carousel-inner .item:nth-of-type(1)').addClass('active');
         $('.carousel-indicators li:nth-of-type(1)').addClass('active');
