@@ -312,5 +312,9 @@ $(document).ready(function() {
       hash.add({ collection: m });
       return false;
     });
+
+    $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
+      e.stopPropagation();
+    });
   });
 }); 
