@@ -103,7 +103,7 @@ $(document).ready(function() {
       }
       var pos = hash.get('pos');
       if (_.isUndefined(pos)) {
-        pos = 1;
+        pos = (productlist.page == 3) ? 0:1;
       }
       productlist.show(pos, parseInt(productlist.page));
 
