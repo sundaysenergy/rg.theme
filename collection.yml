@@ -1,10 +1,10 @@
 ---
 default:
   css: [style.less]
-  js: [lodash.js,rg.js,hash.js,bootstrap.min.js]
+  js: [lodash.js,rg.js,hash.js,bootstrap.min.js,hogan-2.0.0.js]
 productview:
   css: [productview.less]
-  js: [hogan-2.0.0.js, list.min.js, productview.js]
+  js: [list.min.js, productview.js]
 pricelist:
   css: [pricelist.css]
   js: [list.min.js, list.fuzzysearch.min.js, pricelist.js]
@@ -13,7 +13,7 @@ login:
   js: []
 admin:
   css: [admin.less]
-  js: [hogan-2.0.0.js, typeahead.js, dropzone.js, admin.js]
+  js: [typeahead.js, dropzone.js, admin.js]
 landing:
   css: [landing.less]
   js: [landing.js]
