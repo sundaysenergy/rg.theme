@@ -14,3 +14,6 @@ login:
 admin:
   css: [admin.less]
   js: [hogan-2.0.0.js, typeahead.js, dropzone.js, admin.js]
+landing:
+  css: [landing.less]
+  js: [landing.js]
