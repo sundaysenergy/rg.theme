@@ -22,10 +22,9 @@ $(document).ready(function() {
           item.items[i-1].rightc = (section * (parseInt(i)))-1;
         }
       });
+      data[_.random(0,data.length)].active = true;
       $.when($('.carousel').html(item_template.render({slides:data}))).then(function() {
         $('.carousel-inner').css('height', '500px');
-        $('.carousel-inner .item:nth-of-type(1)').addClass('active');
-        $('.carousel-indicators li:nth-of-type(1)').addClass('active');
         $('.carousel').carousel();
         $("area").hover(function() {
           var itemid = $(this).data("id");
