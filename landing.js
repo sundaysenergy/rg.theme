@@ -32,11 +32,11 @@ $(document).ready(function() {
             // $('.item-hover').html("Hovering " + altText);
         }, function() {
             // $('.item-hover').html();
-        })
-        .click(function() {
-          var itemid = $(this).data("id");
-          window.location = '/collection.html#detailedview=' + itemid;
         });
+        // .click(function() {
+        //   var itemid = $(this).data("id");
+        //   window.location = '/collection.html#detailedview=' + itemid;
+        // });
       });
     });
   });
