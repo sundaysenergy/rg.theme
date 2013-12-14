@@ -31,6 +31,7 @@ $(document).ready(function() {
           var itemid = $(this).data("id");
           $('.popover-'+itemid).show();
         }, function() {
+          var itemid = $(this).data("id");
           $('.popover-'+itemid).hide();
         });
       });
