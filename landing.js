@@ -26,7 +26,7 @@ $(document).ready(function() {
       $.when($('.carousel').html(item_template.render({slides:data}))).then(function() {
         $('.carousel-inner').css('height', '500px');
         $('.carousel').carousel();
-        $('.carousel').on('slid', function() {
+        $('.carousel').on('slid.bs.carousel', function() {
           var to_slide = $('.carousel-inner .item.active').attr('id');
           $('.carousel-indicators').children().removeClass('active');
           $('.carousel-indicators [data-slide-to=' + to_slide + ']').addClass('active');
