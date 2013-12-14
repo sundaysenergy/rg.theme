@@ -35,7 +35,7 @@ $(document).ready(function() {
         })
         .click(function() {
           var itemid = $(this).data("id");
-          hash.add({detailedview:itemid});
+          window.location = '/collection.html#detailedview=' + itemid;
         });
       });
     });
