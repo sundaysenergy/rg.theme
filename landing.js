@@ -28,15 +28,11 @@ $(document).ready(function() {
         $('.carousel-indicators li:nth-of-type(1)').addClass('active');
         $('.carousel').carousel();
         $("area").hover(function() {
-            // var altText = $(this).data("id");
-            // $('.item-hover').html("Hovering " + altText);
+          var itemid = $(this).data("id");
+          $('.popover-'+itemid).show();
         }, function() {
-            // $('.item-hover').html();
+          $('.popover-'+itemid).hide();
         });
-        // .click(function() {
-        //   var itemid = $(this).data("id");
-        //   window.location = '/collection.html#detailedview=' + itemid;
-        // });
       });
     });
   });
