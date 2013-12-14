@@ -31,7 +31,7 @@ $(document).ready(function() {
         }
       });
       // Set the active attribute true for a random item
-      data[_.random(0,data.length)].active = true;
+      data[_.random(0,data.length-1)].active = true;
       // Add the html to the document
       $.when($('.carousel').html(item_template.render({slides:data}))).then(function() {
         // Set the height of the carousel with JS. Should be made more pro by KB
