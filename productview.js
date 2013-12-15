@@ -64,10 +64,18 @@ $(document).ready(function() {
       $('.checkbox-inline:hidden').each(function(i) {
         $(this).show();
       });
+      var srch = hash.get('search');
       // If either attributes or collection are undefined, we have filter elements to process
-      if ((typeof(f) != 'undefined') || (typeof(collection) != 'undefined')) {
+      if ((typeof(f) != 'undefined') || (typeof(collection) != 'undefined' || _.isUndefined(srch) == false)) {
         productlist.filter(function(item) {
           var match = false;
+          if (_.isUndefined(srch) == false) {
+            if (item.values().content.toLowerCase().indexOf(srch) == -1) {
+              return false;
+            } else {
+              match = true;
+            }
+          }
           // If we have a collection, see if the item matches the selected collection
           if (typeof(collection) != 'undefined') {
             if (item.values().collection.toLowerCase().indexOf(collection.toLowerCase()) >= 0) {
