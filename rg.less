@@ -81,16 +81,20 @@ main{
 
 .masthead nav > ul li {
   text-transform: uppercase;
-  border-top: solid 1px #000;
+  border-top: solid 1px @rg-black;
   padding: 3px 20px 2px;
   font-weight: 500;
 }
 
 .masthead nav ul li a {
-  color: #000;
+  color: @rg-black;
   font-family: "Adobe Caslon Pro", "Droid Serif", "Times New Roman", Times, Georgia, serif;
   font-size: 12px;
   text-decoration: none;
+}
+
+.masthead nav ul li a:hover {
+  color: @rg-gray;
 }
 
 .masthead nav ul li ul.collection-filter {
@@ -193,7 +197,7 @@ main{
 }
 
 .masthead h1.sitename {
-  background: #fcfbf8;
+  background: @rg-background;
   box-shadow: 0 0 10px 0 #d9d9d9;
   letter-spacing: 3px;
   margin: 20px auto 0;
