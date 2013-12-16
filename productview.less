@@ -98,22 +98,36 @@ img {
   display: none;
 }
 
+/* ITEM OVERLAY DISPLAY STYLES */
+.itemoverlay { z-index: 9000; }
+.itemoverlay table, .itemoverlay .ruler-wrap, .itemoverlay .ruler-wrap .rulers { z-index: 9001; }
+.itemoverlay .ruler-wrap ul { z-index: 9002; }
+
+.itemoverlay, .itemoverlay table, .itemoverlay .ruler-wrap {
+  background: @rg-background;
+}
+
+.itemoverlay table, .itemoverlay .ruler-wrap {
+  box-shadow: 0 0 10px 0 #848484;
+}
+
 .itemoverlay {
   display: none;
-  background-color: @rg-background;
+  width: 100%;
+  height: 100%;
+}
+
+.itemoverlay,
+.img-large-container {
   position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-  z-index: 1000;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
 }
-.itemoverlay img.img-large {
-  width: 100%;
-  min-width: 100%;
-  height: 100%;
-  min-height: 100%
-}
+
+.img-large-container { overflow: hidden; }
+.img-large-container img, .rulers img {width: 100%; height: auto;}
 
 #related-products,
 .img-large-container {
@@ -123,14 +137,15 @@ img {
   -o-user-select: none;
 }
 
-/** TABLE AT THE TOP OF THE PRODUCT PAGES **/
-
 .itemoverlay table {
-  width:100%;
-  vertical-align: middle;
+  margin: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top:0;
+  width: 100%;
   text-align: center;
-  margin: 20px 0;
-  padding: 0;
+  vertical-align: middle;
 }
 
 .itemoverlay table td {
@@ -139,3 +154,53 @@ img {
   padding: 0;
 }
 
+
+button.plain {
+  background: none;
+  background-color: transparent;
+  border: none;
+  border-color: none;
+  padding: 0;
+  margin: 0;
+}
+
+div.ruler-wrap {
+  position: fixed;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+div.ruler-wrap ul {
+  background: #fcfbf8;
+  list-style: none;
+  margin: 0;
+  padding: 10px 10px 10px 25px;
+  position: relative;
+  width: 150px;
+}
+
+div.ruler-wrap ul li a {
+  color: gray;
+  text-decoration: none;
+}
+
+div.ruler-wrap ul li.active a {
+  color: black;
+}
+
+div.ruler-wrap .rulers {
+  position: absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+div.ruler-wrap .rulers img {
+  display: block;
+  width: 100%;
+  margin-left: 190px;
+}
