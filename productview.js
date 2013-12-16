@@ -313,7 +313,6 @@ $(document).ready(function() {
     $('#thumbs').on('click touch', function(e) {
       e.preventDefault();
       // Hide details for center slide in "horizontal" view
-      $('ul.list li .item-spotlight').remove();
       productlist.page = 40;
       productlist.update();
       var pos = 0;
@@ -333,6 +332,7 @@ $(document).ready(function() {
       $('.list').removeClass('slider');
       $('#slide').toggle();
       $('#thumbs').toggle();
+      $('ul.list li .item-spotlight').remove();
       hash.add({pos:pos});
     });
 
