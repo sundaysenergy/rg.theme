@@ -95,6 +95,8 @@ $(document).ready(function() {
           if (typeof(collection) != 'undefined') {
             if (item.values().collection.toLowerCase().indexOf(collection.toLowerCase()) >= 0) {
               match = true;
+            } else {
+              match = false;
             }
           }
           // If we've either matched the collection, or there is no collection specified, proceed.
