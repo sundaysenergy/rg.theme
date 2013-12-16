@@ -11,6 +11,17 @@ $(document).ready(function() {
   }).done(function(data) {
     item_template = Hogan.compile(data);
   });
+  var spotlight_template;
+  $.ajax({
+    url: "http://rg.cape.io/templates/spotlight.html",
+    context: document.body,
+    async: false,
+    error:  function (jqXHR, textStatus, errorThrown) {
+              console.log(errorThrown);
+            }
+  }).done(function(data) {
+    spotlight_template = Hogan.compile(data);
+  });
   
   // Retrieve a list of items from cape
   $.getJSON('http://rg.cape.io/items/items-color.json', function(combined) {
@@ -214,6 +225,13 @@ $(document).ready(function() {
       } else {
         $('.slider li.firstitem').remove();
       }
+
+      // Add product details div 
+      if (productlist.page == 3) {
+        console.log(productlist.visibleItems[1].values());
+        $('ul.list li .item-spotlight').remove();
+        $('ul.list li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[1].values()));
+      }
       // For each visible li in the list, create a click handler that toggles visibility
       // and compiles the mustache for the current item.
       $('.list li').off('click touch').on('click touch', function(e) {
@@ -322,4 +340,4 @@ $(document).ready(function() {
       e.stopPropagation();
     });
   });
-}); 
+});
