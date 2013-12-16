@@ -25,6 +25,9 @@ $(document).ready(function() {
   });
   // Compile the template for the "bookended" items that create the seamless scrolling in 3-up mode
   var dummy_template = Hogan.compile('<li class="item-bookends"><span style="display:none" class="id">{{id}}</span><img class="img" src="{{img}}"><br><span class="content">{{content}}</span></li>');
+  // Compile the template for alerts
+  var favorites_template = Hogan.compile('<div class="alert-favorite alert alert-dismissable" style="width:50%; margin-left: 25%; background: #fff"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}<br><br><a href="/collection.html#faves=">View and share</a></div>');
+
   // Retrieve a list of items from cape
   $.getJSON('http://rg.cape.io/items/items-color.json', function(combined) {
     // Options for our list
@@ -276,12 +279,27 @@ $(document).ready(function() {
         $('ul.list li .item-spotlight').remove();
         // Add the item detail information to the center slide
         var n = 1;
+        // If we are on the first slide, our information is in the 0th item
         if (productlist.i == 0) n = 0;
+        // Render the template with the correct data
         $('ul.list li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[parseInt(n)].values()));
+        // Create click handlers for the icon and the close button
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
           e.preventDefault();
           $('.item-spotlight .item-information').slideToggle();
         });
+        // Create click handler for favorite
+        $('.item-spotlight .item-icons button.item-favorite').on('click touch', function(e) {
+          e.preventDefault();
+          var id = $('.list li:nth-child(2)').find('.id').html();
+          if (_.isUndefined(localStorage.faves)) localStorage.faves = '[]';
+          var current = JSON.parse(localStorage.faves);
+          current.push(id);
+          localStorage.faves = JSON.stringify(current);
+          $('.item-spotlight').append(favorites_template.render({message:'Item added to your favorites!'}));
+          $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + JSON.parse(localStorage.faves).join(','));
+        });
+        // Click on the left image should decrement by one, while the right image should increment
         $('ul.list li:nth-child(1) .img').off('click touch').on('click touch', function(e) {
           var p = parseInt(productlist.i)-1;
           if (p == -1) p = productlist.matchingItems.length-1;
@@ -293,6 +311,7 @@ $(document).ready(function() {
           hash.add({pos:p});
         });
       } else {
+        // If we're not in 3-up mode, make sure we don't have any stray item details
         $('ul.list li .item-spotlight').remove();
       }
     }); // end productlist.on('updated')
