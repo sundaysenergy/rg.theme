@@ -22,7 +22,7 @@ $(document).ready(function() {
   }).done(function(data) {
     spotlight_template = Hogan.compile(data);
   });
-  
+  var dummy_template = Hogan.compile('<li class="item-bookends"><span style="display:none" class="id">{{id}}</span><img class="img" src="{{img}}"><br><span class="content">{{content}}</span></li>');
   // Retrieve a list of items from cape
   $.getJSON('http://rg.cape.io/items/items-color.json', function(combined) {
     var options = {
@@ -204,33 +204,37 @@ $(document).ready(function() {
         // If we're viewing three at a time, only increment by one item.
         // Otherwise, increment by one page.
         if (n == 3) { n = 1; }
-        hash.add({pos:parseInt(productlist.i)+parseInt(n)});
+        var p = parseInt(productlist.i)+parseInt(n);
+        if (p == productlist.matchingItems.length) p = 0;
+        hash.add({pos:p});
       });
       $('.previous').off('click touch').on('click touch', function(e) {
         var n = parseInt(productlist.page);
         // If we're viewing three at a time, only increment by one item
         if (n == 3) { n = 1; }
-        hash.add({pos:parseInt(productlist.i)-parseInt(n)});
+        var p = parseInt(productlist.i)-n;
+        if (p == -1) p = productlist.matchingItems.length-1;
+        hash.add({pos:p});
       });
       // If our position is less than the number of entries per page, assume we are on page #1
       // Unless we're viewing three at a time -- go to zero then
       if (((parseInt(productlist.i) < parseInt(productlist.page)) &&
-          (productlist.page != 3)) || (productlist.i<1)) {
+          (productlist.page != 3))) {
         $('.previous').addClass('disabled').off('click touch');
       }
       // If our position plus the size of the page is greater than length, we're showing the last entries
       if ((parseInt(productlist.i) + parseInt(productlist.page)) > productlist.matchingItems.length) {
         if (productlist.page != 3) {
           $('.next').addClass('disabled').off('click touch');
-        } else if (productlist.i == (productlist.matchingItems.length-1)) {
-          $('.next').addClass('disabled').off('click touch');
         }
       }
       // Add or remove dummy element for first item in slide view.
       if (productlist.i <= 0) {
-        $('.slider').prepend('<li class="firstitem"></li>');
+        $('.slider').prepend(dummy_template.render(productlist.matchingItems[productlist.matchingItems.length-1].values()));
+      } else if (productlist.i == productlist.matchingItems.length-1) {
+        $('.slider').append(dummy_template.render(productlist.matchingItems[0].values()));
       } else {
-        $('.slider li.firstitem').remove();
+        $('.slider li.item-bookends').remove();
       }
 
       // For each visible li in the list, create a click handler that toggles visibility
@@ -249,10 +253,14 @@ $(document).ready(function() {
           $('.item-spotlight .item-information').slideToggle();
         });
         $('ul.list li:nth-child(1) .img').off('click touch').on('click touch', function(e) {
-          hash.add({pos:parseInt(productlist.i)-1});
+          var p = parseInt(productlist.i)-1;
+          if (p == -1) p = productlist.matchingItems.length-1;
+          hash.add({pos:p});
         });
         $('ul.list li:nth-child(3) .img').off('click touch').on('click touch', function(e) {
-          hash.add({pos:parseInt(productlist.i)+1});
+          var p = parseInt(productlist.i)+1;
+          if (p == productlist.matchingItems.length) p = 0;
+          hash.add({pos:p});
         });
       } else {
         $('ul.list li .item-spotlight').remove();
