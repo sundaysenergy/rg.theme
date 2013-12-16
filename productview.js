@@ -65,6 +65,7 @@ $(document).ready(function() {
         $('html,body').css('overflow','auto').height($(window).height());
       }
       e.preventDefault();
+      // Get values from the hash
       f = hash.get('attributes');
       var collection = hash.get('collection');
       var attributes = [];
@@ -253,6 +254,8 @@ $(document).ready(function() {
         $('ul.list li:nth-child(3) .img').off('click touch').on('click touch', function(e) {
           hash.add({pos:parseInt(productlist.i)+1});
         });
+      } else {
+        $('ul.list li .item-spotlight').remove();
       }
     }); // end productlist.on('updated')
 
