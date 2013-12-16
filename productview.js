@@ -130,6 +130,8 @@ $(document).ready(function() {
       var pos = hash.get('pos');
       if (_.isUndefined(pos)) {
         pos = (productlist.page == 3) ? 0:1;
+      } else {
+        if (pos < 0) hash.add({pos:0});
       }
       productlist.show(pos, parseInt(productlist.page));
 
