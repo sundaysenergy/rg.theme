@@ -63,6 +63,7 @@ $(document).ready(function() {
       if (_.isUndefined(hash.get('detailedview'))) {
         $('.itemoverlay').hide();
         $('body').css('overflow','auto');
+        $('html,body').css('height','');
       }
       e.preventDefault();
       f = hash.get('attributes');
@@ -172,6 +173,7 @@ $(document).ready(function() {
           hash.remove('detailedview');
           hash.remove('dpos');
           $('body').css('overflow','auto');
+          $('html,body').css('height','');
         });
       }
       return false;
