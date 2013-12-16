@@ -309,6 +309,8 @@ $(document).ready(function() {
     // Toggle to thumb view mode
     $('#thumbs').on('click touch', function(e) {
       e.preventDefault();
+      // Hide details for center slide in "horizontal" view
+      $('ul.list li .item-spotlight').remove();
       productlist.page = 40;
       productlist.update();
       var pos = 0;
