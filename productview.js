@@ -68,6 +68,10 @@ $(document).ready(function() {
       f = hash.get('attributes');
       var collection = hash.get('collection');
       var attributes = [];
+      if (_.isUndefined(collection) == false) {
+        $('ul.collection-filter li a').removeClass('active');
+        $('ul.collection-filter li').find('a[href="/collection.html#collection=' + collection + '"]').addClass('active');
+      }
       if (typeof(f) != 'undefined') { attributes = f.split(','); }
       // Clear any existing filter
       productlist.filter();
