@@ -6,10 +6,6 @@
   padding: 0;
   margin: 0;
 }
-#filter-list {
-  left: -100px;
-  width: 425px;
-}
 .list li {
   float: left;
   width: 25%;
@@ -20,6 +16,55 @@
   cursor: pointer;
 }
 
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: block;
+  float: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background-color: #fff;
+  border: none;
+  box-shadow: 0 0 10px 0 #848484;
+  width: 720px;
+}
+
+#filter-list {
+  margin: 0;
+  width: 720px;
+  left: 0;
+}
+
+#attributes {
+  border: none;
+/*   color: @rg-gray; */
+  color: #848484;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 15px;
+  margin: 0;
+  width: 690px;
+}
+
+#attributes label {
+  display: block;
+  float: left;
+  width: 25%;
+  margin: 0 0 5px;
+  padding: 0;
+  text-align: left;
+}
+
+#attributes label input {
+  float: none;
+  margin: 0;
+}
+
+
+
 /* Do this in a less hacky way for production */
 .slider li {
   width: 33% !important;
@@ -28,7 +73,6 @@
 img {
   max-width: 100%;
 }
-
 
 /* In slide view, if we are on the first item we add a dummy
    to push it into the center section. Hide the fourth element
