@@ -207,16 +207,16 @@ main{
   width: 340px;
   margin: 0;
   padding: 0;
-  -webkit-transition: all 1s ease-in-out;
-  -moz-transition: all 1s ease-in-out;
-  -o-transition: all 1s ease-in-out;
-  -ms-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .masthead h1.sitename {
   background: @rg-background;
-  box-shadow: 0 0 10px 0 #d9d9d9;
+  box-shadow: @boxshadow;
   letter-spacing: 3px;
   margin: 20px auto 0;
 }
@@ -354,8 +354,6 @@ ul#collection li {
 /* STATES */
 
 /* ===== Styles for jquery carousel ===== */
-
-.text-centered { text-align: center; }
 
 /** general usefulness **/
 .uppercase { text-transform: uppercase; }
