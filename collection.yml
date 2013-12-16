@@ -3,7 +3,7 @@ default:
   css: [style.less]
   js: [lodash.js,rg.js,hash.js,hogan-2.0.0.js]
 productview:
-  css: [productview.less]
+  css: [variables.less,productview.less]
   js: [list.min.js, productview.js]
 pricelist:
   css: [pricelist.css]
