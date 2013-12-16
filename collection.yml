@@ -1,19 +1,41 @@
 ---
 default:
-  css: [style.less]
-  js: [lodash.js,rg.js,hash.js,hogan-2.0.0.js]
+  css:
+    - style.less
+  js:
+    - lodash.js
+    - rg.js
+    - hash.js
+    - hogan-2.0.0.js
 productview:
-  css: [variables.less,productview.less]
-  js: [list.min.js, productview.js]
+  css:
+    - variables.less
+    - productview.less
+  js:
+    - list.min.js
+    - productview.js
 pricelist:
-  css: [pricelist.css]
-  js: [list.min.js, list.fuzzysearch.min.js, pricelist.js]
+  css:
+    - variables.less
+    - pricelist.css
+  js:
+    - list.min.js
+    - list.fuzzysearch.min.js
+    - pricelist.js
 login:
   css: []
   js: []
 admin:
-  css: [admin.less]
-  js: [typeahead.js, dropzone.js, admin.js]
+  css:
+    - variables.less
+    - admin.less
+  js:
+    - typeahead.js
+    - dropzone.js
+    - admin.js
 landing:
-  css: [landing.less]
-  js: [landing.js]
+  css:
+    - variables.less
+    - landing.less
+  js:
+    - landing.js
