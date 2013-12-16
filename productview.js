@@ -272,8 +272,12 @@ $(document).ready(function() {
 
       // Add product details div 
       if (productlist.page == 3) {
+        // Remove existing item details
         $('ul.list li .item-spotlight').remove();
-        $('ul.list li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[1].values()));
+        // Add the item detail information to the center slide
+        var n = 1;
+        if (productlist.i == 0) n = 0;
+        $('ul.list li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[parseInt(n)].values()));
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
           e.preventDefault();
           $('.item-spotlight .item-information').slideToggle();
