@@ -237,6 +237,10 @@ $(document).ready(function() {
         console.log(productlist.visibleItems[1].values());
         $('ul.list li .item-spotlight').remove();
         $('ul.list li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[1].values()));
+        $('.item-spotlight .item-icons button.item-details').off().on('click touch', function(e) {
+          e.preventDefault();
+          $('.item-spotlight .item-information').slideToggle();
+        });
       }
       // For each visible li in the list, create a click handler that toggles visibility
       // and compiles the mustache for the current item.
