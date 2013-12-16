@@ -11,6 +11,7 @@ $(document).ready(function() {
   }).done(function(data) {
     item_template = Hogan.compile(data);
   });
+  // Get the template for detailed item information.
   var spotlight_template;
   $.ajax({
     url: "http://rg.cape.io/templates/spotlight.html",
@@ -22,9 +23,11 @@ $(document).ready(function() {
   }).done(function(data) {
     spotlight_template = Hogan.compile(data);
   });
+  // Compile the template for the "bookended" items that create the seamless scrolling in 3-up mode
   var dummy_template = Hogan.compile('<li class="item-bookends"><span style="display:none" class="id">{{id}}</span><img class="img" src="{{img}}"><br><span class="content">{{content}}</span></li>');
   // Retrieve a list of items from cape
   $.getJSON('http://rg.cape.io/items/items-color.json', function(combined) {
+    // Options for our list
     var options = {
       valueNames: [ 'image', 'content', 'id' ],
       item: '<li><span style="display:none" class="id"></span><img class="img"><br><span class="content"></span></li>',
@@ -69,6 +72,7 @@ $(document).ready(function() {
       f = hash.get('attributes');
       var collection = hash.get('collection');
       var attributes = [];
+      // Add active class for current sub collection, and remove active class for non-active sub.
       $('ul.collection-filter li a').removeClass('active');
       if (_.isUndefined(collection) == false) {
         $('ul.collection-filter li').find('a[href="/collection.html#collection=' + collection + '"]').addClass('active');
@@ -76,19 +80,24 @@ $(document).ready(function() {
       if (typeof(f) != 'undefined') { attributes = f.split(','); }
       // Clear any existing filter
       productlist.filter();
-      // Unhide all of the filter buttons
+      // Unhide all of the filter selections
       $('.checkbox-inline:hidden').each(function(i) {
         $(this).show();
       });
+      // Get any search term(s)
       var srch = hash.get('search');
       // If either attributes or collection are undefined, we have filter elements to process
       if ((typeof(f) != 'undefined') || (typeof(collection) != 'undefined' || _.isUndefined(srch) == false)) {
         productlist.filter(function(item) {
+          // Set our default to false, and explicit define matches
           var match = false;
+          // If we have a search term, process it
           if (_.isUndefined(srch) == false) {
             if (item.values().content.toLowerCase().indexOf(srch) == -1) {
+              // If we failed the search term, and the search term exists, quit here and return false.
               return false;
             } else {
+              // Set true if we have a search term and it connected
               match = true;
             }
           }
@@ -97,7 +106,7 @@ $(document).ready(function() {
             if (item.values().collection.toLowerCase().indexOf(collection.toLowerCase()) >= 0) {
               match = true;
             } else {
-              match = false;
+              match = false; // Probably should just return false here?
             }
           }
           // If we've either matched the collection, or there is no collection specified, proceed.
@@ -109,6 +118,7 @@ $(document).ready(function() {
                 if (item.values().content.toLowerCase().indexOf(attributes[i].toLowerCase()) >= 0) {
                   match = true;
                 } else {
+                  // If we fail, break the loop since we want all attributes to match.
                   match = false;
                   break;
                 }
@@ -121,37 +131,50 @@ $(document).ready(function() {
         // Check unchecked filter buttons for matches. Hide if no matches
         $('#attributes :checkbox:not(:checked)').each(function(i) {
           var a = $(this)[0].value;
+          // Determine if any potential matches exist from currently matched items. Breaks on first true
           var m = _.some(productlist.matchingItems, function(item) {
             if (item.values().content.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
           });
+          // Hide the parents of any item that does not have a match.
           if (m == false) $(this).parent().hide();
         });
       }
       var pos = hash.get('pos');
+      // If position is undefined, start at either 0 or 1, depending on view mode
       if (_.isUndefined(pos)) {
         pos = (productlist.page == 3) ? 0:1;
       } else {
+        // If position is less than zero, set it to zero
+        // Toggling between view modes can create this effect as we're offsetting each time we switch to the horizontal to center the active item
         if (pos < 0) hash.add({pos:0});
       }
       productlist.show(pos, parseInt(productlist.page));
 
-      // Testing. Code should be combined with li click handler
+      // Handle detailed view
       if (_.isUndefined(hash.get('detailedview')) == false) {
+        // Reset the body height and overflow
         $('html,body').css('overflow','hidden').height($(window).height());
         var id = hash.get('detailedview');
+        // Get the first item that matches the id...we're assuming there would only
+        // ever be one item with a given id
         var item = { item : productlist.get('id', id)[0].values() };
+        // Create the image url for the large image
         item.item.img_large = item.item.img.replace('640','1536');
+        // Show the detailed view mode and render the html from our mustache template
         $('.itemoverlay').show().html(item_template.render(item));
+        // Get the position in the mini slider
         var n = hash.get('dpos');
         if (_.isUndefined(n)) {
           n = 1;
         }
+        // Create a list for alternate color options
         var options = {
           valueNames: [ 'related-item' ],
           page: 3,
           i: n
         };
         var relatedlist = new List('related-products', options);
+        // Actions to perform when the list is updated -- mostly pagination
         relatedlist.on('updated', function() {
           $('.rel-previous, .rel-next').removeClass('disabled');
           $('.rel-next').off('click touch').on('click touch', function(e) {
@@ -170,6 +193,7 @@ $(document).ready(function() {
           }
         });
         relatedlist.update();
+        // Things to do on closing the detailed view mode
         $('button.close').off('click touch').on('click touch', function(e) {
           $('.itemoverlay').hide();
           hash.remove('detailedview');
