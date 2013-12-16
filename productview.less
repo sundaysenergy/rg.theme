@@ -69,6 +69,10 @@
   border: none;
   border-color: none;
   padding: 0;
+  margin: 0;
+}
+
+.pager button.plain {
   margin: 0 -15px;
 }
 
@@ -140,7 +144,8 @@ img {
 
 .itemoverlay table {
   margin: 0;
-  position: absolute;
+  padding: 0;
+  position: fixed;
   left: 0;
   right: 0;
   top:0;
@@ -149,8 +154,11 @@ img {
   vertical-align: middle;
 }
 
+.itemoverlay table tbody {
+  padding: 10px;
+}
+
 .itemoverlay table td {
-  width: 12.5%;
   margin: 0;
   padding: 0;
 }
