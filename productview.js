@@ -62,8 +62,7 @@ $(document).ready(function() {
     $(window).on('hashchange', function(e) {
       if (_.isUndefined(hash.get('detailedview'))) {
         $('.itemoverlay').hide();
-        $('body').css('overflow','auto');
-        $('html,body').css('height','');
+        $('html,body').css('overflow','auto').height($(window).height());
       }
       e.preventDefault();
       f = hash.get('attributes');
@@ -172,8 +171,7 @@ $(document).ready(function() {
           $('.itemoverlay').hide();
           hash.remove('detailedview');
           hash.remove('dpos');
-          $('body').css('overflow','auto');
-          $('html,body').css('height','');
+          $('html,body').css('overflow','hidden').height($(window).height());
         });
       }
       return false;
