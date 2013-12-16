@@ -232,6 +232,13 @@ $(document).ready(function() {
         $('.slider li.firstitem').remove();
       }
 
+      // For each visible li in the list, create a click handler that toggles visibility
+      // and compiles the mustache for the current item.
+      $('.list li .img').off('click touch').on('click touch', function(e) {
+        var id = $(this).parent().find('.id').html();
+        hash.add({detailedview:id});
+      });
+
       // Add product details div 
       if (productlist.page == 3) {
         $('ul.list li .item-spotlight').remove();
@@ -240,13 +247,13 @@ $(document).ready(function() {
           e.preventDefault();
           $('.item-spotlight .item-information').slideToggle();
         });
+        $('ul.list li:nth-child(1) .img').off('click touch').on('click touch', function(e) {
+          hash.add({pos:parseInt(productlist.i)-1});
+        });
+        $('ul.list li:nth-child(3) .img').off('click touch').on('click touch', function(e) {
+          hash.add({pos:parseInt(productlist.i)+1});
+        });
       }
-      // For each visible li in the list, create a click handler that toggles visibility
-      // and compiles the mustache for the current item.
-      $('.list li .img').off('click touch').on('click touch', function(e) {
-        var id = $(this).parent().find('.id').html();
-        hash.add({detailedview:id});
-      });
     }); // end productlist.on('updated')
 
 
