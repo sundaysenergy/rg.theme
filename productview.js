@@ -280,7 +280,7 @@ $(document).ready(function() {
         var f = g.split(',');
         // Toggle checkboxes for any attributes that are found.
         for (var i=0; i<f.length; i++) {
-          $('#attributes').find(":checkbox[value=" + f[i] +"]").attr('checked',true);
+          $('#attributes').find(':checkbox[value="' + f[i] +'"]').attr('checked',true);
         }
       }
       // Trigger a hashchange event to actually process the filter
