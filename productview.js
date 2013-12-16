@@ -399,4 +399,28 @@ $(document).ready(function() {
       e.stopPropagation();
     });
   });
+  
+  // A little bit of stuff for the ruler controls
+  // this works okay, maybe there is something better?
+  
+  $(".rulers .ruler-cm").hide();
+
+  $("a.ruler-inches").click(function() {
+    event.preventDefault();
+    $(".rulers img.ruler-inches").show();
+    $(".rulers img.ruler-cm").hide();
+    $(this).parent().addClass("active");
+    $(this).parent().next("li").removeClass("active");
+  });
+
+  $("a.ruler-cm").click(function() {
+    event.preventDefault();
+    $(".rulers img.ruler-cm").show();
+    $(".rulers img.ruler-inches").hide();
+    $(this).parent().addClass("active");
+    $(this).parent().prev("li").removeClass("active");
+  });
+
+  // End ruler controls for now
+  
 });
