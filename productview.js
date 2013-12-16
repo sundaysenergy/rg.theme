@@ -236,7 +236,7 @@ $(document).ready(function() {
       if (productlist.page == 3) {
         $('ul.list li .item-spotlight').remove();
         $('ul.list li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[1].values()));
-        $('.item-spotlight .item-icons button.item-details').off().on('click touch', function(e) {
+        $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
           e.preventDefault();
           $('.item-spotlight .item-information').slideToggle();
         });
