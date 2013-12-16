@@ -234,7 +234,6 @@ $(document).ready(function() {
 
       // Add product details div 
       if (productlist.page == 3) {
-        console.log(productlist.visibleItems[1].values());
         $('ul.list li .item-spotlight').remove();
         $('ul.list li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[1].values()));
         $('.item-spotlight .item-icons button.item-details').off().on('click touch', function(e) {
@@ -245,7 +244,7 @@ $(document).ready(function() {
       // For each visible li in the list, create a click handler that toggles visibility
       // and compiles the mustache for the current item.
       $('.list li .img').off('click touch').on('click touch', function(e) {
-        var id = $(this).find('.id').html();
+        var id = $(this).parent().find('.id').html();
         hash.add({detailedview:id});
       });
     }); // end productlist.on('updated')
