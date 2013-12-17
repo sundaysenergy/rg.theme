@@ -92,6 +92,7 @@ $(document).ready(function() {
       var srch = hash.get('search');
       var faves = hash.get('faves');
       if (_.isUndefined(faves) == false) {
+        delete(localStorage.faves);
         favorites = hash.get('faves').split(',');
       }
       // If either attributes or collection are undefined, we have filter elements to process
