@@ -94,13 +94,15 @@ $(document).ready(function() {
       if (_.isUndefined(faves) == false) {
         //delete(localStorage.faves);
         favorites = hash.get('faves').split(',');
+        var longurl = 'http://rg.cape.io/collection.html#faves=' + faves;
+        // Get the bit.ly url
         $.getJSON(
-          "http://api.bitly.com/v3/shorten?callback=?", 
+          "http://api.bitly.com/v3/shorten?callback=?",
           { 
             "format": "json",
             "apiKey": "R_b83cfe54d0ecae82a9086a21fe834814",
             "login": "sundaysenergy",
-            "longUrl": window.location.href
+            "longUrl": longurl
           },
           function(response) {
             $('.pager li:nth-child(4)')
