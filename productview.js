@@ -311,9 +311,11 @@ $(document).ready(function() {
       // Add or remove dummy element for first item in slide view.
       if (productlist.i <= 0) {
         $('.slider').prepend(dummy_template.render(productlist.matchingItems[productlist.matchingItems.length-1].values()));
-      } else if (productlist.i == productlist.matchingItems.length-1) {
+      } 
+      if (productlist.i == productlist.matchingItems.length-1) {
         $('.slider').append(dummy_template.render(productlist.matchingItems[0].values()));
-      } else {
+      } 
+      if (!((productlist.i == productlist.matchingItems.length-1) || (productlist.i <= 0))) {
         $('.slider li.item-bookends').remove();
       }
 
@@ -332,6 +334,7 @@ $(document).ready(function() {
         var n = 1;
         // If we are on the first slide, our information is in the 0th item
         if (productlist.i == 0) n = 0;
+        if (productlist.matchingItems.length == 1) n = 0;
         // Render the template with the correct data
         $('ul.list li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[parseInt(n)].values()));
         // Create click handlers for the icon and the close button
