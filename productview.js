@@ -105,7 +105,7 @@ $(document).ready(function() {
           function(response) {
             $('.pager li:nth-child(4)')
             .html('Share URL: <input type="text" value="' + response.data.url + '">')
-            .on('focus', function(e) { $(this).select(); });
+            .on('click', function(e) { $(this).select(); });
           }
         );
       }
