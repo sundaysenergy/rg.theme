@@ -35,7 +35,8 @@ $(document).ready(function() {
       // Add the html to the document
       $.when($('.carousel').html(item_template.render({slides:data}))).then(function() {
         // Set the height of the carousel with JS. Should be made more pro by KB
-        $('.carousel-inner').css('height', '500px');
+        // $('.carousel-inner').css('height', '500px');
+        
         // Start the carousel
         $('.carousel').carousel();
         // Workaround for the indicators being buggy out of the box
