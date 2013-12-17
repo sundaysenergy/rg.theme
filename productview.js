@@ -218,6 +218,24 @@ $(document).ready(function() {
           hash.remove('dpos');
           $('html,body').css('overflow','hidden').height($(window).height());
         });
+
+        $("a.ruler-inches").off().on('click touch', function(e) {
+          e.preventDefault();
+          $(".rulers img.ruler-inches").show();
+          $(".rulers img.ruler-cm").hide();
+          $(this).parent().addClass("active");
+          $(this).parent().next("li").removeClass("active");
+          return false;
+        });
+
+        $("a.ruler-cm").off().on('click touch', function(e) {
+          e.preventDefault();
+          $(".rulers img.ruler-cm").show();
+          $(".rulers img.ruler-inches").hide();
+          $(this).parent().addClass("active");
+          $(this).parent().prev("li").removeClass("active");
+          return false;
+        });
       }
       return false;
     });
@@ -437,22 +455,6 @@ $(document).ready(function() {
   // A little bit of stuff for the ruler controls
   // this works okay, maybe there is something better?
   $(".rulers .ruler-cm").hide();
-
-  $("a.ruler-inches").click(function() {
-    event.preventDefault();
-    $(".rulers img.ruler-inches").show();
-    $(".rulers img.ruler-cm").hide();
-    $(this).parent().addClass("active");
-    $(this).parent().next("li").removeClass("active");
-  });
-
-  $("a.ruler-cm").click(function() {
-    event.preventDefault();
-    $(".rulers img.ruler-cm").show();
-    $(".rulers img.ruler-inches").hide();
-    $(this).parent().addClass("active");
-    $(this).parent().prev("li").removeClass("active");
-  });
   // End ruler controls for now
 
 });
