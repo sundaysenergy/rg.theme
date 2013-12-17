@@ -312,7 +312,7 @@ $(document).ready(function() {
           current.push(id);
           localStorage.faves = JSON.stringify(current);
           $('.item-spotlight').append(favorites_template.render({message:'Item added to your favorites!'}));
-          $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + JSON.parse(localStorage.faves).join(','));
+          $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + _.uniq(JSON.parse(localStorage.faves)).join(','));
         });
         // Click on the left image should decrement by one, while the right image should increment
         $('ul.list li:nth-child(1) .img').off('click touch').on('click touch', function(e) {
