@@ -219,6 +219,7 @@ $(document).ready(function() {
           $('html,body').css('overflow','hidden').height($(window).height());
         });
 
+        // Update our rulers
         $("a.ruler-inches").off().on('click touch', function(e) {
           e.preventDefault();
           $(".rulers img.ruler-inches").show();
@@ -396,13 +397,6 @@ $(document).ready(function() {
       var pos = parseInt(productlist.i)-1;
       // If it's the first item, simulate centering
       $('.list').addClass('slider');
-      /* If we are showing the first item, adding a dummy to push it one to the right
-         Otherwise, make sure we remove all dummies */
-      if (pos == 0) {
-        $('.slider').prepend('<li class="firstitem"></li>');
-      } else {
-        $('.slider li.firstitem').remove();
-      }
       // Only allow one button to be enabled at a time
       $('#slide').toggle();
       $('#thumbs').toggle();
