@@ -103,7 +103,9 @@ $(document).ready(function() {
             "longUrl": window.location.href
           },
           function(response) {
-            alert(response.data.url);
+            $('.pager li:nth-child(4)')
+            .html('Share URL: <input type="text" value="' + response.data.url + '">')
+            .on('focus', function(e) { $(this).select(); });
           }
         );
       }
