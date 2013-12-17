@@ -94,6 +94,18 @@ $(document).ready(function() {
       if (_.isUndefined(faves) == false) {
         //delete(localStorage.faves);
         favorites = hash.get('faves').split(',');
+        $.getJSON(
+          "http://api.bitly.com/v3/shorten?callback=?", 
+          { 
+            "format": "json",
+            "apiKey": "R_b83cfe54d0ecae82a9086a21fe834814",
+            "login": "sundaysenergy",
+            "longUrl": window.location.href
+          },
+          function(response) {
+            alert(response.data.url);
+          }
+        );
       }
       // If either attributes or collection are undefined, we have filter elements to process
       if ((typeof(f) != 'undefined') || (typeof(collection) != 'undefined' || _.isUndefined(srch) == false) || _.isUndefined(faves) == false) {
