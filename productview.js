@@ -90,11 +90,24 @@ $(document).ready(function() {
       });
       // Get any search term(s)
       var srch = hash.get('search');
+      var faves = hash.get('faves');
+      if (_.isUndefined(faves) == false) {
+        favorites = hash.get('faves').split(',');
+      }
       // If either attributes or collection are undefined, we have filter elements to process
-      if ((typeof(f) != 'undefined') || (typeof(collection) != 'undefined' || _.isUndefined(srch) == false)) {
+      if ((typeof(f) != 'undefined') || (typeof(collection) != 'undefined' || _.isUndefined(srch) == false) || _.isUndefined(faves) == false) {
         productlist.filter(function(item) {
           // Set our default to false, and explicit define matches
           var match = false;
+          // Favorite list gets processed first
+          if (_.isUndefined(faves) == false) {
+            if (_.indexOf(favorites, item.values().id) >= 0) {
+              console.log(item.values().id);
+              return true;
+            } else {
+              return false;
+            }
+          }
           // If we have a search term, process it
           if (_.isUndefined(srch) == false) {
             if (item.values().content.toLowerCase().indexOf(srch) == -1) {
