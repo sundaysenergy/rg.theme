@@ -468,7 +468,6 @@ $(document).ready(function() {
 
   // A little bit of stuff for the ruler controls
   // this works okay, maybe there is something better?
-  $(".rulers .ruler-cm").hide();
-  // End ruler controls for now
+  // $(".rulers .ruler-cm").hide();
 
 });
