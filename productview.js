@@ -68,6 +68,12 @@ $(document).ready(function() {
 
     // Process filters on hashchange
     $(window).on('hashchange', function(e) {
+      if (productlist.page == 3 && _.isUndefined(hash.get('faves')) == false) {
+        productlist.page = 40;
+        var pos = 1;
+        $('.list').removeClass('slider');
+        productlist.update();
+      }
       if (_.isUndefined(hash.get('detailedview'))) {
         $('.itemoverlay').hide();
         $('html,body').css('overflow','auto').height($(window).height());
