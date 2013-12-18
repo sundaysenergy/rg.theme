@@ -478,15 +478,6 @@ $(document).ready(function() {
       hash.add({pos:pos});
     });
 
-    // Add collection value to hash -- doing this instead of href in case filters are set
-    $('ul.collection-filter li a').on('click touch', function(e) {
-      e.preventDefault();
-      var m = $(this).attr('href').split('=')[1];
-      hash.remove('pos');
-      hash.add({ collection: m });
-      return false;
-    });
-
     // Keep the dropdown menu from closing after an option is selected
     $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
       e.stopPropagation();
