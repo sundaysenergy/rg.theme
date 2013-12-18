@@ -28,6 +28,7 @@ $(document).ready(function() {
   var dummy_template = Hogan.compile('<li class="item-bookends"><span style="display:none" class="id">{{id}}</span><img class="img" src="{{img}}"><br><span class="content">{{content}}</span></li>');
   // Compile the template for alerts
   var favorites_template = Hogan.compile('<div class="alert-favorite alert alert-dismissable" style="width:50%; margin-left: 25%; background: #fff"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}<br><br><a href="/collection.html#faves=">View and share</a></div>');
+  var itemdel_template = Hogan.compile('<div class="item-favorite-remove" style="position: absolute; right: 5px; top: 5px;"><button><i class="fa fa-minus-square-o"></i></button></div>');
 
   // Retrieve a list of items from cape
   $.getJSON('http://rg.cape.io/items/items-color.json', function(combined) {
@@ -120,7 +121,6 @@ $(document).ready(function() {
           // Favorite list gets processed first
           if (_.isUndefined(faves) == false) {
             if (_.indexOf(favorites, item.values().id) >= 0) {
-              console.log(item.values().id);
               return true;
             } else {
               return false;
@@ -366,6 +366,35 @@ $(document).ready(function() {
         });
       } else {
         // If we're not in 3-up mode, make sure we don't have any stray item details
+        if (_.isUndefined(hash.get('faves')) == false) {
+          // Hide details for center slide in "horizontal" view
+          productlist.page = 40;
+          var pos = 0;
+          $('.list').removeClass('slider');
+          $('ul.list li .item-spotlight').remove();
+          hash.add({pos:pos});
+
+          $('ul.list li').each(function(i) {
+            $(this).find('.item-favorite-remove').remove();
+            $(this).append(itemdel_template.render({}));
+            var id = $(this).find('.id').html();
+            $(this).find('.item-favorite-remove button').off().on('click touch', function(e) {
+              e.preventDefault();
+              var f = JSON.parse(localStorage.faves);
+              _.remove(f, function(item) {
+                console.log(item,id);
+                if (item == id) return true;
+              });
+              localStorage.faves = JSON.stringify(f);
+              if (f.length == 0) {
+                window.location = '/collection.html';
+              } else {
+                hash.add({faves:f.join(',')})
+              }
+              alert("Item " + id + " removed from favorites!");
+            });
+          });
+        }
         $('ul.list li .item-spotlight').remove();
       }
     }); // end productlist.on('updated')
@@ -442,7 +471,6 @@ $(document).ready(function() {
         // Calculate the nearest multiple of 40 by casting as an integer without going over. Like The Price is Right.
         pos = parseInt(productlist.i / 40) * 40 + 1;
       }
-      $('.slider li.firstitem').remove();
       $('.list').removeClass('slider');
       $('#slide').toggle();
       $('#thumbs').toggle();
@@ -465,9 +493,6 @@ $(document).ready(function() {
     });
   });
   
-
-  // A little bit of stuff for the ruler controls
-  // this works okay, maybe there is something better?
-  // $(".rulers .ruler-cm").hide();
-
+  // This should probably be in the css, no?
+  $(".rulers .ruler-cm").hide();
 });
