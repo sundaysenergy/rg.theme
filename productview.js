@@ -244,6 +244,7 @@ $(document).ready(function() {
 
         // Add to favorites from detailed view
         $('.fa-plus-square-o').parent().off().on('click touch', function(e) {
+          $(this).off('click touch');
           e.preventDefault();
           if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
           var current = localStorage.faves.split(',');
@@ -361,6 +362,7 @@ $(document).ready(function() {
         });
         // Create click handler for favorite
         $('.item-spotlight .item-icons button.item-favorite').on('click touch', function(e) {
+          $(this).off('click touch');
           e.preventDefault();
           var id = $('.list li:nth-child(2)').find('.id').html();
           if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
