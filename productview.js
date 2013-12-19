@@ -100,7 +100,6 @@ $(document).ready(function() {
       var srch = hash.get('search');
       var faves = hash.get('faves');
       if (_.isUndefined(faves) == false) {
-        //delete(localStorage.faves);
         favorites = hash.get('faves').split(',');
         var longurl = 'http://rg.cape.io/collection.html#faves=' + faves;
         // Get the bit.ly url
@@ -246,12 +245,12 @@ $(document).ready(function() {
         // Add to favorites from detailed view
         $('.fa-plus-square-o').parent().off().on('click touch', function(e) {
           e.preventDefault();
-          if (_.isUndefined(localStorage.faves)) localStorage.faves = '[]';
-          var current = JSON.parse(localStorage.faves);
+          if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
+          var current = localStorage.faves.split(',');
           current.push(id);
-          localStorage.faves = JSON.stringify(current);
+          localStorage.faves = _.compact(_.uniq(current)).join(',');
           $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
-          $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + _.uniq(JSON.parse(localStorage.faves)).join(','));
+          $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
         });
 
         // Update our rulers
@@ -364,12 +363,12 @@ $(document).ready(function() {
         $('.item-spotlight .item-icons button.item-favorite').on('click touch', function(e) {
           e.preventDefault();
           var id = $('.list li:nth-child(2)').find('.id').html();
-          if (_.isUndefined(localStorage.faves)) localStorage.faves = '[]';
-          var current = JSON.parse(localStorage.faves);
+          if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
+          var current = localStorage.faves.split(',');
           current.push(id);
-          localStorage.faves = JSON.stringify(current);
+          localStorage.faves = _.compact(_.uniq(current)).join(',');
           $('.item-spotlight').append(favorites_template.render({message:'Item added to your favorites!'}));
-          $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + _.uniq(JSON.parse(localStorage.faves)).join(','));
+          $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
         });
         // Click on the left image should decrement by one, while the right image should increment
         $('ul.list li:nth-child(1) .img').off('click touch').on('click touch', function(e) {
@@ -398,16 +397,15 @@ $(document).ready(function() {
             var id = $(this).find('.id').html();
             $(this).find('.item-favorite-remove button').off().on('click touch', function(e) {
               e.preventDefault();
-              var f = JSON.parse(localStorage.faves);
+              var f = localStorage.faves.split(',');
               _.remove(f, function(item) {
-                console.log(item,id);
                 if (item == id) return true;
               });
-              localStorage.faves = JSON.stringify(f);
+              localStorage.faves = _.compact(_.uniq(f)).join(',');
               if (f.length == 0) {
                 window.location = '/collection.html';
               } else {
-                hash.add({faves:f.join(',')})
+                hash.add({faves:_.compact(_.uniq(f)).join(',')})
               }
               alert("Item " + id + " removed from favorites!");
             });
