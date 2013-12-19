@@ -28,6 +28,7 @@ $(document).ready(function() {
   var dummy_template = Hogan.compile('<li class="item-bookends"><span style="display:none" class="id">{{id}}</span><img class="img" src="{{img}}"><br><span class="content">{{content}}</span></li>');
   // Compile the template for alerts
   var favorites_template = Hogan.compile('<div class="alert-favorite alert alert-dismissable" style="width:50%; margin-left: 25%; background: #fff"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}<br><br><a href="/collection.html#faves=">View and share</a></div>');
+  var detailed_favorites_template = Hogan.compile('<div class="alert-favorite alert alert-dismissable" style="position:absolute; left:37%; width:26%; z-index:11111; top: 45%; background: #fff"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}<br><br><a href="/collection.html#faves=">View and share</a></div>');
   var itemdel_template = Hogan.compile('<div class="item-favorite-remove" style="position: absolute; right: 5px; top: 5px;"><button><i class="fa fa-minus-square-o"></i></button></div>');
 
   // Retrieve a list of items from cape
@@ -240,6 +241,17 @@ $(document).ready(function() {
           hash.remove('detailedview');
           hash.remove('dpos');
           $('html,body').css('overflow','hidden').height($(window).height());
+        });
+
+        // Add to favorites from detailed view
+        $('.fa-plus-square-o').parent().off().on('click touch', function(e) {
+          e.preventDefault();
+          if (_.isUndefined(localStorage.faves)) localStorage.faves = '[]';
+          var current = JSON.parse(localStorage.faves);
+          current.push(id);
+          localStorage.faves = JSON.stringify(current);
+          $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
+          $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + _.uniq(JSON.parse(localStorage.faves)).join(','));
         });
 
         // Update our rulers
