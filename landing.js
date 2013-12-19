@@ -28,6 +28,7 @@ $(document).ready(function() {
         for (var i=1;i<=5;i++) {
           item.items[i-1].leftc = section * (parseInt(i)-1);
           item.items[i-1].rightc = (section * (parseInt(i)))-1;
+          item.items[i-1].bottomc = $(window).height();
         }
       });
       // Set the active attribute true for a random item
