@@ -27,8 +27,8 @@ $(document).ready(function() {
   // Compile the template for the "bookended" items that create the seamless scrolling in 3-up mode
   var dummy_template = Hogan.compile('<li class="item-bookends"><span style="display:none" class="id">{{id}}</span><img class="img" src="{{img}}"><br><span class="content">{{content}}</span></li>');
   // Compile the template for alerts
-  var favorites_template = Hogan.compile('<div class="alert-favorite alert alert-dismissable" style="width:50%; margin-left: 25%; background: #fff"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}<br><br><a href="/collection.html#faves=">View and share</a></div>');
-  var detailed_favorites_template = Hogan.compile('<div class="alert-favorite alert alert-dismissable" style="position:absolute; left:37%; width:26%; z-index:11111; top: 45%; background: #fff"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}<br><br><a href="/collection.html#faves=">View and share</a></div>');
+  var favorites_template = Hogan.compile('<div class="alert-favorite alert alert-dismissable" style="width:50%; margin-left: 25%; background: #fff"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}<br><br><a href="/collection.html#pos=1&faves=">View and share</a></div>');
+  var detailed_favorites_template = Hogan.compile('<div class="alert-favorite alert alert-dismissable" style="position:absolute; left:37%; width:26%; z-index:11111; top: 45%; background: #fff"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}<br><br><a href="/collection.html#pos=1&faves=">View and share</a></div>');
   var itemdel_template = Hogan.compile('<div class="item-favorite-remove" style="position: absolute; right: 5px; top: 5px;"><button><i class="fa fa-minus-square-o"></i></button></div>');
 
   // Retrieve a list of items from cape
@@ -388,10 +388,8 @@ $(document).ready(function() {
         if (_.isUndefined(hash.get('faves')) == false) {
           // Hide details for center slide in "horizontal" view
           productlist.page = 40;
-          var pos = 0;
           $('.list').removeClass('slider');
           $('ul.list li .item-spotlight').remove();
-          hash.add({pos:pos});
 
           $('ul.list li').each(function(i) {
             $(this).find('.item-favorite-remove').remove();
