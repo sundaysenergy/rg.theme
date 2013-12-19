@@ -240,6 +240,7 @@ $(document).ready(function() {
           hash.remove('detailedview');
           hash.remove('dpos');
           $('html,body').css('overflow','hidden').height($(window).height());
+          $('.item-favorite-remove').remove();
         });
 
         // Add to favorites from detailed view
