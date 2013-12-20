@@ -30,6 +30,7 @@ $(document).ready(function() {
   var favorites_template = Hogan.compile('<div class="alert-favorite alert alert-dismissable" style="width:50%; margin-left: 25%; background: #fff"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}<br><br><a href="/collection.html#pos=1&faves=">View and share</a></div>');
   var detailed_favorites_template = Hogan.compile('<div class="alert-favorite alert alert-dismissable" style="position:absolute; left:37%; width:26%; z-index:11111; top: 45%; background: #fff"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}<br><br><a href="/collection.html#pos=1&faves=">View and share</a></div>');
   var itemdel_template = Hogan.compile('<div class="item-favorite-remove" style="position: absolute; right: 5px; top: 5px;"><button><i class="fa fa-minus-square-o"></i></button></div>');
+  var related_template = Hogan.compile('<li class="related-item"><a href="/collection.html#{{linkitem}}detailedview={{id}}"><img src="{{{img}}}"></a></li>');
 
   // Retrieve a list of items from cape
   $.getJSON('http://rg.cape.io/items/items-color.json', function(combined) {
@@ -297,6 +298,7 @@ $(document).ready(function() {
       // Reset our paginator
       $('.previous, .next').removeClass('disabled');
       $('.next').off('click touch').on('click touch', function(e) {
+        hash.remove('cpos');
         var n = parseInt(productlist.page);
         // If we're viewing three at a time, only increment by one item.
         // Otherwise, increment by one page.
@@ -306,6 +308,7 @@ $(document).ready(function() {
         hash.add({pos:p});
       });
       $('.previous').off('click touch').on('click touch', function(e) {
+        hash.remove('cpos');
         var n = parseInt(productlist.page);
         // If we're viewing three at a time, only increment by one item
         if (n == 3) { n = 1; }
@@ -371,13 +374,58 @@ $(document).ready(function() {
           $('.item-spotlight').append(favorites_template.render({message:'Item added to your favorites!'}));
           $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
         });
+        // Handle related colors list
+        var id = $('.list li:nth-child(2)').find('.id').html();
+        var sitem = productlist.get("id", id);
+        var $relatedcolors = $('#item-colors ul.list');
+        $relatedcolors.empty();
+        _.forEach(sitem[0].values().itemcolors(), function(item) {
+          $relatedcolors.append($(related_template.render(productlist.get("id", item)[0].values())));
+        });
+        var n = hash.get('cpos');
+        if (_.isUndefined(n)) {
+          n = 1;
+        } else {
+          $('#item-colors').show();
+        }
+        var options = {
+          valueNames: [ 'related-item' ],
+          page: 2,
+          i: n
+        };
+        var colorslist = new List('item-colors', options);
+        // Click handler for colors
+        $('button.item-colors').off().on('click touch', function(e) {
+          $('#item-colors').toggle();
+        });
+        // Actions to perform when the list is updated -- mostly pagination
+        colorslist.on('updated', function() {
+          $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
+          $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
+            hash.add({cpos:parseInt(colorslist.i)+1});
+          });
+          $('#item-colors .rel-previous').off('click touch').on('click touch', function(e) {
+            hash.add({cpos:parseInt(colorslist.i)-1});
+          });
+          console.log(colorslist.i);
+          if (parseInt(colorslist.i) <= 1) {
+            $('#item-colors .rel-previous').addClass('disabled').off('click touch');
+          }
+          if (parseInt(colorslist.i)+1 > colorslist.matchingItems.length) {
+            $('#item-colors .rel-next').addClass('disabled').off('click touch');
+          }
+        });
+        colorslist.update();
+
         // Click on the left image should decrement by one, while the right image should increment
         $('ul.list li:nth-child(1) .img').off('click touch').on('click touch', function(e) {
+          hash.remove('cpos');
           var p = parseInt(productlist.i)-1;
           if (p == -1) p = productlist.matchingItems.length-1;
           hash.add({pos:p});
         });
         $('ul.list li:nth-child(3) .img').off('click touch').on('click touch', function(e) {
+          hash.remove('cpos');
           var p = parseInt(productlist.i)+1;
           if (p == productlist.matchingItems.length) p = 0;
           hash.add({pos:p});
