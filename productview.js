@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  delete(sessionStorage.detailedview);
   // Download and compile the template for item view.
   var item_template;
   $.ajax({
@@ -194,84 +194,107 @@ $(document).ready(function() {
 
       // Handle detailed view
       if (_.isUndefined(hash.get('detailedview')) == false) {
-        // Reset the body height and overflow
-        $('html,body').css('overflow','hidden').height($(window).height());
-        var id = hash.get('detailedview');
-        // Get the first item that matches the id...we're assuming there would only
-        // ever be one item with a given id
-        var item = { item : productlist.get('id', id)[0].values() };
-        // Create the image url for the large image
-        item.item.img_large = item.item.img.replace('640','1536');
-        // Show the detailed view mode and render the html from our mustache template
-        $('.itemoverlay').show().html(item_template.render(item));
-        // Get the position in the mini slider
-        var n = hash.get('dpos');
-        if (_.isUndefined(n)) {
-          n = 1;
-        }
-        // Create a list for alternate color options
-        var options = {
-          valueNames: [ 'related-item' ],
-          page: 3,
-          i: n
-        };
-        var relatedlist = new List('related-products', options);
-        // Actions to perform when the list is updated -- mostly pagination
-        relatedlist.on('updated', function() {
-          $('.rel-previous, .rel-next').removeClass('disabled');
-          $('.rel-next').off('click touch').on('click touch', function(e) {
-            hash.add({dpos:parseInt(relatedlist.i)+1});
-          });
-          $('.rel-previous').off('click touch').on('click touch', function(e) {
-            hash.add({dpos:parseInt(relatedlist.i)-1});
-          });
-          if (parseInt(relatedlist.i)+1 < parseInt(relatedlist.page)) {
-            $('.rel-previous').addClass('disabled').off('click touch');
+        $('#related-products ul.list li a').each(function(i) {
+          var old_href = $(this).attr('href');
+          var new_href = '';
+          var n = hash.get('dpos');
+          if (_.isUndefined(n)) n = 1;
+          console.log("got here");
+          if (old_href.match(/dpos=/)) {
+            new_href = old_href.replace(/dpos=[0-9]+/, 'dpos='+n);
+            $(this).attr('href', new_href);
+          } else {
+            $(this).attr('href', old_href+"&dpos="+n);
           }
-          if ((parseInt(relatedlist.i) + parseInt(relatedlist.page)) > relatedlist.matchingItems.length) {
-            $('.rel-next').addClass('disabled').off('click touch');
-          }
+          console.log($(this).attr('href'));
         });
-        relatedlist.update();
-        // Things to do on closing the detailed view mode
-        $('button.close').off('click touch').on('click touch', function(e) {
-          $('.itemoverlay').hide();
-          hash.remove('detailedview');
-          hash.remove('dpos');
+
+        if (hash.get('detailedview') != sessionStorage.detailedview) {
+          // Reset the body height and overflow
           $('html,body').css('overflow','hidden').height($(window).height());
-          $('.item-favorite-remove').remove();
-        });
+          var id = hash.get('detailedview');
+          // Get the first item that matches the id...we're assuming there would only
+          // ever be one item with a given id
+          var item = { item : productlist.get('id', id)[0].values() };
+          // Create the image url for the large image
+          item.item.img_large = item.item.img.replace('640','1536');
+          // Show the detailed view mode and render the html from our mustache template
+          $('.itemoverlay').show().html(item_template.render(item));
+          // Get the position in the mini slider
+          var n = hash.get('dpos');
+          if (_.isUndefined(n)) {
+            n = 1;
+          }
+          // Create a list for alternate color options
+          var options = {
+            valueNames: [ 'related-item' ],
+            page: 3,
+            i: n
+          };
+          var relatedlist = new List('related-products', options);
+          // Actions to perform when the list is updated -- mostly pagination
+          relatedlist.on('updated', function() {
+            $('.rel-previous, .rel-next').removeClass('disabled');
+            $('.rel-next').off('click touch').on('click touch', function(e) {
+              hash.add({dpos:parseInt(relatedlist.i)+1});
+              relatedlist.i = parseInt(relatedlist.i)+1;
+              relatedlist.update();
+            });
+            $('.rel-previous').off('click touch').on('click touch', function(e) {
+              hash.add({dpos:parseInt(relatedlist.i)-1});
+              relatedlist.i = parseInt(relatedlist.i)-1;
+              relatedlist.update();
+            });
+            if (parseInt(relatedlist.i)+1 < parseInt(relatedlist.page)) {
+              $('.rel-previous').addClass('disabled').off('click touch');
+            }
+            if ((parseInt(relatedlist.i) + parseInt(relatedlist.page)) > relatedlist.matchingItems.length) {
+              $('.rel-next').addClass('disabled').off('click touch');
+            }
+          });
+          relatedlist.update();
+          // Things to do on closing the detailed view mode
+          $('button.close').off('click touch').on('click touch', function(e) {
+            $('.itemoverlay').hide();
+            hash.remove('detailedview');
+            hash.remove('dpos');
+            $('html,body').css('overflow','hidden').height($(window).height());
+            $('.item-favorite-remove').remove();
+            delete(sessionStorage.detailedview);
+          });
 
-        // Add to favorites from detailed view
-        $('.fa-plus-square-o').parent().off().on('click touch', function(e) {
-          $(this).off('click touch');
-          e.preventDefault();
-          if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
-          var current = localStorage.faves.split(',');
-          current.push(id);
-          localStorage.faves = _.compact(_.uniq(current)).join(',');
-          $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
-          $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
-        });
+          // Add to favorites from detailed view
+          $('.fa-plus-square-o').parent().off().on('click touch', function(e) {
+            $(this).off('click touch');
+            e.preventDefault();
+            if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
+            var current = localStorage.faves.split(',');
+            current.push(id);
+            localStorage.faves = _.compact(_.uniq(current)).join(',');
+            $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
+            $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
+          });
 
-        // Update our rulers
-        $("a.ruler-inches").off().on('click touch', function(e) {
-          e.preventDefault();
-          $(".rulers img.ruler-inches").show();
-          $(".rulers img.ruler-cm").hide();
-          $(this).parent().addClass("active");
-          $(this).parent().next("li").removeClass("active");
-          return false;
-        });
+          // Update our rulers
+          $("a.ruler-inches").off().on('click touch', function(e) {
+            e.preventDefault();
+            $(".rulers img.ruler-inches").show();
+            $(".rulers img.ruler-cm").hide();
+            $(this).parent().addClass("active");
+            $(this).parent().next("li").removeClass("active");
+            return false;
+          });
 
-        $("a.ruler-cm").off().on('click touch', function(e) {
-          e.preventDefault();
-          $(".rulers img.ruler-cm").show();
-          $(".rulers img.ruler-inches").hide();
-          $(this).parent().addClass("active");
-          $(this).parent().prev("li").removeClass("active");
-          return false;
-        });
+          $("a.ruler-cm").off().on('click touch', function(e) {
+            e.preventDefault();
+            $(".rulers img.ruler-cm").show();
+            $(".rulers img.ruler-inches").hide();
+            $(this).parent().addClass("active");
+            $(this).parent().prev("li").removeClass("active");
+            return false;
+          });
+        }
+        sessionStorage.detailedview = hash.get('detailedview');
       }
       return false;
     });
@@ -356,7 +379,7 @@ $(document).ready(function() {
         if (productlist.i == 0) n = 0;
         if (productlist.matchingItems.length == 1) n = 0;
         // Render the template with the correct data
-        $('ul.list li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[parseInt(n)].values()));
+        $('ul.slider li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[parseInt(n)].values()));
         // Create click handlers for the icon and the close button
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
           e.preventDefault();
@@ -407,7 +430,6 @@ $(document).ready(function() {
           $('#item-colors .rel-previous').off('click touch').on('click touch', function(e) {
             hash.add({cpos:parseInt(colorslist.i)-1});
           });
-          console.log(colorslist.i);
           if (parseInt(colorslist.i) <= 1) {
             $('#item-colors .rel-previous').addClass('disabled').off('click touch');
           }
