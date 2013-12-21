@@ -132,6 +132,8 @@ $(document).ready(function() {
             .on('click', function(e) { $(this).select(); });
           }
         );
+      } else {
+        $('.item-favorite-remove').remove();
       }
       
 
