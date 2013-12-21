@@ -1,9 +1,10 @@
+
 $(document).ready(function() {
-  /* Delete our detailedview session variable since a page reload
-     indicates that we're not currently viewing an item */
+  // Delete session variables since the page has reloaded
   delete(sessionStorage.detailedview);
-  // Download and compile the template for item view.
-  // All of this should be moved to the big json file
+
+
+  /**** COMPILE TEMPLATES ****/
   var item_template;
   $.ajax({
     url: "http://rg.cape.io/templates/item.html",
@@ -35,7 +36,9 @@ $(document).ready(function() {
   var itemdel_template = Hogan.compile('<div class="item-favorite-remove" style="position: absolute; right: 5px; top: 5px;"><button><i class="fa fa-minus-square-o"></i></button></div>');
   var related_template = Hogan.compile('<li class="related-item"><a href="/collection.html#{{linkitem}}detailedview={{id}}"><img src="{{{img}}}"></a></li>');
 
-  // Retrieve a list of items from cape
+
+
+  /**** GET THE ITEMS INFORMATION FROM CAPE AND PROCESS IT ****/
   $.getJSON('http://rg.cape.io/items/items-color.json', function(combined) {
     // Options for our list
     var options = {
@@ -71,7 +74,9 @@ $(document).ready(function() {
     // Create a new list
     var productlist = new List('products', options, data);
 
-    // Process filters on hashchange
+
+
+    /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
       if (_.isNull(localStorage.faves)) delete(localStorage.faves);
       // If we're viewing 3 items at a time, and there are faves present, force vertical view
@@ -128,7 +133,9 @@ $(document).ready(function() {
           }
         );
       }
-      // If either attributes or collection are undefined, we have filter elements to process
+      
+
+      /**** PROCESS FILTERS FROM HASH ****/
       if ((typeof(f) != 'undefined') || (typeof(collection) != 'undefined' || _.isUndefined(srch) == false) || _.isUndefined(faves) == false) {
         productlist.filter(function(item) {
           // Set our default to false, and explicit define matches
@@ -188,7 +195,10 @@ $(document).ready(function() {
           // Hide the parents of any item that does not have a match.
           if (m == false) $(this).parent().hide();
         });
-      }
+      } // END PROCESS FILTERS FROM HASH
+
+
+
       var pos = hash.get('pos');
       // If position is undefined, start at either 0 or 1, depending on view mode
       if (_.isUndefined(pos)) {
@@ -200,7 +210,8 @@ $(document).ready(function() {
       }
       productlist.show(pos, parseInt(productlist.page));
 
-      // Handle detailed view
+
+      /**** THINGS TO DO IF WE'RE IN DETAILED VIEW ****/
       if (_.isUndefined(hash.get('detailedview')) == false) {
         // Regenerate the links in the related color slider since we're
         // only reloading the view when we change the item
@@ -312,7 +323,9 @@ $(document).ready(function() {
       return false;
     });
 
-    // When the list is updated, we need to rework the pager buttons
+    
+
+    /**** THINGS TO DO WHEN THE LIST UPDATES (i.e. position, items, or filters change) ****/
     productlist.on('updated', function() {
       // Update i if we have fewer items than the starting position
       if (productlist.i > productlist.matchingItems.length) {
