@@ -134,6 +134,7 @@ $(document).ready(function() {
         );
       } else {
         $('.item-favorite-remove').remove();
+        productlist.update();
       }
       
 
