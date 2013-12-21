@@ -133,8 +133,7 @@ $(document).ready(function() {
           }
         );
       } else {
-        $('.item-favorite-remove').remove();
-        productlist.update();
+        if ($('.item-favorite-remove').length != 0) location.reload();
       }
       
 
