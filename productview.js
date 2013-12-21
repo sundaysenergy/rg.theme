@@ -232,9 +232,7 @@ $(document).ready(function() {
           $('.itemoverlay').show().html(item_template.render(item));
           // Get the position in the mini slider
           var n = hash.get('dpos');
-          if (_.isUndefined(n)) {
-            n = 1;
-          }
+          if (_.isUndefined(n)) n = 1;
           // Create a list for alternate color options
           var options = {
             valueNames: [ 'related-item' ],
