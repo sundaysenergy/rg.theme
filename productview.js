@@ -1,6 +1,9 @@
 $(document).ready(function() {
+  /* Delete our detailedview session variable since a page reload
+     indicates that we're not currently viewing an item */
   delete(sessionStorage.detailedview);
   // Download and compile the template for item view.
+  // All of this should be moved to the big json file
   var item_template;
   $.ajax({
     url: "http://rg.cape.io/templates/item.html",
@@ -70,12 +73,15 @@ $(document).ready(function() {
 
     // Process filters on hashchange
     $(window).on('hashchange', function(e) {
+      // If we're viewing 3 items at a time, and there are faves present, force vertical view
       if (productlist.page == 3 && _.isUndefined(hash.get('faves')) == false) {
         productlist.page = 40;
         var pos = 1;
         $('.list').removeClass('slider');
         productlist.update();
       }
+      // If no detailed view is present, make sure we hide the element
+      // Creates back button functionality that matches what a user would expect
       if (_.isUndefined(hash.get('detailedview'))) {
         $('.itemoverlay').hide();
         $('html,body').css('overflow','auto').height($(window).height());
@@ -113,6 +119,7 @@ $(document).ready(function() {
             "longUrl": longurl
           },
           function(response) {
+            // We're just throwing this information in one of the headers for now
             $('.pager li:nth-child(4)')
             .html('Share URL: <input type="text" value="' + response.data.url + '">')
             .find('input')
@@ -194,21 +201,24 @@ $(document).ready(function() {
 
       // Handle detailed view
       if (_.isUndefined(hash.get('detailedview')) == false) {
+        // Regenerate the links in the related color slider since we're
+        // only reloading the view when we change the item
         $('#related-products ul.list li a').each(function(i) {
           var old_href = $(this).attr('href');
           var new_href = '';
           var n = hash.get('dpos');
           if (_.isUndefined(n)) n = 1;
-          console.log("got here");
+          // If dpos is present in url, replace it
           if (old_href.match(/dpos=/)) {
             new_href = old_href.replace(/dpos=[0-9]+/, 'dpos='+n);
             $(this).attr('href', new_href);
+          // If it's not present, add it
           } else {
             $(this).attr('href', old_href+"&dpos="+n);
           }
-          console.log($(this).attr('href'));
         });
 
+        // If the detailedview hashh item is not the same as the session item
         if (hash.get('detailedview') != sessionStorage.detailedview) {
           // Reset the body height and overflow
           $('html,body').css('overflow','hidden').height($(window).height());
@@ -236,11 +246,15 @@ $(document).ready(function() {
           relatedlist.on('updated', function() {
             $('.rel-previous, .rel-next').removeClass('disabled');
             $('.rel-next').off('click touch').on('click touch', function(e) {
+              // Add to the hash so that if we refresh the page it still has the correct starting position
               hash.add({dpos:parseInt(relatedlist.i)+1});
+              // Manually update the list with a new start position since we'll ignore
+              // this code if session storage matches the view
               relatedlist.i = parseInt(relatedlist.i)+1;
               relatedlist.update();
             });
             $('.rel-previous').off('click touch').on('click touch', function(e) {
+              // Works the same way as the lines above. See comments there.
               hash.add({dpos:parseInt(relatedlist.i)-1});
               relatedlist.i = parseInt(relatedlist.i)-1;
               relatedlist.update();
@@ -255,12 +269,12 @@ $(document).ready(function() {
           relatedlist.update();
           // Things to do on closing the detailed view mode
           $('button.close').off('click touch').on('click touch', function(e) {
-            $('.itemoverlay').hide();
-            hash.remove('detailedview');
-            hash.remove('dpos');
-            $('html,body').css('overflow','hidden').height($(window).height());
-            $('.item-favorite-remove').remove();
-            delete(sessionStorage.detailedview);
+            $('.itemoverlay').hide(); // Hide the item
+            hash.remove('detailedview'); // Remove from the hash
+            hash.remove('dpos'); // Remove the position from the hash
+            $('html,body').css('overflow','hidden').height($(window).height()); // Reset the body and overflow
+            $('.item-favorite-remove').remove(); // Why are we doing this?
+            delete(sessionStorage.detailedview); // Remove the session value
           });
 
           // Add to favorites from detailed view
