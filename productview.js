@@ -73,6 +73,7 @@ $(document).ready(function() {
 
     // Process filters on hashchange
     $(window).on('hashchange', function(e) {
+      if (_.isNull(localStorage.faves)) delete(localStorage.faves);
       // If we're viewing 3 items at a time, and there are faves present, force vertical view
       if (productlist.page == 3 && _.isUndefined(hash.get('faves')) == false) {
         productlist.page = 40;
