@@ -4,6 +4,7 @@ $(document).ready(function() {
       return true;
     } else {
       e.preventDefault();
+      $('ul.list').hide();
       window.location.href = $(this).attr('href');
       location.reload();
       return false;
