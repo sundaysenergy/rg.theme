@@ -12,6 +12,7 @@ projects:
     - variables.less
   js:
     - list.min.js
+    - projects.js
 productview:
   css:
     - variables.less
