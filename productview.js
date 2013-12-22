@@ -100,7 +100,7 @@ $(document).ready(function() {
       // Creates back button functionality that matches what a user would expect
       if (_.isUndefined(hash.get('detailedview'))) {
         $('.itemoverlay').hide();
-        $('html,body').css('overflow','auto').height($(window).height());
+        $('html,body').css('overflow','auto').css('height', '');
       }
       e.preventDefault();
       // Get values from the hash
