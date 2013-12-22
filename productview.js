@@ -1,5 +1,10 @@
-
 $(document).ready(function() {
+  $("a[href*='collection.html']").click(function(e){
+    e.preventDefault();
+    window.location.href = $(this).attr('href');
+    location.reload();
+    return false;
+  });
   // Delete session variables since the page has reloaded
   delete(sessionStorage.detailedview);
 
@@ -132,8 +137,6 @@ $(document).ready(function() {
             .on('click', function(e) { $(this).select(); });
           }
         );
-      } else {
-        if ($('.item-favorite-remove').length != 0) location.reload();
       }
       
 
