@@ -1,9 +1,13 @@
 $(document).ready(function() {
   $("a[href*='collection.html']").click(function(e){
-    e.preventDefault();
-    window.location.href = $(this).attr('href');
-    location.reload();
-    return false;
+    if (_.isNull($(this).attr('href').match('#'))) {
+      return true;
+    } else {
+      e.preventDefault();
+      window.location.href = $(this).attr('href');
+      location.reload();
+      return false;
+    }
   });
   // Delete session variables since the page has reloaded
   delete(sessionStorage.detailedview);
