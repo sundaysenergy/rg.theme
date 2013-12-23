@@ -71,10 +71,10 @@ $(document).ready(function() {
         $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
         var url = result.img.normal["320"],
             url_far = result.img.far["320"];
-        if ($('fileinfo .img-regular').length == 0) {
+        if ($('.fileinfo img.img-regular').length == 0) {
           $("<img />").attr({ 'src' : url, "class" : "img-responsive img-regular" }).appendTo('.fileinfo');
         }
-        if ($('fileinfo .img-far').length == 0) {
+        if ($('.fileinfo img.img-far').length == 0) {
           $("<img />").attr({ 'src' : url_far, "class" : "img-responsive img-far" }).appendTo('.fileinfo');
         }
       });
