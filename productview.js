@@ -1,6 +1,9 @@
 $(document).ready(function() {
-  if (_.isUndefined(hash.get('faves')) == false) localStorage.faves = hash.get('faves');
-
+  if (_.isUndefined(hash.get('faves')) == false) {
+    localStorage.faves = hash.get('faves');
+  } else {
+    if ($('.item-favorite-remove').length > 0) location.reload();
+  }
   $("a[href*='collection.html']").click(function(e){
     if (_.isNull($(this).attr('href').match('#'))) {
       return true;
