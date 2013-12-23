@@ -9,7 +9,7 @@ $(document).ready(function() {
                             password: password
                           }, 
                           function(data) {
-                            console.log(data);
+                            console.log(data.getAllResponseHeaders());
                             baseDomain = '.rg.cape.io',
                             expireAfter = new Date();
                             expireAfter.setDate(expireAfter.getDate() + 7);
