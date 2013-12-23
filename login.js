@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $('form').on('submit', function(e) {
-    var template = Hogan.compile('<div style="position:fixed; top:40%; left:35%; width: 30%;" class="alert alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}</div>');
+    var template = Hogan.compile('<div style="position:fixed; background: #fff; height: 20%; top:40%; left:35%; width: 30%;" class="alert alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}</div>');
     e.preventDefault();
     var username = $('input[type=email]').val();
     var password = $('input[type=password]').val();
