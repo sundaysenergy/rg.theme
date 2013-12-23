@@ -16,8 +16,5 @@ $(document).ready(function() {
                             document.cookie="id={'id':'" + '' + "'}; domain=" + baseDomain + "; expires=" + expireAfter + "; path=/";
                             console.log(data);
                           });
-  })
-  .fail(function(data) {
-    console.log("It failed. shucks");
   });
 });
