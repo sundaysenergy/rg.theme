@@ -9,13 +9,15 @@ $(document).ready(function() {
                             username: username,
                             password: password
                           }, 
-                          function(data, obj, res) {
+                          function(data) {
                             $.cookie('token', data.token, { expires: 7, path: '/', domain: '.rg.cape.io' });
-                            if (data.token == false) {
-                              $('body').append(template.render({message:'Login succeed. Your token has been stored as a cookie!'}));
-                            } else {
-                              $('body').append(template.render({message:'Login failed.'}));
-                            }
-                          });
+                            $('body').append(template.render({message:'Login succeed. Your token has been stored as a cookie!'}));
+                            $('form').hide();
+                          })
+                    .fail(function(data) {
+                      if (data.status) {
+                        $('body').append(template.render({message:'Login failed.'}));
+                      }
+                    });
   });
 });
