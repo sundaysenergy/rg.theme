@@ -39,8 +39,12 @@ $(document).ready(function() {
       $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
       var url = result.img.normal["320"],
           url_far = result.img.far["320"];
-      $("<img />").attr({ 'src' : url, "class" : "img-responsive" }).appendTo('.fileinfo');
-      $("<img />").attr({ 'src' : url_far, "class" : "img-responsive" }).appendTo('.fileinfo');
+      if ($('fileinfo .img-regular').length == 0) {
+        $("<img />").attr({ 'src' : url, "class" : "img-responsive img-regular" }).appendTo('.fileinfo');
+      }
+      if ($('fileinfo .img-far').length == 0) {
+        $("<img />").attr({ 'src' : url_far, "class" : "img-responsive img-far" }).appendTo('.fileinfo');
+      }
     });
     $.ajaxSetup({ cache:true });
   })
@@ -67,8 +71,12 @@ $(document).ready(function() {
         $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
         var url = result.img.normal["320"],
             url_far = result.img.far["320"];
-        $("<img />").attr({ 'src' : url, "class" : "img-responsive" }).appendTo('.fileinfo');
-        $("<img />").attr({ 'src' : url_far, "class" : "img-responsive" }).appendTo('.fileinfo');
+        if ($('fileinfo .img-regular').length == 0) {
+          $("<img />").attr({ 'src' : url, "class" : "img-responsive img-regular" }).appendTo('.fileinfo');
+        }
+        if ($('fileinfo .img-far').length == 0) {
+          $("<img />").attr({ 'src' : url_far, "class" : "img-responsive img-far" }).appendTo('.fileinfo');
+        }
       });
       $.ajaxSetup({ cache:true });
     }
