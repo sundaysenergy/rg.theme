@@ -29,7 +29,8 @@ pricelist:
     - list.fuzzysearch.min.js
     - pricelist.js
 login:
-  css: []
+  css: 
+    - login.css
   js:
     - login.js
 admin:
