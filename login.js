@@ -9,9 +9,8 @@ $(document).ready(function() {
                             password: password
                           }, 
                           function(data, obj, res) {
-                            console.log(data);
-                            $.cookie('session', '', { expires: 7, path: '/', domain: '.rg.cape.io' });
-                            console.log($.cookie('session'));
+                            $.cookie('token', data.token, { expires: 7, path: '/', domain: '.rg.cape.io' });
+                            console.log($.cookie('token'));
                           });
   });
 });
