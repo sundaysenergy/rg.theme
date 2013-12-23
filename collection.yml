@@ -30,7 +30,8 @@ pricelist:
     - pricelist.js
 login:
   css: []
-  js: []
+  js:
+    - login.js
 admin:
   css:
     - variables.less
