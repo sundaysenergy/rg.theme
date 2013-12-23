@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  if (_.isUndefined(hash.get('faves')) == false) localStorage.faves = hash.get('faves');
+
   $("a[href*='collection.html']").click(function(e){
     if (_.isNull($(this).attr('href').match('#'))) {
       return true;
@@ -88,6 +90,7 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
+      if (_.isUndefined(hash.get('faves')) == false) localStorage.faves = hash.get('faves');
       if (_.isNull(localStorage.faves)) delete(localStorage.faves);
       // If we're viewing 3 items at a time, and there are faves present, force vertical view
       if (productlist.page == 3 && _.isUndefined(hash.get('faves')) == false) {
