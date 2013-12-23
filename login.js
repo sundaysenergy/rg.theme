@@ -8,13 +8,9 @@ $(document).ready(function() {
                             username: username,
                             password: password
                           }, 
-                          function(data) {
-                            console.log(data.getAllResponseHeaders());
-                            baseDomain = '.rg.cape.io',
-                            expireAfter = new Date();
-                            expireAfter.setDate(expireAfter.getDate() + 7);
-                            document.cookie="id={'id':'" + '' + "'}; domain=" + baseDomain + "; expires=" + expireAfter + "; path=/";
-                            console.log(data);
+                          function(data, obj, res) {
+                            $.cookie('session', 'the_value', { expires: 7, path: '/', domain: '.rg.cape.io' });
+                            console.log($.cookie('session'));
                           });
   });
 });
