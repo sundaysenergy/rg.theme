@@ -134,6 +134,17 @@ $(document).ready(function() {
       if (_.isUndefined(srch) == false) {
         $('#collection-menu-search').show();
         $('#collection-menu-main').hide();
+        $('#search-view-number a').each(function(i) {
+          $(this).on('click touch', function(e) {
+            e.preventDefault();
+            var items = $(this).data('show-items');
+            var i = productlist.i;
+            productlist.page = items;
+            console.log(i);
+            productlist.update();
+            return false;
+          });
+        });
       } else {
         $('#collection-menu-main').show();
         $('#collection-menu-search').hide();   
