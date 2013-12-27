@@ -8,7 +8,8 @@ $(document).ready(function() {
         var projectname = $('#new-project-name').val();
         var token = 'token ' + $.cookie('token');
         var $div = $(this).closest('div');
-        if (_.isUndefined(token) == false) {
+        if ((_.isUndefined(token) == false) &&
+            (projectname.length > 0)) {
           $.post('http://rg.cape.io/_api/items/_list', { info: { Authorization:token, name: projectname } }, function(data) {
             if (_.isUndefined(data._id) == false) {
               $div.find('form').remove();
