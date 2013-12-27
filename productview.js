@@ -378,7 +378,7 @@ $(document).ready(function() {
         .append(productlist.matchingItems.length);
       // Page counter for thumbnail view
       } else {
-        $('#pagecount')
+        $('#pagecount, #search-page-counter')
         .html((parseInt(productlist.i / productlist.page) + 1))
         .append(' / ')
         .append(parseInt(productlist.matchingItems.length / productlist.page) + 1);
