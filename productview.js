@@ -140,9 +140,10 @@ $(document).ready(function() {
             var items = $(this).data('show-items');
             var i = productlist.i;
             productlist.page = items;
-            console.log(i);
+            var newpos = parseInt(productlist.i / items) * items + 1;
+            $('button .show-items').html(items);
+            hash.add({pos:newpos});
             productlist.update();
-            return false;
           });
         });
       } else {
@@ -391,7 +392,7 @@ $(document).ready(function() {
         // Otherwise, increment by one page.
         if (n == 3) { n = 1; }
         var p = parseInt(productlist.i)+parseInt(n);
-        if (p == productlist.matchingItems.length) p = 0;
+        if (p == productlist.matchingItems.length && n == 1) p = 0;
         hash.add({pos:p});
       });
       $('.previous').off('click touch').on('click touch', function(e) {
