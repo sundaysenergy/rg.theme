@@ -1,9 +1,13 @@
 $(document).ready(function() {
+  // If we have faves, make sure they are in localStorage
   if (_.isUndefined(hash.get('faves')) == false) {
     localStorage.faves = hash.get('faves');
   } else {
+    // If we don't have favorites, and items have a minus box, something cached weird
+    // so we reload the page
     if ($('.item-favorite-remove').length > 0) location.reload();
   }
+  // Force reload the page when we change from the collection hash
   $("a[href*='collection.html']").click(function(e){
     if (_.isNull($(this).attr('href').match('#'))) {
       return true;
