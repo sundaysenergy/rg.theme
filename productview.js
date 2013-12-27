@@ -628,7 +628,7 @@ $(document).ready(function() {
     });
 
     // Keep the dropdown menu from closing after an option is selected
-    $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
+    $('#collection-menu-main .dropdown-menu input, #collection-menu-main .dropdown-menu label').click(function(e) {
       e.stopPropagation();
     });
   });
