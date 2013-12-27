@@ -10,7 +10,10 @@ $(document).ready(function() {
         var $div = $(this).closest('div');
         if (_.isUndefined(token) == false) {
           $.post('http://rg.cape.io/_api/items/_list', { info: { Authorization:token, name: projectname } }, function(data) {
-            if (_.isUndefined(data._id) == false) $div.html('List created with id of ' + data._id);
+            if (_.isUndefined(data._id) == false) {
+              $div.find('form').remove();
+              $div.append('List created with id of ' + data._id);
+            }
             console.log(data);
           });
         }
