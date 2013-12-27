@@ -132,11 +132,11 @@ $(document).ready(function() {
       // Get any search term(s)
       var srch = hash.get('search');
       if (_.isUndefined(srch) == false) {
-        $('.collection-menu-search').show();
-        $('.collection-menu-main').hide();
+        $('#collection-menu-search').show();
+        $('#collection-menu-main').hide();
       } else {
-        $('.collection-menu-main').show();
-        $('.collection-menu-search').hide();   
+        $('#collection-menu-main').show();
+        $('#collection-menu-search').hide();   
       }
       var faves = hash.get('faves');
       if (_.isUndefined(faves) == false) {
