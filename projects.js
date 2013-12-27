@@ -7,8 +7,10 @@ $(document).ready(function() {
         e.preventDefault();
         var projectname = $('#new-project-name').val();
         var token = 'token ' + $.cookie('token');
+        var $div = $(this).closest('div');
         if (_.isUndefined(token) == false) {
           $.post('http://rg.cape.io/_api/items/_list', { info: { Authorization:token, name: projectname } }, function(data) {
+            if (_.isUndefined(data._id) == false) $div.html('List created with id of ' + data._id);
             console.log(data);
           });
         }
