@@ -3,6 +3,16 @@ $(document).ready(function() {
   $('#project-new').on('click touch', function(e) {
     if ($('.new-project').length == 0) {
       $('body').append(template.render({}));
+      $('#new-project-name').closest('form').on('submit', function(e) {
+        e.preventDefault();
+        var projectname = $('#new-project-name').val();
+        var token = 'token ' + $.cookie('token');
+        if (_.isUndefined(token) == false) {
+          $.post('http://rg.cape.io/_api/items/_list', { info: { Authorization:token, name: projectname } }, function(data) {
+            console.log(data);
+          });
+        }
+      });
     }
   });
 });

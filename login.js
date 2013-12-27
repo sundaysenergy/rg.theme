@@ -13,11 +13,11 @@ $(document).ready(function() {
                             $.cookie('token', data.token, { expires: 7, path: '/', domain: '.rg.cape.io' });
                             $('body').append(template.render({message:'Login succeed. Your token has been stored as a cookie!'}));
                             $('form').hide();
-                          })
-                    .fail(function(data) {
-                      if (data.status) {
-                        $('body').append(template.render({message:'Login failed.'}));
-                      }
-                    });
+                        })
+                        .fail(function(data) {
+                          if (data.status) {
+                            $('body').append(template.render({message:'Login failed.'}));
+                          }
+                        });
   });
 });
