@@ -100,7 +100,7 @@ $(document).ready(function() {
       if (_.isUndefined(hash.get('faves')) == false) localStorage.faves = hash.get('faves');
       if (_.isNull(localStorage.faves)) delete(localStorage.faves);
       // If we're viewing 3 items at a time, and there are faves or search present, force vertical view
-      if (productlist.page == 3 && (_.isUndefined(hash.get('faves')) == false || _.isUndefined(hash.get('srch')) == false)) {
+      if (productlist.page == 3 && (_.isUndefined(hash.get('faves')) == false || _.isUndefined(hash.get('search')) == false)) {
         productlist.page = 40;
         var pos = 1;
         $('.list').removeClass('slider');
