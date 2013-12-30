@@ -131,9 +131,10 @@ $(document).ready(function() {
       });
       // Get any search term(s)
       var srch = hash.get('search');
+      var faves = hash.get('faves');
       if (_.isUndefined(srch) == false) {
         $('#collection-menu-search').show();
-        $('#collection-menu-main').hide();
+        $('#collection-menu-main,#collection-menu-faves').hide();
         $('#search-view-number a').each(function(i) {
           $(this).on('click touch', function(e) {
             e.preventDefault();
@@ -146,11 +147,13 @@ $(document).ready(function() {
             productlist.update();
           });
         });
+      } else if (_.isUndefined(faves) == false) {
+        $('#collection-menu-faves').show();
+        $('#collection-menu-main,#collection-menu-search').hide();
       } else {
         $('#collection-menu-main').show();
-        $('#collection-menu-search').hide();   
+        $('#collection-menu-search,#collection-menu-faves').hide();  
       }
-      var faves = hash.get('faves');
       if (_.isUndefined(faves) == false) {
         favorites = hash.get('faves').split(',');
         var longurl = 'http://rg.cape.io/collection.html#faves=' + faves;
