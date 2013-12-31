@@ -37,7 +37,7 @@ $(document).ready(function() {
         favorites_template          = Hogan.compile(templates.favorites),
         detailed_favorites_template = Hogan.compile(templates.detailed_faves_alert),
         itemdel_template            = Hogan.compile(templates.itemdel),
-        related_template            = Hogan.compile(remplates.related_item);
+        related_template            = Hogan.compile(templates.related_item);
 
     // Options for our list
     var options = {
