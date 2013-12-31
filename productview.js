@@ -33,7 +33,7 @@ $(document).ready(function() {
     var templates = combined.templates;  
     var item_template               = Hogan.compile(templates.item),
         spotlight_template          = Hogan.compile(templates.spotlight),
-        dummy_template              = Hogan.compile(tempaltes.bookends),
+        dummy_template              = Hogan.compile(templates.bookends),
         favorites_template          = Hogan.compile(templates.favorites),
         detailed_favorites_template = Hogan.compile(templates.detailed_faves_alert),
         itemdel_template            = Hogan.compile(templates.itemdel),
