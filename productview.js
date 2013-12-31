@@ -26,42 +26,20 @@ $(document).ready(function() {
   delete(sessionStorage.detailedview);
 
 
-  /**** COMPILE TEMPLATES ****/
-  var item_template;
-  $.ajax({
-    url: "http://rg.cape.io/templates/item.html",
-    context: document.body,
-    async: false,
-    error:  function (jqXHR, textStatus, errorThrown) {
-              console.log(errorThrown);
-            }
-  }).done(function(data) {
-    item_template = Hogan.compile(data);
-  });
-  // Get the template for detailed item information.
-  var spotlight_template;
-  $.ajax({
-    url: "http://rg.cape.io/templates/spotlight.html",
-    context: document.body,
-    async: false,
-    error:  function (jqXHR, textStatus, errorThrown) {
-              console.log(errorThrown);
-            }
-  }).done(function(data) {
-    spotlight_template = Hogan.compile(data);
-  });
-  // Compile the template for the "bookended" items that create the seamless scrolling in 3-up mode
-  var dummy_template = Hogan.compile('<li class="item-bookends"><span style="display:none" class="id">{{id}}</span><img class="img" src="{{img}}"><br><span class="content">{{content}}</span></li>');
-  // Compile the template for alerts
-  var favorites_template = Hogan.compile('<div class="alert-favorite alert alert-dismissable" style="width:50%; margin-left: 25%; background: #fff"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}<br><br><a href="/collection.html#pos=1&faves=">View and share</a></div>');
-  var detailed_favorites_template = Hogan.compile('<div class="alert-favorite alert alert-dismissable" style="position:absolute; left:37%; width:26%; z-index:11111; top: 45%; background: #fff"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}<br><br><a href="/collection.html#pos=1&faves=">View and share</a></div>');
-  var itemdel_template = Hogan.compile('<div class="item-favorite-remove" style="position: absolute; right: 5px; top: 5px;"><button><i class="fa fa-minus-square-o"></i></button></div>');
-  var related_template = Hogan.compile('<li class="related-item"><a href="/collection.html#{{linkitem}}detailedview={{id}}"><img src="{{{img}}}"></a></li>');
-
-
 
   /**** GET THE ITEMS INFORMATION FROM CAPE AND PROCESS IT ****/
-  $.getJSON('http://rg.cape.io/items/items-color.json', function(combined) {
+  $.getJSON('http://rg.cape.io/items/client_data.json', function(combined) {
+
+    // Compile clientside templates
+    var templates = combined.templates;  
+    var item_template               = Hogan.compile(templates.item),
+        spotlight_template          = Hogan.compile(templates.spotlight),
+        dummy_template              = Hogan.compile(tempaltes.bookends),
+        favorites_template          = Hogan.compile(templates.favorites),
+        detailed_favorites_template = Hogan.compile('<div class="alert-favorite alert alert-dismissable" style="position:absolute; left:37%; width:26%; z-index:11111; top: 45%; background: #fff"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}<br><br><a href="/collection.html#pos=1&faves=">View and share</a></div>');
+    var itemdel_template = Hogan.compile('<div class="item-favorite-remove" style="position: absolute; right: 5px; top: 5px;"><button><i class="fa fa-minus-square-o"></i></button></div>');
+    var related_template = Hogan.compile('<li class="related-item"><a href="/collection.html#{{linkitem}}detailedview={{id}}"><img src="{{{img}}}"></a></li>');
+
     // Options for our list
     var options = {
       valueNames: [ 'image', 'content', 'id' ],
