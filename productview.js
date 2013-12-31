@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  // If we have faves, make sure they are in localStorage
+  /**** DISPLAY & DATA RESETS ****/
   if (_.isUndefined(hash.get('faves')) == false) {
     localStorage.faves = hash.get('faves');
   } else {
@@ -9,10 +9,13 @@ $(document).ready(function() {
   }
   // Force reload the page when we change from the collection hash
   $("a[href*='collection.html']").click(function(e){
+    // If we don't have a hash value, process the link as normal
     if (_.isNull($(this).attr('href').match('#'))) {
       return true;
+    // If we do have a hash, force a page reload
     } else {
       e.preventDefault();
+      // Hide the list before reloading the page to avoid weird flicker
       $('ul.list').hide();
       window.location.href = $(this).attr('href');
       location.reload();
@@ -97,9 +100,11 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
+      // Copy faves from the hash to localStorage for sharing and updates via the url
       if (_.isUndefined(hash.get('faves')) == false) localStorage.faves = hash.get('faves');
+      // Sometimes after removing all items from anon favorites, null was leftover. Remove it.
       if (_.isNull(localStorage.faves)) delete(localStorage.faves);
-      // If we're viewing 3 items at a time, and there are faves or search present, force vertical view
+      // If we're viewing 3 items at a time, and there are faves or search present, force vertical view and set position
       if (productlist.page == 3 && (_.isUndefined(hash.get('faves')) == false || _.isUndefined(hash.get('search')) == false)) {
         productlist.page = 40;
         var pos = 1;
@@ -132,21 +137,28 @@ $(document).ready(function() {
       // Get any search term(s)
       var srch = hash.get('search');
       var faves = hash.get('faves');
+      // If we have search terms
       if (_.isUndefined(srch) == false) {
+        // Show the search header bar and hide the others
         $('#collection-menu-search').show();
         $('#collection-menu-main,#collection-menu-faves').hide();
+        // Click handlers for different view quantities
         $('#search-view-number a').each(function(i) {
           $(this).on('click touch', function(e) {
             e.preventDefault();
             var items = $(this).data('show-items');
             var i = productlist.i;
             productlist.page = items;
+            // Set position to the same page that would contain item with new quantity/page
             var newpos = parseInt(productlist.i / items) * items + 1;
+            // Set the display value to the current number of items
             $('button .show-items').html(items);
+            // Add our position to the hash and update the list
             hash.add({pos:newpos});
             productlist.update();
           });
         });
+      // Show&hide header bars for search and default
       } else if (_.isUndefined(faves) == false) {
         $('#collection-menu-faves').show();
         $('#collection-menu-main,#collection-menu-search').hide();
