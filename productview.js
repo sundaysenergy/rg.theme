@@ -159,8 +159,8 @@ $(document).ready(function() {
           function(response) {
             // We're just throwing this information in one of the headers for now
             $('.pager li:nth-child(4)')
-            .html('Share URL: <input type="text" value="' + response.data.url + '">')
             .find('input')
+            .val(response.data.url)
             .on('click', function(e) { $(this).select(); });
           }
         );
