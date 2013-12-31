@@ -14,4 +14,3 @@ deploy:
         name: Deploy to cloudfiles
         code: |
           node ./node_modules/cape-theme-deploy/update_assets_cape.js
-          node ./node_modules/cape-theme-deploy/notify_cape.js
