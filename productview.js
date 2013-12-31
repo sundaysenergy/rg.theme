@@ -119,6 +119,7 @@ $(document).ready(function() {
         // Show the search header bar and hide the others
         $('#collection-menu-search').show();
         $('#collection-menu-main,#collection-menu-faves').hide();
+        $('.item-favorite-remove').remove();
         // Click handlers for different view quantities
         $('#search-view-number a').each(function(i) {
           $(this).on('click touch', function(e) {
