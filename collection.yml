@@ -13,6 +13,7 @@ projects:
     - variables.less
     - projects.less
   js:
+    - sortable.min.js
     - list.min.js
     - projects.js
 productview:

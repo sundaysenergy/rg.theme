@@ -6,6 +6,7 @@ $(document).ready(function() {
     _.forEach(data, function(list) {
       $('ul.existing-projects').append('<li>' + list.info.name + '<button style="position: absolute; right: 0">&times;</button></li>');
     });
+    var sortable = new Sortable($('.existing-projects')[0]);
   });
   // Things to do to create a new project
   $('#project-new').on('click touch', function(e) {
