@@ -7,7 +7,8 @@ $(document).ready(function() {
     // Compile template
     var template = Hogan.compile(project_list);
     // Retrieve the list of lists
-    $.getJSON('http://rg.cape.io/_api/items/_index/user_list/' + $.cookie('uid') + '/?data_only=true', {}, function(data) {
+    // http://rg.cape.io/_api/items/_index/752a94d7-3394-460d-9709-0afa4848e973/list?data_only=true
+    $.getJSON('http://rg.cape.io/_api/items/_index/' + $.cookie('uid') + '/list', { data_only: true }, function(data) {
       // Process each of the lists
       _.forEach(data, function(list) {
         $('ul.existing-projects').append(template.render(list));
