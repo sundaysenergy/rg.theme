@@ -11,6 +11,7 @@ $(document).ready(function() {
                           }, 
                           function(data) {
                             $.cookie('token', data.token, { expires: 7, path: '/', domain: '.rg.cape.io' });
+                            $.cookie('uid', data.uid, { expires: 7, path: '/', domain: '.rg.cape.io' });
                             $('body').append(template.render({message:'Login succeed. Your token has been stored as a cookie!'}));
                             $('form').hide();
                             if (_.isUndefined(hash.get('destination')) == false) window.location = hash.get('destination');
