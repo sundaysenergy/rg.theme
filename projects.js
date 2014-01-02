@@ -8,12 +8,19 @@ $(document).ready(function() {
       var token = 'bearer ' + $.cookie('token');
       var $div = $(this).closest('div');
       if ((_.isUndefined(token) == false) && (projectname.length > 0)) {
-        $.post('http://rg.cape.io/_api/items/_index/list', { info: { Authorization:token, name: projectname } }, function(data) {
-          if (_.isUndefined(data._id) == false) {
-            $div.find('form').remove();
-            $div.append('List created with id of ' + data._id);
+        $.ajax({
+          url: 'http://rg.cape.io/_api/items/_index/list',
+          type: 'post',
+          data: { info: { name:projectname } },
+          headers: { Authorization: token },
+          dataType: 'json',
+          success: function (data) {
+            if (_.isUndefined(data._id) == false) {
+              $div.find('form').remove();
+              $div.append('List created with id of ' + data._id);
+            }
+            console.log(data);
           }
-          console.log(data);
         });
       }
     });
