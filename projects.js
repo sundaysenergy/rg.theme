@@ -4,7 +4,22 @@ $(document).ready(function() {
   // Get a list of lists and populate the existing-projects
   $.getJSON('http://rg.cape.io/_api/items/_index/user_list/' + $.cookie('uid') + '/?data_only=true', {}, function(data) {
     _.forEach(data, function(list) {
-      $('ul.existing-projects').append('<li>' + list.info.name + '<button style="position: absolute; right: 0">&times;</button></li>');
+      $('ul.existing-projects').append('<li id="' + list._id + '">' + list.info.name + '<button class="delete-list" style="position: absolute; right: 0">&times;</button></li>');
+      $('#'+list._id+' button.delete-list').on('click touch', function(e) {
+        e.preventDefault();
+        console.log("Delete "+list._id);
+        $.ajax({
+          url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
+          type: 'DELETE',
+          success: function(result) {
+            console.log(result);
+              // Do something with the result
+          },
+          fail: function(result) {
+            console.log(result);
+          }
+        });
+      });
     });
     var sortable = new Sortable($('.existing-projects')[0]);
   });
