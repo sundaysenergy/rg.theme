@@ -7,7 +7,6 @@ $(document).ready(function() {
     // Compile template
     var template = Hogan.compile(project_list);
     // Retrieve the list of lists
-    // http://rg.cape.io/_api/items/_index/752a94d7-3394-460d-9709-0afa4848e973/list?data_only=true
     $.getJSON('http://rg.cape.io/_api/items/_index/' + $.cookie('uid') + '/list', { data_only: true }, function(data) {
       // Process each of the lists
       _.forEach(data, function(list) {
@@ -62,8 +61,7 @@ $(document).ready(function() {
             success: function (data) {
               // If the list was created, remove the form and show confirmation
               if (_.isUndefined(data._id) == false) {
-                $div.find('form').remove();
-                $div.append('List created with id of ' + data._id);
+                location.reload();
               }
               console.log(data);
             }
