@@ -42,7 +42,7 @@ $(document).ready(function() {
     // Options for our list
     var options = {
       valueNames: [ 'image', 'content', 'id' ],
-      item: '<li><span style="display:none" class="id"></span><img class="img"><br><span class="content"></span></li>',
+      item: '<li><span style="display:none" class="id"></span><img class="img"></li>',
       page: 40
     };
 
