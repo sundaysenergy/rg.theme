@@ -40,7 +40,6 @@ $(document).ready(function() {
         $('#'+list._id+' button.delete-list').on('click touch', function(e) {
           e.preventDefault();
           console.log("Delete "+list._id);
-          $('#'+list._id).remove();
           var token = 'bearer ' + $.cookie('token');
           $.ajax({
             url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
