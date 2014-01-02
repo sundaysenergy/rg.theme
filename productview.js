@@ -182,7 +182,11 @@ $(document).ready(function() {
           }
           // If we have a search term, process it
           if (_.isUndefined(srch) == false) {
-            if (item.values().content.toLowerCase().indexOf(srch) == -1) {
+            var content_field = item.values().content;
+            if (_.isUndefined(content_field)) {
+              content_field = "";
+            }
+            if (content_field.toLowerCase().indexOf(srch) == -1) {
               // If we failed the search term, and the search term exists, quit here and return false.
               return false;
             } else {
