@@ -12,8 +12,8 @@ $(document).ready(function() {
           url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
           type: 'DELETE',
           success: function(result) {
+            $('#'+list._id).remove();
             console.log(result);
-              // Do something with the result
           },
           fail: function(result) {
             console.log(result);
