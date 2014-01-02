@@ -26,9 +26,11 @@ $(document).ready(function() {
           e.preventDefault();
           console.log("Delete "+list._id);
           $('#'+list._id).remove();
+          var token = 'bearer ' + $.cookie('token');
           $.ajax({
             url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
             type: 'DELETE',
+            headers: { Authorization: token },
             success: function(result) {
               $('#'+list._id).remove();
               console.log(result);
@@ -60,10 +62,7 @@ $(document).ready(function() {
             dataType: 'json',
             success: function (data) {
               // If the list was created, remove the form and show confirmation
-              if (_.isUndefined(data._id) == false) {
-                location.reload();
-              }
-              console.log(data);
+              if (_.isUndefined(data._id) == false) location.reload();
             }
           });
         }
