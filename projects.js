@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  if (_.isUndefined($.cookie('token'))) window.location = '/trade/login.html#destination=' + encodeURI(window.location.href);
+  if (_.isUndefined($.cookie('token'))) window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
   $('#project-new').on('click touch', function(e) {
     $('.new-project').show();
     $('#new-project-name').closest('form').on('submit', function(e) {
