@@ -4,10 +4,21 @@ $(document).ready(function() {
   // Get a list of lists and populate the existing-projects
   $.getJSON('http://rg.cape.io/_api/items/_index/user_list/' + $.cookie('uid') + '/?data_only=true', {}, function(data) {
     _.forEach(data, function(list) {
-      $('ul.existing-projects').append('<li id="' + list._id + '">' + list.info.name + '<button class="delete-list" style="position: absolute; right: 0">&times;</button></li>');
+      $('ul.existing-projects').append('<li id="' + list._id + '"><span class="list-name">' + list.info.name + '</span><form style="display:none"><input type="text" value="' + list.info.name + '"></form><button class="plain edit-list"><i class="fa fa-pencil"></i></button><button class="delete-list" style="position: absolute; right: 0">&times;</button></li>');
+
+      $('#'+list._id+' button.edit-list').on('click touch', function(e) {
+        e.preventDefault();
+        $(this).siblings('form').show().on('submit', function(ev) {
+          ev.preventDefault();
+          console.log("Change name " + $(this).find('input[type=text]').val());
+        });
+        $(this).siblings('.list-name').hide();
+        $(this).hide();
+      });
       $('#'+list._id+' button.delete-list').on('click touch', function(e) {
         e.preventDefault();
         console.log("Delete "+list._id);
+        $('#'+list._id).remove();
         $.ajax({
           url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
           type: 'DELETE',
