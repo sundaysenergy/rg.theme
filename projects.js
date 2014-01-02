@@ -20,6 +20,21 @@ $(document).ready(function() {
           });
           $(this).siblings('.list-name').hide();
           $(this).hide();
+          var token = 'bearer ' + $.cookie('token');
+          var projectname = $(this).find('input[type=text]').val();
+          $.ajax({
+            url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
+            type: 'PUT',
+            data: { info: { name:projectname } },
+            headers: { Authorization: token },
+            success: function(result) {
+              location.reload();
+              console.log(result);
+            },
+            fail: function(result) {
+              console.log(result);
+            }
+          });
         });
         // Remove a list
         $('#'+list._id+' button.delete-list').on('click touch', function(e) {
