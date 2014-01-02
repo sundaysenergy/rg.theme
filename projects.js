@@ -1,7 +1,11 @@
 $(document).ready(function() {
   if (_.isUndefined($.cookie('token'))) window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
   $.getJSON('http://rg.cape.io/_api/items/_index/user_list/' + $.cookie('uid') + '/index.json', {}, function(data) {
-    console.log(data);
+    _.forEach(_.keys(data), function(list) {
+      $('ul.existing-projects').append('<li>' + list + '</li>');
+      console.log(list);
+      //console.log(item);
+    });
   });
   $('#project-new').on('click touch', function(e) {
     $('.new-project').show();
