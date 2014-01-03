@@ -72,7 +72,7 @@ $(document).ready(function() {
             url: 'http://rg.cape.io/_api/items/_index/' + $.cookie('uid') + '/list',
             type: 'PUT',
             data: JSON.stringify(obj),
-            headers: { Authorization: token },
+            headers: { Authorization: token, Content-Type: 'application/json' },
             success: function(result) {
               //location.reload();
               console.log(result);
