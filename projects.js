@@ -66,20 +66,20 @@ $(document).ready(function() {
             item[id] = position;
             obj.entities.push(item);
             var token = 'bearer ' + $.cookie('token');
-            $.ajax({
-              //  /_api/items/_index/752a94d7-3394-460d-9709-0afa4848e973/list
-              url: 'http://rg.cape.io/_api/items/_index/' + $.cookie('uid') + '/list',
-              type: 'PUT',
-              data: JSON.stringify(obj),
-              headers: { Authorization: token },
-              success: function(result) {
-                //location.reload();
-                console.log(result);
-              },
-              fail: function(result) {
-                console.log(result);
-              }
-            });
+          });
+          $.ajax({
+            //  /_api/items/_index/752a94d7-3394-460d-9709-0afa4848e973/list
+            url: 'http://rg.cape.io/_api/items/_index/' + $.cookie('uid') + '/list',
+            type: 'PUT',
+            data: JSON.stringify(obj),
+            headers: { Authorization: token },
+            success: function(result) {
+              //location.reload();
+              console.log(result);
+            },
+            fail: function(result) {
+              console.log(result);
+            }
           });
           console.log(obj);
         }
