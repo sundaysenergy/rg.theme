@@ -58,7 +58,7 @@ $(document).ready(function() {
       // Once we have all of the items, make them sortable
       var sortable = new Sortable($('.existing-projects')[0], {
         onUpdate: function (evt) {
-          var obj = { entity: [] };
+          var obj = { entity: {} };
           $('ul.existing-projects li').each(function(i) {
             var id = $(this).attr('id');
             var position = i+1;
