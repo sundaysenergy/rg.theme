@@ -61,10 +61,8 @@ $(document).ready(function() {
           var obj = { entity: [] };
           $('ul.existing-projects li').each(function(i) {
             var id = $(this).attr('id');
-            var item = {};
             var position = i+1;
-            item[id] = position;
-            obj.entity.push(item);
+            obj.entity[id] = position;
           });
           var token = 'bearer ' + $.cookie('token');
           $.ajax({
