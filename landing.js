@@ -4,7 +4,7 @@ $(document).ready(function() {
   // Retrieve the template for the carousel and compile
   var item_template;
   $.ajax({
-    url: "http://rg.cape.io/templates/landing.html",
+    url: "http://rg.cape.io/templates/mini/landing.html",
     context: document.body,
     async: false,
     error:  function (jqXHR, textStatus, errorThrown) {
