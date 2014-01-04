@@ -336,22 +336,32 @@ $(document).ready(function() {
           $('.fa-plus-square-o').parent().off().on('click touch', function(e) {
             var uid = $.cookie('uid');
             var token = $.cookie('token');
+            // If we are not logged in, add the item to anonymous favorites
             if (_.isUndefined(uid) || _.isUndefined(token)) {
+              // Disable the button so that we can only add an item once
               $(this).off('click touch');
               e.preventDefault();
+              // Catch undefined value
               if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
+              // Parse the existing list and push the new item
               var current = localStorage.faves.split(',');
               current.push(id);
+              // Create a string with only unique items
               localStorage.faves = _.compact(_.uniq(current)).join(',');
+              // Add a notification and dynamically change the share link
               $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
               $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
             } else {
               $(this).off('click touch');
               e.preventDefault();
+              // Retrieve a list of available lists for the user
               $.getJSON('http://rg.cape.io/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
+                // Render the list against our template
                 $('.itemoverlay').append(project_list_select_template.render({lists:data}));
+                // Catch form submissions
                 $('#project-trade-list').closest('form').on('submit', function(e) {
                   e.preventDefault();
+                  // Grab the list id of the currently selected item
                   var listid = $('#project-trade-list').val();
                   $.ajax({
                     url: 'http://rg.cape.io/_api/items/_index/list/'+listid+'/'+id,
@@ -517,7 +527,7 @@ $(document).ready(function() {
                   success: function(result) {
                     $('#project-trade-list').closest('.alert').find('button.close').trigger('click')
                     $('.item-spotlight').append(favorites_template.render({message:'Item added to your favorites!'}));
-                    $('.alert-favorite').find('a').attr('/trade/projects.html');
+                    $('.alert-favorite').find('a').attr('href','/trade/projects.html');
                     console.log(result);
                   },
                   fail: function(result) {
