@@ -488,12 +488,41 @@ $(document).ready(function() {
           $(this).off('click touch');
           e.preventDefault();
           var id = $('.list li:nth-child(2)').find('.id').html();
-          if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
-          var current = localStorage.faves.split(',');
-          current.push(id);
-          localStorage.faves = _.compact(_.uniq(current)).join(',');
-          $('.item-spotlight').append(favorites_template.render({message:'Item added to your favorites!'}));
-          $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
+          var uid = $.cookie('uid');
+          var token = $.cookie('token');
+          if (_.isUndefined(uid) || _.isUndefined(token)) {
+            $(this).off('click touch');
+            e.preventDefault();
+            if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
+            var current = localStorage.faves.split(',');
+            current.push(id);
+            localStorage.faves = _.compact(_.uniq(current)).join(',');
+            $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
+            $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
+          } else {
+            $(this).off('click touch');
+            e.preventDefault();
+            $.getJSON('http://rg.cape.io/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
+              $('.itemoverlay').append(project_list_select_template.render({lists:data}));
+              $('#project-trade-list').closest('form').on('submit', function(e) {
+                e.preventDefault();
+                var listid = $('#project-trade-list').val();
+                $.ajax({
+                  url: 'http://rg.cape.io/_api/items/_index/list/'+listid+'/'+id,
+                  type: 'PUT',
+                  headers: { Authorization: 'bearer '+token },
+                  contentType: 'application/json',
+                  success: function(result) {
+                    //location.reload();
+                    console.log(result);
+                  },
+                  fail: function(result) {
+                    console.log(result);
+                  }
+                });
+              });
+            });
+          }
         });
         // Handle related colors list
         var id = $('.list li:nth-child(2)').find('.id').html();
