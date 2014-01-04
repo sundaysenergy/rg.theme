@@ -31,13 +31,14 @@ $(document).ready(function() {
 
     // Compile clientside templates
     var templates = combined.templates;  
-    var item_template               = Hogan.compile(templates.item),
-        spotlight_template          = Hogan.compile(templates.spotlight),
-        dummy_template              = Hogan.compile(templates.bookends),
-        favorites_template          = Hogan.compile(templates.favorites),
-        detailed_favorites_template = Hogan.compile(templates.detailed_faves_alert),
-        itemdel_template            = Hogan.compile(templates.itemdel),
-        related_template            = Hogan.compile(templates.related_item);
+    var item_template                = Hogan.compile(templates.item),
+        spotlight_template           = Hogan.compile(templates.spotlight),
+        dummy_template               = Hogan.compile(templates.bookends),
+        favorites_template           = Hogan.compile(templates.favorites),
+        detailed_favorites_template  = Hogan.compile(templates.detailed_faves_alert),
+        itemdel_template             = Hogan.compile(templates.itemdel),
+        related_template             = Hogan.compile(templates.related_item),
+        project_list_select_template = Hogan.compile(templates.project_list_select);
 
     // Options for our list
     var options = {
@@ -325,14 +326,41 @@ $(document).ready(function() {
 
           // Add to favorites from detailed view
           $('.fa-plus-square-o').parent().off().on('click touch', function(e) {
-            $(this).off('click touch');
-            e.preventDefault();
-            if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
-            var current = localStorage.faves.split(',');
-            current.push(id);
-            localStorage.faves = _.compact(_.uniq(current)).join(',');
-            $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
-            $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
+            var uid = $.cookie('uid');
+            var token = $.cookie('token');
+            if (_.isUndefined(uid) || _.isUndefined(token)) {
+              $(this).off('click touch');
+              e.preventDefault();
+              if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
+              var current = localStorage.faves.split(',');
+              current.push(id);
+              localStorage.faves = _.compact(_.uniq(current)).join(',');
+              $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
+              $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
+            } else {
+              $(this).off('click touch');
+              e.preventDefault();
+              $.getJSON('http://rg.cape.io/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
+                $('.itemoverlay').append(project_list_select_template.render({lists:data}));
+              });
+              // $.ajax({
+              //   ///_api/items/_index/list/{list_id}/{entity_id}
+              //   url: 'http://rg.cape.io/_api/items/_index/' + $.cookie('uid') + '/list',
+              //   type: 'PUT',
+              //   data: JSON.stringify(obj),
+              //   headers: { Authorization: token },
+              //   contentType: 'application/json',
+              //   success: function(result) {
+              //     //location.reload();
+              //     console.log(result);
+              //   },
+              //   fail: function(result) {
+              //     console.log(result);
+              //   }
+              // });
+              
+              // $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
+              // $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);            }
           });
 
           // Update our rulers
