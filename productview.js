@@ -353,7 +353,7 @@ $(document).ready(function() {
                     ///_api/items/_index/list/{list_id}/{entity_id}
                     url: 'http://rg.cape.io/_api/items/_index/list/'+listid+'/'+id,
                     type: 'PUT',
-                    headers: { Authorization: token },
+                    headers: { Authorization: 'bearer '+token },
                     contentType: 'application/json',
                     success: function(result) {
                       //location.reload();
