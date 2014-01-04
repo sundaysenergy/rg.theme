@@ -343,6 +343,7 @@ $(document).ready(function() {
               $.getJSON('http://rg.cape.io/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
                 $('.itemoverlay').append(project_list_select_template.render({lists:data}));
                 $('#project-trade-list').closest('form').on('submit', function(e) {
+                  e.preventDefault();
                   var listid = $('#project-trade-list').val();
                   $.ajax({
                     ///_api/items/_index/list/{list_id}/{entity_id}
