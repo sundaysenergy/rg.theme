@@ -370,8 +370,8 @@ $(document).ready(function() {
                 });
               });
               
-              // $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
-              // $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);            
+              $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your list!'}));
+              $('.alert-favorite').find('a').attr('href', '/trade/projects.html');            
             }
           });
 
@@ -517,7 +517,8 @@ $(document).ready(function() {
                   headers: { Authorization: 'bearer '+token },
                   contentType: 'application/json',
                   success: function(result) {
-                    //location.reload();
+                    $('.item-spotlight').append(favorites_template.render({message:'Item added to your favorites!'}));
+                    $('.alert-favorite').find('a').attr('/trade/projects.html');
                     console.log(result);
                   },
                   fail: function(result) {
