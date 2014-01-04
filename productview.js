@@ -209,7 +209,11 @@ $(document).ready(function() {
             if (attributes.length > 0) {
               // For each attribute, see if we have a match. If not, set false and break.
               for (var i = 0; i<attributes.length; i++) {
-                if (item.values().content.toLowerCase().indexOf(attributes[i].toLowerCase()) >= 0) {
+                var content_field = item.values().content;
+                if (_.isUndefined(content_field)) {
+                  content_field = "";
+                }
+                if (content_field.toLowerCase().indexOf(attributes[i].toLowerCase()) >= 0) {
                   match = true;
                 } else {
                   // If we fail, break the loop since we want all attributes to match.
