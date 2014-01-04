@@ -227,7 +227,11 @@ $(document).ready(function() {
           var a = $(this)[0].value;
           // Determine if any potential matches exist from currently matched items. Breaks on first true
           var m = _.some(productlist.matchingItems, function(item) {
-            if (item.values().content.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
+            var contentname = item.values().content;
+            if (_.isUndefined(contentname)) {
+              contentname = '';
+            }
+            if (contentname.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
           });
           // Hide the parents of any item that does not have a match.
           if (m == false) $(this).parent().hide();
