@@ -360,7 +360,8 @@ $(document).ready(function() {
               // });
               
               // $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
-              // $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);            }
+              // $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);            
+            }
           });
 
           // Update our rulers
