@@ -501,13 +501,13 @@ $(document).ready(function() {
             var current = localStorage.faves.split(',');
             current.push(id);
             localStorage.faves = _.compact(_.uniq(current)).join(',');
-            $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
+            $('.item-spotlight').append(favorites_template.render({message:'Item added to your favorites!'}));
             $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
           } else {
             $(this).off('click touch');
             e.preventDefault();
             $.getJSON('http://rg.cape.io/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
-              $('.itemoverlay').append(project_list_select_template.render({lists:data}));
+              $('body').append(project_list_select_template.render({lists:data}));
               $('#project-trade-list').closest('form').on('submit', function(e) {
                 e.preventDefault();
                 var listid = $('#project-trade-list').val();
