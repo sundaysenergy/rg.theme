@@ -354,24 +354,22 @@ $(document).ready(function() {
                   e.preventDefault();
                   var listid = $('#project-trade-list').val();
                   $.ajax({
-                    ///_api/items/_index/list/{list_id}/{entity_id}
                     url: 'http://rg.cape.io/_api/items/_index/list/'+listid+'/'+id,
                     type: 'PUT',
                     headers: { Authorization: 'bearer '+token },
                     contentType: 'application/json',
                     success: function(result) {
-                      //location.reload();
                       console.log(result);
+                      $('#project-trade-list').closest('.alert').find('button.close').trigger('click');
+                      $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your list!'}));
+                      $('.alert-favorite').find('a').attr('href', '/trade/projects.html'); 
                     },
                     fail: function(result) {
                       console.log(result);
                     }
                   });
                 });
-              });
-              
-              $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your list!'}));
-              $('.alert-favorite').find('a').attr('href', '/trade/projects.html');            
+              });           
             }
           });
 
@@ -517,6 +515,7 @@ $(document).ready(function() {
                   headers: { Authorization: 'bearer '+token },
                   contentType: 'application/json',
                   success: function(result) {
+                    $('#project-trade-list').closest('.alert').find('button.close').trigger('click')
                     $('.item-spotlight').append(favorites_template.render({message:'Item added to your favorites!'}));
                     $('.alert-favorite').find('a').attr('/trade/projects.html');
                     console.log(result);
