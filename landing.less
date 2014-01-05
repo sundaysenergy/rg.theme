@@ -45,6 +45,8 @@
   bottom: 0px
 }
 
+/* this makes the layout as designed, but is too hard to click on the indicators... sticking with default bootstrap other than colors updated to RG variable */
+/* 
 .carousel-indicators li {
   display: inline-block;
   background-color: @rg-background;
@@ -63,6 +65,13 @@
   height: 12px;
   border-radius: 12px;
   background-color: @rg-background;
+}
+*/
+.carousel-indicators li {
+  border-color: @rg-background !important;
+}
+.carousel-indicators .active {
+  background-color: @rg-background !important;
 }
 
 .carousel-control {
