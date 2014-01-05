@@ -13,10 +13,17 @@
 .list li {
   float: left;
   position: relative;
-  width: 25%;
-  max-width: 25%;
-  height: 350px;
+  width: 30%;
+  max-width: 30%;
+  height: 300px;
+  overflow: hidden;
+  margin-right: 5%;
+  margin-bottom: 10px; /* need to make this the same as margin-right... perhaps decalaring in JS would make this easier? */
 }
+.list li:nth-child(3n) {
+  margin-right: 0;
+}
+
 .list li img {
   cursor: pointer;
 }
