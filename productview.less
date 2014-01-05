@@ -32,13 +32,31 @@
   width: 440px;
   margin: 0;
   padding: 0;
+  position: relative;
+  left: 10px;
 }
-#related-products .list li {
+#related-products .list li.related-item {
   width: 18%;
-  margin-right: 2.5%
+  max-width: 18%;
+  margin-right: 2.5%;
+  height: 60px;
 }
-#related-products .list li:nth-child(5n) {
+#related-products .list li.related-item:nth-child(5n) {
   margin-right: 0;
+}
+
+#related-products button {
+  position: relative;
+}
+
+#related-products button.left {
+  top: 30px;
+  left: -10px
+}
+
+#related-products button.right {
+  top: 30px;
+  right: -10px
 }
 
 
