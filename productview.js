@@ -1,4 +1,8 @@
 $(document).ready(function() {
+  var rg_options = {
+                      vertical_page: 42,
+                      horizontal_page: 3
+                   }
   /**** DISPLAY & DATA RESETS ****/
   if (_.isUndefined(hash.get('faves')) == false) {
     localStorage.faves = hash.get('faves');
@@ -44,7 +48,7 @@ $(document).ready(function() {
     var options = {
       valueNames: [ 'image', 'content', 'id' ],
       item: '<li><span style="display:none" class="id"></span><img class="img"></li>',
-      page: 40
+      page: rg_options.vertical_page
     };
 
     var data = combined.items;
@@ -79,7 +83,7 @@ $(document).ready(function() {
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
       if ($('div.threeup').length == 0) $('main.container').after('<div class="threeup clearfix"></div>');
-      if (productlist.page == 3) {
+      if (productlist.page == rg_options.horizontal_page) {
         if ($('div.threeup div#products').length == 0) {
           $('div#products').appendTo('div.threeup');
         }
@@ -93,8 +97,8 @@ $(document).ready(function() {
       // Sometimes after removing all items from anon favorites, null was leftover. Remove it.
       if (_.isNull(localStorage.faves)) delete(localStorage.faves);
       // If we're viewing 3 items at a time, and there are faves or search present, force vertical view and set position
-      if (productlist.page == 3 && (_.isUndefined(hash.get('faves')) == false || _.isUndefined(hash.get('search')) == false)) {
-        productlist.page = 40;
+      if (productlist.page == rg_options.horizontal_page && (_.isUndefined(hash.get('faves')) == false || _.isUndefined(hash.get('search')) == false)) {
+        productlist.page = rg_options.vertical_page;
         var pos = 1;
         $('.list').removeClass('slider');
         productlist.update();
@@ -257,7 +261,7 @@ $(document).ready(function() {
       var pos = hash.get('pos');
       // If position is undefined, start at either 0 or 1, depending on view mode
       if (_.isUndefined(pos)) {
-        pos = (productlist.page == 3) ? 0:1;
+        pos = (productlist.page == rg_options.horizontal_page) ? 0:1;
       } else {
         // If position is less than zero, set it to zero
         // Toggling between view modes can create this effect as we're offsetting each time we switch to the horizontal to center the active item
@@ -429,7 +433,7 @@ $(document).ready(function() {
         productlist.i = productlist.matchingItems.length;
       }
       // Page counter for slide view
-      if (productlist.page == 3) {
+      if (productlist.page == rg_options.horizontal_page) {
         $('#pagecount')
         .html(parseInt(productlist.i)+1)
         .append(' / ')
@@ -454,7 +458,7 @@ $(document).ready(function() {
         var n = parseInt(productlist.page);
         // If we're viewing three at a time, only increment by one item.
         // Otherwise, increment by one page.
-        if (n == 3) { n = 1; }
+        if (n == rg_options.horizontal_page) { n = 1; }
         var p = parseInt(productlist.i)+parseInt(n);
         if (p == productlist.matchingItems.length && n == 1) p = 0;
         hash.add({pos:p});
@@ -463,7 +467,7 @@ $(document).ready(function() {
         hash.remove('cpos');
         var n = parseInt(productlist.page);
         // If we're viewing three at a time, only increment by one item
-        if (n == 3) { n = 1; }
+        if (n == rg_options.horizontal_page) { n = 1; }
         var p = parseInt(productlist.i)-n;
         if (p == -1) p = productlist.matchingItems.length-1;
         hash.add({pos:p});
@@ -471,12 +475,12 @@ $(document).ready(function() {
       // If our position is less than the number of entries per page, assume we are on page #1
       // Unless we're viewing three at a time -- go to zero then
       if (((parseInt(productlist.i) < parseInt(productlist.page)) &&
-          (productlist.page != 3))) {
+          (productlist.page != rg_options.horizontal_page))) {
         $('.previous').addClass('disabled').off('click touch');
       }
       // If our position plus the size of the page is greater than length, we're showing the last entries
       if ((parseInt(productlist.i) + parseInt(productlist.page)) > productlist.matchingItems.length) {
-        if (productlist.page != 3) {
+        if (productlist.page != rg_options.horizontal_page) {
           $('.next').addClass('disabled').off('click touch');
         }
       }
@@ -499,7 +503,7 @@ $(document).ready(function() {
       });
 
       // Add product details div 
-      if (productlist.page == 3) {
+      if (productlist.page == rg_options.horizontal_page) {
         // Remove existing item details
         $('ul.list li .item-spotlight').remove();
         // Add the item detail information to the center slide
@@ -620,7 +624,7 @@ $(document).ready(function() {
         // If we're not in 3-up mode, make sure we don't have any stray item details
         if (_.isUndefined(hash.get('faves')) == false) {
           // Hide details for center slide in "horizontal" view
-          productlist.page = 40;
+          productlist.page = rg_options.vertical_page;
           $('.list').removeClass('slider');
           $('ul.list li .item-spotlight').remove();
 
@@ -668,7 +672,7 @@ $(document).ready(function() {
         hash.add({scroll:'n'});
         hash.remove('attributes');
       }
-      if (productlist.page == 3) { productlist.i = productlist.i-1; }
+      if (productlist.page == rg_options.horizontal_page) { productlist.i = productlist.i-1; }
       productlist.update();
     });
 
@@ -691,7 +695,7 @@ $(document).ready(function() {
     // Toggle to slide view mode
     $('#slide').on('click touch', function(e) {
       e.preventDefault();
-      productlist.page = 3;
+      productlist.page = rg_options.horizontal_page;
       var pos = parseInt(productlist.i)-1;
       // If it's the first item, simulate centering
       $('.list').addClass('slider');
@@ -705,7 +709,7 @@ $(document).ready(function() {
     $('#thumbs').on('click touch', function(e) {
       e.preventDefault();
       // Hide details for center slide in "horizontal" view
-      productlist.page = 40;
+      productlist.page = rg_options.vertical_page;
       productlist.update();
       var pos = 0;
       // If we have fewer visible items than page size and matching != visible (one page with only a few items)
@@ -717,8 +721,8 @@ $(document).ready(function() {
         while (remainder > pagesize) { remainder = remainder - pagesize; }
         pos = parseInt(productlist.matchingItems.length-remainder+1);
       }  else {
-        // Calculate the nearest multiple of 40 by casting as an integer without going over. Like The Price is Right.
-        pos = parseInt(productlist.i / 40) * 40 + 1;
+        // Calculate the nearest multiple of per page by casting as an integer without going over. Like The Price is Right.
+        pos = parseInt(productlist.i / rg_options.vertical_page) * rg_options.vertical_page + 1;
       }
       $('.list').removeClass('slider');
       $('#slide').toggle();
