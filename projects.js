@@ -37,7 +37,8 @@ $(document).ready(function() {
           $(this).hide();
         });
         $('#'+list._id+' .list-name').on('click touch', function(e) {
-          var template = Hogan.compile('<ul class="list-inline" style="padding:0;margin:0;">{{#items}}<li style="width: 25%; float:left;"><img src="http://img.rg.cape.io/items/{{.}}/320.jpg"></li>{{/items}}</ul>');
+          $('ul.trade-items').remove();
+          var template = Hogan.compile('<ul class="list-inline trade-items">{{#items}}<li><img src="http://img.rg.cape.io/items/{{.}}/320.jpg"></li>{{/items}}</ul>');
           $.getJSON('http://rg.cape.io/_api/items/_index/list/'+list._id+'/index.json',{}, function(data) {
             $('#'+list._id+'_items').html(template.render({ items: _.keys(data) }));
           });
