@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  /**** DEFAULT OPTIONS ****/
   var rg_options = {
                       vertical_page: 42,
                       horizontal_page: 3

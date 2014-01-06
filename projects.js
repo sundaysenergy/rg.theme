@@ -36,6 +36,9 @@ $(document).ready(function() {
           $(this).siblings('.list-name').hide();
           $(this).hide();
         });
+        $('#'+list._id+' .list-name').on('click touch', function(e) {
+          console.log(list._id);
+        });
         // Remove a list
         $('#'+list._id+' button.delete-list').on('click touch', function(e) {
           e.preventDefault();
@@ -84,6 +87,7 @@ $(document).ready(function() {
         }
       });
     });
+
     // Things to do to create a new project
     $('#project-new').on('click touch', function(e) {
       $('.new-project').show();
