@@ -48,18 +48,19 @@ $(document).ready(function() {
                 $('button.remove-trade-item').on('click touch', function(e) {
                   e.preventDefault();
                   var id = $(this).siblings('img').data('id');
+                  var $div = $(this).parent();
                   console.log("Delete "+id);
                   var token = 'bearer ' + $.cookie('token');
                   $.ajax({
                     url: 'http://rg.cape.io/_api/items/_index/' + list._id + '/' + id,
                     type: 'DELETE',
                     headers: { Authorization: token },
-                    success: function(result) {
-                      $(this).parent().remove();
-                      console.log(result);
+                    success: function(result,i,o) {
+                      $div.remove();
+                      console.log(result,i,o);
                     },
-                    fail: function(result) {
-                      console.log(result);
+                    fail: function(result,i,o) {
+                      console.log(result,i,o);
                     }
                   });
                 });
