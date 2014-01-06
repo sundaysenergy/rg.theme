@@ -303,7 +303,7 @@ $(document).ready(function() {
           // Create a list for alternate color options
           var options = {
             valueNames: [ 'related-item' ],
-            page: 3,
+            page: 5,
             i: n
           };
           var relatedlist = new List('related-products', options);
