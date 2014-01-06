@@ -48,7 +48,7 @@ $(document).ready(function() {
                 $('button.remove-trade-item').on('click touch', function(e) {
                   e.preventDefault();
                   var id = $(this).siblings('img').data('id');
-                  console.log("Delete "+id;
+                  console.log("Delete "+id);
                   var token = 'bearer ' + $.cookie('token');
                   $.ajax({
                     url: 'http://rg.cape.io/_api/items/_index/'+list._id+'/list',
