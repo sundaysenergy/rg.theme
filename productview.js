@@ -78,6 +78,15 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
+      if (productlist.page == 3) {
+        if ($('div.threeup div#products').length == 0) {
+          $('div#products').appendTo('div.threeup');
+        }
+      } else {
+        if ($('div.threeup div#products').length > 0) {
+          $('div#products').appendTo('main.container');
+        }
+      }
       // Copy faves from the hash to localStorage for sharing and updates via the url
       if (_.isUndefined(hash.get('faves')) == false) localStorage.faves = hash.get('faves');
       // Sometimes after removing all items from anon favorites, null was leftover. Remove it.
