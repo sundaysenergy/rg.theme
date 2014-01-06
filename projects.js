@@ -39,41 +39,43 @@ $(document).ready(function() {
         $('#'+list._id+' .list-name').on('click touch', function(e) {
           var toggle_self = $(this).parent().find('ul.trade-items').length == 0;
           $('ul.trade-items').remove();
-          if (toggle_self) {  
-            var template = Hogan.compile('<ul class="list-inline trade-items">{{#items}}<li><img src="http://img.rg.cape.io/items/{{.}}/320.jpg" data-id="{{.}}"></li>{{/items}}</ul>');
-            $.getJSON('http://rg.cape.io/_api/items/_index/list/'+list._id+'/index.json',{}, function(data) {
-              $('#'+list._id+'_items').html(template.render({ items: _.keys(data) }));
-              var item_sortable = new Sortable($('.trade-items')[0], {
-                onUpdate: function (evt) {
-                  var obj = { entity: {} };
-                  $('ul.trade-items > li').each(function(i) {
-                    console.log($(this));
-                    var id = $(this).find('img').data('id');
-                    var position = i+1;
-                    obj.entity[id] = position;
-                  });
-                  console.log(obj);
-                  var token = 'bearer ' + $.cookie('token');
-                  $.ajax({
-                    //  /_api/items/_index/752a94d7-3394-460d-9709-0afa4848e973/list
-                    url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
-                    type: 'PUT',
-                    data: JSON.stringify(obj),
-                    headers: { Authorization: token },
-                    contentType: 'application/json',
-                    success: function(result) {
-                      //location.reload();
-                      console.log(result);
-                    },
-                    fail: function(result) {
-                      console.log(result);
-                    }
-                  });
-                  //console.log(obj);
-                }
+          if (toggle_self) {
+            $.ajax({ url: "http://rg.cape.io/templates/mini/project_list_items.html" })
+            .done(function (project_items) {
+              var template = Hogan.compile(project_items);
+              $.getJSON('http://rg.cape.io/_api/items/_index/list/'+list._id+'/index.json',{}, function(data) {
+                $('#'+list._id+'_items').html(template.render({ items: _.keys(data) }));
+                var item_sortable = new Sortable($('.trade-items')[0], {
+                  onUpdate: function (evt) {
+                    var obj = { entity: {} };
+                    $('ul.trade-items > li').each(function(i) {
+                      console.log($(this));
+                      var id = $(this).find('img').data('id');
+                      var position = i+1;
+                      obj.entity[id] = position;
+                    });
+                    console.log(obj);
+                    var token = 'bearer ' + $.cookie('token');
+                    $.ajax({
+                      //  /_api/items/_index/752a94d7-3394-460d-9709-0afa4848e973/list
+                      url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
+                      type: 'PUT',
+                      data: JSON.stringify(obj),
+                      headers: { Authorization: token },
+                      contentType: 'application/json',
+                      success: function(result) {
+                        //location.reload();
+                        console.log(result);
+                      },
+                      fail: function(result) {
+                        console.log(result);
+                      }
+                    });
+                    //console.log(obj);
+                  }
+                });
               });
             });
-            //console.log(list._id);
           }
         });
         // Remove a list
