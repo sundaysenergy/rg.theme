@@ -37,12 +37,15 @@ $(document).ready(function() {
           $(this).hide();
         });
         $('#'+list._id+' .list-name').on('click touch', function(e) {
+          var toggle_self = $(this).parent().find('ul.trade-items').length == 0;
           $('ul.trade-items').remove();
-          var template = Hogan.compile('<ul class="list-inline trade-items">{{#items}}<li><img src="http://img.rg.cape.io/items/{{.}}/320.jpg"></li>{{/items}}</ul>');
-          $.getJSON('http://rg.cape.io/_api/items/_index/list/'+list._id+'/index.json',{}, function(data) {
-            $('#'+list._id+'_items').html(template.render({ items: _.keys(data) }));
-          });
-          console.log(list._id);
+          if (toggle_self) {  
+            var template = Hogan.compile('<ul class="list-inline trade-items">{{#items}}<li><img src="http://img.rg.cape.io/items/{{.}}/320.jpg"></li>{{/items}}</ul>');
+            $.getJSON('http://rg.cape.io/_api/items/_index/list/'+list._id+'/index.json',{}, function(data) {
+              $('#'+list._id+'_items').html(template.render({ items: _.keys(data) }));
+            });
+            console.log(list._id);
+          }
         });
         // Remove a list
         $('#'+list._id+' button.delete-list').on('click touch', function(e) {
