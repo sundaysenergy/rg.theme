@@ -78,13 +78,14 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
+      if ($('div.threeup').length == 0) $('main.container').after('<div class="threeup"></div>');
       if (productlist.page == 3) {
         if ($('div.threeup div#products').length == 0) {
           $('div#products').appendTo('div.threeup');
         }
       } else {
         if ($('div.threeup div#products').length > 0) {
-          $('div#products').appendTo('main.container');
+          $('div#products').appendTo('main.container div.row');
         }
       }
       // Copy faves from the hash to localStorage for sharing and updates via the url
