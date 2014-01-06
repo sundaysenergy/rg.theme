@@ -37,6 +37,10 @@ $(document).ready(function() {
           $(this).hide();
         });
         $('#'+list._id+' .list-name').on('click touch', function(e) {
+          var template = Hogan.compile('<ul>{{#items}}<li class="width: 25% !important; float:left;"><img src="http://img.rg.cape.io/items/{{.}}/320.jpg"></li>{{/items}}</ul>');
+          $.getJSON('http://rg.cape.io/_api/items/_index/list/'+list._id+'/index.json',{}, function(data) {
+            $('#'+list._id+'_items').html(template.render({ items: _.keys(data) }));
+          });
           console.log(list._id);
         });
         // Remove a list
