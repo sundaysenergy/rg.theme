@@ -370,8 +370,11 @@ $(document).ready(function() {
                     contentType: 'application/json',
                     success: function(result) {
                       console.log(result);
+                      // Close the dialog box for adding an item
                       $('#project-trade-list').closest('.alert').find('button.close').trigger('click');
+                      // Display a success message
                       $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your list!'}));
+                      // Update the link to point to the projects page
                       $('.alert-favorite').find('a').attr('href', '/trade/projects.html'); 
                     },
                     fail: function(result) {
@@ -502,15 +505,19 @@ $(document).ready(function() {
           var id = $('.list li:nth-child(2)').find('.id').html();
           var uid = $.cookie('uid');
           var token = $.cookie('token');
+          // Add anonymous favorite
           if (_.isUndefined(uid) || _.isUndefined(token)) {
             $(this).off('click touch');
             e.preventDefault();
+            // Check for undefined, parse the existing favorites, and store the updated string
             if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
             var current = localStorage.faves.split(',');
             current.push(id);
             localStorage.faves = _.compact(_.uniq(current)).join(',');
+            // Success message and update the share link
             $('.item-spotlight').append(favorites_template.render({message:'Item added to your favorites!'}));
             $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
+          // Add item to trade list
           } else {
             $(this).off('click touch');
             e.preventDefault();
