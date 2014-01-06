@@ -434,12 +434,18 @@ $(document).ready(function() {
         .html(parseInt(productlist.i)+1)
         .append(' / ')
         .append(productlist.matchingItems.length);
+        if ($('div.threeup div#products').length == 0) {
+          $('div#products').appendTo('div.threeup');
+        }
       // Page counter for thumbnail view
       } else {
         $('#pagecount, #search-page-counter')
         .html((parseInt(productlist.i / productlist.page) + 1))
         .append(' / ')
         .append(parseInt(productlist.matchingItems.length / productlist.page) + 1);
+        if ($('div.threeup div#products').length > 0) {
+          $('div#products').appendTo('main.container div.row');
+        }
       }
       // Reset our paginator
       $('.previous, .next').removeClass('disabled');
