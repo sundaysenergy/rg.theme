@@ -46,7 +46,7 @@ $(document).ready(function() {
               var item_sortable = new Sortable($('.trade-items')[0], {
                 onUpdate: function (evt) {
                   var obj = { entity: {} };
-                  $('ul.trade-items li').each(function(i) {
+                  $('ul.trade-items > li').each(function(i) {
                     console.log($(this));
                     var id = $(this).find('img').data('id');
                     var position = i+1;
@@ -99,7 +99,7 @@ $(document).ready(function() {
       var sortable = new Sortable($('.existing-projects')[0], {
         onUpdate: function (evt) {
           var obj = { entity: {} };
-          $('ul.existing-projects li').each(function(i) {
+          $('ul.existing-projects > li').each(function(i) {
             var id = $(this).attr('id');
             var position = i+1;
             obj.entity[id] = position;
