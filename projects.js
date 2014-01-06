@@ -45,6 +45,24 @@ $(document).ready(function() {
               var template = Hogan.compile(project_items);
               $.getJSON('http://rg.cape.io/_api/items/_index/list/'+list._id+'/index.json',{}, function(data) {
                 $('#'+list._id+'_items').html(template.render({ items: _.keys(data) }));
+                $('button.remove-trade-item').on('click touch', function(e) {
+                  e.preventDefault();
+                  var id = $(this).siblings('img').data('id');
+                  console.log("Delete "+id;
+                  var token = 'bearer ' + $.cookie('token');
+                  $.ajax({
+                    url: 'http://rg.cape.io/_api/items/_index/'+list._id+'/list',
+                    type: 'DELETE',
+                    headers: { Authorization: token },
+                    success: function(result) {
+                      $(this).parent().remove();
+                      console.log(result);
+                    },
+                    fail: function(result) {
+                      console.log(result);
+                    }
+                  });
+                });
                 var item_sortable = new Sortable($('.trade-items')[0], {
                   onUpdate: function (evt) {
                     var obj = { entity: {} };
@@ -57,7 +75,6 @@ $(document).ready(function() {
                     console.log(obj);
                     var token = 'bearer ' + $.cookie('token');
                     $.ajax({
-                      //  /_api/items/_index/752a94d7-3394-460d-9709-0afa4848e973/list
                       url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
                       type: 'PUT',
                       data: JSON.stringify(obj),
@@ -71,7 +88,6 @@ $(document).ready(function() {
                         console.log(result);
                       }
                     });
-                    //console.log(obj);
                   }
                 });
               });
