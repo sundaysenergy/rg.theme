@@ -51,7 +51,7 @@ $(document).ready(function() {
                   console.log("Delete "+id);
                   var token = 'bearer ' + $.cookie('token');
                   $.ajax({
-                    url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
+                    url: 'http://rg.cape.io/_api/items/_index/' + list._id + '/' + id,
                     type: 'DELETE',
                     headers: { Authorization: token },
                     success: function(result) {
