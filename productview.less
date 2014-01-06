@@ -13,10 +13,17 @@
 .list li {
   float: left;
   position: relative;
-  width: 25%;
-  max-width: 25%;
-  height: 350px;
+  width: 32%;
+  max-width: 32%;
+  height: 300px;
+  overflow: hidden;
+  margin-right: 2%; /* this is still slightly too wide... will have to figure out a JS solution based on screen widths maybe? */
+  margin-bottom: 20px; /* need to make this the same as margin-right... perhaps decalaring in JS would make this easier? */
 }
+.list li:nth-child(3n) {
+  margin-right: 0;
+}
+
 .list li img {
   cursor: pointer;
 }
@@ -68,7 +75,8 @@
 }
 
 .pager button.plain, 
-.itemoverlay button.plain {
+.itemoverlay button.plain,
+.item-spotlight .item-icons button {
   background: none;
   background-color: transparent;
   border: none;
@@ -96,7 +104,9 @@ button.uppercase { font-size: 12px; }
 .slider li {
   width: 33% !important;
   max-width: 33% !important;
+  margin: 0 !important;
 }
+
 img {
   max-width: 100%;
 }
@@ -139,6 +149,55 @@ img {
 .img-large-container { overflow: hidden; }
 .img-large-container img, .rulers img {width: 100%; height: auto;}
 
+#related-products {
+  background: @rg-background;
+  height: 120px;
+  margin: 0;
+  margin-left:-260px;
+  padding:15px;
+  width:520px;
+  z-index:100;
+  /**/
+  position:fixed;
+  left:50%;
+  top:120px;
+}
+
+#related-products .list {
+  width: 440px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 40px;
+}
+
+#related-products .list li.related-item {
+  width: 18%;
+  max-width: 18%;
+  margin-right: 2.5%;
+  height: 60px;
+  padding: 0;
+  overflow: hidden;  
+}
+#related-products .list li.related-item:nth-child(5n) {
+  margin-right: 0;
+}
+
+#related-products button.controls {
+  position: absolute;
+  display: block;
+  top: 45px;
+}
+
+#related-products button.left {
+  left: 0;
+}
+
+#related-products button.right {
+  right: 0;
+}
+
+
 #related-products,
 .img-large-container {
   -moz-user-select: none; 
@@ -152,6 +211,16 @@ img {
   -khtml-user-select: none; 
   -webkit-user-select: none; 
   -o-user-select: none;
+}
+
+.item-spotlight .item-icons {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.item-spotlight .item-icons button {
+  background: @rg-background !important;
+  padding: 6px 10px 0px 10px;
 }
 
 .itemoverlay table {
@@ -217,3 +286,5 @@ div.ruler-wrap .rulers img {
   width: 100%;
   margin-left: 190px;
 }
+
+
