@@ -29,7 +29,8 @@ $(document).ready(function() {
     var options = {
       valueNames: [ 'image', 'content', 'id' ],
       item: '<li><span style="display:none" class="id"></span><img class="img"></li>',
-      page: rg_options.vertical_page
+      page: rg_options.horizontal_page,
+      i: 0
     };
 
     var data = combined.items;
@@ -58,8 +59,8 @@ $(document).ready(function() {
 
     // Create a new list
     var productlist = new List('products', options, data);
-
-
+    $('#products > ul.list').addClass('slider');
+    if (_.isUndefined(hash.get('pos'))) hash.add({pos:0});
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
