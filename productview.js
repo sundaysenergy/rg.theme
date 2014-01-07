@@ -301,7 +301,7 @@ $(document).ready(function() {
           var relatedlist = new List('related-products', options);
           // Actions to perform when the list is updated -- mostly pagination
           relatedlist.on('updated', function() {
-            $('#related-products .related-page-count').html(relatedlist.i + " / " + relatedlist.matchingItems);
+            $('#related-products .related-page-count').html(relatedlist.i + " / " + relatedlist.matchingItems.length);
             $('.rel-previous, .rel-next').removeClass('disabled');
             $('.rel-next').off('click touch').on('click touch', function(e) {
               // Add to the hash so that if we refresh the page it still has the correct starting position
