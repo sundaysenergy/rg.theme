@@ -316,7 +316,7 @@ $(document).ready(function() {
               relatedlist.i = parseInt(relatedlist.i)-1;
               relatedlist.update();
             });
-            if (parseInt(relatedlist.i)+1 < parseInt(relatedlist.page)) {
+            if (parseInt(relatedlist.i)-1 == 0) {
               $('.rel-previous').addClass('disabled').off('click touch');
             }
             if ((parseInt(relatedlist.i) + parseInt(relatedlist.page)) > relatedlist.matchingItems.length) {
