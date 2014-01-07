@@ -285,6 +285,9 @@ $(document).ready(function() {
           item.pager = item.item.itemcolors().length > 5;
           // Show the detailed view mode and render the html from our mustache template
           $('.itemoverlay').show().html(item_template.render(item));
+          $('#related-products button.close').off('click touch').on('click touch', function(e) {
+            $('.itemoverlay #related-products').hide();
+          });
           $('.toggle-colors button').on('click touch', function(e) {
             e.preventDefault();
             $('.itemoverlay #related-products').toggle();
@@ -326,7 +329,7 @@ $(document).ready(function() {
           });
           relatedlist.update();
           // Things to do on closing the detailed view mode
-          $('button.close').off('click touch').on('click touch', function(e) {
+          $('table button.close').off('click touch').on('click touch', function(e) {
             $('.itemoverlay').hide(); // Hide the item
             hash.remove('detailedview'); // Remove from the hash
             hash.remove('dpos'); // Remove the position from the hash
