@@ -4,6 +4,7 @@ $(document).ready(function() {
                       vertical_page: 42,
                       horizontal_page: 3
                    }
+
   /**** DISPLAY & DATA RESETS ****/
   if (_.isUndefined(hash.get('faves')) == false) { localStorage.faves = hash.get('faves'); }
   // Delete session variables since the page has reloaded
@@ -62,21 +63,20 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
+
+      // Add the threeup div if it's not there -- move this to the template
       if ($('div.threeup').length == 0) $('main.container').after('<div class="threeup clearfix"></div>');
+      // Move the product list inside or outside of the main container depending on viewing mode
       if (productlist.page == rg_options.horizontal_page) {
-        if ($('div.threeup div#products').length == 0) {
-          $('div#products').appendTo('div.threeup');
-        }
+        if ($('div.threeup div#products').length == 0) $('div#products').appendTo('div.threeup');
       } else {
-        if ($('div.threeup div#products').length > 0) {
-          $('div#products').appendTo('main.container div.row');
-        }
+        if ($('div.threeup div#products').length > 0) $('div#products').appendTo('main.container div.row');
       }
       // Copy faves from the hash to localStorage for sharing and updates via the url
       if (_.isUndefined(hash.get('faves')) == false) {
         localStorage.faves = hash.get('faves');
       } else {
-        $('.list').removeClass('anon-favorites');
+        $('#products > ul.list').removeClass('anon-favorites');
       }
       // Sometimes after removing all items from anon favorites, null was leftover. Remove it.
       if (_.isNull(localStorage.faves)) delete(localStorage.faves);
@@ -142,6 +142,7 @@ $(document).ready(function() {
         $('#collection-menu-main').show();
         $('#collection-menu-search,#collection-menu-faves').hide();  
       }
+      // Process anonymous favorites
       if (_.isUndefined(faves) == false) {
         favorites = hash.get('faves').split(',');
         var longurl = 'http://rg.cape.io/collection.html#faves=' + faves;
