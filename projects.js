@@ -1,22 +1,24 @@
 $(document).ready(function() {
-  // If we don't have an authentication token, redirect to the login pag 
+  // If we don't have an authentication token, redirect to the login page
   if (_.isUndefined($.cookie('token'))) window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
+
   // Fetch our project list item template
   $.ajax({ url: "http://rg.cape.io/templates/mini/project_list.html" })
   .done(function(project_list) {
-    // Compile template
+    // Compile template and retrieve the list of lists
     var template = Hogan.compile(project_list);
-    // Retrieve the list of lists
     $.getJSON('http://rg.cape.io/_api/items/_index/' + $.cookie('uid') + '/list', { data_only: true }, function(data) {
-      // Process each of the lists
+      
+      /**** PROCESS EACH OF THE LISTS ****/
       _.forEach(data, function(list) {
         $('ul.existing-projects').append(template.render(list));
+
         // Change the name of a list
         $('#'+list._id+' button.edit-list').on('click touch', function(e) {
           e.preventDefault();
+          // Handle form submission
           $(this).siblings('form').show().on('submit', function(ev) {
             ev.preventDefault();
-            console.log("Change name " + $(this).find('input[type=text]').val());
             var token = 'bearer ' + $.cookie('token');
             var projectname = $(this).find('input[type=text]').val();
             $.ajax({
@@ -33,23 +35,32 @@ $(document).ready(function() {
               }
             });
           });
+          // Hide the display name and the edit button since we're showing the form
           $(this).siblings('.list-name').hide();
           $(this).hide();
         });
+
+        // Expand the list
         $('#'+list._id+' .list-name').on('click touch', function(e) {
-          var toggle_self = $(this).parent().find('ul.trade-items').length == 0;
+          // Check if the list is already populated
+          var new_list = $(this).parent().find('ul.trade-items').length == 0;
+          // Remove existing lists, including self
           $('ul.trade-items').remove();
-          if (toggle_self) {
+          // If the there weren't any trade-items lists inside of element's parents, make one
+          if (new_list) {
             $.ajax({ url: "http://rg.cape.io/templates/mini/project_list_items.html" })
             .done(function (project_items) {
+              // Compile the template for the list
               var template = Hogan.compile(project_items);
               $.getJSON('http://rg.cape.io/_api/items/_index/list/'+list._id+'/index.json',{}, function(data) {
-                $('#'+list._id+'_items').html(template.render({ items: _.keys(data) }));
+                // Render the template with the objects from the list
+                $('#'+list._id+'_items').html(template.render({ items: _.keys(data),
+                                                                nomatch: _.keys(data).length == 0 }));
+                // Handle removing items from the list
                 $('button.remove-trade-item').on('click touch', function(e) {
                   e.preventDefault();
                   var id = $(this).siblings('img').data('id');
                   var $div = $(this).parent();
-                  console.log("Delete "+id);
                   var token = 'bearer ' + $.cookie('token');
                   $.ajax({
                     url: 'http://rg.cape.io/_api/items/_index/list/' + list._id + '/' + id,
@@ -64,16 +75,18 @@ $(document).ready(function() {
                     }
                   });
                 });
+                // Handle sorting items in the list
                 var item_sortable = new Sortable($('.trade-items')[0], {
                   onUpdate: function (evt) {
                     var obj = { entity: {} };
+                    // Collect the order of the items and build an object 
                     $('ul.trade-items > li').each(function(i) {
                       console.log($(this));
                       var id = $(this).find('img').data('id');
                       var position = i+1;
                       obj.entity[id] = position;
                     });
-                    console.log(obj);
+                    // Send a request to cape with the updated order
                     var token = 'bearer ' + $.cookie('token');
                     $.ajax({
                       url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
@@ -82,7 +95,6 @@ $(document).ready(function() {
                       headers: { Authorization: token },
                       contentType: 'application/json',
                       success: function(result) {
-                        //location.reload();
                         console.log(result);
                       },
                       fail: function(result) {
@@ -98,15 +110,14 @@ $(document).ready(function() {
         // Remove a list
         $('#'+list._id+' button.delete-list').on('click touch', function(e) {
           e.preventDefault();
-          console.log("Delete "+list._id);
           var token = 'bearer ' + $.cookie('token');
           $.ajax({
             url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
             type: 'DELETE',
             headers: { Authorization: token },
             success: function(result) {
+              // Remove the item from the DOM
               $('#'+list._id).remove();
-              console.log(result);
             },
             fail: function(result) {
               console.log(result);
@@ -125,14 +136,12 @@ $(document).ready(function() {
           });
           var token = 'bearer ' + $.cookie('token');
           $.ajax({
-            //  /_api/items/_index/752a94d7-3394-460d-9709-0afa4848e973/list
             url: 'http://rg.cape.io/_api/items/_index/' + $.cookie('uid') + '/list',
             type: 'PUT',
             data: JSON.stringify(obj),
             headers: { Authorization: token },
             contentType: 'application/json',
             success: function(result) {
-              //location.reload();
               console.log(result);
             },
             fail: function(result) {
