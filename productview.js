@@ -721,6 +721,7 @@ $(document).ready(function() {
           var items = $(this).data('show-items');
           var i = productlist.i;
           productlist.page = items;
+          rg_options.vertical_page = items;
           // Set position to the same page that would contain item with new quantity/page
           var newpos = parseInt(productlist.i / items) * items + 1;
           // Set the display value to the current number of items
