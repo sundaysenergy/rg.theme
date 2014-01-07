@@ -287,7 +287,7 @@ $(document).ready(function() {
           $('.itemoverlay').show().html(item_template.render(item));
           $('.toggle-colors button').on('click touch', function(e) {
             e.preventDefault();
-            $('#related-products').toggle();
+            $('.itemoverlay #related-products').toggle();
           });
           // Get the position in the mini slider
           var n = hash.get('dpos');
