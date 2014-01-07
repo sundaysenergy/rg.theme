@@ -5,28 +5,7 @@ $(document).ready(function() {
                       horizontal_page: 3
                    }
   /**** DISPLAY & DATA RESETS ****/
-  if (_.isUndefined(hash.get('faves')) == false) {
-    localStorage.faves = hash.get('faves');
-  } else {
-    // If we don't have favorites, and items have a minus box, something cached weird
-    // so we reload the page
-    if ($('.item-favorite-remove').length > 0) location.reload();
-  }
-  // Force reload the page when we change from the collection hash
-  $("a[href*='collection.html']").click(function(e){
-    // If we don't have a hash value, process the link as normal
-    if (_.isNull($(this).attr('href').match('#'))) {
-      return true;
-    // If we do have a hash, force a page reload
-    } else {
-      e.preventDefault();
-      // Hide the list before reloading the page to avoid weird flicker
-      $('ul.list').hide();
-      window.location.href = $(this).attr('href');
-      location.reload();
-      return false;
-    }
-  });
+  if (_.isUndefined(hash.get('faves')) == false) { localStorage.faves = hash.get('faves'); }
   // Delete session variables since the page has reloaded
   delete(sessionStorage.detailedview);
 
@@ -94,7 +73,11 @@ $(document).ready(function() {
         }
       }
       // Copy faves from the hash to localStorage for sharing and updates via the url
-      if (_.isUndefined(hash.get('faves')) == false) localStorage.faves = hash.get('faves');
+      if (_.isUndefined(hash.get('faves')) == false) {
+        localStorage.faves = hash.get('faves');
+      } else {
+        $('.list').removeClass('anon-favorites');
+      }
       // Sometimes after removing all items from anon favorites, null was leftover. Remove it.
       if (_.isNull(localStorage.faves)) delete(localStorage.faves);
       // If we're viewing 3 items at a time, and there are faves or search present, force vertical view and set position
@@ -135,7 +118,6 @@ $(document).ready(function() {
         // Show the search header bar and hide the others
         $('#collection-menu-search').show();
         $('#collection-menu-main,#collection-menu-faves').hide();
-        $('.item-favorite-remove').remove();
         // Click handlers for different view quantities
         $('#search-view-number a').each(function(i) {
           $(this).on('click touch', function(e) {
@@ -344,7 +326,6 @@ $(document).ready(function() {
             hash.remove('detailedview'); // Remove from the hash
             hash.remove('dpos'); // Remove the position from the hash
             $('html,body').css('overflow','hidden').height($(window).height()); // Reset the body and overflow
-            $('.item-favorite-remove').remove(); // Why are we doing this?
             delete(sessionStorage.detailedview); // Remove the session value
           });
 
@@ -628,9 +609,10 @@ $(document).ready(function() {
           // Hide details for center slide in "horizontal" view
           productlist.page = rg_options.vertical_page;
           $('.list').removeClass('slider');
+          $('.list').addClass('anon-favorites');
           $('ul.list li .item-spotlight').remove();
 
-          $('ul.list li').each(function(i) {
+          $('ul.anon-favorites li').each(function(i) {
             $(this).find('.item-favorite-remove').remove();
             $(this).append(itemdel_template.render({}));
             var id = $(this).find('.id').html();
