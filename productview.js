@@ -272,7 +272,7 @@ $(document).ready(function() {
           }
         });
 
-        // If the detailedview hashh item is not the same as the session item
+        // If the detailedview hash item is not the same as the session item
         if (hash.get('detailedview') != sessionStorage.detailedview) {
           // Reset the body height and overflow
           $('html,body').css('overflow','hidden').height($(window).height());
@@ -283,10 +283,12 @@ $(document).ready(function() {
           // Create the image url for the large image
           item.item.img_large = item.item.img.replace('640','1536');
           item.pager = item.item.itemcolors().length > 5;
-          console.log(item.item.itemcolors().length);
-          console.log(item);
           // Show the detailed view mode and render the html from our mustache template
           $('.itemoverlay').show().html(item_template.render(item));
+          $('.toggle-colors button').on('click touch', function(e) {
+            e.preventDefault();
+            $('#related-products').toggle();
+          });
           // Get the position in the mini slider
           var n = hash.get('dpos');
           if (_.isUndefined(n)) n = 1;

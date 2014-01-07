@@ -162,6 +162,14 @@ img {
   left:0;
   right:0;
 }
+/* some hacky styles for the color button toggle -- clean 'er up! */
+.item-overlay .toggle-colors {
+  position: fixed;
+  top: 90px;
+  left: 45%;
+  width: 10%;
+  z-index: 99999;
+}
 
 .img-large-container { overflow: hidden; }
 .img-large-container img, .rulers img {width: 100%; height: auto;}
@@ -178,6 +186,7 @@ img {
   position:fixed;
   left:50%;
   top:120px;
+  display: none;
 }
 
 #related-products .list {
