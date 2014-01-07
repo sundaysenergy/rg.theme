@@ -46,6 +46,7 @@ $(document).ready(function() {
           var new_list = $(this).parent().find('ul.trade-items').length == 0;
           // Remove existing lists, including self
           $('ul.trade-items').remove();
+          $('div.trade-items-noresults').remove();
           // If the there weren't any trade-items lists inside of element's parents, make one
           if (new_list) {
             $.ajax({ url: "http://rg.cape.io/templates/mini/project_list_items.html" })
