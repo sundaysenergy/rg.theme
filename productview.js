@@ -64,9 +64,7 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
-
-      // Add the threeup div if it's not there -- move this to the template
-      if ($('div.threeup').length == 0) $('main.container').after('<div class="threeup clearfix"></div>');
+      
       // Move the product list inside or outside of the main container depending on viewing mode
       if (productlist.page == rg_options.horizontal_page) {
         if ($('div.threeup div#products').length == 0) $('div#products').appendTo('div.threeup');
