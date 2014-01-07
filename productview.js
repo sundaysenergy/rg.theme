@@ -300,6 +300,7 @@ $(document).ready(function() {
           var item = { item : productlist.get('id', id)[0].values() };
           // Create the image url for the large image
           item.item.img_large = item.item.img.replace('640','1536');
+          item.pager = item.item.itemcolors.length > 5;
           // Show the detailed view mode and render the html from our mustache template
           $('.itemoverlay').show().html(item_template.render(item));
           // Get the position in the mini slider
