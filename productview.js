@@ -273,7 +273,7 @@ $(document).ready(function() {
         });
 
         // If the detailedview hash item is not the same as the session item
-        if (hash.get('detailedview') != sessionStorage.detailedview) {
+        if (hash.get('detailedview') != sessionStorage.detailedview && _.isUndefined(hash.get('detailedview')) == false) {
           // Reset the body height and overflow
           $('html,body').css('overflow','hidden').height($(window).height());
           var id = hash.get('detailedview');
