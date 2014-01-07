@@ -84,7 +84,7 @@ $(document).ready(function() {
       if (productlist.page == rg_options.horizontal_page && (_.isUndefined(hash.get('faves')) == false || _.isUndefined(hash.get('search')) == false)) {
         productlist.page = rg_options.vertical_page;
         var pos = 1;
-        $('.list').removeClass('slider');
+        $('#products > ul.list').removeClass('slider');
         productlist.update();
       }
       // If no detailed view is present, make sure we hide the element
@@ -471,13 +471,13 @@ $(document).ready(function() {
       }
       // Add or remove dummy element for first item in slide view.
       if (productlist.i <= 0) {
-        $('.slider').prepend(dummy_template.render(productlist.matchingItems[productlist.matchingItems.length-1].values()));
+        $('#products > ul.slider').prepend(dummy_template.render(productlist.matchingItems[productlist.matchingItems.length-1].values()));
       } 
       if (productlist.i == productlist.matchingItems.length-1) {
-        $('.slider').append(dummy_template.render(productlist.matchingItems[0].values()));
+        $('#products > ul.slider').append(dummy_template.render(productlist.matchingItems[0].values()));
       } 
       if (!((productlist.i == productlist.matchingItems.length-1) || (productlist.i <= 0))) {
-        $('.slider li.item-bookends').remove();
+        $('#products > ul.slider li.item-bookends').remove();
       }
 
       // For each visible li in the list, create a click handler that toggles visibility
@@ -497,7 +497,7 @@ $(document).ready(function() {
         if (productlist.i == 0) n = 0;
         if (productlist.matchingItems.length == 1) n = 0;
         // Render the template with the correct data
-        $('ul.slider li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[parseInt(n)].values()));
+        $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[parseInt(n)].values()));
         // Create click handlers for the icon and the close button
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
           e.preventDefault();
@@ -610,8 +610,8 @@ $(document).ready(function() {
         if (_.isUndefined(hash.get('faves')) == false) {
           // Hide details for center slide in "horizontal" view
           productlist.page = rg_options.vertical_page;
-          $('.list').removeClass('slider');
-          $('.list').addClass('anon-favorites');
+          $('#products > ul.list').removeClass('slider');
+          $('#products > ul.list').addClass('anon-favorites');
           $('ul.list li .item-spotlight').remove();
 
           $('ul.anon-favorites li').each(function(i) {
@@ -684,7 +684,7 @@ $(document).ready(function() {
       productlist.page = rg_options.horizontal_page;
       var pos = parseInt(productlist.i)-1;
       // If it's the first item, simulate centering
-      $('.list').addClass('slider');
+      $('#products > ul.list').addClass('slider');
       // Only allow one button to be enabled at a time
       $('#slide').toggle();
       $('#thumbs').toggle();
@@ -710,7 +710,7 @@ $(document).ready(function() {
         // Calculate the nearest multiple of per page by casting as an integer without going over. Like The Price is Right.
         pos = parseInt(productlist.i / rg_options.vertical_page) * rg_options.vertical_page + 1;
       }
-      $('.list').removeClass('slider');
+      $('#products > ul.list').removeClass('slider');
       $('#slide').toggle();
       $('#thumbs').toggle();
       $('ul.list li .item-spotlight').remove();
