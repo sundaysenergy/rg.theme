@@ -301,20 +301,20 @@ $(document).ready(function() {
           var relatedlist = new List('related-products', options);
           // Actions to perform when the list is updated -- mostly pagination
           relatedlist.on('updated', function() {
-            $('#related-products .related-page-count').html(relatedlist.i + " / " + relatedlist.matchingItems.length);
+            $('#related-products .related-page-count').html(parseInt(relatedlist.i / 5 + 1) + " / " + parseInt(relatedlist.matchingItems.length / 5 + 1));
             $('.rel-previous, .rel-next').removeClass('disabled');
             $('.rel-next').off('click touch').on('click touch', function(e) {
               // Add to the hash so that if we refresh the page it still has the correct starting position
-              hash.add({dpos:parseInt(relatedlist.i)+1});
+              hash.add({dpos:parseInt(relatedlist.i)+5});
               // Manually update the list with a new start position since we'll ignore
               // this code if session storage matches the view
-              relatedlist.i = parseInt(relatedlist.i)+1;
+              relatedlist.i = parseInt(relatedlist.i)+5;
               relatedlist.update();
             });
             $('.rel-previous').off('click touch').on('click touch', function(e) {
               // Works the same way as the lines above. See comments there.
-              hash.add({dpos:parseInt(relatedlist.i)-1});
-              relatedlist.i = parseInt(relatedlist.i)-1;
+              hash.add({dpos:parseInt(relatedlist.i)-5});
+              relatedlist.i = parseInt(relatedlist.i)-5;
               relatedlist.update();
             });
             if (parseInt(relatedlist.i)-1 == 0) {
