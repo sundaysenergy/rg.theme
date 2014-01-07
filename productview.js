@@ -64,7 +64,7 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
-      
+
       // Move the product list inside or outside of the main container depending on viewing mode
       if (productlist.page == rg_options.horizontal_page) {
         if ($('div.threeup div#products').length == 0) $('div#products').appendTo('div.threeup');
@@ -688,6 +688,7 @@ $(document).ready(function() {
       // Only allow one button to be enabled at a time
       $('#slide').toggle();
       $('#thumbs').toggle();
+      $('#collection-view-items').hide();
       hash.add({pos:pos});
     });
 
@@ -713,6 +714,22 @@ $(document).ready(function() {
       $('#products > ul.list').removeClass('slider');
       $('#slide').toggle();
       $('#thumbs').toggle();
+      $('#collection-view-items').show();
+      $('#collection-view-items a').each(function(i) {
+        $(this).on('click touch', function(e) {
+          e.preventDefault();
+          var items = $(this).data('show-items');
+          var i = productlist.i;
+          productlist.page = items;
+          // Set position to the same page that would contain item with new quantity/page
+          var newpos = parseInt(productlist.i / items) * items + 1;
+          // Set the display value to the current number of items
+          $('button .show-items').html(items);
+          // Add our position to the hash and update the list
+          hash.add({pos:newpos});
+          productlist.update();
+        });
+      });
       $('ul.list li .item-spotlight').remove();
       hash.add({pos:pos});
     });
