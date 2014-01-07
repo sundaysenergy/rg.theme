@@ -54,8 +54,7 @@ $(document).ready(function() {
               var template = Hogan.compile(project_items);
               $.getJSON('http://rg.cape.io/_api/items/_index/list/'+list._id+'/index.json',{}, function(data) {
                 // Render the template with the objects from the list
-                $('#'+list._id+'_items').html(template.render({ items: _.keys(data),
-                                                                nomatch: _.keys(data).length == 0 }));
+                $('#'+list._id+'_items').html(template.render({ items: _.keys(data) }));
                 // Handle removing items from the list
                 $('button.remove-trade-item').on('click touch', function(e) {
                   e.preventDefault();
@@ -103,6 +102,9 @@ $(document).ready(function() {
                     });
                   }
                 });
+              })
+              .fail(function() {
+                $('#'+list._id+'_items').html(template.render({ nomatch: true }));
               });
             });
           }
