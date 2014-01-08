@@ -304,7 +304,10 @@ $(document).ready(function() {
           var relatedlist = new List('related-products', options);
           // Actions to perform when the list is updated -- mostly pagination
           relatedlist.on('updated', function() {
-            $('#related-products .related-page-count').html(parseInt(relatedlist.i / 5 + 1) + " / " + parseInt(relatedlist.matchingItems.length / 5 + 1));
+            var current_page = parseInt(relatedlist.i / 5 + 1);
+            var total_pages = parseInt(relatedlist.matchingItems.length / 5);
+            if (relatedlist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
+            $('#related-products .related-page-count').html(current_page + " / " + total_pages);
             $('.rel-previous, .rel-next').removeClass('disabled');
             $('.rel-next').off('click touch').on('click touch', function(e) {
               // Add to the hash so that if we refresh the page it still has the correct starting position
