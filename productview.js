@@ -649,7 +649,7 @@ $(document).ready(function() {
 
 
     // When we check or uncheck a box, recalculate search terms
-    $('input[type=checkbox]').on('click touch', function(e) {
+    $('#attributes input[type=checkbox]').on('click touch', function(e) {
       if ($(this).parent().hasClass('disabled')) {
         e.preventDefault();
         return false;
@@ -671,6 +671,29 @@ $(document).ready(function() {
       productlist.update();
     });
 
+    // When we check a color filter, do the same
+    $('#color input[type=checkbox]').on('click touch', function(e) {
+      if ($(this).parent().hasClass('disabled')) {
+        e.preventDefault();
+        return false;
+      }
+      productlist.filter();
+      var f = [];
+      $('#color :checkbox:checked').each(function(i) {
+        f.push($(this).val());
+      });
+      hash.remove('pos');
+      // If we have terms filter, otherwise the filter reset will start us fresh
+      if (f.length > 0) {
+        hash.add({color : f.join(',') });
+      } else {
+        hash.add({scroll:'n'});
+        hash.remove('color');
+      }
+      if (productlist.page == rg_options.horizontal_page) { productlist.i = productlist.i-1; }
+      productlist.update();
+    });
+
     // Event for filtering the various lists of filters
     $(document).on('filterFilters', function() {
       // Check unchecked filter buttons for matches. Hide if no matches
@@ -687,6 +710,7 @@ $(document).ready(function() {
         // Hide the parents of any item that does not have a match.
         if (m == false) $(this).parent().addClass('disabled');
       });
+      // Do the same thing for color filters
       $('#color :checkbox:not(:checked)').each(function(i) {
         var a = $(this)[0].value;
         // Determine if any potential matches exist from currently matched items. Breaks on first true
