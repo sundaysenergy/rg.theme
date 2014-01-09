@@ -654,6 +654,10 @@ $(document).ready(function() {
 
     // When we check or uncheck a box, recalculate search terms
     $('input[type=checkbox]').on('click touch', function(e) {
+      if ($(this).parent().hasClass('disabled')) {
+        e.preventDefault();
+        return false;
+      }
       productlist.filter();
       var f = [];
       $('#attributes :checkbox:checked').each(function(i) {
