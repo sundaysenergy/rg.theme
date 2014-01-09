@@ -64,7 +64,12 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
-
+      var collection = hash.get('collection');
+      // Add active class for current sub collection, and remove active class for non-active sub.
+      $('ul.collection-filter li a').removeClass('active');
+      if (_.isUndefined(collection) == false) {
+        $('ul.collection-filter li').find('a[href="/collection.html#collection=' + collection + '"]').addClass('active');
+      }
       // Move the product list inside or outside of the main container depending on viewing mode
       if (productlist.page == rg_options.horizontal_page) {
         if ($('div.threeup div#products').length == 0) $('div#products').appendTo('div.threeup');
@@ -106,7 +111,7 @@ $(document).ready(function() {
       // Clear any existing filter
       productlist.filter();
       // Unhide all of the filter selections
-      $('#attributes label').each(function(i) {
+      $('#attributes label, #color label').each(function(i) {
         $(this).removeClass('disabled');
       });
       // Get any search term(s)
@@ -223,20 +228,7 @@ $(document).ready(function() {
           return match;
         });
 
-        // Check unchecked filter buttons for matches. Hide if no matches
-        $('#attributes :checkbox:not(:checked)').each(function(i) {
-          var a = $(this)[0].value;
-          // Determine if any potential matches exist from currently matched items. Breaks on first true
-          var m = _.some(productlist.matchingItems, function(item) {
-            var contentname = item.values().content;
-            if (_.isUndefined(contentname)) {
-              contentname = '';
-            }
-            if (contentname.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
-          });
-          // Hide the parents of any item that does not have a match.
-          if (m == false) $(this).parent().addClass('disabled');
-        });
+        $(document).trigger('filterFilters');
       } // END PROCESS FILTERS FROM HASH
 
 
@@ -679,6 +671,36 @@ $(document).ready(function() {
       productlist.update();
     });
 
+    // Event for filtering the various lists of filters
+    $(document).on('filterFilters', function() {
+      // Check unchecked filter buttons for matches. Hide if no matches
+      $('#attributes :checkbox:not(:checked)').each(function(i) {
+        var a = $(this)[0].value;
+        // Determine if any potential matches exist from currently matched items. Breaks on first true
+        var m = _.some(productlist.matchingItems, function(item) {
+          var contentname = item.values().content;
+          if (_.isUndefined(contentname)) {
+            contentname = '';
+          }
+          if (contentname.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
+        });
+        // Hide the parents of any item that does not have a match.
+        if (m == false) $(this).parent().addClass('disabled');
+      });
+      $('#color :checkbox:not(:checked)').each(function(i) {
+        var a = $(this)[0].value;
+        // Determine if any potential matches exist from currently matched items. Breaks on first true
+        var m = _.some(productlist.matchingItems, function(item) {
+          var colorname = item.values().color;
+          if (_.isUndefined(colorname)) {
+            colorname = '';
+          }
+          if (colorname.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
+        });
+        // Hide the parents of any item that does not have a match.
+        if (m == false) $(this).parent().addClass('disabled');
+      });
+    });
 
     // Process the hash if we're just loading the page and have values
     if (window.location.hash.length > 0) {

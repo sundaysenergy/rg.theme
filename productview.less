@@ -57,6 +57,7 @@ button#slide {
   top:-10px;
 }
 
+#color,
 #attributes {
   border: none;
   color: @rg-gray;
@@ -67,6 +68,7 @@ button#slide {
   width: 720px;
 }
 
+#color label,
 #attributes label {
   display: block;
   float: left;
@@ -76,14 +78,17 @@ button#slide {
   text-align: left;
 }
 
+#color label input,
 #attributes label input {
   float: none;
   margin: 0;
 }
 
+#color label.disabled,
 #attributes label.disabled {
   text-decoration: line-through;
 }
+#color label.disabled input,
 #attributes label.disabled input {
   visibility: hidden;
 }
