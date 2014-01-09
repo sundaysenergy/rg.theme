@@ -480,7 +480,9 @@ $(document).ready(function() {
       }
       // Add or remove dummy element for first item in slide view.
       if (productlist.i <= 0) {
-        $('#products > ul.slider').prepend(dummy_template.render(productlist.matchingItems[productlist.matchingItems.length-1].values()));
+        if (productlist.matchingItems.length > 0) {
+          $('#products > ul.slider').prepend(dummy_template.render(productlist.matchingItems[productlist.matchingItems.length-1].values()));
+        }
       } 
       if (productlist.i == productlist.matchingItems.length-1) {
         $('#products > ul.slider').append(dummy_template.render(productlist.matchingItems[0].values()));
