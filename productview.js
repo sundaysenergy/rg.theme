@@ -106,8 +106,8 @@ $(document).ready(function() {
       // Clear any existing filter
       productlist.filter();
       // Unhide all of the filter selections
-      $('.checkbox-inline:hidden').each(function(i) {
-        $(this).show();
+      $('#attributes label').each(function(i) {
+        $(this).removeClass('disabled');
       });
       // Get any search term(s)
       var srch = hash.get('search');
@@ -235,7 +235,7 @@ $(document).ready(function() {
             if (contentname.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
           });
           // Hide the parents of any item that does not have a match.
-          if (m == false) $(this).parent().hide();
+          if (m == false) $(this).parent().addClass('disabled');
         });
       } // END PROCESS FILTERS FROM HASH
 
