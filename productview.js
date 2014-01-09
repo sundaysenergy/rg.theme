@@ -508,7 +508,9 @@ $(document).ready(function() {
         if (productlist.i == 0) n = 0;
         if (productlist.matchingItems.length == 1) n = 0;
         // Render the template with the correct data
-        $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[parseInt(n)].values()));
+        if (productlist.matchingItems.length > 0) {
+          $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[parseInt(n)].values()));
+        }
         // Create click handlers for the icon and the close button
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
           e.preventDefault();
