@@ -756,6 +756,12 @@ $(document).ready(function() {
     $('#collection-menu-main .dropdown-menu input, #collection-menu-main .dropdown-menu label').click(function(e) {
       e.stopPropagation();
     });
+
+    $('ul.nav-tabs li a').on('click touch', function(e) {
+      e.preventDefault();
+      $(this).tab('show');
+      return false;
+    });
   });
   
   // This should probably be in the css, no?
