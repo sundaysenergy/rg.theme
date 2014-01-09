@@ -117,6 +117,7 @@ $(document).ready(function() {
       // Get any search term(s)
       var srch = hash.get('search');
       var faves = hash.get('faves');
+      var color = hash.get('color');
       // If we have search terms
       if (_.isUndefined(srch) == false) {
         // Show the search header bar and hide the others
@@ -171,7 +172,7 @@ $(document).ready(function() {
       
 
       /**** PROCESS FILTERS FROM HASH ****/
-      if ((typeof(f) != 'undefined') || (typeof(collection) != 'undefined' || _.isUndefined(srch) == false) || _.isUndefined(faves) == false) {
+      if ((typeof(f) != 'undefined') || (typeof(collection) != 'undefined' || _.isUndefined(srch) == false) || _.isUndefined(faves) == false || _.isUndefined(color) == false) {
         productlist.filter(function(item) {
           // Set our default to false, and explicit define matches
           var match = false;
@@ -221,6 +222,24 @@ $(document).ready(function() {
                   // If we fail, break the loop since we want all attributes to match.
                   match = false;
                   break;
+                }
+              }
+            }
+            if (match) {
+              if (color.length > 0) {
+                var color_terms = color.split(',');
+                for (var i = 0; i<color_terms.length; i++) {
+                  var color_field = item.values().color;
+                  if (_.isUndefined(color_field)) {
+                    color_field = "";
+                  }
+                  if (color_field.toLowerCase().indexOf(color_terms[i].toLowerCase()) >= 0) {
+                    match = true;
+                  } else {
+                    // If we fail, break the loop since we want all attributes to match.
+                    match = false;
+                    break;
+                  }
                 }
               }
             }
