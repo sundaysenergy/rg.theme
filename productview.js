@@ -226,7 +226,7 @@ $(document).ready(function() {
               }
             }
             if (match) {
-              if (color.length > 0) {
+              if (_.isUndefined(color) == false) {
                 var color_terms = color.split(',');
                 for (var i = 0; i<color_terms.length; i++) {
                   var color_field = item.values().color;
