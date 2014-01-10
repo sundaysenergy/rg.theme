@@ -67,6 +67,13 @@ $(document).ready(function() {
       var collection = hash.get('collection');
       // Add active class for current sub collection, and remove active class for non-active sub.
       $('ul.collection-filter li a').removeClass('active');
+      // Reset our filters checkboxes if necessary
+      if (_.isUndefined(hash.get('attributes'))) {
+        $('#attributes').find(':checkbox').attr('checked',false);
+      }
+      if (_.isUndefined(hash.get('color'))) {
+        $('#color').find(':checkbox').attr('checked',false);
+      }
       // Move things around in the collection view
       if (_.isUndefined(collection) == false) {
         if (collection == 'textile') {
