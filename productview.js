@@ -220,26 +220,23 @@ $(document).ready(function() {
                   match = true;
                 } else {
                   // If we fail, break the loop since we want all attributes to match.
-                  match = false;
-                  break;
+                  return false;
                 }
               }
             }
-            if (match) {
-              if (_.isUndefined(color) == false) {
-                var color_terms = color.split(',');
-                for (var i = 0; i<color_terms.length; i++) {
-                  var color_field = item.values().color;
-                  if (_.isUndefined(color_field)) {
-                    color_field = "";
-                  }
-                  if (color_field.toLowerCase().indexOf(color_terms[i].toLowerCase()) >= 0) {
-                    match = true;
-                  } else {
-                    // If we fail, break the loop since we want all attributes to match.
-                    match = false;
-                    break;
-                  }
+            if (_.isUndefined(color) == false) {
+              var color_terms = color.split(',');
+              for (var i = 0; i<color_terms.length; i++) {
+                var color_field = item.values().color;
+                if (_.isUndefined(color_field)) {
+                  color_field = "";
+                }
+                if (color_field.toLowerCase().indexOf(color_terms[i].toLowerCase()) >= 0) {
+                  match = true;
+                } else {
+                  // If we fail, break the loop since we want all attributes to match.
+                  match = false;
+                  break;
                 }
               }
             }
@@ -491,14 +488,19 @@ $(document).ready(function() {
       }
       // Add or remove dummy element for first item in slide view.
       if (productlist.i <= 0) {
+        console.log("get here", $('#products > ul.slider'));
         if (productlist.matchingItems.length > 0) {
-          $('#products > ul.slider').prepend(dummy_template.render(productlist.matchingItems[productlist.matchingItems.length-1].values()));
+          var last_item = productlist.matchingItems.length-1;
+          if (last_item < 0) last_item = 0;
+          var dummy_item = dummy_template.render(productlist.matchingItems[last_item].values());
+          console.log(dummy_item);
+          $('#products > ul.slider').prepend(dummy_item);
         }
       } 
       if (productlist.i == productlist.matchingItems.length-1) {
         $('#products > ul.slider').append(dummy_template.render(productlist.matchingItems[0].values()));
       } 
-      if (!((productlist.i == productlist.matchingItems.length-1) || (productlist.i <= 0))) {
+      if (!((productlist.i == productlist.matchingItems.length-1) || (productlist.i <= 0)) && (productlist.matchingItems.length != 1)) {
         $('#products > ul.slider li.item-bookends').remove();
       }
 
