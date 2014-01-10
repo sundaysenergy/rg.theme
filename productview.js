@@ -69,10 +69,10 @@ $(document).ready(function() {
       $('ul.collection-filter li a').removeClass('active');
       // Reset our filters checkboxes if necessary
       if (_.isUndefined(hash.get('attributes'))) {
-        $('#attributes').find(':checkbox').attr('checked',false);
+        $('.filter-attributes').find(':checkbox').attr('checked',false);
       }
       if (_.isUndefined(hash.get('color'))) {
-        $('#color').find(':checkbox').attr('checked',false);
+        $('.filter-color').find(':checkbox').attr('checked',false);
       }
       // Move things around in the collection view
       if (_.isUndefined(collection) == false) {
@@ -173,7 +173,7 @@ $(document).ready(function() {
       // Clear any existing filter
       productlist.filter();
       // Unhide all of the filter selections
-      $('#attributes label, #color label').each(function(i) {
+      $('.filter-attributes label, .filter-color label').each(function(i) {
         $(this).removeClass('disabled');
       });
       // Get any search term(s)
@@ -733,14 +733,14 @@ $(document).ready(function() {
 
 
     // When we check or uncheck a box, recalculate search terms
-    $('#attributes input[type=checkbox]').on('click touch', function(e) {
+    $('.filter-attributes input[type=checkbox]').on('click touch', function(e) {
       if ($(this).parent().hasClass('disabled')) {
         e.preventDefault();
         return false;
       }
       productlist.filter();
       var f = [];
-      $('#attributes :checkbox:checked').each(function(i) {
+      $('.filter-attributes :checkbox:checked').each(function(i) {
         f.push($(this).val());
       });
       hash.remove('pos');
@@ -756,14 +756,14 @@ $(document).ready(function() {
     });
 
     // When we check a color filter, do the same
-    $('#color input[type=checkbox]').on('click touch', function(e) {
+    $('.filter-color input[type=checkbox]').on('click touch', function(e) {
       if ($(this).parent().hasClass('disabled')) {
         e.preventDefault();
         return false;
       }
       productlist.filter();
       var f = [];
-      $('#color :checkbox:checked').each(function(i) {
+      $('.filter-color :checkbox:checked').each(function(i) {
         f.push($(this).val());
       });
       hash.remove('pos');
@@ -781,7 +781,7 @@ $(document).ready(function() {
     // Event for filtering the various lists of filters
     $(document).on('filterFilters', function() {
       // Check unchecked filter buttons for matches. Hide if no matches
-      $('#attributes :checkbox:not(:checked)').each(function(i) {
+      $('.filter-attributes :checkbox:not(:checked)').each(function(i) {
         var a = $(this)[0].value;
         // Determine if any potential matches exist from currently matched items. Breaks on first true
         var m = _.some(productlist.matchingItems, function(item) {
@@ -795,7 +795,7 @@ $(document).ready(function() {
         if (m == false) $(this).parent().addClass('disabled');
       });
       // Do the same thing for color filters
-      $('#color :checkbox:not(:checked)').each(function(i) {
+      $('.filter-color :checkbox:not(:checked)').each(function(i) {
         var a = $(this)[0].value;
         // Determine if any potential matches exist from currently matched items. Breaks on first true
         var m = _.some(productlist.matchingItems, function(item) {
@@ -817,7 +817,7 @@ $(document).ready(function() {
         var f = g.split(',');
         // Toggle checkboxes for any attributes that are found.
         for (var i=0; i<f.length; i++) {
-          $('#attributes').find(':checkbox[value="' + f[i] +'"]').attr('checked',true);
+          $('.filter-attributes').find(':checkbox[value="' + f[i] +'"]').attr('checked',true);
         }
       }
       var h = hash.get('color');
@@ -825,7 +825,7 @@ $(document).ready(function() {
         var f = h.split(',');
         // Toggle checkboxes for any attributes that are found.
         for (var i=0; i<f.length; i++) {
-          $('#color').find(':checkbox[value="' + f[i] +'"]').attr('checked',true);
+          $('.filter-color').find(':checkbox[value="' + f[i] +'"]').attr('checked',true);
         }
       }      
       // Trigger a hashchange event to actually process the filter
