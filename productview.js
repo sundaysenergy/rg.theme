@@ -68,12 +68,15 @@ $(document).ready(function() {
       // Add active class for current sub collection, and remove active class for non-active sub.
       $('ul.collection-filter li a').removeClass('active');
       if (_.isUndefined(collection) == false) {
+        $('#collection-menu-main,#collection-menu-passementerie,#collection-menu-leather').hide();
         if (collection == 'textile') {
           $('#products,#collection-menu-main').show();
           $('#products').insertAfter('#collection-menu-main');
         } else if (collection == 'passementerie') {
+          $('#products,#collection-menu-passementerie').show();
           $('#products').insertAfter('#collection-menu-passementerie');
         } else if (collection == 'leather') {
+          $('#products,#collection-menu-leather').show();
           $('#products').insertAfter('#collection-menu-leather');
         }
         $('ul.collection-filter li').find('a[href="/collection.html#collection=' + collection + '"]').addClass('active');
