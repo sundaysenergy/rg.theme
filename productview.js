@@ -757,6 +757,14 @@ $(document).ready(function() {
           $('#attributes').find(':checkbox[value="' + f[i] +'"]').attr('checked',true);
         }
       }
+      var h = hash.get('color');
+      if (typeof(h) != 'undefined') {
+        var f = h.split(',');
+        // Toggle checkboxes for any attributes that are found.
+        for (var i=0; i<f.length; i++) {
+          $('#color').find(':checkbox[value="' + f[i] +'"]').attr('checked',true);
+        }
+      }      
       // Trigger a hashchange event to actually process the filter
       $(window).trigger('hashchange');
     }
