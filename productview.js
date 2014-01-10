@@ -89,10 +89,19 @@ $(document).ready(function() {
           console.log("heh");
         }
         if (collection == 'passementerie') {
+          // Hide the active headers for other collections
           $('#collection-menu-main,#collection-menu-leather').hide();
+          // Show the products list and the header for textiles
           $('#products,#collection-menu-passementerie').show();
+          // Show inactive headers for other collections
           $('#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
+          // Move the inactive headers to a different container if they're not there already
+          if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 0) {
+            $('#collection-menu-leather-inactive').appendTo('#collection-headers-after');
+          }
+          // Hide the inactive header for this collection
           $('#collection-menu-passementerie-inactive').hide();
+          // Move the #products div after the passementerie header bar
           $('#products').insertAfter('#collection-menu-passementerie');
         } 
         if (collection == 'leather') {
