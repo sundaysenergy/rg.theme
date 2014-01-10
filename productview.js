@@ -500,7 +500,8 @@ $(document).ready(function() {
       if (productlist.i == productlist.matchingItems.length-1) {
         $('#products > ul.slider').append(dummy_template.render(productlist.matchingItems[0].values()));
       } 
-      if (!((productlist.i == productlist.matchingItems.length-1) || (productlist.i <= 0)) && (productlist.matchingItems.length != 1)) {
+      if ((!((productlist.i == productlist.matchingItems.length-1) || (productlist.i <= 0)) && (productlist.matchingItems.length != 1)) ||
+          (productlist.page == rg_options.vertical_page)) {
         $('#products > ul.slider li.item-bookends').remove();
       }
 
