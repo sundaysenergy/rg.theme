@@ -74,12 +74,16 @@ $(document).ready(function() {
           $('#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
           $('#collection-menu-main-inactive').hide();
           $('#products').insertAfter('#collection-menu-main');
-        } else if (collection == 'passementerie') {
+        } else {
+          console.log("heh");
+        }
+        if (collection == 'passementerie') {
           $('#products,#collection-menu-passementerie').show();
           $('#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
           $('#collection-menu-passementerie-inactive').hide();
           $('#products').insertAfter('#collection-menu-passementerie');
-        } else if (collection == 'leather') {
+        } 
+        if (collection == 'leather') {
           $('#products,#collection-menu-leather').show();
           $('#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
           $('#collection-menu-leather-inactive').hide();
@@ -161,7 +165,7 @@ $(document).ready(function() {
         $('#collection-menu-faves').show();
         $('#collection-menu-main,#collection-menu-search').hide();
       } else {
-        $('#collection-menu-main-inactive').show();
+        //$('#collection-menu-main-inactive').show();
         $('#collection-menu-search,#collection-menu-faves').hide();  
       }
       // Process anonymous favorites
