@@ -461,7 +461,7 @@ $(document).ready(function() {
         .append(' / ')
         .append(parseInt(productlist.matchingItems.length / productlist.page) + 1);
         if ($('div.threeup div#products').length > 0) {
-          $('div#products').appendTo('main.container div.row');
+          $('div#products').appendTo('main.container div#collection-row-textile');
         }
       }
       // Reset our paginator
