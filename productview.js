@@ -105,10 +105,22 @@ $(document).ready(function() {
           $('#products').insertAfter('#collection-menu-passementerie');
         } 
         if (collection == 'leather') {
+          // Hide the active headers for other collections
           $('#collection-menu-passementerie,#collection-menu-main').hide();
+          // Show the products list and the header for textiles
           $('#products,#collection-menu-leather').show();
+          // Show inactive headers for other collections
           $('#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
+          // Move the inactive headers to a different container if they're not there already
           $('#collection-menu-leather-inactive').hide();
+          // Move inactive headers back to original container if necessary
+          if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 1) {
+            $('#collection-menu-passementerie-inactive').prependTo('div#collection-row-passementerie');
+          }
+          if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 1) {
+            $('#collection-menu-leather-inactive').prependTo('div#collection-row-leather');
+          }
+          // Move products after the leather header
           $('#products').insertAfter('#collection-menu-leather');
         }
         $('ul.collection-filter li').find('a[href="/collection.html#collection=' + collection + '"]').addClass('active');
