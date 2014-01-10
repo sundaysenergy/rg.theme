@@ -179,7 +179,7 @@ $(document).ready(function() {
         $('#collection-menu-search').show();
         $('#collection-menu-main,#collection-menu-faves').hide();
         // Click handlers for different view quantities
-        $('#search-view-number a').each(function(i) {
+        $('#search-view-number a,.search-view-number a').each(function(i) {
           $(this).on('click touch', function(e) {
             e.preventDefault();
             var items = $(this).data('show-items');
