@@ -71,12 +71,18 @@ $(document).ready(function() {
         $('#collection-menu-main,#collection-menu-passementerie,#collection-menu-leather').hide();
         if (collection == 'textile') {
           $('#products,#collection-menu-main').show();
+          $('#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
+          $('#collection-menu-main-inactive').hide();
           $('#products').insertAfter('#collection-menu-main');
         } else if (collection == 'passementerie') {
           $('#products,#collection-menu-passementerie').show();
+          $('#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
+          $('#collection-menu-passementerie-inactive').hide();
           $('#products').insertAfter('#collection-menu-passementerie');
         } else if (collection == 'leather') {
           $('#products,#collection-menu-leather').show();
+          $('#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
+          $('#collection-menu-leather-inactive').hide();
           $('#products').insertAfter('#collection-menu-leather');
         }
         $('ul.collection-filter li').find('a[href="/collection.html#collection=' + collection + '"]').addClass('active');
