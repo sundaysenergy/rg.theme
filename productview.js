@@ -487,13 +487,13 @@ $(document).ready(function() {
         }
       }
       // Add or remove dummy element for first item in slide view.
-      if (productlist.i <= 0) {
-        console.log("get here", $('#products > ul.slider'));
+      var pos = hash.get('pos');
+      if (_.isUndefined(pos)) pos = 0;
+      if (pos <= 0) {
         if (productlist.matchingItems.length > 0) {
           var last_item = productlist.matchingItems.length-1;
           if (last_item < 0) last_item = 0;
           var dummy_item = dummy_template.render(productlist.matchingItems[last_item].values());
-          console.log(dummy_item);
           $('#products > ul.slider').prepend(dummy_item);
         }
       } 
