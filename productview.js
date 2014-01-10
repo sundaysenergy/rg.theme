@@ -827,21 +827,21 @@ $(document).ready(function() {
 
 
     // Toggle to slide view mode
-    $('#slide').on('click touch', function(e) {
+    $('button.slide').on('click touch', function(e) {
       e.preventDefault();
       productlist.page = rg_options.horizontal_page;
       var pos = parseInt(productlist.i)-1;
       // If it's the first item, simulate centering
       $('#products > ul.list').addClass('slider');
       // Only allow one button to be enabled at a time
-      $('#slide').toggle();
-      $('#thumbs').toggle();
+      $('.slide').toggle();
+      $('.thumbs').toggle();
       $('#collection-view-items').hide();
       hash.add({pos:pos});
     });
 
     // Toggle to thumb view mode
-    $('#thumbs').on('click touch', function(e) {
+    $('button.thumbs').on('click touch', function(e) {
       e.preventDefault();
       // Hide details for center slide in "horizontal" view
       productlist.page = rg_options.vertical_page;
@@ -860,8 +860,8 @@ $(document).ready(function() {
         pos = parseInt(productlist.i / rg_options.vertical_page) * rg_options.vertical_page + 1;
       }
       $('#products > ul.list').removeClass('slider');
-      $('#slide').toggle();
-      $('#thumbs').toggle();
+      $('.slide').toggle();
+      $('.thumbs').toggle();
       $('#collection-view-items').show();
       $('#collection-view-items a').each(function(i) {
         $(this).on('click touch', function(e) {
