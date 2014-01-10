@@ -836,7 +836,7 @@ $(document).ready(function() {
       // Only allow one button to be enabled at a time
       $('.slide').toggle();
       $('.thumbs').toggle();
-      $('#collection-view-items').hide();
+      $('.collection-view-items').hide();
       hash.add({pos:pos});
     });
 
@@ -862,8 +862,8 @@ $(document).ready(function() {
       $('#products > ul.list').removeClass('slider');
       $('.slide').toggle();
       $('.thumbs').toggle();
-      $('#collection-view-items').show();
-      $('#collection-view-items a').each(function(i) {
+      $('.collection-view-items').show();
+      $('.collection-view-items a').each(function(i) {
         $(this).on('click touch', function(e) {
           e.preventDefault();
           var items = $(this).data('show-items');
