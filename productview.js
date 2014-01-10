@@ -68,6 +68,8 @@ $(document).ready(function() {
       // Add active class for current sub collection, and remove active class for non-active sub.
       $('ul.collection-filter li a').removeClass('active');
       if (_.isUndefined(collection) == false) {
+        console.log('hi');
+        $('#products,#collection-menu-main').show();
         $('ul.collection-filter li').find('a[href="/collection.html#collection=' + collection + '"]').addClass('active');
       }
       // Move the product list inside or outside of the main container depending on viewing mode
@@ -144,7 +146,7 @@ $(document).ready(function() {
         $('#collection-menu-faves').show();
         $('#collection-menu-main,#collection-menu-search').hide();
       } else {
-        $('#collection-menu-main').show();
+        $('#collection-menu-main-inactive').show();
         $('#collection-menu-search,#collection-menu-faves').hide();  
       }
       // Process anonymous favorites
