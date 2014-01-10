@@ -204,7 +204,7 @@ $(document).ready(function() {
       // Show&hide header bars for search and default
       } else if (_.isUndefined(faves) == false) {
         $('#collection-menu-faves').show();
-        $('#collection-menu-main,#collection-menu-search').hide();
+        $('#collection-menu-main,#collection-menu-leather,#collection-menu-passementerie,#collection-menu-search,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive,#collection-menu-main-inactive').hide();
       } else {
         //$('#collection-menu-main-inactive').show();
         $('#collection-menu-search,#collection-menu-faves').hide();  
