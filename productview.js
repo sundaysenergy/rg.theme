@@ -67,23 +67,36 @@ $(document).ready(function() {
       var collection = hash.get('collection');
       // Add active class for current sub collection, and remove active class for non-active sub.
       $('ul.collection-filter li a').removeClass('active');
+      // Move things around in the collection view
       if (_.isUndefined(collection) == false) {
-        $('#collection-menu-main,#collection-menu-passementerie,#collection-menu-leather').hide();
         if (collection == 'textile') {
+          // Hide active headers for other collections
+          $('#collection-menu-passementerie,#collection-menu-leather').hide();
+          // Show the products list and the header for textiles
           $('#products,#collection-menu-main').show();
+          // Show inactive headers for other collections
           $('#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
+          // Move the inactive headers to a different container if they're not there already
+          if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
+            $('#collection-menu-passementerie-inactive').appendTo('#collection-headers-after');
+            $('#collection-menu-leather-inactive').insertAfter($('#collection-menu-passementerie-inactive'));
+          }
+          // Hide inactive header for textile collection
           $('#collection-menu-main-inactive').hide();
+          // Move the #products div after the textile header bar
           $('#products').insertAfter('#collection-menu-main');
         } else {
           console.log("heh");
         }
         if (collection == 'passementerie') {
+          $('#collection-menu-main,#collection-menu-leather').hide();
           $('#products,#collection-menu-passementerie').show();
           $('#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
           $('#collection-menu-passementerie-inactive').hide();
           $('#products').insertAfter('#collection-menu-passementerie');
         } 
         if (collection == 'leather') {
+          $('#collection-menu-passementerie,#collection-menu-main').hide();
           $('#products,#collection-menu-leather').show();
           $('#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
           $('#collection-menu-leather-inactive').hide();
