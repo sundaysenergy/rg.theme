@@ -85,7 +85,7 @@ $(document).ready(function() {
       if (productlist.page == rg_options.horizontal_page) {
         if ($('div.threeup div#products').length == 0) $('div#products').appendTo('div.threeup');
       } else {
-        if ($('div.threeup div#products').length > 0) $('div#products').appendTo('main.container div.row');
+        if ($('div.threeup div#products').length > 0) $('div#products').appendTo('main.container div#collection-row-textile');
       }
       // Copy faves from the hash to localStorage for sharing and updates via the url
       if (_.isUndefined(hash.get('faves')) == false) {
