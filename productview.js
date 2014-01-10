@@ -184,7 +184,7 @@ $(document).ready(function() {
       if (_.isUndefined(srch) == false) {
         // Show the search header bar and hide the others
         $('#collection-menu-search').show();
-        $('#collection-menu-main,#collection-menu-faves').hide();
+        $('#collection-menu-main,#collection-menu-leather,#collection-menu-passementerie,#collection-menu-faves,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive,#collection-menu-main-inactive').hide();
         // Click handlers for different view quantities
         $('#search-view-number a,.search-view-number a').each(function(i) {
           $(this).on('click touch', function(e) {
