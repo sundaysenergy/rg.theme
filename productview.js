@@ -498,7 +498,7 @@ $(document).ready(function() {
       }
       // Page counter for slide view
       if (productlist.page == rg_options.horizontal_page) {
-        $('#pagecount')
+        $('.pagecount')
         .html(parseInt(productlist.i)+1)
         .append(' / ')
         .append(productlist.matchingItems.length);
@@ -507,7 +507,7 @@ $(document).ready(function() {
         }
       // Page counter for thumbnail view
       } else {
-        $('#pagecount, #search-page-counter')
+        $('.pagecount, #search-page-counter')
         .html((parseInt(productlist.i / productlist.page) + 1))
         .append(' / ')
         .append(parseInt(productlist.matchingItems.length / productlist.page) + 1);
