@@ -74,6 +74,10 @@ $(document).ready(function() {
       if (_.isUndefined(hash.get('color'))) {
         $('.filter-color').find(':checkbox').attr('checked',false);
       }
+      if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
+        $('button.thumbs').trigger('click');
+        $('button.slide').trigger('click');
+      }
       // Move things around in the collection view
       if (_.isUndefined(collection) == false) {
         if (collection == 'textile') {
