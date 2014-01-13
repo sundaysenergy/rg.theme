@@ -262,6 +262,7 @@ $(document).ready(function() {
               } else {
                 // Set true if we have a search term and it connected
                 match = true;
+                console.log("Term: ", term, "Values: ", item.values());
               }
             }
             if (!match) return false;
