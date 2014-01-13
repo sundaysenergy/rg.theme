@@ -38,9 +38,10 @@ login:
     - login.js
 account:
   css:
-    - bootstrap-editable.css
+    - css/bootstrap-editable.css
   js:
-    - bootstrap-editable.min.js
+    - js/account-editable.js
+    - js/bootstrap-editable.min.js
 admin:
   css:
     - variables.less
