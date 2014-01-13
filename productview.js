@@ -74,11 +74,6 @@ $(document).ready(function() {
       if (_.isUndefined(hash.get('color'))) {
         $('.filter-color').find(':checkbox').attr('checked',false);
       }
-      console.log(productlist, $('button.thumbs').is(":visible"), productlist.page, rg_options.vertical_page);
-      if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
-        productlist.page = rg_options.horizontal_page;
-        $(window).trigger('hashchange');
-      }
       // Move things around in the collection view
       if (_.isUndefined(collection) == false) {
         if (collection == 'textile') {
@@ -134,6 +129,11 @@ $(document).ready(function() {
           $('#products').insertAfter('#collection-menu-leather');
         }
         $('ul.collection-filter li').find('a[href="/collection.html#collection=' + collection + '"]').addClass('active');
+        console.log(productlist, $('button.thumbs').is(":visible"), productlist.page, rg_options.vertical_page);
+        if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
+          productlist.page = rg_options.horizontal_page;
+          $(window).trigger('hashchange');
+        }
       }
       // Move the product list inside or outside of the main container depending on viewing mode
       if (productlist.page == rg_options.horizontal_page) {
