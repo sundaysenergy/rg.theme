@@ -76,9 +76,8 @@ $(document).ready(function() {
       }
       console.log(productlist, $('button.thumbs').is(":visible"), productlist.page, rg_options.vertical_page);
       if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
-        console.log("here");
-        $('button.thumbs').trigger('click');
-        $('button.slide').trigger('click');
+        productlist.page = rg_options.horizontal_page;
+        $(window).trigger('hashchange');
       }
       // Move things around in the collection view
       if (_.isUndefined(collection) == false) {
