@@ -251,17 +251,20 @@ $(document).ready(function() {
           }
           // If we have a search term, process it
           if (_.isUndefined(srch) == false) {
-            var content_field = item.values().content;
-            if (_.isUndefined(content_field)) {
-              content_field = "";
+            var search_string = _.chain(item.values()).values().compact().filter(function(val) { return _.isFunction(val) == false; }).join(' ').value();
+            var search_terms = srch.split(' ');
+            for (var i=0; i<search_terms.length; i++) {
+              var term = search_terms[i].toLowerCase();
+              if (search_string.toLowerCase().indexOf(term) == -1) {
+                // If we failed the search term, and the search term exists, quit here and return false.
+                match = false;
+                break;
+              } else {
+                // Set true if we have a search term and it connected
+                match = true;
+              }
             }
-            if (content_field.toLowerCase().indexOf(srch) == -1) {
-              // If we failed the search term, and the search term exists, quit here and return false.
-              return false;
-            } else {
-              // Set true if we have a search term and it connected
-              match = true;
-            }
+            if (!match) return false;
           }
           // If we have a collection, see if the item matches the selected collection
           if (typeof(collection) != 'undefined') {
