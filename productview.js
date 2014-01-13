@@ -275,6 +275,7 @@ $(document).ready(function() {
               // For each attribute, see if we have a match. If not, set false and break.
               for (var i = 0; i<attributes.length; i++) {
                 var content_field = (collection != 'leather' || _.isUndefined(collection)) ? item.values().content:item.values().type;
+                console.log(item.values(), content_field);
                 if (_.isUndefined(content_field)) content_field = "";
                 if (content_field.toLowerCase().indexOf(attributes[i].toLowerCase()) >= 0) {
                   match = true;
