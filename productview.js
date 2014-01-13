@@ -453,6 +453,9 @@ $(document).ready(function() {
                     },
                     fail: function(result) {
                       window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
+                    },
+                    error: function(result) {
+                      window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
                     }
                   });
                 });
@@ -628,6 +631,9 @@ $(document).ready(function() {
                     console.log(result);
                   },
                   fail: function(result) {
+                    window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
+                  },
+                  error: function(result) {
                     window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
                   }
                 });
