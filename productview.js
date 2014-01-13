@@ -181,7 +181,7 @@ $(document).ready(function() {
       // If we have search terms
       if (_.isUndefined(srch) == false) {
         // Show the search header bar and hide the others
-        $('#products,#collection-menu-search').show();
+        $('#products,#collection-menu-search,#collection-menu-search-collection').show();
         $('#collection-menu-main,#collection-menu-leather,#collection-menu-passementerie,#collection-menu-faves,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive,#collection-menu-main-inactive').hide();
         // Click handlers for different view quantities
         $('#search-view-number a,.search-view-number a').each(function(i) {
@@ -202,7 +202,7 @@ $(document).ready(function() {
       // Show&hide header bars for search and default
       } else if (_.isUndefined(faves) == false) {
         $('#products,#collection-menu-faves').show();
-        $('#collection-menu-main,#collection-menu-leather,#collection-menu-passementerie,#collection-menu-search,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive,#collection-menu-main-inactive').hide();
+        $('collection-menu-search-collection,#collection-menu-main,#collection-menu-leather,#collection-menu-passementerie,#collection-menu-search,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive,#collection-menu-main-inactive').hide();
       } else {
         //$('#collection-menu-main-inactive').show();
         $('#collection-menu-search,#collection-menu-faves').hide();  
