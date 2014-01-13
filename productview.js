@@ -181,8 +181,13 @@ $(document).ready(function() {
       // If we have search terms
       if (_.isUndefined(srch) == false) {
         // Show the search header bar and hide the others
-        $('#products,#collection-menu-search').show();
+        $('#products,#collection-menu-search,#collection-menu-search-collection').show();
         $('#collection-menu-main,#collection-menu-leather,#collection-menu-passementerie,#collection-menu-faves,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive,#collection-menu-main-inactive').hide();
+        $("#collection-menu-search-collection button").on('click touch', function(e) { 
+          e.preventDefault();
+          var col = $(this).data('collection');
+          hash.add({collection: col });
+        });        
         // Click handlers for different view quantities
         $('#search-view-number a,.search-view-number a').each(function(i) {
           $(this).on('click touch', function(e) {
@@ -202,10 +207,9 @@ $(document).ready(function() {
       // Show&hide header bars for search and default
       } else if (_.isUndefined(faves) == false) {
         $('#products,#collection-menu-faves').show();
-        $('#collection-menu-main,#collection-menu-leather,#collection-menu-passementerie,#collection-menu-search,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive,#collection-menu-main-inactive').hide();
+        $('collection-menu-search-collection,#collection-menu-main,#collection-menu-leather,#collection-menu-passementerie,#collection-menu-search,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive,#collection-menu-main-inactive').hide();
       } else {
-        //$('#collection-menu-main-inactive').show();
-        $('#collection-menu-search,#collection-menu-faves').hide();  
+        $('#collection-menu-search,#collection-menu-faves,#collection-menu-search-collection').hide();  
       }
       // Process anonymous favorites
       if (_.isUndefined(faves) == false) {
@@ -246,17 +250,21 @@ $(document).ready(function() {
           }
           // If we have a search term, process it
           if (_.isUndefined(srch) == false) {
-            var content_field = item.values().content;
-            if (_.isUndefined(content_field)) {
-              content_field = "";
+            var search_string = _.chain(item.values()).values().compact().filter(function(val) { return _.isFunction(val) == false; }).join(' ').value();
+            var search_terms = srch.split(' ');
+            for (var i=0; i<search_terms.length; i++) {
+              var term = search_terms[i].toLowerCase();
+              if (search_string.toLowerCase().indexOf(term) == -1) {
+                // If we failed the search term, and the search term exists, quit here and return false.
+                match = false;
+                break;
+              } else {
+                // Set true if we have a search term and it connected
+                match = true;
+                console.log("Term: ", term, "Values: ", item.values());
+              }
             }
-            if (content_field.toLowerCase().indexOf(srch) == -1) {
-              // If we failed the search term, and the search term exists, quit here and return false.
-              return false;
-            } else {
-              // Set true if we have a search term and it connected
-              match = true;
-            }
+            if (!match) return false;
           }
           // If we have a collection, see if the item matches the selected collection
           if (typeof(collection) != 'undefined') {
@@ -285,9 +293,10 @@ $(document).ready(function() {
             if (_.isUndefined(color) == false) {
               var color_terms = color.split(',');
               for (var i = 0; i<color_terms.length; i++) {
-                var color_field = item.values().color;
+                var color_field = item.values().primarycolor;
                 if (_.isUndefined(color_field)) {
-                  color_field = "";
+                  match = false;
+                  break;
                 }
                 if (color_field.toLowerCase().indexOf(color_terms[i].toLowerCase()) >= 0) {
                   match = true;
@@ -452,7 +461,10 @@ $(document).ready(function() {
                       $('.alert-favorite').find('a').attr('href', '/trade/projects.html'); 
                     },
                     fail: function(result) {
-                      console.log(result);
+                      window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
+                    },
+                    error: function(result) {
+                      window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
                     }
                   });
                 });
@@ -628,7 +640,10 @@ $(document).ready(function() {
                     console.log(result);
                   },
                   fail: function(result) {
-                    console.log(result);
+                    window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
+                  },
+                  error: function(result) {
+                    window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
                   }
                 });
               });
