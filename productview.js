@@ -92,8 +92,6 @@ $(document).ready(function() {
           $('#collection-menu-main-inactive').hide();
           // Move the #products div after the textile header bar
           $('#products').insertAfter('#collection-menu-main');
-        } else {
-          console.log("heh");
         }
         if (collection == 'passementerie') {
           // Hide the active headers for other collections
@@ -274,8 +272,7 @@ $(document).ready(function() {
             if (attributes.length > 0) {
               // For each attribute, see if we have a match. If not, set false and break.
               for (var i = 0; i<attributes.length; i++) {
-                var content_field = (collection != 'leather' || _.isUndefined(collection)) ? item.values().content:item.values().type;
-                console.log(item.values(), content_field);
+                var content_field = (collection != 'leather' || _.isUndefined(collection)) ? item.values().content:item.values().name;
                 if (_.isUndefined(content_field)) content_field = "";
                 if (content_field.toLowerCase().indexOf(attributes[i].toLowerCase()) >= 0) {
                   match = true;
@@ -784,10 +781,8 @@ $(document).ready(function() {
         var a = $(this)[0].value;
         // Determine if any potential matches exist from currently matched items. Breaks on first true
         var m = _.some(productlist.matchingItems, function(item) {
-          var contentname = item.values().content;
-          if (_.isUndefined(contentname)) {
-            contentname = '';
-          }
+          var contentname = (hash.get('collection') != 'leather' || _.isUndefined(hash.get('collection'))) ? item.values().content:item.values().name;
+          if (_.isUndefined(contentname)) contentname = '';
           if (contentname.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
         });
         // Hide the parents of any item that does not have a match.
