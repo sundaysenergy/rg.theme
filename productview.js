@@ -452,10 +452,10 @@ $(document).ready(function() {
                       $('.alert-favorite').find('a').attr('href', '/trade/projects.html'); 
                     },
                     fail: function(result) {
-                      window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
+                      window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
                     },
                     error: function(result) {
-                      window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
+                      window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
                     }
                   });
                 });
@@ -631,10 +631,10 @@ $(document).ready(function() {
                     console.log(result);
                   },
                   fail: function(result) {
-                    window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
+                    window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
                   },
                   error: function(result) {
-                    window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
+                    window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
                   }
                 });
               });
