@@ -32,10 +32,15 @@ pricelist:
     - list.fuzzysearch.min.js
     - pricelist.js
 login:
-  css: 
+  css:
     - login.css
   js:
     - login.js
+account:
+  css:
+    - bootstrap-editable.css
+  js:
+    - bootstrap-editable.min.js
 admin:
   css:
     - variables.less
