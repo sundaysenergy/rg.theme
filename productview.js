@@ -131,8 +131,8 @@ $(document).ready(function() {
         $('ul.collection-filter li').find('a[href="/collection.html#collection=' + collection + '"]').addClass('active');
         console.log(productlist, $('button.thumbs').is(":visible"), productlist.page, rg_options.vertical_page);
         if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
-          productlist.page = rg_options.horizontal_page;
-          $(window).trigger('hashchange');
+          $('button.thumbs').trigger('click');
+          $('button.slide').trigger('click');
         }
       }
       // Move the product list inside or outside of the main container depending on viewing mode
