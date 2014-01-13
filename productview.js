@@ -183,6 +183,11 @@ $(document).ready(function() {
         // Show the search header bar and hide the others
         $('#products,#collection-menu-search,#collection-menu-search-collection').show();
         $('#collection-menu-main,#collection-menu-leather,#collection-menu-passementerie,#collection-menu-faves,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive,#collection-menu-main-inactive').hide();
+        $("#collection-menu-search-collection button").on('click touch', function(e) { 
+          e.preventDefault();
+          var col = $(this).data('collection');
+          hash.add({collection: col });
+        });        
         // Click handlers for different view quantities
         $('#search-view-number a,.search-view-number a').each(function(i) {
           $(this).on('click touch', function(e) {
