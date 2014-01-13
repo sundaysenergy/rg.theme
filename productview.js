@@ -452,7 +452,7 @@ $(document).ready(function() {
                       $('.alert-favorite').find('a').attr('href', '/trade/projects.html'); 
                     },
                     fail: function(result) {
-                      console.log(result);
+                      window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
                     }
                   });
                 });
@@ -628,7 +628,7 @@ $(document).ready(function() {
                     console.log(result);
                   },
                   fail: function(result) {
-                    console.log(result);
+                    window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
                   }
                 });
               });
