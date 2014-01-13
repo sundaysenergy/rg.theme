@@ -36,6 +36,11 @@ login:
     - login.css
   js:
     - login.js
+account:
+  css:
+    - bootstrap-editable.css
+  js:
+    - bootstrap-editable.min.js
 admin:
   css:
     - variables.less
