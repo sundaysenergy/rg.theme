@@ -129,7 +129,6 @@ $(document).ready(function() {
           $('#products').insertAfter('#collection-menu-leather');
         }
         $('ul.collection-filter li').find('a[href="/collection.html#collection=' + collection + '"]').addClass('active');
-        console.log(productlist, $('button.thumbs').is(":visible"), productlist.page, rg_options.vertical_page);
         if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
           $('button.thumbs').trigger('click');
         }
@@ -255,17 +254,34 @@ $(document).ready(function() {
           // If we have a search term, process it
           if (_.isUndefined(srch) == false) {
             var search_string = _.chain(item.values()).values().compact().filter(function(val) { return _.isFunction(val) == false; }).join(' ').value();
+            // Split the search string and sort into two arrays for colors and not colors
             var search_terms = srch.split(' ');
+            var color_search_terms = _.remove(search_terms, function(item) { 
+                                                              var col = _.indexOf(combined.color_words, item.toUpperCase());
+                                                              return col >= 0;
+                                                            });
+            // Go through our non-color terms that are treated as or
             for (var i=0; i<search_terms.length; i++) {
               var term = search_terms[i].toLowerCase();
               if (search_string.toLowerCase().indexOf(term) == -1) {
                 // If we failed the search term, and the search term exists, quit here and return false.
                 match = false;
-                break;
               } else {
                 // Set true if we have a search term and it connected
                 match = true;
-                console.log("Term: ", term, "Values: ", item.values());
+                break;
+              }
+            }
+            // Go through the colors
+            if (match || search_terms.length == 0) {
+              for (var i=0; i<color_search_terms.length; i++) {
+                var term = color_search_terms[i].toLowerCase();
+                if (search_string.toLowerCase().indexOf(term) == -1) {
+                  return false;
+                } else {
+                  console.log("Success on ", search_string);
+                  match = true;
+                }
               }
             }
             if (!match) return false;
