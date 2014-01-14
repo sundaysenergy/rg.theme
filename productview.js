@@ -812,7 +812,7 @@ $(document).ready(function() {
         var a = $(this)[0].value;
         // Determine if any potential matches exist from currently matched items. Breaks on first true
         var m = _.some(productlist.matchingItems, function(item) {
-          var colorname = item.values().color;
+          var colorname = item.values().primarycolor;
           if (_.isUndefined(colorname)) {
             colorname = '';
           }
