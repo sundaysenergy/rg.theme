@@ -5,7 +5,7 @@ $(document).ready(function() {
                       horizontal_page: 3
                    }
 
-  /**** DISPLAY & DATA RESETS ****/
+  /**** DISPLAY & DATA RESETS on page load ****/
   if (_.isUndefined(hash.get('faves')) == false) { localStorage.faves = hash.get('faves'); }
   // Delete session variables since the page has reloaded
   delete(sessionStorage.detailedview);
@@ -25,7 +25,7 @@ $(document).ready(function() {
         related_template             = Hogan.compile(templates.related_item),
         project_list_select_template = Hogan.compile(templates.project_list_select);
 
-    // Options for our list
+    // Set our options for the main product list
     var options = {
       valueNames: [ 'image', 'content', 'id' ],
       item: '<li><span style="display:none" class="id"></span><img class="img"></li>',
@@ -41,6 +41,8 @@ $(document).ready(function() {
       var variations = this[itemno];
       return _.map(variations, function(v) { return itemno + '-' + v; });
     }
+
+    // Loop through items in list and bind additional functions needed for mustache templates
     _.forEach(data, function(item) {
       // Remove the last part of the product number, which designates variation of a themed item
       var i = item.id.split("-");
@@ -59,23 +61,32 @@ $(document).ready(function() {
 
     // Create a new list
     var productlist = new List('products', options, data);
+    
+    // Set defaults for horizontal mode including position and slider class
     $('#products > ul.list').addClass('slider');
     if (_.isUndefined(hash.get('pos'))) hash.add({pos:0});
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
+
+      /*** GET VALUES FROM HASH ***/
       var collection = hash.get('collection');
+      var attributes = (_.isUndefined(hash.get('attributes'))) ? []:hash.get('attributes').split(',');
+      var srch       = hash.get('search');
+      var faves      = hash.get('faves');
+      var color      = hash.get('color');
+
       // Add active class for current sub collection, and remove active class for non-active sub.
       $('ul.collection-filter li a').removeClass('active');
+
       // Reset our filters checkboxes if necessary
-      if (_.isUndefined(hash.get('attributes'))) {
-        $('.filter-attributes').find(':checkbox').attr('checked',false);
-      }
-      if (_.isUndefined(hash.get('color'))) {
-        $('.filter-color').find(':checkbox').attr('checked',false);
-      }
-      // Move things around in the collection view
+      if (_.isUndefined(hash.get('attributes'))) $('.filter-attributes').find(':checkbox').attr('checked',false);
+      if (_.isUndefined(hash.get('color'))) $('.filter-color').find(':checkbox').attr('checked',false);
+
+      // Things to do if there is a collection present -- mostly moving things around visually
       if (_.isUndefined(collection) == false) {
+        
+        /*** TEXTILE COLLECTION ***/
         if (collection == 'textile') {
           // Hide active headers for other collections
           $('#collection-menu-passementerie,#collection-menu-leather').hide();
@@ -93,6 +104,8 @@ $(document).ready(function() {
           // Move the #products div after the textile header bar
           $('#products').insertAfter('#collection-menu-main');
         }
+
+        /*** PASSEMENTERIE COLLECTION ***/
         if (collection == 'passementerie') {
           // Hide the active headers for other collections
           $('#collection-menu-main,#collection-menu-leather').hide();
@@ -109,6 +122,8 @@ $(document).ready(function() {
           // Move the #products div after the passementerie header bar
           $('#products').insertAfter('#collection-menu-passementerie');
         } 
+
+        /*** LEATHER COLLECTION ***/
         if (collection == 'leather') {
           // Hide the active headers for other collections
           $('#collection-menu-passementerie,#collection-menu-main').hide();
@@ -128,26 +143,33 @@ $(document).ready(function() {
           // Move products after the leather header
           $('#products').insertAfter('#collection-menu-leather');
         }
+
+        // Active class
         $('ul.collection-filter li').find('a[href="/collection.html#collection=' + collection + '"]').addClass('active');
+        
+        // If the page size and buttons don't match up, simulate click -- workaround for back button issue with search
         if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
           $('button.thumbs').trigger('click');
         }
       }
+
       // Move the product list inside or outside of the main container depending on viewing mode
       if (productlist.page == rg_options.horizontal_page) {
         if ($('div.threeup div#products').length == 0) $('div#products').appendTo('div.threeup');
       } else {
         if ($('div.threeup div#products').length > 0) $('div#products').appendTo('main.container div#collection-row-textile');
       }
+
       // Copy faves from the hash to localStorage for sharing and updates via the url
       if (_.isUndefined(hash.get('faves')) == false) {
         localStorage.faves = hash.get('faves');
       } else {
         $('#products > ul.list').removeClass('anon-favorites');
       }
-      // Sometimes after removing all items from anon favorites, null was leftover. Remove it.
+
+      // Remove stray null value if present in local storage
       if (_.isNull(localStorage.faves)) delete(localStorage.faves);
-      // If we're viewing 3 items at a time, and there are faves or search present, force vertical view and set position
+      // Force vertical view for favorites and search
       if (productlist.page == rg_options.horizontal_page && (_.isUndefined(hash.get('faves')) == false || _.isUndefined(hash.get('search')) == false)) {
         productlist.page = rg_options.vertical_page;
         var pos = 1;
@@ -160,38 +182,26 @@ $(document).ready(function() {
         $('.itemoverlay').hide();
         $('html,body').css('overflow','auto').css('height', '');
       }
-      e.preventDefault();
-      // Get values from the hash
-      f = hash.get('attributes');
-      var collection = hash.get('collection');
-      var attributes = [];
-      // Add active class for current sub collection, and remove active class for non-active sub.
-      $('ul.collection-filter li a').removeClass('active');
-      if (_.isUndefined(collection) == false) {
-        $('ul.collection-filter li').find('a[href="/collection.html#collection=' + collection + '"]').addClass('active');
-      }
-      if (typeof(f) != 'undefined') { attributes = f.split(','); }
+
       // Clear any existing filter
       productlist.filter();
-      // Unhide all of the filter selections
+      // Remove disabled class from color and attribute filters
       $('.filter-attributes label, .filter-color label').each(function(i) {
         $(this).removeClass('disabled');
       });
-      // Get any search term(s)
-      var srch = hash.get('search');
-      var faves = hash.get('faves');
-      var color = hash.get('color');
-      // If we have search terms
+
+      /*** IF PERFORMING A SEARCH ***/
       if (_.isUndefined(srch) == false) {
         // Show the search header bar and hide the others
         $('#products,#collection-menu-search,#collection-menu-search-collection').show();
         $('#collection-menu-main,#collection-menu-leather,#collection-menu-passementerie,#collection-menu-faves,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive,#collection-menu-main-inactive').hide();
+        // Switch between search collections
         $("#collection-menu-search-collection button").on('click touch', function(e) { 
           e.preventDefault();
           var col = $(this).data('collection');
           hash.add({collection: col });
         });        
-        // Click handlers for different view quantities
+        // View different page sizes of items
         $('#search-view-number a,.search-view-number a').each(function(i) {
           $(this).on('click touch', function(e) {
             e.preventDefault();
@@ -214,7 +224,8 @@ $(document).ready(function() {
       } else {
         $('#collection-menu-search,#collection-menu-faves,#collection-menu-search-collection').hide();  
       }
-      // Process anonymous favorites
+
+      /*** IF VIEWING ANONYMOUS FAVORITES ***/
       if (_.isUndefined(faves) == false) {
         favorites = hash.get('faves').split(',');
         var longurl = 'http://rg.cape.io/collection.html#faves=' + faves;
@@ -237,22 +248,31 @@ $(document).ready(function() {
         );
       }
       
-
+      /***********************************/
       /**** PROCESS FILTERS FROM HASH ****/
-      if ((typeof(f) != 'undefined') || (typeof(collection) != 'undefined' || _.isUndefined(srch) == false) || _.isUndefined(faves) == false || _.isUndefined(color) == false) {
+      /***********************************/
+      var vals = [collection,f,srch,faves,color];
+
+      // Process the filter if there are any terms other than undefined in our hash list
+      if (_.some(vals, function(item) { return _.isUndefined(item) == false })) {
+        console.log("Processing filter");
         productlist.filter(function(item) {
           // Set our default to false, and explicit define matches
           var match = false;
-          // Favorite list gets processed first
+
+          /*** PROCESS THE FAVORITES LIST ***/
           if (_.isUndefined(faves) == false) {
+            // Always return true/false since we don't need to go to the next step
             if (_.indexOf(favorites, item.values().id) >= 0) {
               return true;
             } else {
               return false;
             }
           }
-          // If we have a search term, process it
+
+          /*** PROCESS SEARCH TERMS ***/
           if (_.isUndefined(srch) == false) {
+            // This is a combination of all non-function values in the object
             var search_string = _.chain(item.values()).values().compact().filter(function(val) { return _.isFunction(val) == false; }).join(' ').value();
             // Split the search string and sort into two arrays for colors and not colors
             var search_terms = srch.split(' ');
@@ -260,33 +280,38 @@ $(document).ready(function() {
                                                               var col = _.indexOf(combined.color_words, item.toUpperCase());
                                                               return col >= 0;
                                                             });
-            // Go through our non-color terms that are treated as or
+            // Go through our non-color terms that will be treated as an OR search
+            // If there are items in this list, at least one must match
+            // If there are not items in this list, then true/false of colors will determine match
             for (var i=0; i<search_terms.length; i++) {
               var term = search_terms[i].toLowerCase();
-              if (search_string.toLowerCase().indexOf(term) == -1) {
-                // If we failed the search term, and the search term exists, quit here and return false.
-                match = false;
-              } else {
-                // Set true if we have a search term and it connected
+              if (search_string.toLowerCase().indexOf(term) >= 0) {
+                // True and break on a match since we only need one from this list
                 match = true;
                 break;
               }
             }
-            // Go through the colors
+            // Loop through colors. If there are terms here, they MUST be present
             if (match || search_terms.length == 0) {
               for (var i=0; i<color_search_terms.length; i++) {
                 var term = color_search_terms[i].toLowerCase();
+                // If we don't match, return false
                 if (search_string.toLowerCase().indexOf(term) == -1) {
                   return false;
+                // If we do match, set true and proceed to next step
                 } else {
-                  console.log("Success on ", search_string);
                   match = true;
                 }
               }
             }
+            // If we have a false value, then return. If true, proceed to next filter
+            // This will allow true match to then be filtered for collection, while false means
+            // that non-color search terms were present, but did not match, and there were not
+            // any color search terms
             if (!match) return false;
           }
-          // If we have a collection, see if the item matches the selected collection
+          
+          /*** PROCESS COLLECTION FILTER ***/
           if (typeof(collection) != 'undefined') {
             if (item.values().collection.toLowerCase().indexOf(collection.toLowerCase()) >= 0) {
               match = true;
@@ -294,48 +319,56 @@ $(document).ready(function() {
               match = false; // Probably should just return false here?
             }
           }
-          // If we've either matched the collection, or there is no collection specified, proceed.
-          // Assumption is that anything else means the collection is specified, but failed to match.
+
+          /* PROCESS ATTRIBUTES AND COLORS
+             If we've either matched the collection, or there is no collection specified, proceed. 
+             Assumption is that anything else means the collection is specified, but failed to match. */
           if (match || (typeof(collection) == 'undefined')) {
+            // Process attributes, if present
             if (attributes.length > 0) {
               // For each attribute, see if we have a match. If not, set false and break.
               for (var i = 0; i<attributes.length; i++) {
+                // Search content field for anything other than leather; name field for leather
                 var content_field = (collection != 'leather' || _.isUndefined(collection)) ? item.values().content:item.values().name;
                 if (_.isUndefined(content_field)) content_field = "";
                 if (content_field.toLowerCase().indexOf(attributes[i].toLowerCase()) >= 0) {
+                  // Explicitly set true if we have an attribute and it matches
                   match = true;
                 } else {
-                  // If we fail, break the loop since we want all attributes to match.
+                  // We want all attributes to match, so return false if one does not
                   return false;
                 }
               }
             }
+            // Process color filters, if present
             if (_.isUndefined(color) == false) {
               var color_terms = color.split(',');
               for (var i = 0; i<color_terms.length; i++) {
                 var color_field = item.values().primarycolor;
+                // If color search is active, but the primary color is not defined, return false
                 if (_.isUndefined(color_field)) {
-                  match = false;
-                  break;
+                  return false;
                 }
+                // If the color field is present and matches
                 if (color_field.toLowerCase().indexOf(color_terms[i].toLowerCase()) >= 0) {
                   match = true;
                 } else {
-                  // If we fail, break the loop since we want all attributes to match.
-                  match = false;
-                  break;
+                  // If the color field is present, but does not match, return false.
+                  return false;
                 }
               }
             }
           }
+          // If we're still operating, return the value of match
           return match;
         });
 
+        // Trigger a re-filter of the filters
         $(document).trigger('filterFilters');
       } // END PROCESS FILTERS FROM HASH
 
 
-
+      /*** DEAL WITH LIST POSITIONING BASED ON HASH ***/
       var pos = hash.get('pos');
       // If position is undefined, start at either 0 or 1, depending on view mode
       if (_.isUndefined(pos)) {
