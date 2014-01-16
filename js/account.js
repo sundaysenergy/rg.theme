@@ -3,7 +3,7 @@ $(document).ready(function() {
   .done(function(template) {
     console.log("step #1");
     $.ajax({ url: '/_api/db/_entity/users/'+$.cookie('uid')+'/profile.json'})
-    .done(function(user_info)) {
+    .done(function(user_info) {
       console.log(user_info);
       console.log(template);
     });
