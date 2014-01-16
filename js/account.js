@@ -19,7 +19,7 @@ $(document).ready(function() {
             obj[params[name]] = params.value;
             var token = $.cookie('token');
             $.ajax({
-              url: "http://rg.cape.io/_api/db/_entity/users/"+$.cookie("token")+"/profile.json?merge=true",
+              url: "http://rg.cape.io/_api/db/_entity/users/"+$.cookie("uid")+"/profile.json?merge=true",
               type: 'PUT',
               data: JSON.stringify(obj),
               headers: { Authorization: token },
