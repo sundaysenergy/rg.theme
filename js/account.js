@@ -16,7 +16,7 @@ $(document).ready(function() {
           url: function(params) {
             console.log(params);
             var obj = {};
-            obj[params[name]] = params.value;
+            obj[params.name] = params.value;
             var token = $.cookie('token');
             console.log(obj);
             $.ajax({
