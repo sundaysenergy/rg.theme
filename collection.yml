@@ -42,6 +42,7 @@ account:
   js:
     - js/account-editable.js
     - js/bootstrap-editable.min.js
+    - js/account.js
 admin:
   css:
     - variables.less

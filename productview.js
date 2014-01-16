@@ -821,10 +821,12 @@ $(document).ready(function() {
 
     // When we check a color filter, do the same
     $('.filter-color input[type=checkbox]').on('click touch', function(e) {
+      // If it's disabled, return false
       if ($(this).parent().hasClass('disabled')) {
         e.preventDefault();
         return false;
       }
+      
       productlist.filter();
       var f = [];
       $('.filter-color :checkbox:checked').each(function(i) {
