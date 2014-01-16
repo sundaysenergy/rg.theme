@@ -5,6 +5,16 @@ $(document).ready(function() {
     $.ajax({ url: '/_api/db/_entity/user/'+$.cookie('uid')+'/profile.json'})
     .done(function(user_info) {
       $('.account-information').html(account_info.render(user_info));
+      $.fn.editable.defaults.mode = 'inline';
+      $('.account-information .editable').editable({
+          type: 'select'
+          ,ajaxOptions: {
+            type: 'put',
+            dataType: 'json'
+          }
+          ,pk: 1
+          ,url: '/post'
+      });
     });
   });
 });

@@ -40,7 +40,6 @@ account:
   css:
     - css/bootstrap-editable.css
   js:
-    - js/account-editable.js
     - js/bootstrap-editable.min.js
     - js/account.js
 admin:
