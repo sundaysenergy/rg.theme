@@ -76,9 +76,6 @@ $(document).ready(function() {
       var faves      = hash.get('faves');
       var color      = hash.get('color');
 
-      // Add active class for current sub collection, and remove active class for non-active sub.
-      $('ul.collection-filter li a').removeClass('active');
-
       // Reset our filters checkboxes if necessary
       if (_.isUndefined(hash.get('attributes'))) $('.filter-attributes').find(':checkbox').attr('checked',false);
       if (_.isUndefined(hash.get('color'))) $('.filter-color').find(':checkbox').attr('checked',false);
@@ -143,9 +140,6 @@ $(document).ready(function() {
           // Move products after the leather header
           $('#products').insertAfter('#collection-menu-leather');
         }
-
-        // Active class
-        $('ul.collection-filter li').find('a[href="/collection.html#collection=' + collection + '"]').addClass('active');
         
         // If the page size and buttons don't match up, simulate click -- workaround for back button issue with search
         if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
