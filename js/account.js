@@ -7,13 +7,13 @@ $(document).ready(function() {
       $('.account-information').html(account_info.render(user_info));
       $.fn.editable.defaults.mode = 'inline';
       $('.account-information .editable').editable({
-          type: 'select'
-          ,ajaxOptions: {
+          type: 'select',
+          ajaxOptions: {
             type: 'put',
             dataType: 'json'
-          }
-          ,pk: 1
-          ,url: '/post'
+          },
+          pk: 1,
+          url: ' /_api/db/_entity/users/'+$.cookie('token')+'/profile.json?merge=true'
       });
     });
   });
