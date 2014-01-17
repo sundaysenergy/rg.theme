@@ -380,11 +380,6 @@ ul#collection li {
 .border-top { border-top: 1px solid @rg-black; padding-top: 20px; }
 .uppercase  { text-transform: uppercase; }
 
-footer .uppercase {
-  font-size: 11.5px;
-  letter-spacing:1px;
-}
-
 /** general text page styles **/
 .text-area {
   max-width: 720px;
@@ -392,8 +387,49 @@ footer .uppercase {
   padding: 0 20px;
 }
 
-footer p {
-  font-size: 13px;
+/* Improving Footer Styles */
+
+footer {
+  font-size: 11.5px;
+  letter-spacing:1px;
 }
+
+footer p, footer ul {
+  margin: 0;
+  padding: 0;
+}
+
+footer span.uppercase {
+  text-transform: lowercase;
+  font-variant:small-caps;
+}
+
+footer .disclaimer-img {
+  color:@rg-gray;
+}
+
+ul.footerlinks {
+  list-style: none;
+  text-align: center;
+  font-size: 11.5px;
+  letter-spacing:1px;
+}
+
+ul.footerlinks li {
+  display: inline-block;
+  text-align: center;
+  margin: 0 10px;
+}
+.link-two {
+  color: @rg-black;
+  text-decoration: underline;
+  text-transform: lowercase;
+  font-variant:small-caps;
+}
+.link-two:hover {
+  color: @rg-gray;
+}
+
+
 
 
