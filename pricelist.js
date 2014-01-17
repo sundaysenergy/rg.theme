@@ -6,7 +6,7 @@ $.getJSON('http://rg.cape.io/items/client_data.json', function(data) {
   var template = Hogan.compile('{{#items}}<tr><td>{{color}}</td><td>{{content}}</td><td>{{id}}</td><td>{{name}}</td><td>{{tradeprice}}</td><td>{{repeat}}</td><td>{{width}}</td></tr>{{/items}}'); 
   $('tbody.list').hide();
   $('tbody.list').html(template.render(data));
-  
+
   // Define value names and other options
   var options = {
     valueNames: [ 'color', 'content', 'id', 'name', 'price', 'repeat', 'width' ],
@@ -17,6 +17,7 @@ $.getJSON('http://rg.cape.io/items/client_data.json', function(data) {
   };
   // Init list
   var textiles = new List('textiles', options, data);
+  $('tbody.list').show();
   
   // When the list is updated, we need to rework the pager buttons
   textiles.on('updated', function() {
