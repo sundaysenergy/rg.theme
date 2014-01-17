@@ -41,7 +41,7 @@ $(document).ready(function() {
         }).prependTo($(this));
       });
       $.ajaxSetup({ cache:false });
-      $.getJSON('http://rg.cape.io/items/' + data.value + '/info.json', function(result) {
+      $.getJSON('http://rg.cape.io/_api/items/_entity/' + data.value, function(result) {
         $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
         var url = result.img.normal["320"],
             url_far = result.img.far["320"];
