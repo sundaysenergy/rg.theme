@@ -118,7 +118,7 @@ $(document).ready(function() {
           $('#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
-            $('#collection-menu-passementerie-inactive').appendTo('#collection-headers-after');
+            $('#collection-menu-passementerie-inactive').appendTo('#collection-headers-after > div.row');
             $('#collection-menu-leather-inactive').insertAfter($('#collection-menu-passementerie-inactive'));
           }
           // Hide inactive header for textile collection
@@ -137,7 +137,7 @@ $(document).ready(function() {
           $('#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 0) {
-            $('#collection-menu-leather-inactive').appendTo('#collection-headers-after');
+            $('#collection-menu-leather-inactive').appendTo('#collection-headers-after > div.row');
           }
           // Hide the inactive header for this collection
           $('#collection-menu-passementerie-inactive').hide();
