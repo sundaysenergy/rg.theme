@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $.removeCookie('uid');
-  $.removeCookie('token');
+  $.removeCookie('uid', { path: '/', domain: '.rg.cape.io' });
+  $.removeCookie('token', { path: '/', domain: '.rg.cape.io' });
   window.location = document.referrer;
 });
