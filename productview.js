@@ -11,7 +11,8 @@ $(document).ready(function() {
   delete(sessionStorage.detailedview);
 
   var item_prices = [];
-
+  var token = $.cookie('token');
+  
   $.ajax({
     url: 'http://rg.cape.io/items/price.json',
     type: 'GET',
