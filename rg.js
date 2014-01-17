@@ -18,5 +18,5 @@ $(document).ready(function() {
     $('a[href="/trade/login.html"]').attr('href', '/trade/account.html');
   }
 
-  $('a[href="'+window.location.pathname+'"]').addClass('active');
+  $('.masthead nav ul li a[href="'+window.location.pathname+'"]').parent().addClass('active');
 });
