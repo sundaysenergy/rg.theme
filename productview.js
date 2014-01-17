@@ -882,6 +882,9 @@ $(document).ready(function() {
         var m = _.some(productlist.matchingItems, function(item) {
           var colorname = item.values().primarycolor;
           if (_.isUndefined(colorname)) {
+            colorname = item.values().color;
+          }
+          if (_.isUndefined(colorname)) {
             colorname = '';
           }
           if (colorname.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
