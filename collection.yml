@@ -36,6 +36,11 @@ login:
     - login.css
   js:
     - login.js
+logout:
+  css:
+    - logout.css
+  js:
+    - logout.js
 account:
   css:
     - css/bootstrap-editable.css
