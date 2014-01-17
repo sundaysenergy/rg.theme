@@ -13,17 +13,19 @@ $(document).ready(function() {
   var item_prices = [];
   var token = $.cookie('token');
   
-  $.ajax({
-    url: 'http://rg.cape.io/items/price.json',
-    type: 'GET',
-    async: false,
-    headers: { Authorization: 'bearer '+token },
-    contentType: 'application/json',
-    success: function(result) {
-      console.log(result);
-      item_prices = result;
-    }
-  });
+  if (_.isUndefined(token) == false) {
+    $.ajax({
+      url: 'http://rg.cape.io/items/price.json',
+      type: 'GET',
+      async: false,
+      headers: { Authorization: 'bearer '+token },
+      contentType: 'application/json',
+      success: function(result) {
+        console.log(result);
+        item_prices = result;
+      }
+    });
+  }
   console.log(item_prices);
 
   /**** GET THE ITEMS INFORMATION FROM CAPE AND PROCESS IT ****/
