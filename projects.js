@@ -88,7 +88,6 @@ $(document).ready(function() {
                     });
                     // Send a request to cape with the updated order
                     var token = 'bearer ' + $.cookie('token');
-                    console.log(obj);
                     $.ajax({
                       url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
                       type: 'PUT',
