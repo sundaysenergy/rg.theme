@@ -363,6 +363,9 @@ $(document).ready(function() {
                 var color_field = item.values().primarycolor;
                 // If color search is active, but the primary color is not defined, return false
                 if (_.isUndefined(color_field)) {
+                  color_field = item.values().color;
+                }
+                if (_.isUndefined(color_field)) {
                   return false;
                 }
                 // If the color field is present and matches
