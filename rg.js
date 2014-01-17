@@ -17,4 +17,6 @@ $(document).ready(function() {
     $('ul.trade-login').removeClass('disabled');
     $('a[href="/trade/login.html"]').attr('href', '/trade/account.html');
   }
+
+  $('a[href="'+window.location.pathname+'"]').addClass('active');
 });
