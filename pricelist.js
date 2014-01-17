@@ -1,7 +1,11 @@
 /*** JS for pricelist functionality ***/
 
 // Retrieve the pricelist json file and get started
-$.getJSON('http://rg.cape.io/trade/pricelist.json', function(data) {
+$.getJSON('http://rg.cape.io/items/client_data.json', function(data) {
+  
+  var template = Hogan.compile('{{#items}}<tr><td>{{color}}</td><td>{{content}}</td><td>{{id}}</td><td>{{name}}</td><td>{{tradeprice}}</td><td>{{repeat}}</td><td>{{width}}</td></tr>{{/items}}'); 
+  $('tbody.list').hide();
+  $('tbody.list').html(template.render(data));
   
   // Define value names and other options
   var options = {
