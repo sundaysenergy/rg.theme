@@ -61,8 +61,8 @@ $(document).ready(function() {
 
     // Function for showing or not showing the pricelist
     var itemPrice = function(itemno) {
-      var price = (_.isUndefined(item_prices[itemno])) ? false:item_prices[itemno];
-      return '$'+parseInt(price).toFixed(2);
+      var price = (_.isUndefined(item_prices[itemno])) ? false:'$'+parseInt(item_prices[itemno]).toFixed(2);
+      return price;
     }
 
     // Loop through items in list and bind additional functions needed for mustache templates
