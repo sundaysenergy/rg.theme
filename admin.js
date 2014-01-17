@@ -15,10 +15,16 @@ $(document).ready(function() {
   /* Typeahead.js for autocompleting products */
   $.ajax({ url: 'http://rg.cape.io/items/client_data.json' })
   .done(function(data) {
-    console.log(_.map(data.items, function(item) { console.log(item); }));
+    var items = _.forEach(data.items, function(item) {
+      item.value = item.id + ' ' + item.content;
+      item.tokens = _.values(item);
+      return item;
+    });
+    console.log(data.items);
+    console.log(items);
     var ta = $('.typeahead').typeahead({
       name: 'rg2',
-      local: data.items,
+      local: items,
       template: [
         '<h3>{{value}}</h3>',
         '<p>{{tokens}}</p>'
