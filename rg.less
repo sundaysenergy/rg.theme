@@ -125,7 +125,6 @@ main{
   color: @rg-gray;
 }
 
-.masthead nav ul li ul.trade-login,
 .masthead nav ul li ul.collection-filter {
   height:0;
   opacity: 0;
@@ -134,7 +133,15 @@ main{
   padding: 0;
   width: 300px;
 }
-
+/* Tim added this, so you should probably fix it. */
+.masthead nav ul li ul.trade-login {
+  height:0;
+  opacity: 0;
+  overflow: hidden;
+  margin: 0 0 0 -120px;
+  padding: 0;
+  width: 500px;
+}
 .masthead nav ul li ul.trade-login li,
 .masthead nav ul li ul.collection-filter li {
   border-top: none;
