@@ -15,7 +15,7 @@ $(document).ready(function() {
   /* Typeahead.js for autocompleting products */
   $.ajax({ url: 'http://rg.cape.io/items/client_data.json' })
   .done(function(data) {
-    console.log(_.map(data.items, function(item) { console.log(item); }))
+    console.log(_.map(data.items, function(item) { console.log(item); }));
     var ta = $('.typeahead').typeahead({
       name: 'rg2',
       local: data.items,
@@ -24,7 +24,7 @@ $(document).ready(function() {
         '<p>{{tokens}}</p>'
       ].join(''),
       engine: Hogan
-    });
+    })
     /* Add event handler for autocompletion and explicit selection */
     .on('typeahead:selected typeahead:autocompleted', function(e, data) {
       /* Show file inputs and retrieve json for specific item */
