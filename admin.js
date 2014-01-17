@@ -18,14 +18,13 @@ $(document).ready(function() {
     _.forEach(data.items, function(item) {
       item.value = item.id;
       item.tokens = _.values(item);
-      return item;
     });
     var ta = $('.typeahead').typeahead({
       name: 'rg2',
       local: data.items,
       template: [
         '<h3>{{value}}</h3>',
-        '<p>{{tokens}}</p>'
+        '<p>{{content}}</p>'
       ].join(''),
       engine: Hogan
     })
@@ -74,7 +73,7 @@ $(document).ready(function() {
           }).prependTo($(this));
         });
         $.ajaxSetup({ cache:false });
-        $.getJSON('http://rg.cape.io/items/' + itemid + '/info.json', function(result) {
+        $.getJSON('http://rg.cape.io/_api/items/_entity/' + itemid, function(result) {
           $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
           var url = result.img.normal["320"],
               url_far = result.img.far["320"];
