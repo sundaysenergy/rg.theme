@@ -13,5 +13,8 @@ $(document).ready(function() {
 
   });
   var token = $.cookie('token');
-  if (_.isUndefined(token) == false) $('ul.trade-login').removeClass('disabled');
+  if (_.isUndefined(token) == false) {
+    $('ul.trade-login').removeClass('disabled');
+    $('a[href="/trade/login.html"]').attr('href', '/trade/account.html');
+  }
 });
