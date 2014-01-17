@@ -21,12 +21,10 @@ $(document).ready(function() {
       headers: { Authorization: 'bearer '+token },
       contentType: 'application/json',
       success: function(result) {
-        console.log(result);
         item_prices = result;
       }
     });
   }
-  console.log(item_prices);
 
   /**** GET THE ITEMS INFORMATION FROM CAPE AND PROCESS IT ****/
   $.getJSON('http://rg.cape.io/items/client_data.json', function(combined) {
@@ -274,7 +272,6 @@ $(document).ready(function() {
 
       // Process the filter if there are any terms other than undefined in our hash list
       if (_.some(vals, function(item) { return _.isUndefined(item) == false })) {
-        console.log("Processing filter");
         productlist.filter(function(item) {
           // Set our default to false, and explicit define matches
           var match = false;
@@ -524,7 +521,6 @@ $(document).ready(function() {
                     headers: { Authorization: 'bearer '+token },
                     contentType: 'application/json',
                     success: function(result) {
-                      console.log(result);
                       // Close the dialog box for adding an item
                       $('#project-trade-list').closest('.alert').find('button.close').trigger('click');
                       // Display a success message
@@ -709,7 +705,6 @@ $(document).ready(function() {
                     $('#project-trade-list').closest('.alert').find('button.close').trigger('click')
                     $('.item-spotlight').append(favorites_template.render({message:'Item added to your favorites!'}));
                     $('.alert-favorite').find('a').attr('href','/trade/projects.html');
-                    console.log(result);
                   },
                   fail: function(result) {
                     window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
