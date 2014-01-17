@@ -125,6 +125,7 @@ main{
   color: @rg-gray;
 }
 
+.masthead nav ul li ul.trade-login,
 .masthead nav ul li ul.collection-filter {
   height:0;
   opacity: 0;
@@ -134,6 +135,7 @@ main{
   width: 300px;
 }
 
+.masthead nav ul li ul.trade-login li,
 .masthead nav ul li ul.collection-filter li {
   border-top: none;
   display: block;
@@ -146,17 +148,22 @@ main{
   width: auto;
 }
 
+.masthead nav ul li ul.trade-login li:first-child,
 .masthead nav ul li ul.collection-filter li:first-child {
   margin-left: 0;
 }
+.masthead nav ul li ul.trade-login li:last-child,
 .masthead nav ul li ul.collection-filter li:last-child {
   margin-right: 0;
 }
 
+.masthead nav ul li ul.trade-login li a, 
 .masthead nav ul li ul.collection-filter li a {
   color:#9a8669;
 }
 
+.masthead nav ul li ul.trade-login li.active a,
+.masthead nav ul li ul.trade-login li a.active, 
 .masthead nav ul li ul.collection-filter li.active a,
 .masthead nav ul li ul.collection-filter li a.active {
   color:#725a38;
