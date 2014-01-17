@@ -12,9 +12,12 @@ $(document).ready(function() {
                           function(data) {
                             $.cookie('token', data.token, { expires: 1, path: '/', domain: '.rg.cape.io' });
                             $.cookie('uid', data.uid, { expires: 1, path: '/', domain: '.rg.cape.io' });
-                            $('body').append(template.render({message:'Login succeed. Your token has been stored as a cookie!'}));
                             $('form').hide();
-                            if (_.isUndefined(hash.get('destination')) == false) window.location = hash.get('destination');
+                            if (_.isUndefined(hash.get('destination')) == false) {
+                              window.location = hash.get('destination');
+                            } else {
+                              window.location = "/trade/account.html";
+                            }
                           })
                           .fail(function(data) {
                             if (data.status) {
