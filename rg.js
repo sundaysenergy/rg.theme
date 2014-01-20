@@ -1,7 +1,8 @@
-/* some stuff here */
 $(document).ready(function() {
+  // Expose a search box when hovering over the icon
   $('.fa-search').hover(function() {
     $('#search-items').slideToggle();
+    // Capture the form submission and redirect with a default collection
     $('#search-items').on('submit', function(e) {
       e.preventDefault();
       var collection = hash.get('collection');
@@ -12,11 +13,12 @@ $(document).ready(function() {
   }, function() {
 
   });
+  // If there's a token, enable the sub navigation menu
   var token = $.cookie('token');
   if (_.isUndefined(token) == false) {
     $('ul.trade-login').removeClass('disabled');
     $('a[href="/trade/login.html"]').attr('href', '/trade/account.html');
   }
-
+  // Add active class to the parent of the current href
   $('.masthead nav ul li a[href="'+window.location.pathname+'"]').parent().addClass('active');
 });

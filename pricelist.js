@@ -1,7 +1,32 @@
 /*** JS for pricelist functionality ***/
 
+  var item_prices = [];
+  var token = $.cookie('token');
+  
+  if (_.isUndefined(token) == false) {
+    $.ajax({
+      url: 'http://rg.cape.io/items/price.json',
+      type: 'GET',
+      async: false,
+      headers: { Authorization: 'bearer '+token },
+      contentType: 'application/json',
+      success: function(result) {
+        item_prices = result;
+      }
+    });
+  }
+
+var itemPrice = function(itemno) {
+  var price = (_.isUndefined(item_prices[itemno])) ? false:'$'+parseInt(item_prices[itemno]).toFixed(2);
+  return price;
+}
+
 // Retrieve the pricelist json file and get started
 $.getJSON('http://rg.cape.io/items/client_data.json', function(data) {
+  
+  _.forEach(data, function(item) {
+    item.tradeprice = _.bind(itemPrice, item_prices, item.id);
+  });
   
   var template = Hogan.compile('{{#items}}<tr><td class="color">{{color}}</td><td class="content">{{content}}</td><td class="id">{{id}}</td><td class="name">{{name}}</td><td class="tradeprice">{{tradeprice}}</td><td class="repeat">{{repeat}}</td><td class="width">{{width}}</td></tr>{{/items}}'); 
   $('tbody.list').hide();
