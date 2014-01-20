@@ -1,0 +1,37 @@
+<table>
+  <tbody>
+    <tr>
+      <td class="fav text-left"><button class="plain fav">+</button></td>
+      <td><h3>Fabric</h3><p>{{item.name}} {{item.id}}</p></td>
+      <td><h3>Color</h3><p>{{item.color}}</p></td>
+      <td><h3>Content</h3><p>{{item.content}}</p></td>
+      {{#item.repeat}}<td><h3>Repeat</h3><p>{{item.repeat}}</p></td>{{/item.repeat}}
+      {{#item.width}}<td><h3>Width</h3><p>{{item.width}}</p></td>{{/item.width}}
+      {{#item.tradeprice}}<td><h3>Price</h3><p>{{item.tradeprice}}</p></td>{{/item.tradeprice}}
+      <td class="close text-left"><button type="button" class="close plain" aria-hidden="true">X</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<style>
+  tbody td.fav button {
+    background: transparent url(img/add-to-fav.png) center center no-repeat;
+    border: none;
+    display: block;
+    height: 29px;
+    width: 29px;
+    text-indent: -9999px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  tbody td.close button {
+    background: transparent url(img/detail-big-close.png) center center no-repeat;
+    border: none;
+    display: block;
+    height: 29px;
+    width: 29px;
+    text-indent: -9999px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+</style>
