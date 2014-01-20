@@ -129,19 +129,26 @@ button.uppercase { font-size: 12px; }
 
 /* Do this in a less hacky way for production */
 .slider li {
-  width: 33% !important;
-  max-width: 33% !important;
   margin: 0;
 }
 
 .slider li:nth-child(1) {
-  margin-left:  -20px;
-  margin-right:  20px;
+  margin-left:  -1%;
+  margin-right:  1%;
+  width: 28% !important;
+  max-width: 28% !important;
+}
+
+.slider li:nth-child(2) {
+  width: 44% !important;
+  max-width: 44% !important;
 }
 
 .slider li:nth-child(3) {
-  margin-left:   20px;
-  margin-right: -20px;
+  margin-left:   1%;
+  margin-right: -1%;
+  width: 28% !important;
+  max-width: 28% !important;
 }
 
 img {
@@ -351,6 +358,62 @@ ul.collections {
   text-align: center;
   margin: 0;
   padding: 10px 0 10px 0;
+}
+
+/* ==== */
+
+.pager {
+  margin: 0;
+}
+
+.threeup {
+  padding-bottom: 20px;
+}
+
+ul.collections {
+  margin: 0 ;
+}
+
+.collection-category p {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.collection-category p ,
+.collection-category p a {
+  color: #262019;
+}
+
+ul.collection-controls {
+  position: relative;
+}
+
+ul.collection-controls li.hug-left,
+ul.collection-controls li.hug-center,
+ul.collection-controls li.hug-right {
+  position: absolute;
+}
+
+ul.collection-controls li.hug-left {
+  left: 15px;
+}
+
+ul.collection-controls li.hug-center {
+  left: 50%;
+  /* a negative margin-left needs to be supplied by JS, so that each items width will be correctly divided in half to insure centering everywhere */
+}
+
+ul.collection-controls li.hug-right {
+  right: 15px;
+}
+
+/* THIS FOR NOW IS JUST ON THE COLLECTION PAGE!!!! */
+footer {
+  margin-top: 0;
+  border-top: 1px solid;
+  padding-top: 200px;
 }
 
 
