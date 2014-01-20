@@ -260,11 +260,24 @@ img {
 }
 
 #related-products button.close {
-display: block;
-float: none;
-position: absolute;
-top: 3px;
-right: 5px;
+  display: block;
+  float: none;
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  height: 11px;
+  width: 11px;
+  text-indent: -9999px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#related-products button.close {
+  background: transparent url(img/close-x.png) center center no-repeat;
+}
+
+#related-products button.close:hover {
+  background: transparent url(img/close-x-hover.png) center center no-repeat;
 }
 
 ul.slider,
@@ -489,18 +502,18 @@ footer {
 
 .collection-view-items .search-view-number li > a,
 .collection-view-items .search-view-number li > span {
-background-color: transparent;
-display: block;
-clear: none;
-margin: 0;
-padding: 3px 0 0 0;
-border: none;
-border-radius: 0;
-font-weight: inherit;
-line-height: inherit;
-color: @rg-black;
-white-space: nowrap;
-width: 40px
+  background-color: transparent;
+  display: block;
+  clear: none;
+  margin: 0;
+  padding: 3px 0 0 0;
+  border: none;
+  border-radius: 0;
+  font-weight: inherit;
+  line-height: inherit;
+  color: @rg-black;
+  white-space: nowrap;
+  width: 40px
 }
 
 .collection-view-items .search-view-number li > a:hover,
