@@ -43,7 +43,8 @@ button.slide {
   display: block;
 }
 
-#collection-menu-main .dropdown-menu {
+#filter-list,
+#filter-list-leather {
   position: absolute;
   top: 100%;
   left: 0;
@@ -55,11 +56,6 @@ button.slide {
   background-color: #fff;
   border: none;
   box-shadow: 0 0 10px 0 #848484;
-  width: 720px;
-}
-
-#filter-list {
-  margin: 0;
   width: 720px;
   left: -50px;
   top:-10px;
@@ -416,4 +412,56 @@ footer {
   padding-top: 200px;
 }
 
+/* Search Filter Amount Menu Styles */
+
+.collection-view-items .search-view-number {
+  top: 0;
+  left: 50%;
+  float: none;
+  padding: 20px 0 0 0;
+  margin: 0;
+  border: none;
+  border: none;
+  -webkit-box-shadow: 0 0 10px 0 @rg-gray;
+  box-shadow: 0 0 10px 0 @rg-gray;
+  background-clip: padding-box;
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  z-index: 999;
+}
+
+.collection-view-items .search-view-number li {
+  display: list-item;
+  margin: 0;
+  padding: 0;
+  width: 40px;
+}
+
+.collection-view-items .search-view-number li > a,
+.collection-view-items .search-view-number li > span {
+background-color: transparent;
+display: block;
+clear: none;
+margin: 0;
+padding: 3px 0 0 0;
+border: none;
+border-radius: 0;
+font-weight: inherit;
+line-height: inherit;
+color: @rg-black;
+white-space: nowrap;
+width: 40px
+}
+
+.collection-view-items .search-view-number li > a:hover,
+.collection-view-items .search-view-number li > span:hover {
+background-color: @rg-gray;
+}
+/* Undoing some Bootstrap stuff i think? */
+.btn-group.open .dropdown-toggle {
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+box-shadow: none;
+}
 
