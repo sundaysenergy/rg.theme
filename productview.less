@@ -50,7 +50,8 @@ button.slide {
   display: block;
 }
 
-#collection-menu-main .dropdown-menu {
+#filter-list,
+#filter-list-leather {
   position: absolute;
   top: 100%;
   left: 0;
@@ -62,11 +63,6 @@ button.slide {
   background-color: #fff;
   border: none;
   box-shadow: 0 0 10px 0 #848484;
-  width: 720px;
-}
-
-#filter-list {
-  margin: 0;
   width: 720px;
   left: -50px;
   top:-10px;
@@ -136,19 +132,26 @@ button.uppercase { font-size: 12px; }
 
 /* Do this in a less hacky way for production */
 .slider li {
-  width: 33% !important;
-  max-width: 33% !important;
   margin: 0;
 }
 
 .slider li:nth-child(1) {
-  margin-left:  -20px;
-  margin-right:  20px;
+  margin-left:  -1%;
+  margin-right:  1%;
+  width: 28% !important;
+  max-width: 28% !important;
+}
+
+.slider li:nth-child(2) {
+  width: 44% !important;
+  max-width: 44% !important;
 }
 
 .slider li:nth-child(3) {
-  margin-left:   20px;
-  margin-right: -20px;
+  margin-left:   1%;
+  margin-right: -1%;
+  width: 28% !important;
+  max-width: 28% !important;
 }
 
 img {
@@ -360,4 +363,112 @@ ul.collections {
   padding: 10px 0 10px 0;
 }
 
+/* ==== */
+
+.pager {
+  margin: 0;
+}
+
+.threeup {
+  padding-bottom: 20px;
+}
+
+ul.collections {
+  margin: 0 ;
+}
+
+.collection-category p {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.collection-category p ,
+.collection-category p a {
+  color: #262019;
+}
+
+ul.collection-controls {
+  position: relative;
+}
+
+ul.collection-controls li.hug-left,
+ul.collection-controls li.hug-center,
+ul.collection-controls li.hug-right {
+  position: absolute;
+}
+
+ul.collection-controls li.hug-left {
+  left: 15px;
+}
+
+ul.collection-controls li.hug-center {
+  left: 50%;
+  /* a negative margin-left needs to be supplied by JS, so that each items width will be correctly divided in half to insure centering everywhere */
+}
+
+ul.collection-controls li.hug-right {
+  right: 15px;
+}
+
+/* THIS FOR NOW IS JUST ON THE COLLECTION PAGE!!!! */
+footer {
+  margin-top: 0;
+  border-top: 1px solid;
+  padding-top: 200px;
+}
+
+/* Search Filter Amount Menu Styles */
+
+.collection-view-items .search-view-number {
+  top: 0;
+  left: 50%;
+  float: none;
+  padding: 20px 0 0 0;
+  margin: 0;
+  border: none;
+  border: none;
+  -webkit-box-shadow: 0 0 10px 0 @rg-gray;
+  box-shadow: 0 0 10px 0 @rg-gray;
+  background-clip: padding-box;
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  z-index: 999;
+}
+
+.collection-view-items .search-view-number li {
+  display: list-item;
+  margin: 0;
+  padding: 0;
+  width: 40px;
+}
+
+.collection-view-items .search-view-number li > a,
+.collection-view-items .search-view-number li > span {
+background-color: transparent;
+display: block;
+clear: none;
+margin: 0;
+padding: 3px 0 0 0;
+border: none;
+border-radius: 0;
+font-weight: inherit;
+line-height: inherit;
+color: @rg-black;
+white-space: nowrap;
+width: 40px
+}
+
+.collection-view-items .search-view-number li > a:hover,
+.collection-view-items .search-view-number li > span:hover {
+background-color: @rg-gray;
+}
+/* Undoing some Bootstrap stuff i think? */
+.btn-group.open .dropdown-toggle {
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+box-shadow: none;
+}
 
