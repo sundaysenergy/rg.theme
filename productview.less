@@ -197,9 +197,29 @@ img {
   position: fixed;
   top: 90px;
   left: 50%;
-  width: 10%;
-  margin-left: -2.5%;
+  width: 100px;
+  margin-left: -50px;
   z-index: 99999;
+}
+
+.itemoverlay .toggle-colors button {
+  border: none;
+  background: @rg-background;
+  color: @rg-gray;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  line-height: 14px;
+  padding-top: 8px;
+  width: 100px;
+}
+
+.itemoverlay .toggle-colors button:hover,
+.itemoverlay .toggle-colors button:active,
+.itemoverlay .toggle-colors.open button,
+.itemoverlay .toggle-colors button.open {
+  background: @rg-dark-gold;
+  color: @rg-background;
 }
 
 .img-large-container { overflow: hidden; }
@@ -328,7 +348,12 @@ ul.slider,
 
 .itemoverlay table td {
   margin: 0;
-  padding: 0;
+  padding: 9px 0 2px 0;
+}
+
+.itemoverlay table td.fav,
+.itemoverlay table td.fav {
+  padding: 2px 0 6px 0;
 }
 
 .itemoverlay table tbody td.fav button,
