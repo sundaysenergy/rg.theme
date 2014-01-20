@@ -24,10 +24,10 @@ var itemPrice = function(itemno) {
 // Retrieve the pricelist json file and get started
 $.getJSON('http://rg.cape.io/items/client_data.json', function(data) {
   
-  _.forEach(data, function(item) {
+  _.forEach(data.items, function(item) {
     item.tradeprice = _.bind(itemPrice, item_prices, item.id);
   });
-  
+
   var template = Hogan.compile('{{#items}}<tr><td class="color">{{color}}</td><td class="content">{{content}}</td><td class="id">{{id}}</td><td class="name">{{name}}</td><td class="tradeprice">{{tradeprice}}</td><td class="repeat">{{repeat}}</td><td class="width">{{width}}</td></tr>{{/items}}'); 
   $('tbody.list').hide();
   $('tbody.list').html(template.render(data));
