@@ -488,7 +488,7 @@ $(document).ready(function() {
           });
 
           // Add to favorites from detailed view
-          $('td.fav button.fav').parent().off().on('click touch', function(e) {
+          $('td.fav button.fav').off().on('click touch', function(e) {
             var uid = $.cookie('uid');
             var token = $.cookie('token');
             // If we are not logged in, add the item to anonymous favorites
