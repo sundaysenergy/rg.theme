@@ -17,7 +17,7 @@
   }
 
 var itemPrice = function(itemno) {
-  var price = (_.isUndefined(item_prices[itemno])) ? false:'$'+parseInt(item_prices[itemno]).toFixed(2);
+  var price = (_.isUndefined(item_prices[itemno])) ? false:parseInt(item_prices[itemno]).toFixed(2);
   return price;
 }
 
