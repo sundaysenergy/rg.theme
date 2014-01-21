@@ -1,9 +1,26 @@
 /* Stuff that KB should put where he deems appropriate */
 #search-items {
   display: none;
-  width: 85%;
-  float: left;
+  width: 160px;
+  max-width: 160px;
 }
+
+#search-items .form-control {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 2px;
+  font-size: 14px;
+  line-height: 2;
+  color: @rg-gray;
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  border-top: none !important; 
+  border-bottom: 1px solid @rg-gray;
+  border-radius: 0;
+}
+
 .item-spotlight {
   top: 0;
   right: 0;
@@ -110,7 +127,7 @@ main{
 .masthead nav > ul li {
   text-transform: uppercase;
   border-top: solid 1px @rg-black;
-  padding: 3px 20px 2px;
+  padding: 5px 0 0 0;
   font-weight: 500;
 }
 
@@ -387,6 +404,10 @@ ul#collection li {
   max-width: 720px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+.text-area.add-bottom {
+  margin-bottom: 40px;
 }
 
 /* Improving Footer Styles */
