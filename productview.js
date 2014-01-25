@@ -675,7 +675,7 @@ $(document).ready(function() {
         });
         // Handle closing the color list with an X
         $('#item-colors button.close').off('click touch').on('click touch', function(e) {
-          $('#item-colors'.hide();
+          $('#item-colors').hide();
         });
         // Create click handler for favorite
         $('.item-spotlight .item-icons button.item-favorite').on('click touch', function(e) {
