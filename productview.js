@@ -744,7 +744,7 @@ $(document).ready(function() {
           var current_page = parseInt(colorslist.i / 5 + 1);
           var total_pages = parseInt(colorslist.matchingItems.length / 5);
           if (colorslist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
-          // $('#related-products .related-page-count').html(current_page + " / " + total_pages);
+          $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
           $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
           $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
             // Add to the hash so that if we refresh the page it still has the correct starting position
