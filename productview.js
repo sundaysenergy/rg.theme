@@ -43,7 +43,7 @@ $(document).ready(function() {
     // Set our options for the main product list
     var options = {
       valueNames: [ 'image', 'content', 'id' ],
-      item: '<li><span style="display:none" class="id"></span><img class="img"></li>',
+      item: '<li><span style="display:none" class="id"></span><img class="img"><div class="add-fave"><button><i class="fa fa-plus-square-o"></i></button></div></li>',
       page: rg_options.horizontal_page,
       i: 0
     };

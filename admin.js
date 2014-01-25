@@ -11,7 +11,7 @@ $(document).ready(function() {
                                 url: "http://h2.cape.io/upload", 
                                 maxFiles: 1, 
                                 acceptedFiles: 'image/jpeg' 
-                              });   
+                              });
   /* Typeahead.js for autocompleting products */
   $.ajax({ url: 'http://rg.cape.io/items/client_data.json' })
   .done(function(data) {

@@ -131,23 +131,23 @@ button.uppercase { font-size: 12px; }
 }
 
 /* Do this in a less hacky way for production */
-.slider li {
+.slider > li {
   margin: 0;
 }
 
-.slider li:nth-child(1) {
+.slider > li:nth-child(1) {
   margin-left:  -1%;
   margin-right:  1%;
   width: 28% !important;
   max-width: 28% !important;
 }
 
-.slider li:nth-child(2) {
+.slider > li:nth-child(2) {
   width: 44% !important;
   max-width: 44% !important;
 }
 
-.slider li:nth-child(3) {
+.slider > li:nth-child(3) {
   margin-left:   1%;
   margin-right: -1%;
   width: 28% !important;
@@ -161,7 +161,7 @@ img {
 /* In slide view, if we are on the first item we add a dummy
    to push it into the center section. Hide the fourth element
    from display in this instance */
-.slider li:nth-of-type(4) {
+.slider > li:nth-of-type(4) {
   display: none;
 }
 
