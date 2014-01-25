@@ -714,7 +714,6 @@ $(document).ready(function() {
         });
         // Create click handler for favorite
         $('.item-spotlight .item-icons button.item-favorite').on('click touch', function(e) {
-          $(this).off('click touch');
           e.preventDefault();
           var id = $('.list li:nth-child(2)').find('.id').html();
           var uid = $.cookie('uid');
@@ -733,7 +732,6 @@ $(document).ready(function() {
             $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
           // Add item to trade list
           } else {
-            $(this).off('click touch');
             e.preventDefault();
             $.getJSON('http://rg.cape.io/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
               $('body').append(project_list_select_template.render({lists:data}));
