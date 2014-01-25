@@ -513,6 +513,35 @@ $(document).ready(function() {
               $.getJSON('http://rg.cape.io/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
                 // Render the list against our template
                 $('.itemoverlay').append(project_list_select_template.render({lists:data}));
+                $('#project-list-select .editable').editable({
+                    type: 'select',
+                    ajaxOptions: {
+                      type: 'post',
+                      dataType: 'json'
+                    },
+                    pk: 1,
+                    value: '',
+                    autotext: 'never',
+                    display: false,
+                    url: function(params) {
+                      console.log(params);
+                      var token = 'bearer ' + $.cookie('token');
+                      $.ajax({
+                        url: 'http://rg.cape.io/_api/items/_index/list',
+                        type: 'post',
+                        data: { info: { name:params.value } },
+                        headers: { Authorization: token },
+                        dataType: 'json',
+                        success: function (data) {
+                          // Add the new list to the select
+                          $('<option/>', { value : data._id }).text(params.value).appendTo('#project-trade-list');
+                          // Select the recently created list
+                          $('#project-trade-list option[value=' + data._id + ']').attr('selected','selected');
+                        }
+                      });
+                      return;
+                    }
+                });
                 // Catch form submissions
                 $('#project-trade-list').closest('form').on('submit', function(e) {
                   e.preventDefault();
