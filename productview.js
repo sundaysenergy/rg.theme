@@ -736,7 +736,7 @@ $(document).ready(function() {
         }
         var options = {
           valueNames: [ 'related-item' ],
-          page: 2,
+          page: 5,
           i: n
         };
         var colorslist = new List('item-colors', options);
@@ -757,6 +757,32 @@ $(document).ready(function() {
             $('#item-colors .rel-previous').addClass('disabled').off('click touch');
           }
           if (parseInt(colorslist.i)+1 > colorslist.matchingItems.length) {
+            $('#item-colors .rel-next').addClass('disabled').off('click touch');
+          }
+
+          var current_page = parseInt(colorslist.i / 5 + 1);
+          var total_pages = parseInt(colorslist.matchingItems.length / 5);
+          if (colorslist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
+          // $('#related-products .related-page-count').html(current_page + " / " + total_pages);
+          $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
+          $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
+            // Add to the hash so that if we refresh the page it still has the correct starting position
+            hash.add({dpos:parseInt(colorslist.i)+5});
+            // Manually update the list with a new start position since we'll ignore
+            // this code if session storage matches the view
+            colorslist.i = parseInt(colorslist.i)+5;
+            colorslist.update();
+          });
+          $('#item-colors .rel-previous').off('click touch').on('click touch', function(e) {
+            // Works the same way as the lines above. See comments there.
+            hash.add({dpos:parseInt(colorslist.i)-5});
+            colorslist.i = parseInt(colorslist.i)-5;
+            colorslist.update();
+          });
+          if (parseInt(colorslist.i)-1 == 0) {
+            $('#item-colors .rel-previous').addClass('disabled').off('click touch');
+          }
+          if ((parseInt(colorslist.i) + parseInt(colorslist.page)) > colorslist.matchingItems.length) {
             $('#item-colors .rel-next').addClass('disabled').off('click touch');
           }
         });
