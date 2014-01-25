@@ -227,6 +227,7 @@ img {
 .img-large-container { overflow: hidden; }
 .img-large-container img, .rulers img {width: 100%; height: auto;}
 
+#item-colors,
 #related-products {
   background: @rg-background;
   height: 120px;
@@ -242,6 +243,7 @@ img {
   display: none;
 }
 
+#item-colors .list,
 #related-products .list {
   width: 440px;
   margin: 0;
@@ -251,6 +253,7 @@ img {
   top: 40px;
 }
 
+#item-colors .list li.related-item,
 #related-products .list li.related-item {
   width: 18%;
   max-width: 18%;
@@ -259,10 +262,12 @@ img {
   padding: 0;
   overflow: hidden;  
 }
+#item-colors .list li.related-item:nth-child(5n),
 #related-products .list li.related-item:nth-child(5n) {
   margin-right: 0;
 }
 
+#item-colors button.controls,
 #related-products button.controls {
   position: absolute;
   display: block;
@@ -271,20 +276,24 @@ img {
 
 button.previous:hover,
 button.next:hover,
+#item-colors button.controls:hover,
 #related-products button.controls:hover {
   color: @rg-dark-gold;
 }
 
+#item-colors button.right,
 #related-products button.right {
   right: 15px;
 }
 
+#item-colors .related-page-count,
 #related-products .related-page-count {
   margin: 0;
   padding: 0;
   text-align: center;
 }
 
+#item-colors button.close,
 #related-products button.close {
   background: transparent url(img/close-x.png) center center no-repeat;
   display: block;
@@ -301,6 +310,7 @@ button.next:hover,
   filter: alpha(opacity=75);
 }
 
+#item-colors button.close:hover,
 #related-products button.close:hover {
   opacity: 1;
   filter: alpha(opacity=100);
