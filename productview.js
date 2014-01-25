@@ -718,6 +718,7 @@ $(document).ready(function() {
           var id = $('.list li:nth-child(2)').find('.id').html();
           var uid = $.cookie('uid');
           var token = $.cookie('token');
+          $('.item-information,#item-colors').hide();
           // Add anonymous favorite
           if (_.isUndefined(uid) || _.isUndefined(token)) {
             $(this).off('click touch');
