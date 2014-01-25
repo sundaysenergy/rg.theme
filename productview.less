@@ -1,3 +1,5 @@
+/* what the fuck did I do? */
+
 div.add-fave {
   display: none;
   position: absolute;
@@ -131,23 +133,23 @@ button.uppercase { font-size: 12px; }
 }
 
 /* Do this in a less hacky way for production */
-.slider > li {
-  margin: 0;
+.slider li {
+  margin: 0 0 20px 0;
 }
 
-.slider > li:nth-child(1) {
+.slider li:nth-child(1) {
   margin-left:  -1%;
   margin-right:  1%;
   width: 28% !important;
   max-width: 28% !important;
 }
 
-.slider > li:nth-child(2) {
+.slider li:nth-child(2) {
   width: 44% !important;
   max-width: 44% !important;
 }
 
-.slider > li:nth-child(3) {
+.slider li:nth-child(3) {
   margin-left:   1%;
   margin-right: -1%;
   width: 28% !important;
@@ -161,7 +163,7 @@ img {
 /* In slide view, if we are on the first item we add a dummy
    to push it into the center section. Hide the fourth element
    from display in this instance */
-.slider > li:nth-of-type(4) {
+.slider li:nth-of-type(4) {
   display: none;
 }
 
@@ -267,16 +269,16 @@ img {
   top: 57px;
 }
 
+button.previous:hover,
+button.next:hover,
 #related-products button.controls:hover {
   color: @rg-dark-gold;
-}
-
-#related-products button.left {
 }
 
 #related-products button.right {
   right: 15px;
 }
+
 #related-products .related-page-count {
   margin: 0;
   padding: 0;
@@ -483,6 +485,7 @@ ul.collection-controls li.hug-left,
 ul.collection-controls li.hug-center,
 ul.collection-controls li.hug-right {
   position: absolute;
+  z-index: 1111;
 }
 
 ul.collection-controls li.hug-left {
@@ -491,7 +494,11 @@ ul.collection-controls li.hug-left {
 
 ul.collection-controls li.hug-center {
   left: 50%;
-  /* a negative margin-left needs to be supplied by JS, so that each items width will be correctly divided in half to insure centering everywhere */
+  /********/
+  /* This is a temporary solution, would prefer a dynamic, JS one so that if the text is larger or smaller it is being corrected only exactly the amount need per word */
+  margin-left: -100px;
+  width: 200px;
+  /********/
 }
 
 ul.collection-controls li.hug-right {
@@ -557,4 +564,5 @@ background-color: @rg-gray;
 -moz-box-shadow: none;
 box-shadow: none;
 }
+
 
