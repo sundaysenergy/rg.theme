@@ -664,7 +664,8 @@ $(document).ready(function() {
         if (productlist.matchingItems.length == 1) n = 0;
         // Render the template with the correct data
         if (productlist.matchingItems.length > 0) {
-          $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(productlist.visibleItems[parseInt(n)].values()));
+          var itemvals = productlist.visibleItems[parseInt(n)].values();
+          $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(itemvals));
         }
         // Create click handlers for the icon and the close button
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
@@ -721,13 +722,6 @@ $(document).ready(function() {
           }
         });
         // Handle related colors list
-        var id = $('.list li:nth-child(2)').find('.id').html();
-        var sitem = productlist.get("id", id);
-        var $relatedcolors = $('#item-colors ul.list');
-        $relatedcolors.empty();
-        _.forEach(sitem[0].values().itemcolors(), function(item) {
-          $relatedcolors.append($(related_template.render(productlist.get("id", item)[0].values())));
-        });
         var n = hash.get('cpos');
         if (_.isUndefined(n)) {
           n = 1;
@@ -746,20 +740,6 @@ $(document).ready(function() {
         });
         // Actions to perform when the list is updated -- mostly pagination
         colorslist.on('updated', function() {
-          $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
-          $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
-            hash.add({cpos:parseInt(colorslist.i)+1});
-          });
-          $('#item-colors .rel-previous').off('click touch').on('click touch', function(e) {
-            hash.add({cpos:parseInt(colorslist.i)-1});
-          });
-          if (parseInt(colorslist.i) <= 1) {
-            $('#item-colors .rel-previous').addClass('disabled').off('click touch');
-          }
-          if (parseInt(colorslist.i)+1 > colorslist.matchingItems.length) {
-            $('#item-colors .rel-next').addClass('disabled').off('click touch');
-          }
-
           var current_page = parseInt(colorslist.i / 5 + 1);
           var total_pages = parseInt(colorslist.matchingItems.length / 5);
           if (colorslist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
@@ -767,7 +747,7 @@ $(document).ready(function() {
           $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
           $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
             // Add to the hash so that if we refresh the page it still has the correct starting position
-            hash.add({dpos:parseInt(colorslist.i)+5});
+            hash.add({cpos:parseInt(colorslist.i)+5});
             // Manually update the list with a new start position since we'll ignore
             // this code if session storage matches the view
             colorslist.i = parseInt(colorslist.i)+5;
@@ -775,7 +755,7 @@ $(document).ready(function() {
           });
           $('#item-colors .rel-previous').off('click touch').on('click touch', function(e) {
             // Works the same way as the lines above. See comments there.
-            hash.add({dpos:parseInt(colorslist.i)-5});
+            hash.add({cpos:parseInt(colorslist.i)-5});
             colorslist.i = parseInt(colorslist.i)-5;
             colorslist.update();
           });
