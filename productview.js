@@ -723,6 +723,7 @@ $(document).ready(function() {
                       headers: { Authorization: token },
                       dataType: 'json',
                       success: function (data) {
+                        $('<option/>', { value : data._id }).text(params.value).appendTo('#project-trade-list');
                         console.log(data);
                         // If the list was created, remove the form and show confirmation
                         // if (_.isUndefined(data._id) == false) location.reload();
