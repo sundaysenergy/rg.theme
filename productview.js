@@ -703,6 +703,7 @@ $(document).ready(function() {
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
           e.preventDefault();
           $('.item-spotlight .item-information').slideToggle();
+          $('#item-colors').hide();
         });
         // Handle closing the color list with an X
         $('#item-colors button.close').off('click touch').on('click touch', function(e) {
@@ -802,6 +803,7 @@ $(document).ready(function() {
         // Click handler for colors
         $('button.item-colors').off().on('click touch', function(e) {
           $('#item-colors').toggle();
+          $('.item-information').hide();
         });
         // Actions to perform when the list is updated -- mostly pagination
         colorslist.on('updated', function() {
