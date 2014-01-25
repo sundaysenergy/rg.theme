@@ -704,6 +704,8 @@ $(document).ready(function() {
           e.preventDefault();
           $('.item-spotlight .item-information').slideToggle();
           $('#item-colors').hide();
+          $('#project-list-select').hide();
+          $('div.alert-dismissable button.close').trigger('click');
         });
         // Handle closing the color list with an X
         $('#item-colors button.close').off('click touch').on('click touch', function(e) {
@@ -804,6 +806,8 @@ $(document).ready(function() {
         $('button.item-colors').off().on('click touch', function(e) {
           $('#item-colors').toggle();
           $('.item-information').hide();
+          $('#project-list-select').hide();
+          $('div.alert-dismissable button.close').trigger('click');
         });
         // Actions to perform when the list is updated -- mostly pagination
         colorslist.on('updated', function() {
