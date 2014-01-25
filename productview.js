@@ -679,7 +679,6 @@ $(document).ready(function() {
               url: function(params) {
                 console.log(params);
                 var token = 'bearer ' + $.cookie('token');
-                console.log(obj);
                 $.ajax({
                   url: 'http://rg.cape.io/_api/items/_index/list',
                   type: 'post',
