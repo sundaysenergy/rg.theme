@@ -665,6 +665,7 @@ $(document).ready(function() {
         // Render the template with the correct data
         if (productlist.matchingItems.length > 0) {
           var itemvals = productlist.visibleItems[parseInt(n)].values();
+          itemvals.pager = itemvals.itemcolors().length > 5;
           $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(itemvals));
         }
         // Create click handlers for the icon and the close button
