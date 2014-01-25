@@ -22,11 +22,9 @@ $(document).ready(function() {
           },
           pk: 1,
           url: function(params) {
-            console.log(params);
             var obj = {};
             obj[params.name] = params.value;
             var token = $.cookie('token');
-            console.log(obj);
             $.ajax({
               url: "http://rg.cape.io/_api/db/_entity/user/"+$.cookie("uid")+"/profile.json?merge=true",
               type: 'PUT',
