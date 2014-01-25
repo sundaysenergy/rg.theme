@@ -711,6 +711,8 @@ $(document).ready(function() {
                     dataType: 'json'
                   },
                   pk: 1,
+                  value: '',
+                  autotext: 'never',
                   url: function(params) {
                     console.log(params);
                     var token = 'bearer ' + $.cookie('token');
