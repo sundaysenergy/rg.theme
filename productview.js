@@ -667,6 +667,34 @@ $(document).ready(function() {
           var itemvals = productlist.visibleItems[parseInt(n)].values();
           itemvals.pager = itemvals.itemcolors().length > 5;
           $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(itemvals));
+          $.fn.editable.defaults.mode = 'inline';
+          // Make fields editable
+          $('#project-list-select .editable').editable({
+              type: 'select',
+              ajaxOptions: {
+                type: 'post',
+                dataType: 'json'
+              },
+              pk: 1,
+              url: function(params) {
+                console.log(params);
+                var token = 'bearer ' + $.cookie('token');
+                console.log(obj);
+                $.ajax({
+                  url: 'http://rg.cape.io/_api/items/_index/list',
+                  type: 'post',
+                  data: { info: { name:params.value } },
+                  headers: { Authorization: token },
+                  dataType: 'json',
+                  success: function (data) {
+                    console.log(data);
+                    // If the list was created, remove the form and show confirmation
+                    // if (_.isUndefined(data._id) == false) location.reload();
+                  }
+                });
+                return;
+              }
+          });
         }
         // Create click handlers for the icon and the close button
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
