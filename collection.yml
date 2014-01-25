@@ -18,10 +18,12 @@ projects:
     - projects.js
 productview:
   css:
+    - css/bootstrap-editable.css
     - variables.less
     - productview.less
   js:
     - list.min.js
+    - js/bootstrap-editable.min.js
     - productview.js
 pricelist:
   css:
