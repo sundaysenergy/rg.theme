@@ -669,31 +669,6 @@ $(document).ready(function() {
           $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(itemvals));
           $.fn.editable.defaults.mode = 'inline';
           // Make fields editable
-          $('#project-list-select .editable').editable({
-              type: 'select',
-              ajaxOptions: {
-                type: 'post',
-                dataType: 'json'
-              },
-              pk: 1,
-              url: function(params) {
-                console.log(params);
-                var token = 'bearer ' + $.cookie('token');
-                $.ajax({
-                  url: 'http://rg.cape.io/_api/items/_index/list',
-                  type: 'post',
-                  data: { info: { name:params.value } },
-                  headers: { Authorization: token },
-                  dataType: 'json',
-                  success: function (data) {
-                    console.log(data);
-                    // If the list was created, remove the form and show confirmation
-                    // if (_.isUndefined(data._id) == false) location.reload();
-                  }
-                });
-                return;
-              }
-          });
         }
         // Create click handlers for the icon and the close button
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
@@ -729,6 +704,31 @@ $(document).ready(function() {
             e.preventDefault();
             $.getJSON('http://rg.cape.io/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
               $('body').append(project_list_select_template.render({lists:data}));
+              $('#project-list-select .editable').editable({
+                  type: 'select',
+                  ajaxOptions: {
+                    type: 'post',
+                    dataType: 'json'
+                  },
+                  pk: 1,
+                  url: function(params) {
+                    console.log(params);
+                    var token = 'bearer ' + $.cookie('token');
+                    $.ajax({
+                      url: 'http://rg.cape.io/_api/items/_index/list',
+                      type: 'post',
+                      data: { info: { name:params.value } },
+                      headers: { Authorization: token },
+                      dataType: 'json',
+                      success: function (data) {
+                        console.log(data);
+                        // If the list was created, remove the form and show confirmation
+                        // if (_.isUndefined(data._id) == false) location.reload();
+                      }
+                    });
+                    return;
+                  }
+              });
               $('#project-trade-list').closest('form').on('submit', function(e) {
                 e.preventDefault();
                 var listid = $('#project-trade-list').val();
