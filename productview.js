@@ -507,7 +507,8 @@ $(document).ready(function() {
               $('.itemoverlay').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
               $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
             } else {
-              $(this).off('click touch');
+              // $(this).off('click touch');
+              $('#project-list-select').remove();
               e.preventDefault();
               // Retrieve a list of available lists for the user
               $.getJSON('http://rg.cape.io/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
