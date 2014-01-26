@@ -63,6 +63,91 @@ $(document).ready(function() {
       return price;
     }
 
+    // Function for adding favorites
+    function addFaves($selector, itemno, uid, token) {
+      // Remove existing list selection
+      $('#project-list-select').remove();
+
+      /*** ANONYMOUS FAVORITES ***/
+      if (_.isUndefined(uid) || _.isUndefined(token)) {
+        // Disable the selector since we only want anon favorites added once
+        $selector.off('click touch');
+        // Check for undefined, parse the existing favorites, and store the updated string
+        if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
+        // Create an array with the current selection of favorites
+        var current = localStorage.faves.split(',');
+        current.push(id);
+        // Store unique values in localStorage as a comma separated list
+        localStorage.faves = _.compact(_.uniq(current)).join(',');
+        // Success message and update the share link
+        $('body').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
+        // This should be refined to use a specific class or id
+        $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
+
+      /*** PROJECT LISTS ***/
+      } else {
+        // Get a list of available projects
+        $.getJSON('http://rg.cape.io/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
+          // Add the compiled template to the body
+          $('body').append(project_list_select_template.render({lists:data}));
+          // Activate editable -- this is used for creating a new list on the fly
+          $('#project-list-select .editable').editable({
+              type: 'select',
+              ajaxOptions: {
+                type: 'post',
+                dataType: 'json'
+              },
+              pk: 1,
+              value: '',         // Set default to an empty string
+              autotext: 'never', // Don't pre-populate the input field
+              display: false,    // Don't change the displayed value to the form submission
+              url: function(params) {
+                var token = 'bearer ' + token;
+                // Create the new list
+                $.ajax({
+                  url: 'http://rg.cape.io/_api/items/_index/list',
+                  type: 'post',
+                  data: { info: { name:params.value } },
+                  headers: { Authorization: token },
+                  dataType: 'json',
+                  success: function (data) {
+                    // Add the new list to the select
+                    $('<option/>', { value : data._id }).text(params.value).appendTo('#project-trade-list');
+                    // Select the recently created list
+                    $('#project-trade-list option[value=' + data._id + ']').attr('selected','selected');
+                  }
+                });
+                return;
+              }
+          });
+          // Capture form submission
+          $('#project-list-select form').on('submit', function(e) {
+            e.preventDefault();
+            // Get the list id from the select
+            var listid = $('#project-trade-list').val();
+            // Update the contents of the list
+            $.ajax({
+              url: 'http://rg.cape.io/_api/items/_index/list/'+listid+'/'+id,
+              type: 'PUT',
+              headers: { Authorization: 'bearer '+token },
+              contentType: 'application/json',
+              success: function(result) {
+                $('#project-list-select').remove();
+                $('body').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
+                $('.alert-favorite').find('a').attr('href','/trade/projects.html');
+              },
+              fail: function(result) {
+                window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
+              },
+              error: function(result) {
+                window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
+              }
+            });
+          });
+        });
+      }
+    } // end addFaves()
+
     // Loop through items in list and bind additional functions needed for mustache templates
     _.forEach(data, function(item) {
       // Remove the last part of the product number, which designates variation of a themed item
@@ -854,85 +939,17 @@ $(document).ready(function() {
         });
       } else {
         // When hovering over list items, show a plus button!
+        $('div.add-fave button').on('click touch', function(e) {
+          e.preventDefault();
+          var id = $(this).parent().siblings('.id').html();
+          var uid = $.cookie('uid');
+          var token = $.cookie('token');
+          addFaves($(this), id, uid, token);
+        });
         $("ul.list > li").hover(function() {
           var $fave = $(this).find('div.add-fave').show();
-          $fave.find('button').on('click touch', function(e) {
-            $('#project-list-select').remove();
-            var id = $(this).parent().siblings('.id').html();
-            var uid = $.cookie('uid');
-            var token = $.cookie('token');
-            // Add anonymous favorite
-            if (_.isUndefined(uid) || _.isUndefined(token)) {
-              $(this).off('click touch');
-              e.preventDefault();
-              // Check for undefined, parse the existing favorites, and store the updated string
-              if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
-              var current = localStorage.faves.split(',');
-              current.push(id);
-              localStorage.faves = _.compact(_.uniq(current)).join(',');
-              // Success message and update the share link
-              $('body').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
-              $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
-            // Add item to trade list
-            } else {
-              e.preventDefault();
-              $.getJSON('http://rg.cape.io/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
-                $('body').append(project_list_select_template.render({lists:data}));
-                $('#project-list-select .editable').editable({
-                    type: 'select',
-                    ajaxOptions: {
-                      type: 'post',
-                      dataType: 'json'
-                    },
-                    pk: 1,
-                    value: '',
-                    autotext: 'never',
-                    display: false,
-                    url: function(params) {
-                      var token = 'bearer ' + $.cookie('token');
-                      $.ajax({
-                        url: 'http://rg.cape.io/_api/items/_index/list',
-                        type: 'post',
-                        data: { info: { name:params.value } },
-                        headers: { Authorization: token },
-                        dataType: 'json',
-                        success: function (data) {
-                          // Add the new list to the select
-                          $('<option/>', { value : data._id }).text(params.value).appendTo('#project-trade-list');
-                          // Select the recently created list
-                          $('#project-trade-list option[value=' + data._id + ']').attr('selected','selected');
-                        }
-                      });
-                      return;
-                    }
-                });
-                $('#project-trade-list').closest('form').on('submit', function(e) {
-                  e.preventDefault();
-                  var listid = $('#project-trade-list').val();
-                  $.ajax({
-                    url: 'http://rg.cape.io/_api/items/_index/list/'+listid+'/'+id,
-                    type: 'PUT',
-                    headers: { Authorization: 'bearer '+token },
-                    contentType: 'application/json',
-                    success: function(result) {
-                      $('#project-trade-list').closest('.alert').find('button.close').trigger('click')
-                      $('body').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
-                      $('.alert-favorite').find('a').attr('href','/trade/projects.html');
-                    },
-                    fail: function(result) {
-                      window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
-                    },
-                    error: function(result) {
-                      window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
-                    }
-                  });
-                });
-              });
-            }
-          });
         // Hide on mouseout
         }, function() {
-          $(this).find('div.add-fave button').off('click touch');
           $(this).find('div.add-fave').hide();
         });
         // If we're not in 3-up mode, make sure we don't have any stray item details
