@@ -857,6 +857,7 @@ $(document).ready(function() {
         $("ul.list > li").hover(function() {
           var $fave = $(this).find('div.add-fave').show();
           $fave.find('button').on('click touch', function(e) {
+            $('#project-list-select').remove();
             var id = $(this).parent().siblings('.id').html();
             var uid = $.cookie('uid');
             var token = $.cookie('token');
