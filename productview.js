@@ -82,7 +82,9 @@ $(document).ready(function() {
         // Store unique values in localStorage as a comma separated list
         localStorage.faves = _.compact(_.uniq(current)).join(',');
         // Success message and update the share link
-        $('body').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
+        if ($('#anonymous-faves-alert').length == 0) {
+          $('body').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
+        }
         // This should be refined to use a specific class or id
         $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
 
@@ -938,7 +940,7 @@ $(document).ready(function() {
         });
       } else {
         // When hovering over list items, show a plus button!
-        $('div.add-fave button').on('click touch', function(e) {
+        $('div.add-fave button').off('click touch').on('click touch', function(e) {
           e.preventDefault();
           var id = $(this).parent().siblings('.id').html();
           addFaves($(this), id);
