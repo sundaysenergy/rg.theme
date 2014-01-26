@@ -76,7 +76,7 @@ $(document).ready(function() {
         if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
         // Create an array with the current selection of favorites
         var current = localStorage.faves.split(',');
-        current.push(id);
+        current.push(itemno);
         // Store unique values in localStorage as a comma separated list
         localStorage.faves = _.compact(_.uniq(current)).join(',');
         // Success message and update the share link
@@ -99,6 +99,7 @@ $(document).ready(function() {
               display: false, // Don't change the displayed value to the form submission
               url: function(params) {
                 var token = 'bearer ' + token;
+                console.log(params, token);
                 // Create the new list
                 $.ajax({
                   url: 'http://rg.cape.io/_api/items/_index/list',
