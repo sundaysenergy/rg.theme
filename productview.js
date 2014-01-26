@@ -64,7 +64,9 @@ $(document).ready(function() {
     }
 
     // Function for adding favorites
-    function addFaves($selector, itemno, uid, token) {
+    function addFaves($selector, itemno) {
+      var uid = $.cookie('uid');
+      var token = $.cookie('token');
       // Remove existing list selection
       $('#project-list-select').remove();
 
@@ -98,14 +100,12 @@ $(document).ready(function() {
               autotext: 'never', // Don't pre-populate the input field
               display: false, // Don't change the displayed value to the form submission
               url: function(params) {
-                var token = 'bearer ' + token;
-                console.log(params, token);
                 // Create the new list
                 $.ajax({
                   url: 'http://rg.cape.io/_api/items/_index/list',
                   type: 'post',
                   data: { info: { name:params.value } },
-                  headers: { Authorization: token },
+                  headers: { Authorization: 'bearer '+token  },
                   dataType: 'json',
                   success: function (data) {
                     // Add the new list to the select
@@ -939,9 +939,7 @@ $(document).ready(function() {
         $('div.add-fave button').on('click touch', function(e) {
           e.preventDefault();
           var id = $(this).parent().siblings('.id').html();
-          var uid = $.cookie('uid');
-          var token = $.cookie('token');
-          addFaves($(this), id, uid, token);
+          addFaves($(this), id);
         });
         $("ul.list > li").hover(function() {
           var $fave = $(this).find('div.add-fave').show();
