@@ -858,6 +858,8 @@ $(document).ready(function() {
           var $fave = $(this).find('div.add-fave').show();
           $fave.find('button').on('click touch', function(e) {
             var id = $(this).siblings('.id').html();
+            console.log(id);
+            console.log($(this));
             var uid = $.cookie('uid');
             var token = $.cookie('token');
             // Add anonymous favorite
