@@ -855,9 +855,83 @@ $(document).ready(function() {
       } else {
         // When hovering over list items, show a plus button!
         $("ul.list > li").hover(function() {
-          $(this).find('div.add-fave').show();
+          var $fave = $(this).find('div.add-fave').show();
+          $fave.find('button').on('click touch', function(e) {
+            var id = $(this).siblings('.id').html();
+            var uid = $.cookie('uid');
+            var token = $.cookie('token');
+            // Add anonymous favorite
+            if (_.isUndefined(uid) || _.isUndefined(token)) {
+              $(this).off('click touch');
+              e.preventDefault();
+              // Check for undefined, parse the existing favorites, and store the updated string
+              if (_.isUndefined(localStorage.faves)) localStorage.faves = '';
+              var current = localStorage.faves.split(',');
+              current.push(id);
+              localStorage.faves = _.compact(_.uniq(current)).join(',');
+              // Success message and update the share link
+              $('body').append(favorites_template.render({message:'Item added to your favorites!'}));
+              $('.alert-favorite').find('a').attr('href', $('.alert-favorite').find('a').attr('href') + localStorage.faves);
+            // Add item to trade list
+            } else {
+              e.preventDefault();
+              $.getJSON('http://rg.cape.io/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
+                $('body').append(project_list_select_template.render({lists:data}));
+                $('#project-list-select .editable').editable({
+                    type: 'select',
+                    ajaxOptions: {
+                      type: 'post',
+                      dataType: 'json'
+                    },
+                    pk: 1,
+                    value: '',
+                    autotext: 'never',
+                    display: false,
+                    url: function(params) {
+                      var token = 'bearer ' + $.cookie('token');
+                      $.ajax({
+                        url: 'http://rg.cape.io/_api/items/_index/list',
+                        type: 'post',
+                        data: { info: { name:params.value } },
+                        headers: { Authorization: token },
+                        dataType: 'json',
+                        success: function (data) {
+                          // Add the new list to the select
+                          $('<option/>', { value : data._id }).text(params.value).appendTo('#project-trade-list');
+                          // Select the recently created list
+                          $('#project-trade-list option[value=' + data._id + ']').attr('selected','selected');
+                        }
+                      });
+                      return;
+                    }
+                });
+                $('#project-trade-list').closest('form').on('submit', function(e) {
+                  e.preventDefault();
+                  var listid = $('#project-trade-list').val();
+                  $.ajax({
+                    url: 'http://rg.cape.io/_api/items/_index/list/'+listid+'/'+id,
+                    type: 'PUT',
+                    headers: { Authorization: 'bearer '+token },
+                    contentType: 'application/json',
+                    success: function(result) {
+                      $('#project-trade-list').closest('.alert').find('button.close').trigger('click')
+                      $('body').append(favorites_template.render({message:'Item added to your favorites!'}));
+                      $('.alert-favorite').find('a').attr('href','/trade/projects.html');
+                    },
+                    fail: function(result) {
+                      window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
+                    },
+                    error: function(result) {
+                      window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
+                    }
+                  });
+                });
+              });
+            }
+          });
         // Hide on mouseout
         }, function() {
+          $(this).find('div.add-fave button').off('click touch');
           $(this).find('div.add-fave').hide();
         });
         // If we're not in 3-up mode, make sure we don't have any stray item details
