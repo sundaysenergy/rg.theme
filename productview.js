@@ -607,12 +607,6 @@ $(document).ready(function() {
       }
       // Page counter for slide view
       if (productlist.page == rg_options.horizontal_page) {
-        $("ul.list > li").hover(function() {
-          $(this).find('div.add-fave').show();
-        // Hide on mouseout
-        }, function() {
-          $(this).find('div.add-fave').show();
-        });
         $('.pagecount')
         .html(parseInt(productlist.i)+1)
         .append(' / ')
@@ -860,6 +854,12 @@ $(document).ready(function() {
         });
       } else {
         // If we're not in 3-up mode, make sure we don't have any stray item details
+        $("ul.list > li").hover(function() {
+          $(this).find('div.add-fave').show();
+        // Hide on mouseout
+        }, function() {
+          $(this).find('div.add-fave').show();
+        });
         if (_.isUndefined(hash.get('faves')) == false) {
           // Hide details for center slide in "horizontal" view
           productlist.page = rg_options.vertical_page;
