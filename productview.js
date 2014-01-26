@@ -93,14 +93,10 @@ $(document).ready(function() {
           // Activate editable -- this is used for creating a new list on the fly
           $('#project-list-select .editable').editable({
               type: 'select',
-              ajaxOptions: {
-                type: 'post',
-                dataType: 'json'
-              },
               pk: 1,
-              value: '',         // Set default to an empty string
+              value: '', // Set default to an empty string
               autotext: 'never', // Don't pre-populate the input field
-              display: false,    // Don't change the displayed value to the form submission
+              display: false, // Don't change the displayed value to the form submission
               url: function(params) {
                 var token = 'bearer ' + token;
                 // Create the new list
@@ -127,7 +123,7 @@ $(document).ready(function() {
             var listid = $('#project-trade-list').val();
             // Update the contents of the list
             $.ajax({
-              url: 'http://rg.cape.io/_api/items/_index/list/'+listid+'/'+id,
+              url: 'http://rg.cape.io/_api/items/_index/list/'+listid+'/'+itemno,
               type: 'PUT',
               headers: { Authorization: 'bearer '+token },
               contentType: 'application/json',
