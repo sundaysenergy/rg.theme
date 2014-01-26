@@ -91,7 +91,9 @@ $(document).ready(function() {
         // Get a list of available projects
         $.getJSON('http://rg.cape.io/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
           // Add the compiled template to the body
-          $('body').append(project_list_select_template.render({lists:data}));
+          if ($('#project-list-select').length == 0) {
+            $('body').append(project_list_select_template.render({lists:data}));
+          }
           // Activate editable -- this is used for creating a new list on the fly
           $('#project-list-select .editable').editable({
               type: 'select',
