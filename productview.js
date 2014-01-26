@@ -607,6 +607,12 @@ $(document).ready(function() {
       }
       // Page counter for slide view
       if (productlist.page == rg_options.horizontal_page) {
+        $("ul.list > li").hover(function() {
+          $(this).find('div.add-fave').show();
+        // Hide on mouseout
+        }, function() {
+          $(this).find('div.add-fave').show();
+        });
         $('.pagecount')
         .html(parseInt(productlist.i)+1)
         .append(' / ')
