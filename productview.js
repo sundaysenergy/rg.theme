@@ -946,7 +946,11 @@ $(document).ready(function() {
           addFaves($(this), id);
         });
         $("ul.list > li").hover(function() {
-          var $fave = $(this).find('div.add-fave').show();
+          if (_.isUndefined(hash.get('faves'))) {
+            $(this).find('div.add-fave').show();
+          } else {
+            $(this).find('div.add-fave').hide();
+          }
         // Hide on mouseout
         }, function() {
           $(this).find('div.add-fave').hide();
