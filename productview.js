@@ -1,10 +1,4 @@
 $(document).ready(function() {
-  console.log(rootUrl);
-  /**** DEFAULT OPTIONS ****/
-  var rg_options = {
-                      vertical_page: 42,
-                      horizontal_page: 3
-                   }
 
   /**** DISPLAY & DATA RESETS on page load ****/
   if (_.isUndefined(hash.get('faves')) == false) { localStorage.faves = hash.get('faves'); }
