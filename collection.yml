@@ -3,6 +3,7 @@ default:
   css:
     - style.less
   js:
+    - js/variables.js
     - lodash.js
     - rg.js
     - hash.js
