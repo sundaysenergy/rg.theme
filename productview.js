@@ -701,7 +701,7 @@ $(document).ready(function() {
         }
         // For each visible li in the list, create a click handler that toggles visibility
         // and compiles the mustache for the current item.
-        $('ul.list li .item-spotlight, ul.list li img').off('click touch').on('click touch', function(e) {
+        $('ul.list li .item-spotlight').off('click touch').on('click touch', function(e) {
           if (e.target !== this) return true;
           var id = $(this).parent().find('.id').html();
           hash.add({detailedview:id});
