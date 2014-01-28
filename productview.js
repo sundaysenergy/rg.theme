@@ -607,6 +607,8 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE LIST UPDATES (i.e. position, items, or filters change) ****/
     productlist.on('updated', function() {
+      // Resets
+      $('ul.list li .img').off('click touch');
       // Update i if we have fewer items than the starting position
       if (productlist.i > productlist.matchingItems.length) {
         productlist.i = productlist.matchingItems.length;
@@ -701,7 +703,7 @@ $(document).ready(function() {
         }
         // For each visible li in the list, create a click handler that toggles visibility
         // and compiles the mustache for the current item.
-        $('ul.slider li .item-spotlight').off('click touch').on('click touch', function(e) {
+        $('ul.slider li .item-spotlight, ul.list li .img').off('click touch').on('click touch', function(e) {
           if (e.target !== this) return true;
           var id = $(this).parent().find('.id').html();
           hash.add({detailedview:id});
