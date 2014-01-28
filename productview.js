@@ -607,8 +607,6 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE LIST UPDATES (i.e. position, items, or filters change) ****/
     productlist.on('updated', function() {
-      // Resets
-      $('ul.list li .img').off('click touch');
       // Update i if we have fewer items than the starting position
       if (productlist.i > productlist.matchingItems.length) {
         productlist.i = productlist.matchingItems.length;
@@ -684,7 +682,8 @@ $(document).ready(function() {
         $('#products > ul.slider li.item-bookends').remove();
       }
 
-      // Add product details div 
+      // Add product details div
+      console.log(productlist.page, rg_options.horizontal_page);
       if (productlist.page == rg_options.horizontal_page) {
         // Remove existing item details
         $('ul.list li .item-spotlight').remove();
@@ -709,6 +708,7 @@ $(document).ready(function() {
           hash.add({detailedview:id});
         });
 
+        console.log("got here");
         $('ul.list li .img').off('click touch').on('click touch', function(e) {
           var id = $(this).parent().find('.id').html();
           hash.add({detailedview:id});
