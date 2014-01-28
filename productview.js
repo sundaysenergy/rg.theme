@@ -178,12 +178,6 @@ $(document).ready(function() {
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
 
-      if (window.location.pathname.indexOf('/trade') >= 0) {
-        $('.masthead nav ul li > ul').addClass('active');
-      } else {
-        $('.masthead nav ul li > ul').removeClass('active');
-      }
-
       /*** GET VALUES FROM HASH ***/
       var collection = hash.get('collection');
       var attributes = (_.isUndefined(hash.get('attributes'))) ? []:hash.get('attributes').split(',');

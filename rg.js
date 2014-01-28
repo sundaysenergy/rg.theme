@@ -21,4 +21,11 @@ $(document).ready(function() {
   }
   // Add active class to the parent of the current href
   $('.masthead nav ul li a[href="'+window.location.pathname+'"]').parent().addClass('active');
+
+  // Add the active class to the ul for trade login if /trade is in the path
+  if (window.location.pathname.indexOf('/trade') >= 0) {
+    $('.masthead nav ul li > ul').addClass('active');
+  } else {
+    $('.masthead nav ul li > ul').removeClass('active');
+  }
 });
