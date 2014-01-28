@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  console.log(rootUrl);
   // Expose a search box when hovering over the icon
   $('.fa-search').hover(function() {
     $('#search-items').slideToggle();
