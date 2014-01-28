@@ -776,13 +776,13 @@ $(document).ready(function() {
         colorslist.update();
 
         // Click on the left image should decrement by one, while the right image should increment
-        $('ul.list li:nth-child(1) .img').off('click touch').on('click touch', function(e) {
+        $('ul.slider li:nth-child(1) .img').off('click touch').on('click touch', function(e) {
           hash.remove('cpos');
           var p = parseInt(productlist.i)-1;
           if (p == -1) p = productlist.matchingItems.length-1;
           hash.add({pos:p});
         });
-        $('ul.list li:nth-child(3) .img').off('click touch').on('click touch', function(e) {
+        $('ul.slider li:nth-child(3) .img').off('click touch').on('click touch', function(e) {
           hash.remove('cpos');
           var p = parseInt(productlist.i)+1;
           if (p == productlist.matchingItems.length) p = 0;
