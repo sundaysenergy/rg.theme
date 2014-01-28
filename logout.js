@@ -1,10 +1,10 @@
 $(document).ready(function() {
   var token = $.cookie('token');
-  $.removeCookie('uid', { path: '/', domain: '.rg.cape.io' });
-  $.removeCookie('token', { path: '/', domain: '.rg.cape.io' });
+  $.removeCookie('uid', { path: '/', domain: rg_options.cookiedomain });
+  $.removeCookie('token', { path: '/', domain: rg_options.cookiedomain });
 
   $.ajax({
-    url: 'http://rg.cape.io/logout',
+    url: rg_options.api + '/logout',
     type: 'GET',
     headers: { Authorization: 'bearer '+token },
     contentType: 'application/json',

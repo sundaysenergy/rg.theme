@@ -13,7 +13,7 @@ $(document).ready(function() {
                                 acceptedFiles: 'image/jpeg' 
                               });
   /* Typeahead.js for autocompleting products */
-  $.ajax({ url: 'http://rg.cape.io/items/client_data.json' })
+  $.ajax({ url: rg_options.api + '/items/client_data.json' })
   .done(function(data) {
     _.forEach(data.items, function(item) {
       item.value = item.id;
@@ -41,7 +41,7 @@ $(document).ready(function() {
         }).prependTo($(this));
       });
       $.ajaxSetup({ cache:false });
-      $.getJSON('http://rg.cape.io/_api/items/_entity/' + data.value, function(result) {
+      $.getJSON(rg_options.api + '/_api/items/_entity/' + data.value, function(result) {
         $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
         var url = result.img.normal["320"],
             url_far = result.img.far["320"];
@@ -73,7 +73,7 @@ $(document).ready(function() {
           }).prependTo($(this));
         });
         $.ajaxSetup({ cache:false });
-        $.getJSON('http://rg.cape.io/_api/items/_entity/' + itemid, function(result) {
+        $.getJSON(rg_options.api + '/_api/items/_entity/' + itemid, function(result) {
           $('.fileinfo').empty().html(result.descript_1 + ' ' + result.country);
           var url = result.img.normal["320"],
               url_far = result.img.far["320"];

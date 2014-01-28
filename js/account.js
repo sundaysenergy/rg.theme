@@ -3,11 +3,11 @@ $(document).ready(function() {
   if (_.isUndefined($.cookie('token'))) window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
 
   // Fetch the template
-  $.ajax({ url: "http://rg.cape.io/templates/mini/account.html" })
+  $.ajax({ url: rg_options.api + "/templates/mini/account.html" })
   .done(function(template) {
     var account_info = Hogan.compile(template);
     // Fetch the user information
-    $.ajax({ url: 'http://rg.cape.io/_api/db/_entity/user/'+$.cookie('uid')+'/profile.json'})
+    $.ajax({ url: rg_options.api + '/_api/db/_entity/user/'+$.cookie('uid')+'/profile.json'})
     .done(function(user_info) {
       // Add the compiled and rendered template to the page
       $('.account-information').html(account_info.render(user_info));
@@ -26,7 +26,7 @@ $(document).ready(function() {
             obj[params.name] = params.value;
             var token = $.cookie('token');
             $.ajax({
-              url: "http://rg.cape.io/_api/db/_entity/user/"+$.cookie("uid")+"/profile.json?merge=true",
+              url: rg_options.api + "/_api/db/_entity/user/"+$.cookie("uid")+"/profile.json?merge=true",
               type: 'PUT',
               data: JSON.stringify(obj),
               headers: { Authorization: token },

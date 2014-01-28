@@ -3,11 +3,11 @@ $(document).ready(function() {
   if (_.isUndefined($.cookie('token'))) window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
 
   // Fetch our project list item template
-  $.ajax({ url: "http://rg.cape.io/templates/mini/project_list.html" })
+  $.ajax({ url: rg_options.api + "/templates/mini/project_list.html" })
   .done(function(project_list) {
     // Compile template and retrieve the list of lists
     var template = Hogan.compile(project_list);
-    $.getJSON('http://rg.cape.io/_api/items/_index/' + $.cookie('uid') + '/list', { data_only: true }, function(data) {
+    $.getJSON(rg_options.api + '/_api/items/_index/' + $.cookie('uid') + '/list', { data_only: true }, function(data) {
       
       /**** PROCESS EACH OF THE LISTS ****/
       _.forEach(data, function(list) {
@@ -22,7 +22,7 @@ $(document).ready(function() {
             var token = 'bearer ' + $.cookie('token');
             var projectname = $(this).find('input[type=text]').val();
             $.ajax({
-              url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
+              url: rg_options.api + '/_api/items/_index/list/'+list._id,
               type: 'PUT',
               data: { info: { name:projectname } },
               headers: { Authorization: token },
@@ -49,11 +49,11 @@ $(document).ready(function() {
           $('div.trade-items-noresults').remove();
           // If the there weren't any trade-items lists inside of element's parents, make one
           if (new_list) {
-            $.ajax({ url: "http://rg.cape.io/templates/mini/project_list_items.html" })
+            $.ajax({ url: rg_options.api + "/templates/mini/project_list_items.html" })
             .done(function (project_items) {
               // Compile the template for the list
               var template = Hogan.compile(project_items);
-              $.getJSON('http://rg.cape.io/_api/items/_index/list/'+list._id+'/index.json',{}, function(data) {
+              $.getJSON(rg_options.api + '/_api/items/_index/list/'+list._id+'/index.json',{}, function(data) {
                 // Render the template with the objects from the list
                 $('#'+list._id+'_items').html(template.render({ items: _.keys(data) }));
                 // Handle removing items from the list
@@ -63,7 +63,7 @@ $(document).ready(function() {
                   var $div = $(this).parent();
                   var token = 'bearer ' + $.cookie('token');
                   $.ajax({
-                    url: 'http://rg.cape.io/_api/items/_index/list/' + list._id + '/' + id,
+                    url: rg_options.api + '/_api/items/_index/list/' + list._id + '/' + id,
                     type: 'DELETE',
                     headers: { Authorization: token },
                     success: function(result,i,o) {
@@ -89,7 +89,7 @@ $(document).ready(function() {
                     // Send a request to cape with the updated order
                     var token = 'bearer ' + $.cookie('token');
                     $.ajax({
-                      url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
+                      url: rg_options.api + '/_api/items/_index/list/'+list._id,
                       type: 'PUT',
                       data: JSON.stringify(obj),
                       headers: { Authorization: token },
@@ -115,7 +115,7 @@ $(document).ready(function() {
           e.preventDefault();
           var token = 'bearer ' + $.cookie('token');
           $.ajax({
-            url: 'http://rg.cape.io/_api/items/_index/list/'+list._id,
+            url: rg_options.api + '/_api/items/_index/list/'+list._id,
             type: 'DELETE',
             headers: { Authorization: token },
             success: function(result) {
@@ -139,7 +139,7 @@ $(document).ready(function() {
           });
           var token = 'bearer ' + $.cookie('token');
           $.ajax({
-            url: 'http://rg.cape.io/_api/items/_index/' + $.cookie('uid') + '/list',
+            url: rg_options.api + '/_api/items/_index/' + $.cookie('uid') + '/list',
             type: 'PUT',
             data: JSON.stringify(obj),
             headers: { Authorization: token },
@@ -167,7 +167,7 @@ $(document).ready(function() {
         // If we have a token and a project name, submit the project
         if ((_.isUndefined(token) == false) && (projectname.length > 0)) {
           $.ajax({
-            url: 'http://rg.cape.io/_api/items/_index/list',
+            url: rg_options.api + '/_api/items/_index/list',
             type: 'post',
             data: { info: { name:projectname } },
             headers: { Authorization: token },

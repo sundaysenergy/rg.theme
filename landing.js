@@ -4,7 +4,7 @@ $(document).ready(function() {
   // Retrieve the template for the carousel and compile
   var item_template;
   $.ajax({
-    url: "http://rg.cape.io/templates/mini/landing.html",
+    url: rg_options.api + "/templates/mini/landing.html",
     context: document.body,
     async: false,
     error:  function (jqXHR, textStatus, errorThrown) {
@@ -16,7 +16,7 @@ $(document).ready(function() {
   // Function for loading the template into the document
   function loadBeauty(item_template) {
     // Retrieve the JSON that we will use to generate the slideshow
-    $.getJSON('http://rg.cape.io/beautyshots/index.json', function(data) {
+    $.getJSON(rg_options.api + '/beautyshots/index.json', function(data) {
       // Split the screen into 5 sections to create our area map
       var section = parseInt($(window).width()/5);
       // Index our slides

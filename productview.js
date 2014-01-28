@@ -10,7 +10,7 @@ $(document).ready(function() {
   
   if (_.isUndefined(token) == false) {
     $.ajax({
-      url: 'http://rg.cape.io/items/price.json',
+      url: rg_options.api + '/items/price.json',
       type: 'GET',
       async: false,
       headers: { Authorization: 'bearer '+token },
@@ -22,7 +22,7 @@ $(document).ready(function() {
   }
 
   /**** GET THE ITEMS INFORMATION FROM CAPE AND PROCESS IT ****/
-  $.getJSON('http://rg.cape.io/items/client_data.json', function(combined) {
+  $.getJSON(rg_options.api + '/items/client_data.json', function(combined) {
 
     // Compile clientside templates
     var templates = combined.templates;  
@@ -86,7 +86,7 @@ $(document).ready(function() {
       /*** PROJECT LISTS ***/
       } else {
         // Get a list of available projects
-        $.getJSON('http://rg.cape.io/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
+        $.getJSON(rg_options.api + '/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
           // Add the compiled template to the body
           if ($('#project-list-select').length == 0) {
             $('body').append(project_list_select_template.render({lists:data}));
@@ -101,7 +101,7 @@ $(document).ready(function() {
               url: function(params) {
                 // Create the new list
                 $.ajax({
-                  url: 'http://rg.cape.io/_api/items/_index/list',
+                  url: rg_options.api + '/_api/items/_index/list',
                   type: 'post',
                   data: { info: { name:params.value } },
                   headers: { Authorization: 'bearer '+token  },
@@ -123,7 +123,7 @@ $(document).ready(function() {
             var listid = $('#project-trade-list').val();
             // Update the contents of the list
             $.ajax({
-              url: 'http://rg.cape.io/_api/items/_index/list/'+listid+'/'+itemno,
+              url: rg_options.api + '/_api/items/_index/list/'+listid+'/'+itemno,
               type: 'PUT',
               headers: { Authorization: 'bearer '+token },
               contentType: 'application/json',
@@ -327,7 +327,7 @@ $(document).ready(function() {
       /*** IF VIEWING ANONYMOUS FAVORITES ***/
       if (_.isUndefined(faves) == false) {
         favorites = hash.get('faves').split(',');
-        var longurl = 'http://rg.cape.io/collection.html#faves=' + faves;
+        var longurl = rg_options.api + '/collection.html#faves=' + faves;
         // Get the bit.ly url
         $.getJSON(
           "http://api.bitly.com/v3/shorten?callback=?",
