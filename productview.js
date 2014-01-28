@@ -1010,6 +1010,7 @@ $(document).ready(function() {
       });
       $('ul.list li .item-spotlight').remove();
       hash.add({pos:pos});
+      productlist.update();
     });
 
     // Keep the dropdown menu from closing after an option is selected
