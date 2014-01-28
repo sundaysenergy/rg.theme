@@ -784,10 +784,12 @@ $(document).ready(function() {
           hash.remove('cpos');
           var p = parseInt(productlist.i)-1;
           if (p == -1) p = productlist.matchingItems.length-1;
+          console.log("ding");
           hash.add({pos:p});
         });
         $('ul.slider li:nth-child(3) .img').off('click touch').on('click touch', function(e) {
           hash.remove('cpos');
+          console.log('dong');
           var p = parseInt(productlist.i)+1;
           if (p == productlist.matchingItems.length) p = 0;
           hash.add({pos:p});
