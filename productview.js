@@ -178,6 +178,12 @@ $(document).ready(function() {
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
 
+      if (window.location.pathname.indexOf('/trade') >= 0) {
+        $('.masthead nav ul li > ul').addClass('active');
+      } else {
+        $('.masthead nav ul li > ul').removeClass('active');
+      }
+
       /*** GET VALUES FROM HASH ***/
       var collection = hash.get('collection');
       var attributes = (_.isUndefined(hash.get('attributes'))) ? []:hash.get('attributes').split(',');
@@ -272,6 +278,7 @@ $(document).ready(function() {
 
       // Remove stray null value if present in local storage
       if (_.isNull(localStorage.faves)) delete(localStorage.faves);
+
       // Force vertical view for favorites and search
       if (productlist.page == rg_options.horizontal_page && (_.isUndefined(hash.get('faves')) == false || _.isUndefined(hash.get('search')) == false)) {
         productlist.page = rg_options.vertical_page;
