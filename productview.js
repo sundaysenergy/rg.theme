@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  console.log(rootUrl);
   /**** DEFAULT OPTIONS ****/
   var rg_options = {
                       vertical_page: 42,
