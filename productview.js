@@ -683,7 +683,6 @@ $(document).ready(function() {
       }
 
       // Add product details div
-      console.log(productlist.page, rg_options.horizontal_page);
       if (productlist.page == rg_options.horizontal_page) {
         // Remove existing item details
         $('ul.list li .item-spotlight').remove();
@@ -708,11 +707,6 @@ $(document).ready(function() {
           hash.add({detailedview:id});
         });
 
-        console.log("got here");
-        $('ul.list li .img').off('click touch').on('click touch', function(e) {
-          var id = $(this).parent().find('.id').html();
-          hash.add({detailedview:id});
-        });
         // Create click handlers for the icon and the close button
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
           e.preventDefault();
@@ -798,6 +792,12 @@ $(document).ready(function() {
           hash.add({pos:p});
         });
       } else {
+        // Click handler for detailed view from vertical view
+        $('ul.list li .img').off('click touch').on('click touch', function(e) {
+          var id = $(this).parent().find('.id').html();
+          hash.add({detailedview:id});
+        });
+
         // When hovering over list items, show a plus button!
         $('div.add-fave button').off('click touch').on('click touch', function(e) {
           e.preventDefault();
