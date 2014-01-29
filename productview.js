@@ -445,7 +445,7 @@ $(document).ready(function() {
               var d = desc.split(',');
               for (var i = 0; i<d.length; i++) {
                 //console.log(d[i]);
-                var desc_field = (_.isUndefined(item.values().design_descriptions)) ? []:item.values().design_descriptions;
+                var desc_field = (_.isUndefined(item.values().design_descriptions)) ? '':item.values().design_descriptions;
                 //console.log(desc_field);
                 // If the desc field is present and matches
                 if (desc_field.toLowerCase().indexOf(d[i].toLowerCase()) >= 0) {
