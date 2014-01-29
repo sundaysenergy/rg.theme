@@ -287,7 +287,7 @@ $(document).ready(function() {
       // Clear any existing filter
       productlist.filter();
       // Remove disabled class from color and attribute filters
-      $('.filter-attributes label, .filter-color label').each(function(i) {
+      $('.filter-attributes label, .filter-color label, .filter-description label').each(function(i) {
         $(this).removeClass('disabled');
       });
 
