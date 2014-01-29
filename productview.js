@@ -451,7 +451,6 @@ $(document).ready(function() {
                 if (desc_field.toLowerCase().indexOf(d[i].toLowerCase()) >= 0) {
                   match = true;
                 } else {
-                  console.log(desc_field, d[i]);
                   // If the desc field is present, but does not match, return false.
                   return false;
                 }
@@ -998,6 +997,14 @@ $(document).ready(function() {
         // Toggle checkboxes for any attributes that are found.
         for (var i=0; i<f.length; i++) {
           $('.filter-color').find(':checkbox[value="' + f[i] +'"]').attr('checked',true);
+        }
+      }
+      var e = hash.get('desc');
+      if (typeof(e) != 'undefined') {
+        var f = e.split(',');
+        // Toggle checkboxes for any attributes that are found.
+        for (var i=0; i<f.length; i++) {
+          $('.filter-description').find(':checkbox[value="' + f[i] +'"]').attr('checked',true);
         }
       }
       // Trigger a hashchange event to actually process the filter
