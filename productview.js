@@ -184,6 +184,7 @@ $(document).ready(function() {
       // Reset our filters checkboxes if necessary
       if (_.isUndefined(hash.get('attributes'))) $('.filter-attributes').find(':checkbox').attr('checked',false);
       if (_.isUndefined(hash.get('color'))) $('.filter-color').find(':checkbox').attr('checked',false);
+      if (_.isUndefined(hash.get('desc'))) $('.filter-description').find(':checkbox').attr('checked',false);
 
       // Things to do if there is a collection present -- mostly moving things around visually
       if (_.isUndefined(collection) == false) {
@@ -864,7 +865,6 @@ $(document).ready(function() {
         e.preventDefault();
         return false;
       }
-      productlist.filter();
       var f = [];
       $('.filter-attributes :checkbox:checked').each(function(i) {
         f.push($(this).val());
@@ -888,8 +888,6 @@ $(document).ready(function() {
         e.preventDefault();
         return false;
       }
-      
-      productlist.filter();
       var f = [];
       $('.filter-color :checkbox:checked').each(function(i) {
         f.push($(this).val());
@@ -901,6 +899,29 @@ $(document).ready(function() {
       } else {
         hash.add({scroll:'n'});
         hash.remove('color');
+      }
+      if (productlist.page == rg_options.horizontal_page) { productlist.i = productlist.i-1; }
+      productlist.update();
+    });
+
+    // When we check a description filter, do the same
+    $('.filter-description input[type=checkbox]').on('click touch', function(e) {
+      // If it's disabled, return false
+      if ($(this).parent().hasClass('disabled')) {
+        e.preventDefault();
+        return false;
+      }
+      var f = [];
+      $('.filter-description :checkbox:checked').each(function(i) {
+        f.push($(this).val());
+      });
+      hash.remove('pos');
+      // If we have terms filter, otherwise the filter reset will start us fresh
+      if (f.length > 0) {
+        hash.add({desc : f.join(',') });
+      } else {
+        hash.add({scroll:'n'});
+        hash.remove('desc');
       }
       if (productlist.page == rg_options.horizontal_page) { productlist.i = productlist.i-1; }
       productlist.update();
@@ -970,7 +991,7 @@ $(document).ready(function() {
         for (var i=0; i<f.length; i++) {
           $('.filter-color').find(':checkbox[value="' + f[i] +'"]').attr('checked',true);
         }
-      }      
+      }
       // Trigger a hashchange event to actually process the filter
       $(window).trigger('hashchange');
     }
