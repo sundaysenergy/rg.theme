@@ -447,6 +447,13 @@ $(document).ready(function() {
                 console.log(d[i]);
                 var desc_field = (_.isUndefined(item.values().design_descriptions)) ? []:item.values().design_descriptions;
                 console.log(desc_field);
+                // If the desc field is present and matches
+                if (desc_field.toLowerCase().indexOf(d[i].toLowerCase()) >= 0) {
+                  match = true;
+                } else {
+                  // If the desc field is present, but does not match, return false.
+                  return false;
+                }
               }
             }
 
