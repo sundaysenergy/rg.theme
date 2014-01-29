@@ -937,6 +937,20 @@ $(document).ready(function() {
         // Hide the parents of any item that does not have a match.
         if (m == false) $(this).parent().addClass('disabled');
       });
+      // Do the same thing for description filters
+      $('.filter-description :checkbox:not(:checked)').each(function(i) {
+        var a = $(this)[0].value;
+        // Determine if any potential matches exist from currently matched items. Breaks on first true
+        var m = _.some(productlist.matchingItems, function(item) {
+          var ddesc = item.values().design_descriptions;
+          if (_.isUndefined(ddesc)) {
+            ddesc = '';
+          }
+          if (ddesc.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
+        });
+        // Hide the parents of any item that does not have a match.
+        if (m == false) $(this).parent().addClass('disabled');
+      });
     });
 
     // Process the hash if we're just loading the page and have values
