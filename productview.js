@@ -179,6 +179,7 @@ $(document).ready(function() {
       var srch       = hash.get('search');
       var faves      = hash.get('faves');
       var color      = hash.get('color');
+      var desc       = hash.get('desc');
 
       // Reset our filters checkboxes if necessary
       if (_.isUndefined(hash.get('attributes'))) $('.filter-attributes').find(':checkbox').attr('checked',false);
@@ -350,7 +351,7 @@ $(document).ready(function() {
       /***********************************/
       /**** PROCESS FILTERS FROM HASH ****/
       /***********************************/
-      var vals = [collection,f,srch,faves,color];
+      var vals = [collection,f,srch,faves,color,desc];
 
       // Process the filter if there are any terms other than undefined in our hash list
       if (_.some(vals, function(item) { return _.isUndefined(item) == false })) {
@@ -422,7 +423,7 @@ $(document).ready(function() {
              If we've either matched the collection, or there is no collection specified, proceed. 
              Assumption is that anything else means the collection is specified, but failed to match. */
           if (match || (typeof(collection) == 'undefined')) {
-            // Process attributes, if present
+            /*** PROCESS ATTRIBUTES ***/
             if (attributes.length > 0) {
               // For each attribute, see if we have a match. If not, set false and break.
               for (var i = 0; i<attributes.length; i++) {
@@ -438,7 +439,17 @@ $(document).ready(function() {
                 }
               }
             }
-            // Process color filters, if present
+            /*** PROCESS DESCRIPTION ***/
+            if (_.isUndefined(desc) == false) {
+              var d = desc.split(',');
+              for (var i = 0; i<d.length; i++) {
+                console.log(d[i]);
+                var desc_field = (_.isUndefined(item.values().design_descriptions)) ? []:item.values().design_descriptions;
+                console.log(desc_field);
+              }
+            }
+
+            /*** PROCESS COLORS ***/
             if (_.isUndefined(color) == false) {
               var color_terms = color.split(',');
               for (var i = 0; i<color_terms.length; i++) {
