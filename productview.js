@@ -7,7 +7,8 @@ $(document).ready(function() {
 
   var item_prices = [];
   var token = $.cookie('token');
-  
+
+  // If we have a token, get the pricelist to merge with the item list.
   if (_.isUndefined(token) == false) {
     $.ajax({
       url: rg_options.api + '/items/price.json',
@@ -25,7 +26,7 @@ $(document).ready(function() {
   $.getJSON(rg_options.api + '/items/client_data.json', function(combined) {
 
     // Compile clientside templates
-    var templates = combined.templates;  
+    var templates = combined.templates;
     var item_template                = Hogan.compile(templates.item),
         spotlight_template           = Hogan.compile(templates.spotlight),
         dummy_template               = Hogan.compile(templates.bookends),
