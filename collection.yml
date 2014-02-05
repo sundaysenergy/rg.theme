@@ -33,6 +33,7 @@ pricelist:
   js:
     - list.min.js
     - list.fuzzysearch.min.js
+    - js/jspdf.min.js
     - pricelist.js
 login:
   css:
