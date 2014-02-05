@@ -91,13 +91,13 @@ $(document).ready(function() {
       var doc = new jsPDF();
       var pos = 20;
       var items = textiles.matchingItems;
-      doc.setFontSize(14);
+      doc.setFontSize(10);
       _.forEach(items, function(item) {
         var values = item.values();
         var id   = (_.isUndefined(values['id'])) ? '':values['id'],
             name = (_.isUndefined(values['name'])) ? '':values['name'];
         doc.text(20, pos, id);
-        doc.text(100, pos, name);
+        doc.text(40, pos, name);
         pos = pos + 6;
         if (pos == 290) {
           pos = 20;
