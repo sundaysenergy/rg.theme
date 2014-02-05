@@ -92,8 +92,8 @@ $(document).ready(function() {
       var x_pos = 20;
       var items = textiles.matchingItems;
       _.forEach(items, function(item) {
-        console.log(item.values());
-        doc.text(x_pos, 20, "Knackered!");
+        var values = item.values();
+        doc.text(x_pos, 20, values.id);
         x_pos = x_pos + 20;
       });
       doc.save('Test.pdf');
