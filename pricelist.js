@@ -101,7 +101,7 @@ $(document).ready(function() {
         var id    = (_.isUndefined(values['id'])) ? '':values['id'],
             name  = (_.isUndefined(values['name'])) ? '':values['name'],
             color = (_.isUndefined(values['color'])) ? '':values['color'],
-            price = (_.isUndefined(item_prices['id'])) ? 'Not available':parseInt(item_prices['id']).toFixed(2);
+            price = (_.isUndefined(item_prices[id])) ? 'Not available':parseInt(item_prices[id]).toFixed(2);
         doc.text(20, pos, id);
         doc.text(45, pos, name);
         doc.text(110, pos, color);
