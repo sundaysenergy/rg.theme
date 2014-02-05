@@ -98,6 +98,7 @@ $(document).ready(function() {
       doc.text(140, 20, "Price");
       _.forEach(items, function(item) {
         var values = item.values();
+        console.log(values, values.tradeprice());
         var id    = (_.isUndefined(values['id'])) ? '':values['id'],
             name  = (_.isUndefined(values['name'])) ? '':values['name'],
             color = (_.isUndefined(values['color'])) ? '':values['color'],
