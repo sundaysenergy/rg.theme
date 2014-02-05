@@ -93,7 +93,8 @@ $(document).ready(function() {
       var items = textiles.matchingItems;
       _.forEach(items, function(item) {
         var values = item.values();
-        doc.text(x_pos, 20, values.id);
+        console.log(values, values['id']);
+        doc.text(x_pos, 20, "values.id");
         x_pos = x_pos + 20;
       });
       doc.save('Test.pdf');
