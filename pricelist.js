@@ -101,7 +101,7 @@ $(document).ready(function() {
         var id    = (_.isUndefined(values['id'])) ? '':values['id'],
             name  = (_.isUndefined(values['name'])) ? '':values['name'],
             color = (_.isUndefined(values['color'])) ? '':values['color'],
-            price = (_.isUndefined(values['tradeprice'])) ? '':values['tradeprice'];
+            price = (_.isUndefined(values.tradeprice)) ? '':values.tradeprice;
         doc.text(20, pos, id);
         doc.text(45, pos, name);
         doc.text(110, pos, color);
@@ -112,7 +112,7 @@ $(document).ready(function() {
           doc.addPage();
         }
       });
-      doc.save('Test.pdf');
+      doc.save('RG-pricelist.pdf');
     });
   });
 });
