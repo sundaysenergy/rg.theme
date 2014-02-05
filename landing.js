@@ -35,9 +35,7 @@ $(document).ready(function() {
       data[_.random(0,data.length-1)].active = true;
       // Add the html to the document
       $.when($('.carousel').html(item_template.render({slides:data}))).then(function() {
-        // Set the height of the carousel with JS. Should be made more pro by KB
-        // $('.carousel-inner').css('height', '500px');
-        
+
         // Start the carousel
         $('.carousel').carousel();
         // Workaround for the indicators being buggy out of the box
@@ -54,6 +52,13 @@ $(document).ready(function() {
         }, function() {
           var itemid = $(this).data("id");
           $('.popover-'+itemid).hide();
+        });
+
+        $('.landing-popover').each(function(i, item) {
+          $(this).off('click touch').on('click touch', function(e) {
+            var item = $(this).attr('class').split(' ')[1];
+            window.location.href = '/collection.html#detailedview='+item.replace('popover-','');
+          });
         });
       });
     });
