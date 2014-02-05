@@ -89,13 +89,13 @@ $(document).ready(function() {
     $('button.download-pdf').off('click touch').on('click touch', function(e) {
       e.preventDefault();
       var doc = new jsPDF();
-      var x_pos = 20;
+      var pos = 20;
       var items = textiles.matchingItems;
       _.forEach(items, function(item) {
         var values = item.values();
         console.log(values, values['id']);
-        doc.text(x_pos, 20, "values.id");
-        x_pos = x_pos + 20;
+        doc.text(20, pos, values['id']);
+        pos = pos + 20;
       });
       doc.save('Test.pdf');
     });
