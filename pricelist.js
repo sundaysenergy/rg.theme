@@ -89,15 +89,23 @@ $(document).ready(function() {
     $('button.download-pdf').off('click touch').on('click touch', function(e) {
       e.preventDefault();
       var doc = new jsPDF();
-      var pos = 20;
+      var pos = 26;
       var items = textiles.matchingItems;
       doc.setFontSize(10);
+      doc.text(20, 20, "ID");
+      doc.text(45, 20, "Name");
+      doc.text(110, 20, "Color");
+      doc.text(140, 20, "Price");
       _.forEach(items, function(item) {
         var values = item.values();
-        var id   = (_.isUndefined(values['id'])) ? '':values['id'],
-            name = (_.isUndefined(values['name'])) ? '':values['name'];
+        var id    = (_.isUndefined(values['id'])) ? '':values['id'],
+            name  = (_.isUndefined(values['name'])) ? '':values['name'],
+            color = (_.isUndefined(values['color'])) ? '':values['color'],
+            price = (_.isUndefined(values['tradeprice'])) ? '':values['tradeprice'];
         doc.text(20, pos, id);
-        doc.text(40, pos, name);
+        doc.text(45, pos, name);
+        doc.text(110, pos, color);
+        doc.text(145, pos, price);
         pos = pos + 6;
         if (pos == 290) {
           pos = 20;
