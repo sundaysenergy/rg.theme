@@ -94,8 +94,8 @@ $(document).ready(function() {
       _.forEach(items, function(item) {
         var values = item.values();
         var id = (_.isUndefined(values['id'])) ? '':values['id'];
-        doc.text(20, pos, id+pos);
-        pos = pos + 3;
+        doc.text(20, pos, id+' '+pos);
+        pos = pos + 6;
       });
       doc.save('Test.pdf');
     });
