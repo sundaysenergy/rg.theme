@@ -89,9 +89,12 @@ $(document).ready(function() {
     $('button.download-pdf').off('click touch').on('click touch', function(e) {
       e.preventDefault();
       var doc = new jsPDF();
+      var x_pos = 20;
       var items = textiles.matchingItems;
-      console.log(items);
-      doc.text(20, 20, 'Hello world.');
+      _.forEach(items, function(item) {
+        doc.text(x_pos, 20, textiles.matchingItems.values().join(' '));
+        x_pos = x_pos + 20;
+      });
       doc.save('Test.pdf');
     });
   });
