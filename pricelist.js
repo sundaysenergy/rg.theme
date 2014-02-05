@@ -94,8 +94,12 @@ $(document).ready(function() {
       _.forEach(items, function(item) {
         var values = item.values();
         var id = (_.isUndefined(values['id'])) ? '':values['id'];
-        doc.text(20, pos, id+' '+pos);
+        doc.text(20, pos, id);
         pos = pos + 6;
+        if (pos == 290) {
+          pos = 20;
+          doc.addPage();
+        }
       });
       doc.save('Test.pdf');
     });
