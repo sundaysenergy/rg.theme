@@ -95,7 +95,7 @@ $(document).ready(function() {
       doc.text(20, 20, "ID");
       doc.text(45, 20, "Name");
       doc.text(110, 20, "Color");
-      doc.text(140, 20, "Price");
+      doc.text(145, 20, "Price");
       _.forEach(items, function(item) {
         var values = item.values();
         var id    = (_.isUndefined(values['id'])) ? '':values['id'],
