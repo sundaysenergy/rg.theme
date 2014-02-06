@@ -4,7 +4,7 @@ default:
     - style.less
   js:
     - js/variables.js
-    - lodash.js
+    - lodash.compat.js
     - rg.js
     - hash.js
     - hogan-2.0.0.js
