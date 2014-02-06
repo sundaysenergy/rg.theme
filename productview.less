@@ -61,18 +61,27 @@ ul.collection-controls > li button {
   font-weight: bold;
 } 
 
+ul.collection-controls li button {
+  z-index: 100;
+} 
+
 ul.collection-controls > li.hug-center .uppercase {
   font-weight: normal;
   letter-spacing: 3px;
-} 
+}
 
+ul.collection-controls .open .caret {
+  border-top: 0;
+  border-bottom: 4px solid;
+  content: "";
+}
 
 #filter-list,
 #filter-list-leather {
   position: absolute;
   top: 100%;
   left: 0;
-/*   z-index: 1000; */
+  z-index: 10 !important;
   float: none;
   padding: 0;
   margin: 0;
@@ -87,7 +96,11 @@ ul.collection-controls > li.hug-center .uppercase {
 
 .btn-group button.on-top {
   position: relative;
-  z-index: 10;
+}
+
+.btn-group.open .dropdown-toggle,
+.btn-group button.on-top {
+  z-index: 100;
 }
 
 #filter-list ul.nav-tabs {
