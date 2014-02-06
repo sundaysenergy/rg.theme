@@ -3,7 +3,9 @@ $(document).ready(function() {
   /**** DISPLAY & DATA RESETS on page load ****/
   if (_.isUndefined(hash.get('faves')) == false) { localStorage.faves = hash.get('faves'); }
   // Delete session variables since the page has reloaded
-  delete(sessionStorage.detailedview);
+  if (_.isUndefined(sessionStorage.detailedview) == false) {
+    delete(sessionStorage.detailedview);
+  }
 
   var item_prices = [];
   var token = $.cookie('token');
