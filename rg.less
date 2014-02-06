@@ -470,16 +470,33 @@ ul.footerlinks li {
   text-align: center;
   margin: 0 10px;
 }
-.link-two {
+.link-two, .trade-login ul a {
   color: @rg-black;
   text-decoration: underline;
+}
+.link-two:hover, .trade-login ul a:hover {
+  color: @rg-gray;
+}
+footer.link-two {
   text-transform: lowercase;
   font-variant:small-caps;
 }
-.link-two:hover {
-  color: @rg-gray;
+
+/* Trade login stuff */
+.trade-login ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
 }
 
+.trade-login .form-inline .form-control {
+  width: 100%;
+}
 
-
+.trade-login form button {
+  letter-spacing: 2px;
+  margin-top: 20px;
+  padding-top: 8px;
+  padding-bottom: 4px;
+}
 
