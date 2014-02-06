@@ -56,12 +56,17 @@ ul.list li div.item-spotlight {
   display: block;
 }
 
+ul.collection-controls > li, 
+ul.collection-controls > li button {
+  font-weight: bold;
+} 
+
 #filter-list,
 #filter-list-leather {
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1000;
+/*   z-index: 1000; */
   float: none;
   padding: 0;
   margin: 0;
@@ -69,12 +74,18 @@ ul.list li div.item-spotlight {
   background-color: #fff;
   border: none;
   box-shadow: 0 0 10px 0 #848484;
-  width: 720px;
-  left: -50px;
+  width: 700px; /*this solution is problematic, not flexible, a YOLO solution... */
+  left: -70px; /*this solution is problematic, not flexible, a YOLO solution... */
   top:-10px;
 }
 
+.btn-group button.on-top {
+  position: relative;
+  z-index: 10;
+}
+
 #filter-list ul.nav-tabs {
+  margin: 0 20px;
   position: relative;
   top: 40px;
   text-align: center;
@@ -89,10 +100,18 @@ ul.list li div.item-spotlight {
 #filter-list ul.nav-tabs li > span {
   background-color: transparent;
   border: none;
+  color: @rg-gray;
   border-radius: 0 0 0 0;
   display: block;
   margin:0 20px;
   padding: 5px 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#filter-list ul.nav-tabs li.active > a,
+#filter-list ul.nav-tabs li.active > span {
+  color: @rg-black;
 }
 
 .filter-description,
