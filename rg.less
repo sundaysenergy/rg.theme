@@ -470,16 +470,18 @@ ul.footerlinks li {
   text-align: center;
   margin: 0 10px;
 }
+
+footer .link-two {
+  text-transform: lowercase;
+  font-variant:small-caps;
+}
+
 .link-two, .trade-login ul a {
   color: @rg-black;
   text-decoration: underline;
 }
 .link-two:hover, .trade-login ul a:hover {
   color: @rg-gray;
-}
-footer.link-two {
-  text-transform: lowercase;
-  font-variant:small-caps;
 }
 
 /* Trade login stuff */
@@ -500,3 +502,9 @@ footer.link-two {
   padding-bottom: 4px;
 }
 
+.editable-click, a.editable-click, a.editable-click:hover {
+  border-bottom: dashed 1px @rg-gold;
+}
+
+/** project list stuff **/
+ul.existing-projects button.delete-list
