@@ -96,7 +96,11 @@ ul.collection-controls .open .caret {
 
 .btn-group button.on-top {
   position: relative;
-  z-index: 10;
+}
+
+.btn-group.open .dropdown-toggle,
+.btn-group button.on-top {
+  z-index: 100;
 }
 
 #filter-list ul.nav-tabs {
