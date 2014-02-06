@@ -1,3 +1,5 @@
+$.support.cors = true;
+
 $(document).ready(function() {
 
   /**** DISPLAY & DATA RESETS on page load ****/
