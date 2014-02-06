@@ -307,7 +307,8 @@ $(document).ready(function() {
           var col = $(this).data('collection');
           hash.add({collection: col });
         });
-        $('button[data-collection="'+hash.get('collection')+'"]').addClass('active');   
+        $('#collection-menu-search-collection button').removeClass('active');
+        $('button[data-collection="'+hash.get('collection')+'"]').addClass('active');
         // View different page sizes of items
         $('#search-view-number a,.search-view-number a').each(function(i) {
           $(this).on('click touch', function(e) {
