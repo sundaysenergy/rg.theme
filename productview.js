@@ -738,7 +738,7 @@ $(document).ready(function() {
         });
         // Fallback click handler for ie9 since you can't attach to absolute positioned element
         $('ul.slider li .item-spotlight').parent().find('.img').off('click touch').on('click touch', function(e) {
-          var id = $(this).parent().parent().find('.id').html();
+          var id = $(this).parent().find('.id').html();
           hash.add({detailedview:id});
         });
 
