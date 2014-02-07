@@ -114,5 +114,46 @@ $(document).ready(function() {
       });
       doc.save('RG-pricelist.pdf');
     });
+    $('button.download-pdf-flash').off('click touch').on('click touch', function(e) {
+      Downloadify.create('downloadify',{
+        filename: 'RG-pricelist.pdf',
+        data: function(){ 
+          var doc = new jsPDF();
+          var pos = 26;
+          var items = textiles.matchingItems;
+          doc.setFontSize(10);
+          doc.text(20, 20, "ID");
+          doc.text(45, 20, "Name");
+          doc.text(110, 20, "Color");
+          doc.text(145, 20, "Price");
+          _.forEach(items, function(item) {
+            var values = item.values();
+            var id    = (_.isUndefined(values['id'])) ? '':values['id'],
+                name  = (_.isUndefined(values['name'])) ? '':values['name'],
+                color = (_.isUndefined(values['color'])) ? '':values['color'],
+                price = (_.isUndefined(item_prices[id])) ? 'Not available':parseInt(item_prices[id]).toFixed(2);
+            doc.text(20, pos, id);
+            doc.text(45, pos, name);
+            doc.text(110, pos, color);
+            doc.text(145, pos, price);
+            pos = pos + 6;
+            if (pos == 290) {
+              pos = 20;
+              doc.addPage();
+            }
+          });
+          return doc.output();
+        },
+        onComplete: function(){ alert('Your File Has Been Saved!'); },
+        onCancel: function(){ alert('You have cancelled the saving of this file.'); },
+        onError: function(){ alert('You must put something in the File Contents or there will be nothing to save!'); },
+        swf: '/img/jspdf/media/downloadify.swf',
+        downloadImage: '/img/jspdf/images/images/download.png',
+        width: 100,
+        height: 30,
+        transparent: true,
+        append: false
+      });
+    });
   });
 });
