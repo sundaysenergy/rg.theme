@@ -121,6 +121,7 @@ $(document).ready(function() {
           var doc = new jsPDF();
           var pos = 26;
           var items = textiles.matchingItems;
+          console.log(items, console.log(textiles));
           doc.setFontSize(10);
           doc.text(20, 20, "ID");
           doc.text(45, 20, "Name");
