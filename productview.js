@@ -727,7 +727,7 @@ $(document).ready(function() {
         }
         // For each visible li in the list, create a click handler that toggles visibility
         // and compiles the mustache for the current item.
-        $('ul.slider li, ul.list li .img').off('click touch');
+        $('ul.slider li .img, ul.slider li, ul.list li .img').off('click touch');
         $('ul.slider li .item-spotlight').off('click touch').on('click touch', function(e) {
           if (e.target !== this) {
             console.log("Not the right element");
@@ -812,14 +812,14 @@ $(document).ready(function() {
         colorslist.update();
 
         // Click on the left image should decrement by one, while the right image should increment
-        $('ul.slider li:nth-of-type(1)').off('click touch').on('click touch', function(e) {
+        $('ul.slider li:nth-of-type(1) .img').off('click touch').on('click touch', function(e) {
           hash.remove('cpos');
           var p = parseInt(productlist.i)-1;
           if (p == -1) p = productlist.matchingItems.length-1;
           console.log("ding");
           hash.add({pos:p});
         });
-        $('ul.slider li:nth-of-type(3)').off('click touch').on('click touch', function(e) {
+        $('ul.slider li:nth-of-type(3) .img').off('click touch').on('click touch', function(e) {
           hash.remove('cpos');
           console.log('dong');
           var p = parseInt(productlist.i)+1;
