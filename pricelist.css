@@ -21,3 +21,6 @@ th {
 .pager .disabled>a, .pager .disabled>a:hover, .pager .disabled>a:focus, .pager .disabled>span {
   background: transparent;
 }
+button.download-pdf-flash {
+  display: none;
+}
