@@ -1,22 +1,56 @@
 .new-project {
   display: none;
 }
+
 ul.existing-projects {
   padding: 0;
   margin: 40px 0;
   cursor: pointer;
 }
+
 ul.existing-projects > li {
   width: 100%;
   text-align: center;
   border-top: 1px solid;
   position: relative;
+  padding: 5px 0;
 }
-button.delete-list {
+
+ul.existing-projects button {
+  background: none;
+  background-color: transparent;
+  border: none;
+  border-color: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.existing-projects button.edit-list {
+  position: relative;
+  left: 10px;
+}
+
+ul.existing-projects button.delete-list {
+  background: transparent url(img/close-x.png) center center no-repeat;
+  display: block;
+  float: none;
   position: absolute;
-  right: 0;
-  top: 0;
+  top: 10px;
+  right: 14px;
+  height: 11px;
+  width: 11px;
+  text-indent: -9999px;
+  white-space: nowrap;
+  overflow: hidden;
+  opacity: .75;
+  filter: alpha(opacity=75);
 }
+
+ul.existing-projects button.delete-list:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+
 ul.trade-items {
   padding: 0;
   margin: 20px 0;
@@ -34,3 +68,4 @@ ul.trade-items button.remove-trade-item {
   right: 0;
   top: 0;
 }
+
