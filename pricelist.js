@@ -115,6 +115,8 @@ $(document).ready(function() {
       doc.save('RG-pricelist.pdf');
     });
     $('button.download-pdf-flash').off('click touch').on('click touch', function(e) {
+      var items = textiles.matchingItems;
+      console.log(items, textiles);
       Downloadify.create('downloadify',{
         filename: 'RG-pricelist.pdf',
         data: function(){ 
