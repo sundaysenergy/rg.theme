@@ -194,7 +194,7 @@ $(document).ready(function() {
       // Other resets
       $('#anonymous-faves-alert').find('button.close').trigger('click');
       $('#project-list-select').find('button.close').trigger('click');
-      
+
       // Things to do if there is a collection present -- mostly moving things around visually
       if (_.isUndefined(collection) == false) {
         
@@ -803,14 +803,14 @@ $(document).ready(function() {
         colorslist.update();
 
         // Click on the left image should decrement by one, while the right image should increment
-        $('ul.slider li:nth-child(1) .img').off('click touch').on('click touch', function(e) {
+        $('ul.slider li:nth-of-type(1)').off('click touch').on('click touch', function(e) {
           hash.remove('cpos');
           var p = parseInt(productlist.i)-1;
           if (p == -1) p = productlist.matchingItems.length-1;
           console.log("ding");
           hash.add({pos:p});
         });
-        $('ul.slider li:nth-child(3) .img').off('click touch').on('click touch', function(e) {
+        $('ul.slider li:nth-of-type(3)').off('click touch').on('click touch', function(e) {
           hash.remove('cpos');
           console.log('dong');
           var p = parseInt(productlist.i)+1;
