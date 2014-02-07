@@ -191,6 +191,10 @@ $(document).ready(function() {
       if (_.isUndefined(hash.get('color'))) $('.filter-color').find(':checkbox').attr('checked',false);
       if (_.isUndefined(hash.get('desc'))) $('.filter-description').find(':checkbox').attr('checked',false);
 
+      // Other resets
+      $('#anonymous-faves-alert').find('button.close').trigger('click');
+      $('#project-list-select').find('button.close').trigger('click');
+      
       // Things to do if there is a collection present -- mostly moving things around visually
       if (_.isUndefined(collection) == false) {
         
