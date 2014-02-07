@@ -34,6 +34,8 @@ pricelist:
     - list.min.js
     - list.fuzzysearch.min.js
     - js/jspdf.min.js
+    - js/downloadify.min.js
+    - swfobject.js
     - pricelist.js
 login:
   css:
