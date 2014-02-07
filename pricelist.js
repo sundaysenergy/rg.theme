@@ -122,29 +122,27 @@ $(document).ready(function() {
         data: function(){ 
           var doc = new jsPDF();
           var pos = 26;
-          var items = textiles.matchingItems;
-          console.log(items, console.log(textiles));
           doc.setFontSize(10);
           doc.text(20, 20, "ID");
           doc.text(45, 20, "Name");
           doc.text(110, 20, "Color");
           doc.text(145, 20, "Price");
-          _.forEach(items, function(item) {
-            var values = item.values();
-            var id    = (_.isUndefined(values['id'])) ? '':values['id'],
-                name  = (_.isUndefined(values['name'])) ? '':values['name'],
-                color = (_.isUndefined(values['color'])) ? '':values['color'],
-                price = (_.isUndefined(item_prices[id])) ? 'Not available':parseInt(item_prices[id]).toFixed(2);
-            doc.text(20, pos, id);
-            doc.text(45, pos, name);
-            doc.text(110, pos, color);
-            doc.text(145, pos, price);
-            pos = pos + 6;
-            if (pos == 290) {
-              pos = 20;
-              doc.addPage();
-            }
-          });
+          // _.forEach(items, function(item) {
+          //   var values = item.values();
+          //   var id    = (_.isUndefined(values['id'])) ? '':values['id'],
+          //       name  = (_.isUndefined(values['name'])) ? '':values['name'],
+          //       color = (_.isUndefined(values['color'])) ? '':values['color'],
+          //       price = (_.isUndefined(item_prices[id])) ? 'Not available':parseInt(item_prices[id]).toFixed(2);
+          //   doc.text(20, pos, id);
+          //   doc.text(45, pos, name);
+          //   doc.text(110, pos, color);
+          //   doc.text(145, pos, price);
+          //   pos = pos + 6;
+          //   if (pos == 290) {
+          //     pos = 20;
+          //     doc.addPage();
+          //   }
+          // });
           return doc.output();
         },
         onComplete: function(){ alert('Your File Has Been Saved!'); },
