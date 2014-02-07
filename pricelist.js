@@ -117,33 +117,32 @@ $(document).ready(function() {
     $('button.download-pdf-flash').off('click touch').on('click touch', function(e) {
       var items = textiles.matchingItems;
       Downloadify.create('downloadify',{
-        filename: 'RG-pricelist.txt',
+        filename: 'RG-pricelist.pdf',
         data: function(){ 
-          return "Hello world";
-          // var doc = new jsPDF();
-          // var pos = 26;
-          // doc.setFontSize(10);
-          // doc.text(20, 20, "ID");
-          // doc.text(45, 20, "Name");
-          // doc.text(110, 20, "Color");
-          // doc.text(145, 20, "Price");
-          // _.forEach(items, function(item) {
-          //   var values = item.values();
-          //   var id    = (_.isUndefined(values['id'])) ? '':values['id'],
-          //       name  = (_.isUndefined(values['name'])) ? '':values['name'],
-          //       color = (_.isUndefined(values['color'])) ? '':values['color'],
-          //       price = (_.isUndefined(item_prices[id])) ? 'Not available':parseInt(item_prices[id]).toFixed(2);
-          //   doc.text(20, pos, id);
-          //   doc.text(45, pos, name);
-          //   doc.text(110, pos, color);
-          //   doc.text(145, pos, price);
-          //   pos = pos + 6;
-          //   if (pos == 290) {
-          //     pos = 20;
-          //     doc.addPage();
-          //   }
-          // });
-          // return doc.output();
+          var doc = new jsPDF();
+          var pos = 26;
+          doc.setFontSize(10);
+          doc.text(20, 20, "ID");
+          doc.text(45, 20, "Name");
+          doc.text(110, 20, "Color");
+          doc.text(145, 20, "Price");
+          _.forEach(items, function(item) {
+            var values = item.values();
+            var id    = (_.isUndefined(values['id'])) ? '':values['id'],
+                name  = (_.isUndefined(values['name'])) ? '':values['name'],
+                color = (_.isUndefined(values['color'])) ? '':values['color'],
+                price = (_.isUndefined(item_prices[id])) ? 'Not available':parseInt(item_prices[id]).toFixed(2);
+            doc.text(20, pos, id);
+            doc.text(45, pos, name);
+            doc.text(110, pos, color);
+            doc.text(145, pos, price);
+            pos = pos + 6;
+            if (pos == 290) {
+              pos = 20;
+              doc.addPage();
+            }
+          });
+          return doc.output();
         },
         onComplete: function(){ alert('Your File Has Been Saved!'); },
         onCancel: function(){ alert('You have cancelled the saving of this file.'); },
