@@ -11,6 +11,21 @@ $(document).ready(function() {
       
       /**** PROCESS EACH OF THE LISTS ****/
       _.forEach(data, function(list) {
+        $.ajaxSetup({async:false});
+        var longurl = rg_options.api+'/collection.html#uid='+$.cookie('uid')+'&lid='+list._id;
+        $.getJSON(
+          "http://api.bitly.com/v3/shorten?callback=?",
+          { 
+            "format": "json",
+            "apiKey": "R_b83cfe54d0ecae82a9086a21fe834814",
+            "login": "sundaysenergy",
+            "longUrl": longurl
+          },
+          function(response) {
+            list.sharelink = response.data.url; 
+          }
+        );
+        $.ajaxSetup({async:true});
         $('ul.existing-projects').append(template.render(list));
 
         // Change the name of a list
@@ -128,6 +143,7 @@ $(document).ready(function() {
           });
         });
       });
+
       // Once we have all of the items, make them sortable
       var sortable = new Sortable($('.existing-projects')[0], {
         onUpdate: function (evt) {
