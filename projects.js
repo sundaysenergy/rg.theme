@@ -11,8 +11,8 @@ $(document).ready(function() {
       
       /**** PROCESS EACH OF THE LISTS ****/
       _.forEach(data, function(list) {
-        $.ajaxSetup({async:false});
         var longurl = rg_options.api+'/collection.html#uid='+$.cookie('uid')+'&lid='+list._id;
+        console.log(longurl);
         $.getJSON(
           "http://api.bitly.com/v3/shorten?callback=?",
           { 
@@ -20,126 +20,126 @@ $(document).ready(function() {
             "apiKey": "R_b83cfe54d0ecae82a9086a21fe834814",
             "login": "sundaysenergy",
             "longUrl": longurl
-          },
-          function(response) {
-            list.sharelink = response.data.url; 
           }
-        );
-        $.ajaxSetup({async:true});
-        $('ul.existing-projects').append(template.render(list));
+        )
+        .done(function(response) {
+          list.sharelink = response.data.url;
+          console.log(list);
+          $('ul.existing-projects').append(template.render(list));
 
-        // Change the name of a list
-        $('#'+list._id+' button.edit-list').on('click touch', function(e) {
-          e.preventDefault();
-          // Handle form submission
-          $(this).siblings('form').show().on('submit', function(ev) {
-            ev.preventDefault();
+          // Change the name of a list
+          $('#'+list._id+' button.edit-list').on('click touch', function(e) {
+            e.preventDefault();
+            // Handle form submission
+            $(this).siblings('form').show().on('submit', function(ev) {
+              ev.preventDefault();
+              var token = 'bearer ' + $.cookie('token');
+              var projectname = $(this).find('input[type=text]').val();
+              $.ajax({
+                url: rg_options.api + '/_api/items/_index/list/'+list._id,
+                type: 'PUT',
+                data: { info: { name:projectname } },
+                headers: { Authorization: token },
+                success: function(result) {
+                  location.reload();
+                  console.log(result);
+                },
+                fail: function(result) {
+                  console.log(result);
+                }
+              });
+            });
+            // Hide the display name and the edit button since we're showing the form
+            $(this).siblings('.list-name').hide();
+            $(this).hide();
+          });
+
+          // Expand the list
+          $('#'+list._id+' .list-name').on('click touch', function(e) {
+            // Check if the list is already populated
+            var new_list = $(this).parent().find('ul.trade-items').length == 0;
+            // Remove existing lists, including self
+            $('ul.trade-items').remove();
+            $('div.trade-items-noresults').remove();
+            // If the there weren't any trade-items lists inside of element's parents, make one
+            if (new_list) {
+              $.ajax({ url: rg_options.api + "/templates/mini/project_list_items.html" })
+              .done(function (project_items) {
+                // Compile the template for the list
+                var template = Hogan.compile(project_items);
+                $.getJSON(rg_options.api + '/_api/items/_index/list/'+list._id+'/index.json',{}, function(data) {
+                  // Render the template with the objects from the list
+                  $('#'+list._id+'_items').html(template.render({ items: _.keys(data) }));
+                  // Handle removing items from the list
+                  $('button.remove-trade-item').on('click touch', function(e) {
+                    e.preventDefault();
+                    var id = $(this).siblings('img').data('id');
+                    var $div = $(this).parent();
+                    var token = 'bearer ' + $.cookie('token');
+                    $.ajax({
+                      url: rg_options.api + '/_api/items/_index/list/' + list._id + '/' + id,
+                      type: 'DELETE',
+                      headers: { Authorization: token },
+                      success: function(result,i,o) {
+                        $div.remove();
+                        console.log(result,i,o);
+                      },
+                      fail: function(result,i,o) {
+                        console.log(result,i,o);
+                      }
+                    });
+                  });
+                  // Handle sorting items in the list
+                  var item_sortable = new Sortable($('.trade-items')[0], {
+                    onUpdate: function (evt) {
+                      var obj = { entity: {} };
+                      // Collect the order of the items and build an object 
+                      $('ul.trade-items > li').each(function(i) {
+                        console.log($(this));
+                        var id = $(this).find('img').data('id');
+                        var position = i+1;
+                        obj.entity[id] = position;
+                      });
+                      // Send a request to cape with the updated order
+                      var token = 'bearer ' + $.cookie('token');
+                      $.ajax({
+                        url: rg_options.api + '/_api/items/_index/list/'+list._id,
+                        type: 'PUT',
+                        data: JSON.stringify(obj),
+                        headers: { Authorization: token },
+                        contentType: 'application/json',
+                        success: function(result) {
+                          console.log(result);
+                        },
+                        fail: function(result) {
+                          console.log(result);
+                        }
+                      });
+                    }
+                  });
+                })
+                .fail(function() {
+                  $('#'+list._id+'_items').html(template.render({ nomatch: true }));
+                });
+              });
+            }
+          });
+          // Remove a list
+          $('#'+list._id+' button.delete-list').on('click touch', function(e) {
+            e.preventDefault();
             var token = 'bearer ' + $.cookie('token');
-            var projectname = $(this).find('input[type=text]').val();
             $.ajax({
               url: rg_options.api + '/_api/items/_index/list/'+list._id,
-              type: 'PUT',
-              data: { info: { name:projectname } },
+              type: 'DELETE',
               headers: { Authorization: token },
               success: function(result) {
-                location.reload();
-                console.log(result);
+                // Remove the item from the DOM
+                $('#'+list._id).remove();
               },
               fail: function(result) {
                 console.log(result);
               }
             });
-          });
-          // Hide the display name and the edit button since we're showing the form
-          $(this).siblings('.list-name').hide();
-          $(this).hide();
-        });
-
-        // Expand the list
-        $('#'+list._id+' .list-name').on('click touch', function(e) {
-          // Check if the list is already populated
-          var new_list = $(this).parent().find('ul.trade-items').length == 0;
-          // Remove existing lists, including self
-          $('ul.trade-items').remove();
-          $('div.trade-items-noresults').remove();
-          // If the there weren't any trade-items lists inside of element's parents, make one
-          if (new_list) {
-            $.ajax({ url: rg_options.api + "/templates/mini/project_list_items.html" })
-            .done(function (project_items) {
-              // Compile the template for the list
-              var template = Hogan.compile(project_items);
-              $.getJSON(rg_options.api + '/_api/items/_index/list/'+list._id+'/index.json',{}, function(data) {
-                // Render the template with the objects from the list
-                $('#'+list._id+'_items').html(template.render({ items: _.keys(data) }));
-                // Handle removing items from the list
-                $('button.remove-trade-item').on('click touch', function(e) {
-                  e.preventDefault();
-                  var id = $(this).siblings('img').data('id');
-                  var $div = $(this).parent();
-                  var token = 'bearer ' + $.cookie('token');
-                  $.ajax({
-                    url: rg_options.api + '/_api/items/_index/list/' + list._id + '/' + id,
-                    type: 'DELETE',
-                    headers: { Authorization: token },
-                    success: function(result,i,o) {
-                      $div.remove();
-                      console.log(result,i,o);
-                    },
-                    fail: function(result,i,o) {
-                      console.log(result,i,o);
-                    }
-                  });
-                });
-                // Handle sorting items in the list
-                var item_sortable = new Sortable($('.trade-items')[0], {
-                  onUpdate: function (evt) {
-                    var obj = { entity: {} };
-                    // Collect the order of the items and build an object 
-                    $('ul.trade-items > li').each(function(i) {
-                      console.log($(this));
-                      var id = $(this).find('img').data('id');
-                      var position = i+1;
-                      obj.entity[id] = position;
-                    });
-                    // Send a request to cape with the updated order
-                    var token = 'bearer ' + $.cookie('token');
-                    $.ajax({
-                      url: rg_options.api + '/_api/items/_index/list/'+list._id,
-                      type: 'PUT',
-                      data: JSON.stringify(obj),
-                      headers: { Authorization: token },
-                      contentType: 'application/json',
-                      success: function(result) {
-                        console.log(result);
-                      },
-                      fail: function(result) {
-                        console.log(result);
-                      }
-                    });
-                  }
-                });
-              })
-              .fail(function() {
-                $('#'+list._id+'_items').html(template.render({ nomatch: true }));
-              });
-            });
-          }
-        });
-        // Remove a list
-        $('#'+list._id+' button.delete-list').on('click touch', function(e) {
-          e.preventDefault();
-          var token = 'bearer ' + $.cookie('token');
-          $.ajax({
-            url: rg_options.api + '/_api/items/_index/list/'+list._id,
-            type: 'DELETE',
-            headers: { Authorization: token },
-            success: function(result) {
-              // Remove the item from the DOM
-              $('#'+list._id).remove();
-            },
-            fail: function(result) {
-              console.log(result);
-            }
           });
         });
       });
