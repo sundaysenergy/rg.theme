@@ -26,7 +26,12 @@ $(document).ready(function() {
           list.sharelink = response.data.url;
           console.log(list);
           $('ul.existing-projects').append(template.render(list));
-
+ 
+          // Automatically select share links when you click on the input
+          $('input.project-share').on('click touch', function(e) {
+            $(this).select();
+          });
+ 
           // Change the name of a list
           $('#'+list._id+' button.edit-list').on('click touch', function(e) {
             e.preventDefault();
@@ -142,11 +147,6 @@ $(document).ready(function() {
             });
           });
         });
-      });
-
-      // Automatically select share links when you click on the input
-      $('input.project-share').on('click touch', function(e) {
-        $(this).select();
       });
 
       // Once we have all of the items, make them sortable
