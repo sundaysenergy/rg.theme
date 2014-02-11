@@ -61,6 +61,8 @@ $(document).ready(function() {
 
           // Expand the list
           $('#'+list._id+' .list-name').on('click touch', function(e) {
+            $('input.project-share').hide();
+            $(this).siblings('input.project-share').show();
             // Check if the list is already populated
             var new_list = $(this).parent().find('ul.trade-items').length == 0;
             // Remove existing lists, including self
