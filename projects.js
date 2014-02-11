@@ -144,6 +144,11 @@ $(document).ready(function() {
         });
       });
 
+      // Automatically select share links when you click on the input
+      $('input.project-share').on('click touch', function(e) {
+        $(this).select();
+      });
+
       // Once we have all of the items, make them sortable
       var sortable = new Sortable($('.existing-projects')[0], {
         onUpdate: function (evt) {
