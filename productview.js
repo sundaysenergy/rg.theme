@@ -788,8 +788,9 @@ $(document).ready(function() {
           if (colorslist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
           // Set the width of the color swatch thing
           var thumbcount = $("#item-colors > ul.list-inline").children("li").length;
-          $('#item-colors').width(160+90*(thumbcount-1)).css('margin-left',-80+(-45*(thumbcount-1)));
-          $('#item-colors > ul.list-inline').width(80+90*(thumbcount-1));
+          console.log(160+90*(thumbcount-1));
+          $('#item-colors').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
+          $('#item-colors > ul.list-inline').css('width', 80+90*(thumbcount-1));
 
           $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
           $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
