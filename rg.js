@@ -39,5 +39,8 @@ $(document).ready(function() {
   $( ".landing nav" ).mouseover(function() {
     $( ".landing nav ul" ).slideDown();
   });
+  $( ".landing nav" ).mouseout(function() {
+    $( ".landing nav ul" ).slideUp();
+  });
 
 });
