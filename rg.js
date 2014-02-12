@@ -34,13 +34,13 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   
-  $('navwrap').hide();
+  $('.landing .navwrap').hide();
   
-  $('nav').mouseover( function(){
-      $('.navwrap').slideDown();
+  $('.landing nav').mouseover( function(){
+      $('.landing nav .navwrap').slideDown();
   })
-  $('nav').mouseleave( function(){
-      $('.navwrap').slideUp();
+  $('.landing nav').mouseleave( function(){
+      $('.landing nav .navwrap').slideUp();
   });
 
 });
