@@ -786,6 +786,11 @@ $(document).ready(function() {
           var current_page = parseInt(colorslist.i / 5 + 1);
           var total_pages = parseInt(colorslist.matchingItems.length / 5);
           if (colorslist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
+          // Set the width of the color swatch thing
+          var thumbcount = parseInt(colorlist.matchingItems.length - colorlist.i);
+          $('#item-colors').width(160+90*(thumbcount-1)).css('margin-left',-80+(-45*(thumbcount-1)));
+          $('#item-colors > ul.list-inline').width(80+90*(thumbcount-1));
+
           $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
           $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
           $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
@@ -1101,37 +1106,4 @@ $(document).ready(function() {
       return false;
     });
   });
-    
-  // resize color popup
-  
-  var thumbcount = $(".related-products > ul.list-inline").children("li").length;
-  
-  if (thumbcount >= 5) {
-    $('.related-products').width(520).css('margin-left',-260);
-    $('.related-products > ul.list-inline').width(440);
-  }
-  
-  if (thumbcount == 4) {
-    $('.related-products').width(430).css('margin-left',-215);
-    $('.related-products > ul.list-inline').width(350);
-  }
-  
-  if (thumbcount == 3) {
-    $('.related-products').width(340).css('margin-left',-170);
-    $('.related-products > ul.list-inline').width(260);
-  }
-  
-  if (thumbcount == 2) {
-    $('.related-products').width(250).css('margin-left',-125);
-    $('.related-products > ul.list-inline').width(170);
-  }
-  
-  if (thumbcount == 1) {
-    $('.related-products').width(160).css('margin-left',-80);
-    $('.related-products > ul.list-inline').width(80);
-  }
-  
-  else {}
-  
 });
-
