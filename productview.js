@@ -567,7 +567,7 @@ $(document).ready(function() {
             var total_pages = parseInt(relatedlist.matchingItems.length / 5);
             if (relatedlist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
             // Resize color box
-            var thumbcount = $("#item-colors > ul.list-inline").children("li").length;
+            var thumbcount = $("#related-products > ul.list-inline").children("li").length;
             $('#related-products').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
             $('#related-products > ul.list-inline').css('width', 90*thumbcount);
 
