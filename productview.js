@@ -1101,7 +1101,37 @@ $(document).ready(function() {
       return false;
     });
   });
+    
+  // resize color popup
   
-  // This should probably be in the css, no?
-  $(".rulers .ruler-cm").hide();
+  var thumbcount = $(".related-products > ul.list-inline").children("li").length;
+  
+  if (thumbcount >= 5) {
+    $('.related-products').width(520).css('margin-left',-260);
+    $('.related-products > ul.list-inline').width(440);
+  }
+  
+  if (thumbcount == 4) {
+    $('.related-products').width(430).css('margin-left',-215);
+    $('.related-products > ul.list-inline').width(350);
+  }
+  
+  if (thumbcount == 3) {
+    $('.related-products').width(340).css('margin-left',-170);
+    $('.related-products > ul.list-inline').width(260);
+  }
+  
+  if (thumbcount == 2) {
+    $('.related-products').width(250).css('margin-left',-125);
+    $('.related-products > ul.list-inline').width(170);
+  }
+  
+  if (thumbcount == 1) {
+    $('.related-products').width(160).css('margin-left',-80);
+    $('.related-products > ul.list-inline').width(80);
+  }
+  
+  else {}
+  
 });
+
