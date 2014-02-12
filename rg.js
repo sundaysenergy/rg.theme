@@ -33,15 +33,14 @@ $(document).ready(function() {
 // slideup/slidedown of landing page menu
 
 $(document).ready(function() {
-
-  $( ".landing nav .navwrap" ).hide();
   
-  $( ".landing nav" ).mouseover(function() {
-    $( ".landing nav .navwrap" ).slideDown();
-  });
+  $('navwrap').hide();
   
-  $( ".landing nav" ).mouseout(function() {
-    $( ".landing nav .navwrap" ).slideUp();
+  $('nav').mouseover( function(){
+      $('.navwrap').slideDown();
+  })
+  $('nav').mouseleave( function(){
+      $('.navwrap').slideUp();
   });
 
 });
