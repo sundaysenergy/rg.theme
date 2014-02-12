@@ -29,3 +29,15 @@ $(document).ready(function() {
     $('.masthead nav ul li > ul').removeClass('active');
   }
 });
+
+// slideup/slidedown of landing page menu
+
+$(document).ready(function() {
+
+  $( ".landing nav ul" ).hide();
+  
+  $( ".landing nav" ).mouseover(function() {
+    $( ".landing nav ul" ).slideDown();
+  });
+
+});
