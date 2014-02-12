@@ -415,7 +415,19 @@ ul#collection li {
 .text-area {
   max-width: 720px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0;
+  font-size: 1.25em;
+  line-height: 1.6;
+}
+
+@media screen and (max-width: 740px) {
+  .text-area {
+    padding: 0 20px;
+  }
+}
+
+.about .text-area {
+  margin-top: 75px;
 }
 
 .text-area.add-bottom {
