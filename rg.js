@@ -44,3 +44,14 @@ $(document).ready(function() {
   });
 
 });
+
+// contact page basics
+
+$(document).ready(function() {
+   $("section.toggle .slider").hide();
+ 
+  $("section.toggle h2").click(function () {
+    $(this).parent().children(".slider").slideToggle();
+  });    
+
+ });
