@@ -189,18 +189,22 @@ main{
   height:0;
   opacity: 0;
   overflow: hidden;
-  margin: 0 0 0 -70px;
+  margin: 0 0 0 -150px;
   padding: 0;
   width: 300px;
+  position: relative;
+  left: 50%;
 }
 /* Tim added this, so you should probably fix it. */
 .masthead nav ul li ul.trade-login {
   height: 0;
   opacity: 0;
   overflow: hidden;
-  margin: 0 0 0 -120px;
+  margin: 0 0 0 -250px;
   padding: 0;
   width: 500px;
+  position: relative;
+  left: 50%;
 }
 .masthead nav ul li ul.trade-login li,
 .masthead nav ul li ul.collection-filter li {
@@ -214,6 +218,12 @@ main{
   padding: 0;
   width: auto;
 }
+
+.masthead nav ul li ul.trade-login li {
+  margin-top: 0;
+  width: 80px;
+}
+
 
 .masthead nav ul li ul.trade-login li:first-child,
 .masthead nav ul li ul.collection-filter li:first-child {
