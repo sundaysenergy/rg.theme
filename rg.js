@@ -36,10 +36,10 @@ $(document).ready(function() {
   
   $('.landing .navwrap').hide();
   
-  $('.landing nav').mouseover( function(){
+  $('.landing header').mouseover( function(){
       $('.landing nav .navwrap').slideDown();
   })
-  $('.landing nav').mouseleave( function(){
+  $('.landing header').mouseleave( function(){
       $('.landing nav .navwrap').slideUp();
   });
 
