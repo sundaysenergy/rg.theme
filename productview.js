@@ -787,7 +787,7 @@ $(document).ready(function() {
           var total_pages = parseInt(colorslist.matchingItems.length / 5);
           if (colorslist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
           // Set the width of the color swatch thing
-          var thumbcount = parseInt(colorlist.matchingItems.length - colorlist.i);
+          var thumbcount = parseInt(colorslist.matchingItems.length - colorslist.i);
           $('#item-colors').width(160+90*(thumbcount-1)).css('margin-left',-80+(-45*(thumbcount-1)));
           $('#item-colors > ul.list-inline').width(80+90*(thumbcount-1));
 
