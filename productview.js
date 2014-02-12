@@ -566,6 +566,11 @@ $(document).ready(function() {
             var current_page = parseInt(relatedlist.i / 5 + 1);
             var total_pages = parseInt(relatedlist.matchingItems.length / 5);
             if (relatedlist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
+            // Resize color box
+            var thumbcount = $("#item-colors > ul.list-inline").children("li").length;
+            $('#related-products').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
+            $('#related-products > ul.list-inline').css('width', 90*thumbcount);
+
             $('#related-products .related-page-count').html(current_page + " / " + total_pages);
             $('.rel-previous, .rel-next').removeClass('disabled');
             $('.rel-next').off('click touch').on('click touch', function(e) {
@@ -788,9 +793,8 @@ $(document).ready(function() {
           if (colorslist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
           // Set the width of the color swatch thing
           var thumbcount = $("#item-colors > ul.list-inline").children("li").length;
-          console.log(160+90*(thumbcount-1));
           $('#item-colors').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
-          $('#item-colors > ul.list-inline').css('width', 80+90*(thumbcount-1));
+          $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
 
           $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
           $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
