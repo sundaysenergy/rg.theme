@@ -28,7 +28,7 @@ body {
 
 .pricelist-list {position: relative;}
 
-.pricelist .pricelist-search {
+.pricelist-search {
   position: absolute;
   width: 500px;
   top: -120px;
@@ -36,7 +36,7 @@ body {
   margin-left: -250px;
 }
 
-.pricelist .pricelist-search input.fuzzy-search {
+.pricelist-search input.fuzzy-search {
   width: 290px;
 }
 
