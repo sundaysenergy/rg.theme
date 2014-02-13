@@ -2,33 +2,85 @@ body {
   padding-top: 20px;
 }
 
+.pricelist {
+  padding-top: 50px;
+}
+
+.pricelist-header {
+  border-top: 1px solid #262019;
+  border-bottom: 1px solid #848484;
+  margin-top: 90px;
+  margin-bottom: 15px;
+}
+
+.pricelist-header .pager {
+  margin: 0;
+}
+
+.pager li>a, .pager li>span {
+  background: transparent;
+  border: 0;
+}
+
+.pager .disabled>a, .pager .disabled>a:hover, .pager .disabled>a:focus, .pager .disabled>span {
+  background: transparent;
+}
+
+.pricelist-list {position: relative;}
+
+.pricelist .pricelist-search {
+  position: absolute;
+  width: 500px;
+  top: -120px;
+  left: 50%;
+  margin-left: -250px;
+}
+
+.pricelist .pricelist-search input.fuzzy-search {
+  width: 290px;
+}
+
 thead {
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: #848484;
   letter-spacing: 2px;
-  font-size: .9em;
+  font-size: 1em;
+  font-variant: small-caps;
+}
+
+th.name, td.name,
+th.color, td.color {
+  width: 12%;
+}
+
+th.id, td.id {
+  width: 9%;
+}
+
+th.content, td.content {
+  width: 37%;
+}
+
+th.repeat, td.repeat,
+th.width, td.width,
+th.tradeprice, td.tradeprice {
+  width: 10%;
 }
 
 th {
   white-space: nowrap;
   cursor: pointer;
 }
-#textiles {
+
+.pricelist-list {
   text-align: center;
 }
-#textiles table {
+
+.pricelist-list table {
   text-align: left;
 }
-.pricelist {
-  padding-top: 50px;
-}
-.pager li>a, .pager li>span {
-  background: transparent;
-  border: 0;
-}
-.pager .disabled>a, .pager .disabled>a:hover, .pager .disabled>a:focus, .pager .disabled>span {
-  background: transparent;
-}
+
 button.download-pdf-flash {
   display: none;
 }
+
