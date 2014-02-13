@@ -1,6 +1,14 @@
 body {
   padding-top: 20px;
 }
+
+thead {
+  text-transform: uppercase;
+  color: #848484;
+  letter-spacing: 2px;
+  font-size: .9em;
+}
+
 th {
   white-space: nowrap;
   cursor: pointer;
