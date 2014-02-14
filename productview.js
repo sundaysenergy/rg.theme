@@ -339,6 +339,7 @@ $(document).ready(function() {
         $('#collection-menu-search,#collection-menu-faves,#collection-menu-search-collection').hide();  
       }
 
+      // If we have a project list, retrieve the items in that list
       var project_items = [];
       if (_.isUndefined(lid) == false) {
         $.ajaxSetup({async:false});
