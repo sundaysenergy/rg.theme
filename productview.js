@@ -181,7 +181,7 @@ $(document).ready(function() {
       /*** GET VALUES FROM HASH ***/
       var collection = hash.get('collection');
       var attributes = (_.isUndefined(hash.get('attributes'))) ? []:hash.get('attributes').split(',');
-      var listid     = hash.get('lid');
+      var lid        = hash.get('lid');
       var userid     = hash.get('uid');
       var srch       = hash.get('search');
       var faves      = hash.get('faves');
@@ -282,7 +282,7 @@ $(document).ready(function() {
       if (_.isNull(localStorage.faves)) delete(localStorage.faves);
 
       // Force vertical view for favorites and search
-      if (productlist.page == rg_options.horizontal_page && (_.isUndefined(hash.get('faves')) == false || _.isUndefined(hash.get('search')) == false)) {
+      if (productlist.page == rg_options.horizontal_page && (_.isUndefined(hash.get('faves')) == false || _.isUndefined(hash.get('search')) == false || _.isUndefined(lid) == false))) {
         productlist.page = rg_options.vertical_page;
         var pos = 1;
         $('#products > ul.list').removeClass('slider');
@@ -332,7 +332,7 @@ $(document).ready(function() {
           });
         });
       // Show&hide header bars for search and default
-      } else if (_.isUndefined(faves) == false || _.isUndefined(listid)) {
+      } else if (_.isUndefined(faves) == false || _.isUndefined(lid) == false) {
         $('#products,#collection-menu-faves').show();
         $('collection-menu-search-collection,#collection-menu-main,#collection-menu-leather,#collection-menu-passementerie,#collection-menu-search,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive,#collection-menu-main-inactive').hide();
       } else {
@@ -340,9 +340,9 @@ $(document).ready(function() {
       }
 
       var project_items = [];
-      if (_.isUndefined(listid) == false) {
+      if (_.isUndefined(lid) == false) {
         $.ajaxSetup({async:false});
-        $.getJSON(rg_options.api + '/_api/items/_index/list/'+listid+'/index.json',{}, function(data) {
+        $.getJSON(rg_options.api + '/_api/items/_index/list/'+lid+'/index.json',{}, function(data) {
           project_items = _.keys(data);
         });
         $.ajaxSetup({async:false});
@@ -374,7 +374,7 @@ $(document).ready(function() {
       /***********************************/
       /**** PROCESS FILTERS FROM HASH ****/
       /***********************************/
-      var vals = [collection,f,srch,faves,color,desc,listid];
+      var vals = [collection,f,srch,faves,color,desc,lid];
 
       // Process the filter if there are any terms other than undefined in our hash list
       if (_.some(vals, function(item) { return _.isUndefined(item) == false })) {
@@ -393,7 +393,7 @@ $(document).ready(function() {
           }
 
           /*** PROCESS THE PROJECTS LIST ***/
-          if (_.isUndefined(listid) == false) {
+          if (_.isUndefined(lid) == false) {
             // Always return true/false since we don't need to go to the next step
             if (_.indexOf(project_items, item.values().id) >= 0) {
               return true;
