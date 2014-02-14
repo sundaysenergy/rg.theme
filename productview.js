@@ -181,6 +181,8 @@ $(document).ready(function() {
       /*** GET VALUES FROM HASH ***/
       var collection = hash.get('collection');
       var attributes = (_.isUndefined(hash.get('attributes'))) ? []:hash.get('attributes').split(',');
+      var listid     = hash.get('lid');
+      var userid     = hash.get('uid');
       var srch       = hash.get('search');
       var faves      = hash.get('faves');
       var color      = hash.get('color');
@@ -337,6 +339,15 @@ $(document).ready(function() {
         $('#collection-menu-search,#collection-menu-faves,#collection-menu-search-collection').hide();  
       }
 
+      var project_items = [];
+      if (_.isUndefined(listid) == false) {
+        $.ajaxSetup({async:false});
+        $.getJSON(rg_options.api + '/_api/items/_index/list/'+listid+'/index.json',{}, function(data) {
+          project_items = data;
+        });
+        $.ajaxSetup({async:false});
+      }
+
       /*** IF VIEWING ANONYMOUS FAVORITES ***/
       if (_.isUndefined(faves) == false) {
         favorites = hash.get('faves').split(',');
@@ -363,7 +374,7 @@ $(document).ready(function() {
       /***********************************/
       /**** PROCESS FILTERS FROM HASH ****/
       /***********************************/
-      var vals = [collection,f,srch,faves,color,desc];
+      var vals = [collection,f,srch,faves,color,desc,listid];
 
       // Process the filter if there are any terms other than undefined in our hash list
       if (_.some(vals, function(item) { return _.isUndefined(item) == false })) {
@@ -375,6 +386,17 @@ $(document).ready(function() {
           if (_.isUndefined(faves) == false) {
             // Always return true/false since we don't need to go to the next step
             if (_.indexOf(favorites, item.values().id) >= 0) {
+              return true;
+            } else {
+              return false;
+            }
+          }
+
+          /*** PROCESS THE PROJECTS LIST ***/
+          if (_.isUndefined(listid) == false) {
+            console.log(project_items);
+            // Always return true/false since we don't need to go to the next step
+            if (_.indexOf(project_items, item.values().id) >= 0) {
               return true;
             } else {
               return false;
