@@ -53,20 +53,21 @@ $(document).ready(function() {
           $('input.project-share').hide();
           var longurl = $(this).parent().data('longurl');
           var $list = $(this).parent();
-          $.getJSON(
-            "http://api.bitly.com/v3/shorten?callback=?",
-            { 
-              "format": "json",
-              "apiKey": "R_b83cfe54d0ecae82a9086a21fe834814",
-              "login": "sundaysenergy",
-              "longUrl": longurl
-            }
-          )
-          .done(function(response) {
-            $list.find('input.project-share').val(response.data.url).show();
-          });
-          // Check if the list is already populated
           var new_list = $(this).parent().find('ul.trade-items').length == 0;
+          if (new_list) {
+            $.getJSON(
+              "http://api.bitly.com/v3/shorten?callback=?",
+              { 
+                "format": "json",
+                "apiKey": "R_b83cfe54d0ecae82a9086a21fe834814",
+                "login": "sundaysenergy",
+                "longUrl": longurl
+              }
+            )
+            .done(function(response) {
+              $list.find('input.project-share').val(response.data.url).show();
+            });
+          }
           // Remove existing lists, including self
           $('ul.trade-items').remove();
           $('div.trade-items-noresults').remove();
@@ -131,8 +132,6 @@ $(document).ready(function() {
                 $('#'+list._id+'_items').html(template.render({ nomatch: true }));
               });
             });
-          } else {
-            $('input.project-share').hide();
           }
         });
         // Remove a list
