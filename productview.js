@@ -394,9 +394,9 @@ $(document).ready(function() {
 
           /*** PROCESS THE PROJECTS LIST ***/
           if (_.isUndefined(listid) == false) {
-            console.log(project_items);
             // Always return true/false since we don't need to go to the next step
             if (_.indexOf(project_items, item.values().id) >= 0) {
+              console.log(item.values().id)
               return true;
             } else {
               return false;
