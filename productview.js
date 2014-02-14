@@ -305,8 +305,8 @@ $(document).ready(function() {
       /*** IF PERFORMING A SEARCH ***/
       if (_.isUndefined(srch) == false) {
         // Show the search header bar and hide the others
+        $('[id^=collection-menu]').hide();
         $('#products,#collection-menu-search,#collection-menu-search-collection').show();
-        $('#collection-menu-main,#collection-menu-leather,#collection-menu-passementerie,#collection-menu-faves,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive,#collection-menu-main-inactive').hide();
         // Switch between search collections
         $("#collection-menu-search-collection button").on('click touch', function(e) { 
           e.preventDefault();
@@ -332,11 +332,14 @@ $(document).ready(function() {
           });
         });
       // Show&hide header bars for search and default
-      } else if (_.isUndefined(faves) == false || _.isUndefined(lid) == false) {
+      } else if (_.isUndefined(faves) == false) {
+        $('[id^=collection-menu]').hide();
         $('#products,#collection-menu-faves').show();
-        $('collection-menu-search-collection,#collection-menu-main,#collection-menu-leather,#collection-menu-passementerie,#collection-menu-search,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive,#collection-menu-main-inactive').hide();
+      } else if (_.isUndefined(lid) == false) {
+        $('[id^=collection-menu]').hide();
+        $('#products,#collection-menu-project-list').show();
       } else {
-        $('#collection-menu-search,#collection-menu-faves,#collection-menu-search-collection').hide();  
+        $('#collection-menu-search,#collection-menu-faves,#collection-menu-search-collection,#collection-menu-project-list').hide();  
       }
 
       // If we have a project list, retrieve the items in that list
