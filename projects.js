@@ -50,10 +50,8 @@ $(document).ready(function() {
 
         // Expand the list
         $('#'+list._id+' .list-name').on('click touch', function(e) {
-          console.log($(this));
           $('input.project-share').hide();
           var longurl = $(this).parent().data('longurl');
-          console.log(longurl);
           var $list = $(this).parent();
           $.getJSON(
             "http://api.bitly.com/v3/shorten?callback=?",
@@ -65,7 +63,6 @@ $(document).ready(function() {
             }
           )
           .done(function(response) {
-            console.log(response);
             $list.find('input.project-share').val(response.data.url).show();
           });
           // Check if the list is already populated

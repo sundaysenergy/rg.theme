@@ -342,11 +342,14 @@ $(document).ready(function() {
       // If we have a project list, retrieve the items in that list
       var project_items = [];
       if (_.isUndefined(lid) == false) {
+        $('#products ul.list').addClass('project-list');
         $.ajaxSetup({async:false});
         $.getJSON(rg_options.api + '/_api/items/_index/list/'+lid+'/index.json',{}, function(data) {
           project_items = _.keys(data);
         });
         $.ajaxSetup({async:false});
+      } else {
+        $('#products ul.list').removeClass('project-list');
       }
 
       /*** IF VIEWING ANONYMOUS FAVORITES ***/
