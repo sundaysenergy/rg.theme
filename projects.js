@@ -11,7 +11,6 @@ $(document).ready(function() {
       
       /**** PROCESS EACH OF THE LISTS ****/
       _.forEach(data, function(list) {
-        console.log(list);
         var longurl = rg_options.api+'/collection.html#lid='+list._id+'&name='+encodeURIComponent(list.info.name);
 
         list.sharelink = longurl;
@@ -132,6 +131,8 @@ $(document).ready(function() {
                 $('#'+list._id+'_items').html(template.render({ nomatch: true }));
               });
             });
+          } else {
+            $('input.project-share').hide();
           }
         });
         // Remove a list
