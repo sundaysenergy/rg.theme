@@ -282,7 +282,7 @@ $(document).ready(function() {
       if (_.isNull(localStorage.faves)) delete(localStorage.faves);
 
       // Force vertical view for favorites and search
-      if (productlist.page == rg_options.horizontal_page && (_.isUndefined(hash.get('faves')) == false || _.isUndefined(hash.get('search')) == false || _.isUndefined(lid) == false))) {
+      if (productlist.page == rg_options.horizontal_page && (_.isUndefined(hash.get('faves')) == false || _.isUndefined(hash.get('search')) == false || _.isUndefined(lid) == false)) {
         productlist.page = rg_options.vertical_page;
         var pos = 1;
         $('#products > ul.list').removeClass('slider');
