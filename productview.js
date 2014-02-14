@@ -343,7 +343,7 @@ $(document).ready(function() {
       if (_.isUndefined(listid) == false) {
         $.ajaxSetup({async:false});
         $.getJSON(rg_options.api + '/_api/items/_index/list/'+listid+'/index.json',{}, function(data) {
-          project_items = data;
+          project_items = _.keys(data);
         });
         $.ajaxSetup({async:false});
       }
