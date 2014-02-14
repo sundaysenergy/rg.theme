@@ -332,7 +332,7 @@ $(document).ready(function() {
           });
         });
       // Show&hide header bars for search and default
-      } else if (_.isUndefined(faves) == false) {
+      } else if (_.isUndefined(faves) == false || _.isUndefined(listid)) {
         $('#products,#collection-menu-faves').show();
         $('collection-menu-search-collection,#collection-menu-main,#collection-menu-leather,#collection-menu-passementerie,#collection-menu-search,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive,#collection-menu-main-inactive').hide();
       } else {
@@ -396,7 +396,6 @@ $(document).ready(function() {
           if (_.isUndefined(listid) == false) {
             // Always return true/false since we don't need to go to the next step
             if (_.indexOf(project_items, item.values().id) >= 0) {
-              console.log(item.values().id)
               return true;
             } else {
               return false;
