@@ -11,7 +11,8 @@ $(document).ready(function() {
       
       /**** PROCESS EACH OF THE LISTS ****/
       _.forEach(data, function(list) {
-        var longurl = rg_options.api+'/collection.html#uid='+$.cookie('uid')+'&lid='+list._id;
+        console.log(list);
+        var longurl = rg_options.api+'/collection.html#lid='+list._id+'&name='+encodeURIComponent(list.info.name);
 
         list.sharelink = longurl;
         $('ul.existing-projects').append(template.render(list));
