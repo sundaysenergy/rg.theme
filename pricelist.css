@@ -23,6 +23,37 @@
   background: transparent;
 }
 
+.pricelist-header { font-weight: bold; letter-spacing: 2px; }
+
+.pricelist-header .pager .btn-group {
+  margin: 0 3em;
+  padding: 10px 0;
+}
+
+.pricelist-header .pager .pageselect .btn-group {
+  float: left;
+}
+
+.pricelist-header .pager .pagecount .btn-group {
+  float: right;
+}
+
+.pricelist-header .pager .pageselect .pricelist-view-number {
+  top: 0;
+  left: 50%;
+  float: none;
+  padding: 20px 0 0 0;
+  margin: 0;
+  border: none;
+  -webkit-box-shadow: 0 0 10px 0 #848484;
+  box-shadow: 0 0 10px 0 #848484;
+  background-clip: padding-box;
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  z-index: 999;
+}
+
 .pricelist-list {position: relative;}
 
 .pricelist-search {

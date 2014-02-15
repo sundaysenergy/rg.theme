@@ -430,17 +430,26 @@ ul#collection li {
   .text-area, main.contact {
     margin-top: 25px;
   }
+  .contact .text-area.slider {
+    margin-bottom: 25px;
+  }
 }
 
 @media screen and (min-height:700px) and (max-height:900px) {
   .text-area, main.contact {
     margin-top: 75px;
   }
+  .contact .text-area.slider {
+    margin-bottom: 75px;
+  }
 }
 
 @media screen and (min-height:901px) {
   .text-area, main.contact {
     margin-top: 150px;
+  }
+  .contact .text-area.slider {
+    margin-bottom: 150px;
   }
 }
 
@@ -525,7 +534,7 @@ button.plain {
 .account-information {
   border-top: 1px solid;
   border-bottom: 1px solid;
-  padding-bottom: 20px;
+  padding: 2em 0;
 }
 
 .account-information .editable-click, a.editable-click, a.editable-click:hover {
@@ -555,11 +564,7 @@ button.plain {
   padding: 0;
 }
 
-.contact .text-area.slide {
-  padding-bottom: 2em;
-}
-
-.contact .text-area.slide a {
+.contact .text-area.slider a {
   text-decoration: underline;
 }
 
