@@ -95,6 +95,9 @@ $(document).ready(function() {
         var items = $(this).data('show-items');
         var i = textiles.i;
         textiles.page = items;
+        if (textiles.i % items > 0) {
+          textiles.i = textiles.i - (textiles.i % items);
+        }
         // Set position to the same page that would contain item with new quantity/page
         var newpos = parseInt(textiles.i / items) * items + 1;
         // Set the display value to the current number of items
