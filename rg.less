@@ -558,7 +558,7 @@ button.plain {
   padding: 0;
 }
 
-.showrooms > ul {
+.showrooms .slider > ul {
   padding: 2em 0 1em 0;
 }
 
@@ -572,9 +572,11 @@ button.plain {
 }
 
 li.showroom h3 {
-  font-size: 1.15em;
+  font-size: 1em;
   color: @rg-dark-gold;
   margin: 0;
+  padding: 0;
+  line-height: 1;
 }
 
 .top li.showroom h3 {
@@ -585,11 +587,16 @@ li.showroom h3:after {
   color: @rg-black;
   content: "-";
   display: block;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
 }
 
 li.showroom a { text-decoration: underline; }
 
 li.showroom p { margin: 0; }
+
+li.showroom address { margin: 0; }
 
 li.showroom span.smallcaps {
   letter-spacing: 1px;
