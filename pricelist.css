@@ -30,17 +30,18 @@
   font-size: 1em;
 }
 
-.pricelist-header .pageselect {
-  margin: 0 3em;
+.pricelist-header .pageselect,
+.pricelist-header .pagecount {
   padding: 10px 0;
   position: relative;
+  top: 9px;
+}
+
+.pricelist-header .pageselect {
   left: -35%;
 }
 
 .pricelist-header .pagecount {
-  margin: 0 3em;
-  padding: 10px 0;
-  position: relative;
   left: 35%;
 }
 
@@ -50,7 +51,7 @@
 }
 
 .pricelist-header .pageselect #pricelist-view-number {
-  top: 9px;
+  top: 0;
   left: 50%;
   float: none;
   padding: 20px 0 0 0;
