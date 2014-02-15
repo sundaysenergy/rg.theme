@@ -24,22 +24,24 @@
 }
 
 .pricelist-header,
-.pricelist-header .pager {
+.pricelist-header .pager button{
   font-weight: bold;
   letter-spacing: 2px;
   font-size: 1em;
 }
 
-.pricelist-header .pageselect .btn-group {
+.pricelist-header .pageselect {
   margin: 0 3em;
   padding: 10px 0;
-  float: left;
+  position: relative;
+  left: -35%;
 }
 
 .pricelist-header .pagecount {
   margin: 0 3em;
   padding: 10px 0;
-  float: right;
+  position: relative;
+  left: 35%;
 }
 
 .pricelist-header .pageselect button.on-top {
@@ -48,7 +50,7 @@
 }
 
 .pricelist-header .pageselect #pricelist-view-number {
-  top: 0;
+  top: 9px;
   left: 50%;
   float: none;
   padding: 20px 0 0 0;
@@ -57,9 +59,9 @@
   -webkit-box-shadow: 0 0 10px 0 #848484;
   box-shadow: 0 0 10px 0 #848484;
   background-clip: padding-box;
-  width: 40px;
-  min-width: 40px;
-  max-width: 40px;
+  width: 55px;
+  min-width: 55px;
+  max-width: 55px;
   z-index: 10 !important;
 }
 
@@ -76,7 +78,7 @@ font-weight: inherit;
 line-height: inherit;
 color: #262019;
 white-space: nowrap;
-width: 40px;
+width: 55px;
 }
 
 .btn-group.open .dropdown-toggle {
