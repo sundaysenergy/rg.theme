@@ -63,7 +63,9 @@ $(document).ready(function() {
       if ((parseInt(textiles.i) + parseInt(textiles.page)) > textiles.matchingItems.length) {
         $('.next').addClass('disabled').off('click touch');
       }
-
+      $('li.pagecount').html((parseInt(textiles.i / textiles.page) + 1))
+      .append(' / ')
+      .append(parseInt(textiles.matchingItems.length / textiles.page) + 1);
     });
 
     // Manually update the list to trigger the button mods
@@ -98,7 +100,6 @@ $(document).ready(function() {
         // Set the display value to the current number of items
         $('button .show-items').html(items);
         // Add our position to the hash and update the list
-        hash.add({pos:newpos});
         textiles.update();
       });
     });
