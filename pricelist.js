@@ -63,6 +63,7 @@ $(document).ready(function() {
       if ((parseInt(textiles.i) + parseInt(textiles.page)) > textiles.matchingItems.length) {
         $('.next').addClass('disabled').off('click touch');
       }
+
     });
 
     // Manually update the list to trigger the button mods
@@ -85,6 +86,21 @@ $(document).ready(function() {
       } else {
         $(this).append(' <i class="fa fa-caret-up"></i>');
       }
+    });
+    $('#pricelist-view-number a').each(function(i) {
+      $(this).on('click touch', function(e) {
+        e.preventDefault();
+        var items = $(this).data('show-items');
+        var i = textiles.i;
+        textiles.page = items;
+        // Set position to the same page that would contain item with new quantity/page
+        var newpos = parseInt(textiles.i / items) * items + 1;
+        // Set the display value to the current number of items
+        $('button .show-items').html(items);
+        // Add our position to the hash and update the list
+        hash.add({pos:newpos});
+        textiles.update();
+      });
     });
     $('button.download-pdf').off('click touch').on('click touch', function(e) {
       e.preventDefault();
