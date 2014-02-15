@@ -560,10 +560,27 @@ button.plain {
 
 .showrooms ul > li.showroom {
   display: inline-block;
-  width: 33%;
-  margin: 0;
+  width: 27%;
+  margin: 0 3%;
   padding: 0;
+  font-size: 1.25em;
 }
 
+li.showroom h3 {
+  font-size: 1.25em;
+  color: @rg-dark-gold;
+  margin: 0;
+}
 
+.top li.showroom h3 {
+  color: @rg-black;
+}
+
+li.showroom h3:after {
+  color: @rg-black;
+  content: "-";
+  display: block;
+}
+
+li.showroom a { text-decoration: underline; }
 

@@ -52,6 +52,15 @@ $(document).ready(function() {
  
   $("section.toggle h2").click(function () {
     $(this).parent().children(".slider").slideToggle();
-  });    
+ 
+    var showheight = -1;
+    $('li.showroom').each(function() {
+      showheight = showheight > $(this).height() ? showheight : $(this).height();
+    });
+    $('li.showroom').each(function() {
+      $(this).height(showheight);
+    });
+      
+  });
 
  });
