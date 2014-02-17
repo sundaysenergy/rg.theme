@@ -33,16 +33,15 @@ $(document).ready(function() {
 // slideup/slidedown of landing page menu
 
 $(document).ready(function() {
-  
-  $('.landing .navwrap').hide();
-  
-  $('.landing header').mouseover( function(){
-      $('.landing nav .navwrap').slideDown();
-  })
-  $('.landing header').mouseleave( function(){
-      $('.landing nav .navwrap').slideUp();
+  $.when($('.landing .navwrap').hide()).then(function () {
+    $('.landing header').hover(
+      function() {
+        $('.landing nav .navwrap').slideDown();
+      }, function() {
+        $('.landing nav .navwrap').slideUp();
+      }
+    );
   });
-
 });
 
 // contact page basics
@@ -62,5 +61,4 @@ $(document).ready(function() {
     });
       
   });
-
  });
