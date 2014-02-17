@@ -11,7 +11,8 @@ $(document).ready(function() {
       
       /**** PROCESS EACH OF THE LISTS ****/
       _.forEach(data, function(list) {
-        var longurl = rg_options.api+'/collection.html#lid='+list._id+'&name='+encodeURIComponent(list.info.name);
+        var listname = (_.isUndefined(list.info.name)) ? '':list.info.name;
+        var longurl = rg_options.api+'/collection.html#lid='+list._id+'&name='+encodeURIComponent(listname);
 
         list.sharelink = longurl;
         $('ul.existing-projects').append(template.render(list));
@@ -57,7 +58,7 @@ $(document).ready(function() {
           if (new_list) {
             $.getJSON(
               "http://api.bitly.com/v3/shorten?callback=?",
-              { 
+              {
                 "format": "json",
                 "apiKey": "R_b83cfe54d0ecae82a9086a21fe834814",
                 "login": "sundaysenergy",
