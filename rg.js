@@ -36,9 +36,13 @@ $(document).ready(function() {
   $.when($('.landing .navwrap').hide()).then(function () {
     $('.landing header').hover(
       function() {
-        $('.landing nav .navwrap').slideDown();
+        if ($('.landing nav .navwrap').is(':visible') == false) {
+          $('.landing nav .navwrap').slideDown();
+        }
       }, function() {
-        $('.landing nav .navwrap').slideUp();
+        if ($('.landing nav .navwrap').is(':visible') == true) {
+          $('.landing nav .navwrap').slideUp();
+        }
       }
     );
   });
