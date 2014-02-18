@@ -350,6 +350,11 @@ $(document).ready(function() {
         $.ajaxSetup({async:false});
         $.getJSON(rg_options.api + '/_api/items/_index/list/'+lid+'/index.json',{}, function(data) {
           project_items = _.keys(data);
+          productlist.sort('id', {
+            sortFunction: function(a,b) {
+              return _.indexOf(project_items, a.values().id) - _.indexOf(project_items, b.values().id);
+            }
+          });
         });
         $.ajaxSetup({async:false});
       } else {
