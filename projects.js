@@ -9,6 +9,8 @@ $(document).ready(function() {
     var template = Hogan.compile(project_list);
     $.getJSON(rg_options.api + '/_api/items/_index/' + $.cookie('uid') + '/list', { data_only: true }, function(data) {
       
+      console.log(data);
+      
       /**** PROCESS EACH OF THE LISTS ****/
       _.forEach(data, function(list) {
         var listname = (_.isUndefined(list.info)) ? '':list.info.name;
