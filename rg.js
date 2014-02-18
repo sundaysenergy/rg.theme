@@ -28,11 +28,8 @@ $(document).ready(function() {
   } else {
     $('.masthead nav ul li > ul').removeClass('active');
   }
-});
 
-// slideup/slidedown of landing page menu
-
-$(document).ready(function() {
+  // Navigation menu sliding for landing page
   $.when($('.landing .navwrap').hide()).then(function () {
     $('.landing header').hover(
       function() {
@@ -46,16 +43,13 @@ $(document).ready(function() {
       }
     );
   });
-});
 
-// contact page basics
-
-$(document).ready(function() {
-   $("section.toggle .slider").hide();
+  // Contact page basics 
+  $("section.toggle .slider").hide();
  
   $("section.toggle h2").click(function () {
     $(this).parent().children(".slider").slideToggle();
- 
+
     var showheight = -1;
     $('li.showroom').each(function() {
       showheight = showheight > $(this).height() ? showheight : $(this).height();
@@ -63,6 +57,5 @@ $(document).ready(function() {
     $('li.showroom').each(function() {
       $(this).height(showheight);
     });
-      
   });
- });
+});
