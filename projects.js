@@ -11,7 +11,7 @@ $(document).ready(function() {
       
       /**** PROCESS EACH OF THE LISTS ****/
       _.forEach(data, function(list) {
-        var listname = (_.isUndefined(list.info.name)) ? '':list.info.name;
+        var listname = (_.isUndefined(list.info)) ? '':list.info.name;
         var longurl = rg_options.api+'/collection.html#lid='+list._id+'&name='+encodeURIComponent(listname);
 
         list.sharelink = longurl;
