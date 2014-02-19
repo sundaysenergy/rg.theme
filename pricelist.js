@@ -121,19 +121,22 @@ $(document).ready(function() {
       doc.line(20, 53, 260, 53);
       doc.text(20, 50, "ID");
       doc.text(45, 50, "Name");
-      doc.text(110, 50, "Color");
-      doc.text(145, 50, "Price");
+      doc.text(110, 50, "Content");
+      doc.text(170, 50, "Color");
+      doc.text(200, 50, "Price");
       doc.setFontType("normal");
       _.forEach(items, function(item) {
         var values = item.values();
         var id    = (_.isUndefined(values['id'])) ? '':values['id'],
             name  = (_.isUndefined(values['name'])) ? '':values['name'].charAt(0) + values['name'].slice(1).toLowerCase(),
             color = (_.isUndefined(values['color'])) ? '':values['color'].charAt(0) + values['color'].slice(1).toLowerCase(),
+            name  = (_.isUndefined(values['content'])) ? '':values['content'].charAt(0) + values['content'].slice(1).toLowerCase(),            
             price = (_.isUndefined(item_prices[id])) ? 'Not available':'$'+parseInt(item_prices[id]).toFixed(2);
         doc.text(20, pos, id);
         doc.text(45, pos, name);
-        doc.text(110, pos, color);
-        doc.text(145, pos, price);
+        doc.text(110, pos, content);
+        doc.text(170, pos, color);
+        doc.text(200, pos, price);
         pos = pos + 6;
         if (pos == 206) {
           pos = 20;
