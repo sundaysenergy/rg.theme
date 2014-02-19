@@ -149,10 +149,14 @@ $(document).ready(function() {
           var doc = new jsPDF();
           var pos = 26;
           doc.setFontSize(10);
+          doc.setFont("times");
+          doc.setFontType("bold");
           doc.text(20, 20, "ID");
           doc.text(45, 20, "Name");
           doc.text(110, 20, "Color");
           doc.text(145, 20, "Price");
+          doc.setFontType("normal");
+          doc.line(20, 23, 200, 43);
           _.forEach(items, function(item) {
             var values = item.values();
             var id    = (_.isUndefined(values['id'])) ? '':values['id'],
