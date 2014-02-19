@@ -115,8 +115,8 @@ $(document).ready(function() {
       doc.setFontSize(12);
       doc.setFont("times");
       doc.setFontType("bold");
-      doc.addImage(logo,'JPEG',70,20,64,15);
-      doc.text(95,42,"Pricelist");
+      doc.addImage(logo,'JPEG',105,20,64,15);
+      doc.text(130,42,"Pricelist");
       doc.setFontSize(10);
       doc.line(20, 53, 260, 53);
       doc.text(20, 50, "ID");
