@@ -116,6 +116,7 @@ $(document).ready(function() {
       doc.setFont("times");
       doc.setFontType("bold");
       doc.addImage(logo,'JPEG',70,20,64,15);
+      doc.setLineWidth(1.5);
       doc.line(20, 43, 200, 43);
       doc.text(20, 40, "ID");
       doc.text(45, 40, "Name");
@@ -132,6 +133,8 @@ $(document).ready(function() {
         doc.text(45, pos, name);
         doc.text(110, pos, color);
         doc.text(145, pos, price);
+        doc.setLineWidth(0.5);
+        doc.line(20, 43, 200, 43);
         pos = pos + 6;
         if (pos == 290) {
           pos = 20;
