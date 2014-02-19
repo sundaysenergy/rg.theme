@@ -149,7 +149,8 @@ $(document).ready(function() {
       }
     } // end addFaves()
 
-    // Loop through items in list and bind additional functions needed for mustache templates
+
+    /*** Loop through items in list and bind additional functions needed for mustache templates ***/
     _.forEach(data, function(item) {
       // Remove the last part of the product number, which designates variation of a themed item
       var i = item.id.split("-");
@@ -166,14 +167,16 @@ $(document).ready(function() {
                         });
                         return returnhash;
                       };
-    });
+    }); // end forEach()
 
-    // Create a new list
+    /*** CREATE A NEW PRODUCT LIST ***/
     var productlist = new List('products', options, data);
     
     // Set defaults for horizontal mode including position and slider class
     $('#products > ul.list').addClass('slider');
     if (_.isUndefined(hash.get('pos'))) hash.add({pos:0});
+
+
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
@@ -197,56 +200,34 @@ $(document).ready(function() {
       $('#anonymous-faves-alert').find('button.close').trigger('click');
       $('#project-list-select').find('button.close').trigger('click');
 
+      $('[id^=collection-menu]').hide();
+
       // Things to do if there is a collection present -- mostly moving things around visually
       if (_.isUndefined(collection) == false) {
-        
         /*** TEXTILE COLLECTION ***/
         if (collection == 'textile') {
-          // Hide active headers for other collections
-          $('#collection-menu-passementerie,#collection-menu-leather').hide();
-          // Show the products list and the header for textiles
-          $('#products,#collection-menu-main').show();
-          // Show inactive headers for other collections
-          $('#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
+          $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
             $('#collection-menu-passementerie-inactive').appendTo('#collection-headers-after > div.row');
             $('#collection-menu-leather-inactive').insertAfter($('#collection-menu-passementerie-inactive'));
           }
-          // Hide inactive header for textile collection
-          $('#collection-menu-main-inactive').hide();
           // Move the #products div after the textile header bar
           $('#products').insertAfter('#collection-menu-main');
         }
-
         /*** PASSEMENTERIE COLLECTION ***/
         if (collection == 'passementerie') {
-          // Hide the active headers for other collections
-          $('#collection-menu-main,#collection-menu-leather').hide();
-          // Show the products list and the header for textiles
-          $('#products,#collection-menu-passementerie').show();
-          // Show inactive headers for other collections
-          $('#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
+          $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 0) {
             $('#collection-menu-leather-inactive').appendTo('#collection-headers-after > div.row');
           }
-          // Hide the inactive header for this collection
-          $('#collection-menu-passementerie-inactive').hide();
           // Move the #products div after the passementerie header bar
           $('#products').insertAfter('#collection-menu-passementerie');
-        } 
-
+        }
         /*** LEATHER COLLECTION ***/
         if (collection == 'leather') {
-          // Hide the active headers for other collections
-          $('#collection-menu-passementerie,#collection-menu-main').hide();
-          // Show the products list and the header for textiles
-          $('#products,#collection-menu-leather').show();
-          // Show inactive headers for other collections
-          $('#collection-menu-main-inactive,#collection-menu-passementerie-inactive').show();
-          // Move the inactive headers to a different container if they're not there already
-          $('#collection-menu-leather-inactive').hide();
+          $('#products,#collection-menu-leather,#collection-menu-main-inactive,#collection-menu-passementerie-inactive').show();
           // Move inactive headers back to original container if necessary
           if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 1) {
             $('#collection-menu-passementerie-inactive').prependTo('div#collection-row-passementerie');
@@ -257,7 +238,6 @@ $(document).ready(function() {
           // Move products after the leather header
           $('#products').insertAfter('#collection-menu-leather');
         }
-        
         // If the page size and buttons don't match up, simulate click -- workaround for back button issue with search
         if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
           $('button.thumbs').trigger('click');
@@ -305,7 +285,6 @@ $(document).ready(function() {
       /*** IF PERFORMING A SEARCH ***/
       if (_.isUndefined(srch) == false) {
         // Show the search header bar and hide the others
-        $('[id^=collection-menu]').hide();
         $('#products,#collection-menu-search,#collection-menu-search-collection').show();
         // Switch between search collections
         $("#collection-menu-search-collection button").on('click touch', function(e) { 
@@ -333,13 +312,10 @@ $(document).ready(function() {
         });
       // Show&hide header bars for search and default
       } else if (_.isUndefined(faves) == false) {
-        $('[id^=collection-menu]').hide();
         $('#products,#collection-menu-faves').show();
       } else if (_.isUndefined(lid) == false) {
-        $('[id^=collection-menu]').hide();
         $('#products,#collection-menu-project-list').show();
       } else {
-        $('#collection-menu-search,#collection-menu-faves,#collection-menu-search-collection,#collection-menu-project-list').hide();  
         if (_.isUndefined(collection)) {
           $('#collection-menu-passementerie-inactive,#collection-menu-main-inactive,#collection-menu-leather-inactive').show();
         }
