@@ -118,7 +118,7 @@ $(document).ready(function() {
       doc.addImage(logo,'JPEG',70,20,64,15);
       doc.text(95,42,"Pricelist");
       doc.setFontSize(10);
-      doc.line(20, 53, 200, 53);
+      doc.line(20, 53, 260, 53);
       doc.text(20, 50, "ID");
       doc.text(45, 50, "Name");
       doc.text(110, 50, "Color");
@@ -135,7 +135,7 @@ $(document).ready(function() {
         doc.text(110, pos, color);
         doc.text(145, pos, price);
         pos = pos + 6;
-        if (pos == 290) {
+        if (pos == 206) {
           pos = 20;
           doc.addPage();
         }
