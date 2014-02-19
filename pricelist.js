@@ -115,7 +115,7 @@ $(document).ready(function() {
       doc.setFontSize(10);
       doc.setFont("times");
       doc.setFontType("bold");
-      doc.addImage(logo,'JPEG',70,20,68,10);
+      doc.addImage(logo,'JPEG',70,20,94,22);
       doc.line(20, 43, 200, 43);
       doc.text(20, 40, "ID");
       doc.text(45, 40, "Name");
