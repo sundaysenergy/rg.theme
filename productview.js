@@ -203,7 +203,7 @@ $(document).ready(function() {
       $('[id^=collection-menu]').hide();
 
       // Things to do if there is a collection present -- mostly moving things around visually
-      if (_.isUndefined(collection) == false) {
+      if (_.isUndefined(collection) == false && _.isUndefined(srch)) {
         /*** TEXTILE COLLECTION ***/
         if (collection == 'textile') {
           $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
