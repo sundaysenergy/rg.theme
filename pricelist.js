@@ -126,12 +126,12 @@ $(document).ready(function() {
       doc.text(200, 50, "Price");
       doc.setFontType("normal");
       _.forEach(items, function(item) {
-        var values = item.values();
-        var id    = (_.isUndefined(values['id'])) ? '':values['id'],
-            name  = (_.isUndefined(values['name'])) ? '':values['name'].charAt(0) + values['name'].slice(1).toLowerCase(),
-            color = (_.isUndefined(values['color'])) ? '':values['color'].charAt(0) + values['color'].slice(1).toLowerCase(),
-            name  = (_.isUndefined(values['content'])) ? '':values['content'].charAt(0) + values['content'].slice(1).toLowerCase(),            
-            price = (_.isUndefined(item_prices[id])) ? 'Not available':'$'+parseInt(item_prices[id]).toFixed(2);
+        var values  = item.values();
+        var id      = (_.isUndefined(values['id'])) ? '':values['id'],
+            name    = (_.isUndefined(values['name'])) ? '':values['name'].charAt(0) + values['name'].slice(1).toLowerCase(),
+            color   = (_.isUndefined(values['color'])) ? '':values['color'].charAt(0) + values['color'].slice(1).toLowerCase(),
+            content = (_.isUndefined(values['content'])) ? '':values['content'].charAt(0) + values['content'].slice(1).toLowerCase(),            
+            price   = (_.isUndefined(item_prices[id])) ? 'Not available':'$'+parseInt(item_prices[id]).toFixed(2);
         doc.text(20, pos, id);
         doc.text(45, pos, name);
         doc.text(110, pos, content);
