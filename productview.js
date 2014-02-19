@@ -340,6 +340,9 @@ $(document).ready(function() {
         $('#products,#collection-menu-project-list').show();
       } else {
         $('#collection-menu-search,#collection-menu-faves,#collection-menu-search-collection,#collection-menu-project-list').hide();  
+        if (_.isUndefined(collection)) {
+          $('#collection-menu-passementerie-inactive,#collection-menu-main-inactive,#collection-menu-leather-inactive').show();
+        }
       }
 
       // If we have a project list, retrieve the items in that list
