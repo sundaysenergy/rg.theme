@@ -76,44 +76,14 @@ span.caret-up {
 body {
   padding-bottom: 60px;
 }
+
 li{
   list-style-type: none;
 }
-footer {
-  margin-top: 210px;
-  text-align: center;
-}
+
 main{
   display: block;
 }
-
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-}
-.jumbotron h1 {
-  font-size: 100px;
-  line-height: 1;
-}
-.jumbotron .lead {
-  font-size: 24px;
-  line-height: 1.25;
-}
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
-}
-
-
-/* Supporting marketing content */
-.marketing {
-  margin: 60px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
-}
-
 
 /* Styles for the login page */
 .tradelogin {
@@ -136,8 +106,6 @@ main{
 /** Logo, Nav, Masthead... **/
 /** ************************************************************ **/
 /** ************************************************************ **/
-/** MENU/HEADER STYLES SHOULD BE 80% up to date as of 2013-12-15 **/
-/* Customize the navbar links to be fill the entire space of the .navbar */
 .masthead nav,
 .masthead nav .navwrap,
 .masthead nav ul,
@@ -174,7 +142,7 @@ main{
 .masthead nav .navwrap > ul li {
   text-transform: uppercase;
   border-top: solid 1px @rg-black;
-  padding: 5px 0 0 0;
+  padding: 4px 0 3px 0;
   font-weight: bold;
   letter-spacing: 1px;
 }
@@ -204,7 +172,7 @@ main{
   position: relative;
   left: 50%;
 }
-/* Tim added this, so you should probably fix it. */
+
 .masthead nav ul li ul.trade-login {
   height: 0;
   opacity: 0;
@@ -215,6 +183,7 @@ main{
   position: relative;
   left: 50%;
 }
+
 .masthead nav ul li ul.trade-login li,
 .masthead nav ul li ul.collection-filter li {
   border-top: none;
@@ -285,7 +254,7 @@ main{
   background: @rg-background;
   box-shadow: 0 0 10px 0 #848484;
   letter-spacing: 3px;
-  margin: 20px auto 0;
+  margin: 40px auto 0;
 }
 
 .masthead h1.sitename:hover {
@@ -305,9 +274,6 @@ main{
 /** END Logo, Nav, Masthead... **/
 /** ************************************************************ **/
 /** ************************************************************ **/
-
-
-
 /* ===== Styles for jquery carousel ===== */
 /* LAYOUT */
 #l-collection{
@@ -315,10 +281,8 @@ main{
 }
 
 /* MODULES */
-#collection{
-}
-ul#collection{
-}
+#collection{ }
+ul#collection{ }
 ul#collection li {
   float: left;
   display: block;
@@ -326,6 +290,8 @@ ul#collection li {
   margin-right: 10px;
   position: relative;
 }
+
+/* what are these styles for? */
 .cotton{
   background-color: grey;
 }
@@ -341,6 +307,8 @@ ul#collection li {
 .linen{
   background-color: red;
 }
+/* === */
+
 /* PANEL STYLES*/
 .collection-panel{
   border-top: 2px solid black;
@@ -363,6 +331,7 @@ ul#collection li {
 #leftarrow{
   float: left;
 }
+
 /* FILTER */
 #filter{
   float: left;
@@ -410,10 +379,6 @@ ul#collection li {
   content: "";
 }
 
-/* STATES */
-
-/* ===== Styles for jquery carousel ===== */
-
 /** general usefulness **/
 .add-bottom { margin-bottom: 40px; }
 .add-top    { margin-top: 40px; }
@@ -433,6 +398,7 @@ ul#collection li {
   .text-area {
     padding: 0 20px;
   }
+  footer {margin-top: 20px;}
 }
 
 @media screen and (max-height:699px) {
@@ -442,6 +408,7 @@ ul#collection li {
   .contact .text-area.slider {
     margin-bottom: 25px;
   }
+  footer {margin-top: 50px;}
 }
 
 @media screen and (min-height:700px) and (max-height:900px) {
@@ -451,6 +418,7 @@ ul#collection li {
   .contact .text-area.slider {
     margin-bottom: 75px;
   }
+  footer {margin-top: 75px;}
 }
 
 @media screen and (min-height:901px) {
@@ -460,6 +428,7 @@ ul#collection li {
   .contact .text-area.slider {
     margin-bottom: 150px;
   }
+  footer {margin-top: 210px;}
 }
 
 .text-area.add-bottom {
@@ -471,6 +440,7 @@ ul#collection li {
 footer {
   font-size: .9em;
   letter-spacing:1px;
+  text-align: center;
 }
 
 footer p, footer ul {

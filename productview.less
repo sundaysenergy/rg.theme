@@ -195,9 +195,9 @@ margin-left: 0 !important;
 
 .on-top, button.on-top, button.on-top:hover { z-index: 1111; }
 
-button.uppercase { font-size: 12px; }
+button.uppercase { font-size: 1em; }
 
-.pager .on-top p {font-size: 16px;}
+.pager .on-top p {font-size: 1.25em;}
 
 .pager, .pager button, .pager p {
   line-height: 20px;
@@ -489,7 +489,7 @@ ul.slider,
 .itemoverlay table tbody td p {
   font-size: 14px;
   font-weight: normal;
-  /*text-transform: capitalize;*/
+  text-transform: capitalize;
   margin: 0;
 }
 
@@ -565,7 +565,7 @@ ul.collections {
 }
 
 .collection-category p {
-  font-size: 16px;
+  font-size: 1.25em;
   padding: 0;
   margin: 0;
   letter-spacing: 2px;
@@ -593,11 +593,8 @@ ul.collection-controls li.hug-left {
 
 ul.collection-controls li.hug-center {
   left: 50%;
-  /********/
-  /* This is a temporary solution, would prefer a dynamic, JS one so that if the text is larger or smaller it is being corrected only exactly the amount need per word */
   margin-left: -100px;
   width: 200px;
-  /********/
 }
 
 ul.collection-controls li.hug-right {
@@ -605,7 +602,6 @@ ul.collection-controls li.hug-right {
 }
 
 /* Search Filter Amount Menu Styles */
-
 .collection-view-items .search-view-number {
   top: 0;
   left: 50%;
