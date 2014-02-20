@@ -8,6 +8,9 @@ $(document).ready(function() {
   if (_.isUndefined(sessionStorage.detailedview) == false) {
     delete(sessionStorage.detailedview);
   }
+  if (_.isUndefined(sessionStorage.pagevalue) == false) {
+    delete(sessionStorage.pagevalue);
+  }
 
   var item_prices = [];
   var token = $.cookie('token');
@@ -183,6 +186,7 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
+      var current_page = _.map(_.pull(_.keys(hash.get()), 'pos', 'attributes', 'color', 'detailedview', 'cpos', 'dpos'), function(key) { return key + '=' + hash.get(key) }).join('&');
 
       /*** GET VALUES FROM HASH ***/
       var collection = hash.get('collection');
@@ -203,56 +207,60 @@ $(document).ready(function() {
       $('#anonymous-faves-alert').find('button.close').trigger('click');
       $('#project-list-select').find('button.close').trigger('click');
 
-      $('[id^=collection-menu]').hide();
+      if (current_page != sessionStorage.pagevalue) {
+        console.log("Trigger visual rearrange");
+        $('[id^=collection-menu]').hide();
 
-      // Things to do if there is a collection present -- mostly moving things around visually
-      if (_.isUndefined(collection) == false && _.isUndefined(srch)) {
-        /*** TEXTILE COLLECTION ***/
-        if (collection == 'textile') {
-          $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
-          // Move the inactive headers to a different container if they're not there already
-          if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
-            $('#collection-menu-passementerie-inactive').appendTo('#collection-headers-after > div.row');
-            $('#collection-menu-leather-inactive').insertAfter($('#collection-menu-passementerie-inactive'));
+        // Things to do if there is a collection present -- mostly moving things around visually
+        if (_.isUndefined(collection) == false && _.isUndefined(srch)) {
+          /*** TEXTILE COLLECTION ***/
+          if (collection == 'textile') {
+            $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
+            // Move the inactive headers to a different container if they're not there already
+            if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
+              $('#collection-menu-passementerie-inactive').appendTo('#collection-headers-after > div.row');
+              $('#collection-menu-leather-inactive').insertAfter($('#collection-menu-passementerie-inactive'));
+            }
+            // Move the #products div after the textile header bar
+            $('#products').insertAfter('#collection-menu-main');
           }
-          // Move the #products div after the textile header bar
-          $('#products').insertAfter('#collection-menu-main');
+          /*** PASSEMENTERIE COLLECTION ***/
+          if (collection == 'passementerie') {
+            $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
+            // Move the inactive headers to a different container if they're not there already
+            if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 0) {
+              $('#collection-menu-leather-inactive').appendTo('#collection-headers-after > div.row');
+            }
+            // Move the #products div after the passementerie header bar
+            $('#products').insertAfter('#collection-menu-passementerie');
+          }
+          /*** LEATHER COLLECTION ***/
+          if (collection == 'leather') {
+            $('#products,#collection-menu-leather,#collection-menu-main-inactive,#collection-menu-passementerie-inactive').show();
+            // Move inactive headers back to original container if necessary
+            if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 1) {
+              $('#collection-menu-passementerie-inactive').prependTo('div#collection-row-passementerie');
+            }
+            if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 1) {
+              $('#collection-menu-leather-inactive').prependTo('div#collection-row-leather');
+            }
+            // Move products after the leather header
+            $('#products').insertAfter('#collection-menu-leather');
+          }
+          // If the page size and buttons don't match up, simulate click -- workaround for back button issue with search
+          if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
+            $('button.thumbs').trigger('click');
+          }
         }
-        /*** PASSEMENTERIE COLLECTION ***/
-        if (collection == 'passementerie') {
-          $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
-          // Move the inactive headers to a different container if they're not there already
-          if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 0) {
-            $('#collection-menu-leather-inactive').appendTo('#collection-headers-after > div.row');
-          }
-          // Move the #products div after the passementerie header bar
-          $('#products').insertAfter('#collection-menu-passementerie');
-        }
-        /*** LEATHER COLLECTION ***/
-        if (collection == 'leather') {
-          $('#products,#collection-menu-leather,#collection-menu-main-inactive,#collection-menu-passementerie-inactive').show();
-          // Move inactive headers back to original container if necessary
-          if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 1) {
-            $('#collection-menu-passementerie-inactive').prependTo('div#collection-row-passementerie');
-          }
-          if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 1) {
-            $('#collection-menu-leather-inactive').prependTo('div#collection-row-leather');
-          }
-          // Move products after the leather header
-          $('#products').insertAfter('#collection-menu-leather');
-        }
-        // If the page size and buttons don't match up, simulate click -- workaround for back button issue with search
-        if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
-          $('button.thumbs').trigger('click');
+
+        // Move the product list inside or outside of the main container depending on viewing mode
+        if (productlist.page == rg_options.horizontal_page) {
+          if ($('div.threeup div#products').length == 0) $('div#products').appendTo('div.threeup');
+        } else {
+          if ($('div.threeup div#products').length > 0) $('div#products').appendTo('main.container div#collection-row-textile');
         }
       }
-
-      // Move the product list inside or outside of the main container depending on viewing mode
-      if (productlist.page == rg_options.horizontal_page) {
-        if ($('div.threeup div#products').length == 0) $('div#products').appendTo('div.threeup');
-      } else {
-        if ($('div.threeup div#products').length > 0) $('div#products').appendTo('main.container div#collection-row-textile');
-      }
+      sessionStorage.pagevalue = current_page;
 
       // Copy faves from the hash to localStorage for sharing and updates via the url
       if (_.isUndefined(hash.get('faves')) == false) {
@@ -523,7 +531,7 @@ $(document).ready(function() {
       } else {
         // If position is less than zero, set it to zero
         // Toggling between view modes can create this effect as we're offsetting each time we switch to the horizontal to center the active item
-        if (pos < 0) hash.add({pos:0});
+        if (parseInt(pos) < 0) hash.add({pos:0});
       }
       productlist.show(pos, parseInt(productlist.page));
 
@@ -751,7 +759,6 @@ $(document).ready(function() {
         $('ul.slider li .img, ul.slider li, ul.list li .img').off('click touch');
         $('ul.slider li .item-spotlight').off('click touch').on('click touch', function(e) {
           if (e.target !== this) {
-            console.log("Not the right element");
             return true;
           }
           var id = $(this).parent().find('.id').html();
@@ -842,12 +849,10 @@ $(document).ready(function() {
           hash.remove('cpos');
           var p = parseInt(productlist.i)-1;
           if (p == -1) p = productlist.matchingItems.length-1;
-          console.log("ding");
           hash.add({pos:p});
         });
         $('ul.slider li:nth-of-type(3) .img').off('click touch').on('click touch', function(e) {
           hash.remove('cpos');
-          console.log('dong');
           var p = parseInt(productlist.i)+1;
           if (p == productlist.matchingItems.length) p = 0;
           hash.add({pos:p});
@@ -908,10 +913,6 @@ $(document).ready(function() {
     }); // end productlist.on('updated')
 
 
-    // Manually trigger an update
-    productlist.update();
-
-
     // When we check or uncheck a box, recalculate search terms
     $('.filter-attributes input[type=checkbox]').on('click touch', function(e) {
       if ($(this).parent().hasClass('disabled')) {
@@ -927,11 +928,9 @@ $(document).ready(function() {
       if (f.length > 0) {
         hash.add({attributes : f.join(',') });
       } else {
-        hash.add({scroll:'n'});
         hash.remove('attributes');
       }
       if (productlist.page == rg_options.horizontal_page) { productlist.i = productlist.i-1; }
-      productlist.update();
     });
 
     // When we check a color filter, do the same
@@ -950,11 +949,9 @@ $(document).ready(function() {
       if (f.length > 0) {
         hash.add({color : f.join(',') });
       } else {
-        hash.add({scroll:'n'});
         hash.remove('color');
       }
       if (productlist.page == rg_options.horizontal_page) { productlist.i = productlist.i-1; }
-      productlist.update();
     });
 
     // When we check a description filter, do the same
@@ -973,11 +970,9 @@ $(document).ready(function() {
       if (f.length > 0) {
         hash.add({desc : f.join(',') });
       } else {
-        hash.add({scroll:'n'});
         hash.remove('desc');
       }
       if (productlist.page == rg_options.horizontal_page) { productlist.i = productlist.i-1; }
-      productlist.update();
     });
 
     // Event for filtering the various lists of filters
