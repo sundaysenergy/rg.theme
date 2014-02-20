@@ -47,15 +47,39 @@ $(document).ready(function() {
   // Contact page basics 
   $("section.toggle .slider").hide();
  
-  $("section.toggle h2").click(function () {
+  $("section.general-inquiries h2").click(function () {
     $(this).parent().children(".slider").slideToggle();
-
-    var showheight = -1;
-    $('li.showroom').each(function() {
-      showheight = showheight > $(this).height() ? showheight : $(this).height();
-    });
-    $('li.showroom').each(function() {
-      $(this).height(showheight);
-    });
+    $('section.showrooms').children(".slider").slideUp();
   });
+
+  $("section.showrooms h2").click(function () {
+    $(this).parent().children(".slider").slideToggle();
+    $('section.general-inquiries').children(".slider").slideUp();
+    
+    var topheight = -1;
+    $('.top li.showroom').each(function() {
+      topheight = topheight > $(this).height() ? topheight : $(this).height();
+    });
+    $('.top li.showroom').each(function() {
+      $(this).height(topheight);
+    });
+
+    var naheight = -1;
+    $('.north-america li.showroom').each(function() {
+      naheight = naheight > $(this).height() ? naheight : $(this).height();
+    });
+    $('.north-america li.showroom').each(function() {
+      $(this).height(naheight);
+    });
+
+    var aeheight = -1;
+    $('.aust-europe li.showroom').each(function() {
+      aeheight = aeheight > $(this).height() ? aeheight : $(this).height();
+    });
+    $('.aust-europe li.showroom').each(function() {
+      $(this).height(aeheight);
+    });
+
+  });
+  
 });
