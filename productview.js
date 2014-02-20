@@ -167,9 +167,9 @@ $(document).ready(function() {
                         });
                         return returnhash;
                       };
-      item.content = (_.isUndefined(item.content)) ? '':item.content.charAt(0) + item.content.slice(1).toLowerCase();
-      item.name = (_.isUndefined(item.name)) ? '':item.name.charAt(0) + item.name.slice(1).toLowerCase();
-      item.color = (_.isUndefined(item.color)) ? '':item.color.charAt(0) + item.name.slice(1).toLowerCase();
+      item.content = (_.isUndefined(item.content)) ? '':(item.content.charAt(0) + item.content.slice(1).toLowerCase());
+      item.name = (_.isUndefined(item.name)) ? '':(item.name.charAt(0) + item.name.slice(1).toLowerCase();
+      item.color = (_.isUndefined(item.color)) ? '':(item.color.charAt(0) + item.color.slice(1).toLowerCase());
     }); // end forEach()
 
     /*** CREATE A NEW PRODUCT LIST ***/
