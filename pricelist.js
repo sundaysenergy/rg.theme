@@ -156,7 +156,7 @@ $(document).ready(function() {
         pos = pos + 6;
         // If we're at the magical number of 206, add a footer and start over
         if (pos == 206) {
-          doc.setFontType("italics");
+          doc.setFontType("italic");
           doc.text(20, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
           pos = 20;
           doc.addPage();
