@@ -98,10 +98,10 @@ content: "";
 
 .pricelist-search {
   position: absolute;
-  width: 500px;
+  width: 720px;
   top: -120px;
   left: 50%;
-  margin-left: -250px;
+  margin-left: -350px;
 }
 
 .pricelist-search input.fuzzy-search {
