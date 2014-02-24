@@ -155,7 +155,10 @@ $(document).ready(function() {
         // Add 6 units for the next line
         pos = pos + 6;
         // If we're at the magical number of 206, add a footer and start over
-        if (pos == 206) {
+        if (pos == 194) {
+          pos = pos + 6;
+          doc.text(20, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     e info@rogersandgoffigon.com     t 310 659 9550     f 310 659 9000");
+          pos = pos + 6;
           doc.setFontType("italic");
           doc.text(20, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
           pos = 20;
