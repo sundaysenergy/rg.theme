@@ -118,10 +118,13 @@ $(document).ready(function() {
       doc.setFontSize(12);
       doc.setFont("times");
       doc.setFontType("bold");
+      // Add the logo from the image data
       doc.addImage(logo,'JPEG',105,20,64,15);
       doc.text(130,42,"Pricelist");
       doc.setFontSize(10);
+      // Line that appears below the column headers
       doc.line(20, 53, 260, 53);
+      // Add the column headers
       doc.text(20, 50, "ID");
       doc.text(45, 50, "Name");
       doc.text(95, 50, "Content");
@@ -130,8 +133,10 @@ $(document).ready(function() {
       doc.text(205, 50, "Width");
       doc.text(230, 50, "Price");
       doc.setFontType("normal");
+      // Loop through the items
       _.forEach(items, function(item) {
         var values  = item.values();
+        // Format values and eliminate undefined
         var id      = (_.isUndefined(values['id'])) ? '':values['id'],
             name    = (_.isUndefined(values['name'])) ? '':values['name'].charAt(0) + values['name'].slice(1).toLowerCase(),
             color   = (_.isUndefined(values['color'])) ? '':values['color'].charAt(0) + values['color'].slice(1).toLowerCase(),
@@ -139,6 +144,7 @@ $(document).ready(function() {
             repeat  = (_.isUndefined(values['repeat'])) ? '':values['repeat'],
             width   = (_.isUndefined(values['width'])) ? '':values['width'],
             price   = (_.isUndefined(item_prices[id])) ? 'Not available':'$'+parseInt(item_prices[id]).toFixed(2);
+        // Add the item to the document
         doc.text(20, pos, id);
         doc.text(45, pos, name);
         doc.text(95, pos, content);
@@ -146,8 +152,11 @@ $(document).ready(function() {
         doc.text(180, pos, repeat);
         doc.text(205, pos, width);
         doc.text(230, pos, price);
+        // Add 6 units for the next line
         pos = pos + 6;
+        // If we're at the magical number of 206, add a footer and start over
         if (pos == 206) {
+          doc.text(20, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
           pos = 20;
           doc.addPage();
         }
