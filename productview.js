@@ -207,6 +207,7 @@ $(document).ready(function() {
       $('#anonymous-faves-alert').find('button.close').trigger('click');
       $('#project-list-select').find('button.close').trigger('click');
 
+      console.log(current_page, sessionStorage.pagevalue);
       if (current_page != sessionStorage.pagevalue) {
         console.log("Trigger visual rearrange");
         $('[id^=collection-menu]').hide();
