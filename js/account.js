@@ -1,7 +1,7 @@
 $(document).ready(function() {
   // Redirect to login page if we don't have a token
   if (_.isUndefined($.cookie('token'))) window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
-
+  $.ajaxSetup({ cache: false });
   // Fetch the template
   $.ajax({ url: rg_options.api + "/templates/mini/account.html" })
   .done(function(template) {

@@ -2,6 +2,7 @@ $(document).ready(function() {
   // If we don't have an authentication token, redirect to the login page
   if (_.isUndefined($.cookie('token'))) window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
 
+  $.ajaxSetup({ cache: false });
   // Fetch our project list item template
   $.ajax({ url: rg_options.api + "/templates/mini/project_list.html" })
   .done(function(project_list) {
