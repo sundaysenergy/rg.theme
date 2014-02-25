@@ -8,9 +8,6 @@ $(document).ready(function() {
   if (_.isUndefined(sessionStorage.detailedview) == false) {
     delete(sessionStorage.detailedview);
   }
-  if (_.isUndefined(sessionStorage.pagevalue) == false) {
-    delete(sessionStorage.pagevalue);
-  }
 
   var item_prices = [];
   var token = $.cookie('token');
@@ -207,61 +204,56 @@ $(document).ready(function() {
       $('#anonymous-faves-alert').find('button.close').trigger('click');
       $('#project-list-select').find('button.close').trigger('click');
 
-      console.log(current_page, sessionStorage.pagevalue);
-      if (current_page != sessionStorage.pagevalue) {
-        console.log("Trigger visual rearrange");
-        $('[id^=collection-menu]').hide();
+      $('[id^=collection-menu]').hide();
 
-        // Things to do if there is a collection present -- mostly moving things around visually
-        if (_.isUndefined(collection) == false && _.isUndefined(srch)) {
-          /*** TEXTILE COLLECTION ***/
-          if (collection == 'textile') {
-            $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
-            // Move the inactive headers to a different container if they're not there already
-            if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
-              $('#collection-menu-passementerie-inactive').appendTo('#collection-headers-after > div.row');
-              $('#collection-menu-leather-inactive').insertAfter($('#collection-menu-passementerie-inactive'));
-            }
-            // Move the #products div after the textile header bar
-            $('#products').insertAfter('#collection-menu-main');
+      // Things to do if there is a collection present -- mostly moving things around visually
+      if (_.isUndefined(collection) == false && _.isUndefined(srch)) {
+        /*** TEXTILE COLLECTION ***/
+        if (collection == 'textile') {
+          $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
+          // Move the inactive headers to a different container if they're not there already
+          if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
+            $('#collection-menu-passementerie-inactive').appendTo('#collection-headers-after > div.row');
+            $('#collection-menu-leather-inactive').insertAfter($('#collection-menu-passementerie-inactive'));
           }
-          /*** PASSEMENTERIE COLLECTION ***/
-          if (collection == 'passementerie') {
-            $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
-            // Move the inactive headers to a different container if they're not there already
-            if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 0) {
-              $('#collection-menu-leather-inactive').appendTo('#collection-headers-after > div.row');
-            }
-            // Move the #products div after the passementerie header bar
-            $('#products').insertAfter('#collection-menu-passementerie');
-          }
-          /*** LEATHER COLLECTION ***/
-          if (collection == 'leather') {
-            $('#products,#collection-menu-leather,#collection-menu-main-inactive,#collection-menu-passementerie-inactive').show();
-            // Move inactive headers back to original container if necessary
-            if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 1) {
-              $('#collection-menu-passementerie-inactive').prependTo('div#collection-row-passementerie');
-            }
-            if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 1) {
-              $('#collection-menu-leather-inactive').prependTo('div#collection-row-leather');
-            }
-            // Move products after the leather header
-            $('#products').insertAfter('#collection-menu-leather');
-          }
-          // If the page size and buttons don't match up, simulate click -- workaround for back button issue with search
-          if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
-            $('button.thumbs').trigger('click');
-          }
+          // Move the #products div after the textile header bar
+          $('#products').insertAfter('#collection-menu-main');
         }
-
-        // Move the product list inside or outside of the main container depending on viewing mode
-        if (productlist.page == rg_options.horizontal_page) {
-          if ($('div.threeup div#products').length == 0) $('div#products').appendTo('div.threeup');
-        } else {
-          if ($('div.threeup div#products').length > 0) $('div#products').appendTo('main.container div#collection-row-textile');
+        /*** PASSEMENTERIE COLLECTION ***/
+        if (collection == 'passementerie') {
+          $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
+          // Move the inactive headers to a different container if they're not there already
+          if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 0) {
+            $('#collection-menu-leather-inactive').appendTo('#collection-headers-after > div.row');
+          }
+          // Move the #products div after the passementerie header bar
+          $('#products').insertAfter('#collection-menu-passementerie');
+        }
+        /*** LEATHER COLLECTION ***/
+        if (collection == 'leather') {
+          $('#products,#collection-menu-leather,#collection-menu-main-inactive,#collection-menu-passementerie-inactive').show();
+          // Move inactive headers back to original container if necessary
+          if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 1) {
+            $('#collection-menu-passementerie-inactive').prependTo('div#collection-row-passementerie');
+          }
+          if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 1) {
+            $('#collection-menu-leather-inactive').prependTo('div#collection-row-leather');
+          }
+          // Move products after the leather header
+          $('#products').insertAfter('#collection-menu-leather');
+        }
+        // If the page size and buttons don't match up, simulate click -- workaround for back button issue with search
+        if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
+          $('button.thumbs').trigger('click');
         }
       }
-      sessionStorage.pagevalue = current_page;
+
+      // Move the product list inside or outside of the main container depending on viewing mode
+      if (productlist.page == rg_options.horizontal_page) {
+        if ($('div.threeup div#products').length == 0) $('div#products').appendTo('div.threeup');
+      } else {
+        if ($('div.threeup div#products').length > 0) $('div#products').appendTo('main.container div#collection-row-textile');
+      }
 
       // Copy faves from the hash to localStorage for sharing and updates via the url
       if (_.isUndefined(hash.get('faves')) == false) {
