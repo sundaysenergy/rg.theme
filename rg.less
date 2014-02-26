@@ -260,11 +260,24 @@ main{
 .masthead nav ul li:hover > ul {
   display: block;
   height: auto;
-  min-height:25px;
-  max-height:35px;
+  min-height:auto;
+  max-height:auto;
   overflow: visible;
   opacity: 1;
 }
+
+@media (min-width: @screen-sm-min) {
+  .masthead nav ul li > ul.active, 
+  .masthead nav ul li:hover > ul {
+    display: block;
+    height: auto;
+    min-height:25px;
+    max-height:35px;
+    overflow: visible;
+    opacity: 1;
+  }
+}
+
 .masthead nav ul li > ul.disabled{
   display: none;
 }
