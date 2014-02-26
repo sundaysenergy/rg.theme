@@ -664,7 +664,7 @@ $(document).ready(function() {
         }
         sessionStorage.detailedview = hash.get('detailedview');
       } else {
-        if (_.isUndefined(sessionStorage.scrollpos)) {
+        if (_.isUndefined(sessionStorage.scrollpos) == false) {
           $('body').animate({ scrollTop: sessionStorage.scrollpos }, 0);
           delete(sessionStorage.scrollpos);
         }
