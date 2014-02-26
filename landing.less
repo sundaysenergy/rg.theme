@@ -19,8 +19,12 @@
 
 /* temporary fix... need to see what I actually need to have everywhere, and what should just be on the mobile/universal side */
 /* Small devices (tablets, 768px and up) */
-@media (min-width: @screen-sm-min) { 
-    
+@media (min-width: @screen-sm-min) {
+  .landing {
+    width: 100%;
+    height: auto
+  }
+
   #carousel-example-generic {
     width: 100%;
     cursor: pointer;
