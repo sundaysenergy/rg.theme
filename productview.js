@@ -285,10 +285,9 @@ $(document).ready(function() {
       // If no detailed view is present, make sure we hide the element
       // Creates back button functionality that matches what a user would expect
       if (_.isUndefined(hash.get('detailedview'))) {
-        $('body').animate({ scrollTop: sessionStorage.scrollpos }, 0);
-        delete(sessionStorage.scrollpos);
         $('.itemoverlay').hide();
         $('html,body').css('overflow','auto').css('height', '');
+
       }
 
       // Clear any existing filter if our unique string is different 
@@ -632,8 +631,6 @@ $(document).ready(function() {
           // Things to do on closing the detailed view mode
           $('table button.close').off('click touch').on('click touch', function(e) {
             $('.itemoverlay').hide(); // Hide the item
-            $('body').animate({ scrollTop: sessionStorage.scrollpos }, 0);
-            delete(sessionStorage.scrollpos);
             hash.remove('detailedview'); // Remove from the hash
             hash.remove('dpos'); // Remove the position from the hash
             $('html,body').css('overflow','hidden').height($(window).height()); // Reset the body and overflow
@@ -666,6 +663,11 @@ $(document).ready(function() {
           });
         }
         sessionStorage.detailedview = hash.get('detailedview');
+      } else {
+        if (_.isUndefined(sessionStorage.scrollpos)) {
+          $('body').animate({ scrollTop: sessionStorage.scrollpos }, 0);
+          delete(sessionStorage.scrollpos);
+        }
       }
       return false;
     });
