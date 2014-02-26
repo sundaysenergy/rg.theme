@@ -333,7 +333,12 @@ img {
 }
 
 .img-large-container { overflow: hidden; }
-.img-large-container img, .rulers img {width: 100%; height: auto;}
+
+.img-large-container img { height: 100%; width: auto;}
+
+@media (min-width: @screen-sm-min) { 
+  .img-large-container img, .rulers img {width: 100%; height: auto;}
+}
 
 #related-products {
   background: @rg-background;
