@@ -548,6 +548,11 @@ $(document).ready(function() {
       }
       productlist.show(pos, parseInt(productlist.page));
 
+      if (productlist.matchingItems.length == 0) {
+        $('div.search-noresults').show();
+      } else {
+        $('div.search-noresults').hide();
+      }
 
       /**** THINGS TO DO IF WE'RE IN DETAILED VIEW ****/
       if (_.isUndefined(hash.get('detailedview')) == false) {
