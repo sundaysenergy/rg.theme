@@ -106,6 +106,37 @@ main{
 /** Logo, Nav, Masthead... **/
 /** ************************************************************ **/
 /** ************************************************************ **/
+.masthead {
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0 0 10px 0 #848484;
+}
+
+.masthead:hover {
+  box-shadow: 0 0 10px 0 #c8c8c8;
+}
+
+@media (min-width: @screen-sm-min) { 
+  .masthead {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    -ms-transition: none;
+    transition: none;
+  }
+  
+  .masthead h1.sitename {
+    box-shadow: none;
+  }
+  
+  .masthead h1.sitename:hover {
+    box-shadow: none;
+  }
+}
+
 .masthead nav,
 .masthead nav .navwrap,
 .masthead nav ul,
@@ -256,7 +287,8 @@ main{
   background: @rg-background;
   box-shadow: none;
   letter-spacing: 3px;
-  margin: 20px auto 0;
+  margin: 0 auto;
+  padding: 20px 0 0 0;
 }
 
 .masthead h1.sitename a {
