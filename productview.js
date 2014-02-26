@@ -630,6 +630,8 @@ $(document).ready(function() {
           // Things to do on closing the detailed view mode
           $('table button.close').off('click touch').on('click touch', function(e) {
             $('.itemoverlay').hide(); // Hide the item
+            $('body').animate({ scrollTop: sessionStorage.scrollpos }, 0);
+            delete(sessionStorage.scrollpos);
             hash.remove('detailedview'); // Remove from the hash
             hash.remove('dpos'); // Remove the position from the hash
             $('html,body').css('overflow','hidden').height($(window).height()); // Reset the body and overflow
@@ -770,11 +772,13 @@ $(document).ready(function() {
             return true;
           }
           var id = $(this).parent().find('.id').html();
+          sessionStorage.scrollpos = document.body.scrollTop;
           hash.add({detailedview:id});
         });
         // Fallback click handler for ie9 since you can't attach to absolute positioned element
         $('ul.slider li .item-spotlight').parent().find('.img').off('click touch').on('click touch', function(e) {
           var id = $(this).parent().find('.id').html();
+          sessionStorage.scrollpos = document.body.scrollTop;
           hash.add({detailedview:id});
         });
 
@@ -869,6 +873,7 @@ $(document).ready(function() {
         // Click handler for detailed view from vertical view
         $('ul.list li .img').off('click touch').on('click touch', function(e) {
           var id = $(this).parent().find('.id').html();
+          sessionStorage.scrollpos = document.body.scrollTop;
           hash.add({detailedview:id});
         });
 
