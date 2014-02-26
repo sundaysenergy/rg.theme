@@ -106,6 +106,38 @@ main{
 /** Logo, Nav, Masthead... **/
 /** ************************************************************ **/
 /** ************************************************************ **/
+.masthead {
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0 0 10px 0 #848484;
+}
+
+.masthead:hover {
+  box-shadow: 0 0 10px 0 #c8c8c8;
+}
+
+@media (min-width: @screen-sm-min) { 
+  .masthead, .masthead:hover {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    -ms-transition: none;
+    transition: none;
+    box-shadow: none;
+  }
+  
+  .masthead h1.sitename {
+    box-shadow: none;
+  }
+  
+  .masthead h1.sitename:hover {
+    box-shadow: none;
+  }
+}
+
 .masthead nav,
 .masthead nav .navwrap,
 .masthead nav ul,
@@ -162,52 +194,54 @@ main{
 .masthead nav ul li.active a {
   color: @rg-gold;
 }
-.masthead nav ul li ul.collection-filter {
-  height:0;
-  opacity: 0;
-  overflow: hidden;
-  margin: 0 0 0 -150px;
-  padding: 0;
-  width: 300px;
-  position: relative;
-  left: 50%;
-}
 
 .masthead nav ul li ul.trade-login {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   height: 0;
   opacity: 0;
   overflow: hidden;
-  margin: 0 0 0 -275px;
-  padding: 0;
-  width: 550px;
-  position: relative;
-  left: 50%;
-}
-
-.masthead nav ul li ul.trade-login li,
-.masthead nav ul li ul.collection-filter li {
-  border-top: none;
-  display: block;
-  float:left;
-  height: auto;
-  min-height:25px;
-  max-height:35px;
-  margin: 6px 10px 0 10px;
-  padding: 0;
-  width: auto;
 }
 
 .masthead nav ul li ul.trade-login li {
-  margin-top: 0;
-  width: 90px;
+  border-top: none;
+  display: block;
+  float:none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
-.masthead nav ul li ul.collection-filter li:first-child {
-  margin-left: 0;
-}
-
-.masthead nav ul li ul.collection-filter li:last-child {
-  margin-right: 0;
+@media (min-width: @screen-sm-min) {
+  .masthead nav ul li ul.trade-login {
+    margin: 0 0 0 -275px;
+    padding: 0;
+    width: 550px;
+    position: relative;
+    left: 50%;
+  }
+  
+  .masthead nav ul li ul.trade-login li {
+    border-top: none;
+    display: block;
+    float:left;
+    height: auto;
+    min-height:25px;
+    max-height:35px;
+    margin: 0 10px;
+    padding: 0;
+    width: auto;
+    width: 90px;
+  }
+  
+  .masthead nav ul li ul.collection-filter li:first-child {
+    margin-left: 0;
+  }
+  
+  .masthead nav ul li ul.collection-filter li:last-child {
+    margin-right: 0;
+  }
 }
 
 .masthead nav ul li ul.trade-login li a, 
@@ -240,25 +274,22 @@ main{
   border: none;
   height: 57px;
   text-align: center;
-  width: 340px;
+  width: 100%;
   margin: 0;
   padding: 0;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
 }
 
 .masthead h1.sitename {
   background: @rg-background;
-  box-shadow: 0 0 10px 0 #848484;
+  box-shadow: none;
   letter-spacing: 3px;
-  margin: 40px auto 0;
-}
-
-.masthead h1.sitename:hover {
-  box-shadow: 0 0 10px 0 #c8c8c8;
+  margin: 0 auto;
+  padding-top: 20px;
 }
 
 .masthead h1.sitename a {
@@ -269,6 +300,28 @@ main{
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) { 
+  .masthead h1.sitename, .masthead h1.sitename a {
+    width: 340px;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .masthead h1.sitename {
+    box-shadow: 0 0 10px 0 #848484;
+    margin: 40px auto 0;
+    padding-top: 0;
+  }
+  
+  .masthead h1.sitename:hover {
+    box-shadow: 0 0 10px 0 #c8c8c8;
+  }
 }
 
 /** END Logo, Nav, Masthead... **/
@@ -588,12 +641,29 @@ button.plain {
 }
 
 .showrooms ul > li.showroom {
-  display: inline-block;
-  width: 27%;
-  margin: 1.5em 3%;
+  display: block;
+  width: auto;
+  margin: 1.5em;
   padding: 0;
   font-size: 1.15em;
   vertical-align: top;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) {
+  .showrooms ul > li.showroom {
+    display: inline-block;
+    width: 47%;
+    margin: 1.5em 1%;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) {
+  .showrooms ul > li.showroom {
+    width: 27%;
+    margin: 1.5em 3%;
+  }
 }
 
 .showrooms .top ul > li.showroom {
