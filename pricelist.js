@@ -51,13 +51,13 @@ $(document).ready(function() {
                         var aval = (_.isUndefined(a.values()[desc_sort])) ? 'ZZZZZ':a.values()[desc_sort].toLowerCase();
                         var bval = (_.isUndefined(b.values()[desc_sort])) ? 'ZZZZZ':b.values()[desc_sort].toLowerCase();
                         if (desc_sort === 'price') {
-                          aval = (_.isUndefined(item_prices[a.values().id])) ? 0:parseInt(item_prices[a.values().id]);
-                          bval = (_.isUndefined(item_prices[b.values().id])) ? 0:parseInt(item_prices[b.values().id]);
+                          aval = (_.isUndefined(item_prices[a.values().id])) ? 9999:parseInt(item_prices[a.values().id]);
+                          bval = (_.isUndefined(item_prices[b.values().id])) ? 9999:parseInt(item_prices[b.values().id]);
                           if (a.values().id == '730001-01') {
-                            console.log(aval, bval);
+                            console.log(aval);
                           }
                           if (b.values().id == '730001-01') {
-                            console.log(aval, bval);
+                            console.log(bval);
                           }
                         }
                         var aname = (_.isUndefined(a.values().name)) ? 'ZZZZZ':a.values().name.toLowerCase();
