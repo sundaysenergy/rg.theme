@@ -50,7 +50,7 @@ $(document).ready(function() {
                       if (_.isNull(desc_sort) == false) {
                         var aval = (_.isUndefined(a.values()[desc_sort])) ? 'ZZZZZ':a.values()[desc_sort].toLowerCase();
                         var bval = (_.isUndefined(b.values()[desc_sort])) ? 'ZZZZZ':b.values()[desc_sort].toLowerCase();
-                        if (desc_sort === 'tradeprice') {
+                        if (desc_sort === 'price') {
                           console.log("Price");
                           aval = parseInt(a.values().tradeprice().replace('$', ''));
                           bval = parseInt(a.values().tradeprice().replace('$', ''));
