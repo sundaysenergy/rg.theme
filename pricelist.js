@@ -51,6 +51,7 @@ $(document).ready(function() {
                         var aval = (_.isUndefined(a.values()[desc_sort])) ? 'ZZZZZ':a.values()[desc_sort].toLowerCase();
                         var bval = (_.isUndefined(b.values()[desc_sort])) ? 'ZZZZZ':b.values()[desc_sort].toLowerCase();
                         if (desc_sort === 'price') {
+                          if (_.isUndefined(item_prices[a.values().id])) console.log(a.values());
                           aval = (_.isUndefined(item_prices[a.values().id])) ? 129:parseInt(item_prices[a.values().id]);
                           bval = (_.isUndefined(item_prices[b.values().id])) ? 129:parseInt(item_prices[b.values().id]);
                         }
