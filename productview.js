@@ -8,7 +8,9 @@ $(document).ready(function() {
   if (_.isUndefined(sessionStorage.detailedview) == false) {
     delete(sessionStorage.detailedview);
   }
-
+  if (_.isUndefined(sessionStorage.currentpage) == false) {
+    delete(sessionStorage.currentpage);
+  }
   var item_prices = [];
   var token = $.cookie('token');
 
@@ -183,7 +185,11 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
-      var current_page = _.map(_.pull(_.keys(hash.get()), 'pos', 'attributes', 'color', 'detailedview', 'cpos', 'dpos'), function(key) { return key + '=' + hash.get(key) }).join('&');
+      var current_page = _.map(_.pull(_.keys(hash.get()), 'pos', 'detailedview', 'cpos', 'dpos'), function(key) { return key + '=' + hash.get(key) }).join('&');
+      
+      if (_.isUndefined(sessionStorage.currentpage)) {
+        sessionStorage.currentpage = '';
+      }
 
       /*** GET VALUES FROM HASH ***/
       var collection = hash.get('collection');
@@ -280,11 +286,13 @@ $(document).ready(function() {
       }
 
       // Clear any existing filter
-      productlist.filter();
-      // Remove disabled class from color and attribute filters
-      $('.filter-attributes label, .filter-color label, .filter-description label').each(function(i) {
-        $(this).removeClass('disabled');
-      });
+      if (current_page !== sessionStorage.currentpage) {
+        productlist.filter();
+        // Remove disabled class from color and attribute filters
+        $('.filter-attributes label, .filter-color label, .filter-description label').each(function(i) {
+          $(this).removeClass('disabled');
+        });
+      }
 
       /*** IF PERFORMING A SEARCH ***/
       if (_.isUndefined(srch) == false) {
@@ -372,150 +380,153 @@ $(document).ready(function() {
       /***********************************/
       var vals = [collection,f,srch,faves,color,desc,lid];
 
-      // Process the filter if there are any terms other than undefined in our hash list
-      if (_.some(vals, function(item) { return _.isUndefined(item) == false })) {
-        productlist.filter(function(item) {
-          // Set our default to false, and explicit define matches
-          var match = false;
+      if (current_page !== sessionStorage.currentpage) {
+        console.log("Filtering list");
+        // Process the filter if there are any terms other than undefined in our hash list
+        if (_.some(vals, function(item) { return _.isUndefined(item) == false })) {
+          productlist.filter(function(item) {
+            // Set our default to false, and explicit define matches
+            var match = false;
 
-          /*** PROCESS THE FAVORITES LIST ***/
-          if (_.isUndefined(faves) == false) {
-            // Always return true/false since we don't need to go to the next step
-            if (_.indexOf(favorites, item.values().id) >= 0) {
-              return true;
-            } else {
-              return false;
+            /*** PROCESS THE FAVORITES LIST ***/
+            if (_.isUndefined(faves) == false) {
+              // Always return true/false since we don't need to go to the next step
+              if (_.indexOf(favorites, item.values().id) >= 0) {
+                return true;
+              } else {
+                return false;
+              }
             }
-          }
 
-          /*** PROCESS THE PROJECTS LIST ***/
-          if (_.isUndefined(lid) == false) {
-            // Always return true/false since we don't need to go to the next step
-            if (_.indexOf(project_items, item.values().id) >= 0) {
-              return true;
-            } else {
-              return false;
+            /*** PROCESS THE PROJECTS LIST ***/
+            if (_.isUndefined(lid) == false) {
+              // Always return true/false since we don't need to go to the next step
+              if (_.indexOf(project_items, item.values().id) >= 0) {
+                return true;
+              } else {
+                return false;
+              }
             }
-          }
 
-          /*** PROCESS SEARCH TERMS ***/
-          if (_.isUndefined(srch) == false) {
-            // This is a combination of all non-function values in the object
-            var search_string = _.chain(item.values()).values().compact().filter(function(val) { return _.isFunction(val) == false; }).join(' ').value();
-            // Split the search string and sort into two arrays for colors and not colors
-            var search_terms = srch.split(' ');
-            var color_search_terms = _.remove(search_terms, function(item) { 
-                                                              var col = _.indexOf(combined.color_words, item.toUpperCase());
-                                                              return col >= 0;
-                                                            });
-            // Go through our non-color terms that will be treated as an OR search
-            // If there are items in this list, at least one must match
-            // If there are not items in this list, then true/false of colors will determine match
-            for (var i=0; i<search_terms.length; i++) {
-              var term = search_terms[i].toLowerCase();
-              if (search_string.toLowerCase().indexOf(term) >= 0) {
-                // True and break on a match since we only need one from this list
+            /*** PROCESS SEARCH TERMS ***/
+            if (_.isUndefined(srch) == false) {
+              // This is a combination of all non-function values in the object
+              var search_string = _.chain(item.values()).values().compact().filter(function(val) { return _.isFunction(val) == false; }).join(' ').value();
+              // Split the search string and sort into two arrays for colors and not colors
+              var search_terms = srch.split(' ');
+              var color_search_terms = _.remove(search_terms, function(item) { 
+                                                                var col = _.indexOf(combined.color_words, item.toUpperCase());
+                                                                return col >= 0;
+                                                              });
+              // Go through our non-color terms that will be treated as an OR search
+              // If there are items in this list, at least one must match
+              // If there are not items in this list, then true/false of colors will determine match
+              for (var i=0; i<search_terms.length; i++) {
+                var term = search_terms[i].toLowerCase();
+                if (search_string.toLowerCase().indexOf(term) >= 0) {
+                  // True and break on a match since we only need one from this list
+                  match = true;
+                  break;
+                }
+              }
+              // Loop through colors. If there are terms here, they MUST be present
+              if (match || search_terms.length == 0) {
+                for (var i=0; i<color_search_terms.length; i++) {
+                  var term = color_search_terms[i].toLowerCase();
+                  // If we don't match, return false
+                  if (search_string.toLowerCase().indexOf(term) == -1) {
+                    return false;
+                  // If we do match, set true and proceed to next step
+                  } else {
+                    match = true;
+                  }
+                }
+              }
+              // If we have a false value, then return. If true, proceed to next filter
+              // This will allow true match to then be filtered for collection, while false means
+              // that non-color search terms were present, but did not match, and there were not
+              // any color search terms
+              if (!match) return false;
+            }
+            
+            /*** PROCESS COLLECTION FILTER ***/
+            if (typeof(collection) != 'undefined') {
+              if (item.values().collection.toLowerCase().indexOf(collection.toLowerCase()) >= 0) {
                 match = true;
-                break;
-              }
-            }
-            // Loop through colors. If there are terms here, they MUST be present
-            if (match || search_terms.length == 0) {
-              for (var i=0; i<color_search_terms.length; i++) {
-                var term = color_search_terms[i].toLowerCase();
-                // If we don't match, return false
-                if (search_string.toLowerCase().indexOf(term) == -1) {
-                  return false;
-                // If we do match, set true and proceed to next step
-                } else {
-                  match = true;
-                }
-              }
-            }
-            // If we have a false value, then return. If true, proceed to next filter
-            // This will allow true match to then be filtered for collection, while false means
-            // that non-color search terms were present, but did not match, and there were not
-            // any color search terms
-            if (!match) return false;
-          }
-          
-          /*** PROCESS COLLECTION FILTER ***/
-          if (typeof(collection) != 'undefined') {
-            if (item.values().collection.toLowerCase().indexOf(collection.toLowerCase()) >= 0) {
-              match = true;
-            } else {
-              match = false; // Probably should just return false here?
-            }
-          }
-
-          /* PROCESS ATTRIBUTES AND COLORS
-             If we've either matched the collection, or there is no collection specified, proceed. 
-             Assumption is that anything else means the collection is specified, but failed to match. */
-          if (match || (typeof(collection) == 'undefined')) {
-            /*** PROCESS ATTRIBUTES ***/
-            if (attributes.length > 0) {
-              // For each attribute, see if we have a match. If not, set false and break.
-              for (var i = 0; i<attributes.length; i++) {
-                // Search content field for anything other than leather; name field for leather
-                var content_field = (collection != 'leather' || _.isUndefined(collection)) ? item.values().content:item.values().name;
-                if (_.isUndefined(content_field)) content_field = "";
-                if (content_field.toLowerCase().indexOf(attributes[i].toLowerCase()) >= 0) {
-                  // Explicitly set true if we have an attribute and it matches
-                  match = true;
-                } else {
-                  // We want all attributes to match, so return false if one does not
-                  return false;
-                }
-              }
-            }
-            /*** PROCESS DESCRIPTION ***/
-            if (_.isUndefined(desc) == false) {
-              var d = desc.split(',');
-              for (var i = 0; i<d.length; i++) {
-                //console.log(d[i]);
-                var desc_field = (_.isUndefined(item.values().design_descriptions)) ? '':item.values().design_descriptions;
-                //console.log(desc_field);
-                // If the desc field is present and matches
-                if (desc_field.toLowerCase().indexOf(d[i].toLowerCase()) >= 0) {
-                  match = true;
-                } else {
-                  // If the desc field is present, but does not match, return false.
-                  return false;
-                }
+              } else {
+                match = false; // Probably should just return false here?
               }
             }
 
-            /*** PROCESS COLORS ***/
-            if (_.isUndefined(color) == false) {
-              var color_terms = color.split(',');
-              for (var i = 0; i<color_terms.length; i++) {
-                var color_field = item.values().primarycolor;
-                // If color search is active, but the primary color is not defined, return false
-                if (_.isUndefined(color_field)) {
-                  color_field = item.values().color;
+            /* PROCESS ATTRIBUTES AND COLORS
+               If we've either matched the collection, or there is no collection specified, proceed. 
+               Assumption is that anything else means the collection is specified, but failed to match. */
+            if (match || (typeof(collection) == 'undefined')) {
+              /*** PROCESS ATTRIBUTES ***/
+              if (attributes.length > 0) {
+                // For each attribute, see if we have a match. If not, set false and break.
+                for (var i = 0; i<attributes.length; i++) {
+                  // Search content field for anything other than leather; name field for leather
+                  var content_field = (collection != 'leather' || _.isUndefined(collection)) ? item.values().content:item.values().name;
+                  if (_.isUndefined(content_field)) content_field = "";
+                  if (content_field.toLowerCase().indexOf(attributes[i].toLowerCase()) >= 0) {
+                    // Explicitly set true if we have an attribute and it matches
+                    match = true;
+                  } else {
+                    // We want all attributes to match, so return false if one does not
+                    return false;
+                  }
                 }
-                if (_.isUndefined(color_field)) {
-                  return false;
+              }
+              /*** PROCESS DESCRIPTION ***/
+              if (_.isUndefined(desc) == false) {
+                var d = desc.split(',');
+                for (var i = 0; i<d.length; i++) {
+                  //console.log(d[i]);
+                  var desc_field = (_.isUndefined(item.values().design_descriptions)) ? '':item.values().design_descriptions;
+                  //console.log(desc_field);
+                  // If the desc field is present and matches
+                  if (desc_field.toLowerCase().indexOf(d[i].toLowerCase()) >= 0) {
+                    match = true;
+                  } else {
+                    // If the desc field is present, but does not match, return false.
+                    return false;
+                  }
                 }
-                // If the color field is present and matches
-                if (color_field.toLowerCase().indexOf(color_terms[i].toLowerCase()) >= 0) {
-                  match = true;
-                } else {
-                  // If the color field is present, but does not match, return false.
-                  return false;
+              }
+
+              /*** PROCESS COLORS ***/
+              if (_.isUndefined(color) == false) {
+                var color_terms = color.split(',');
+                for (var i = 0; i<color_terms.length; i++) {
+                  var color_field = item.values().primarycolor;
+                  // If color search is active, but the primary color is not defined, return false
+                  if (_.isUndefined(color_field)) {
+                    color_field = item.values().color;
+                  }
+                  if (_.isUndefined(color_field)) {
+                    return false;
+                  }
+                  // If the color field is present and matches
+                  if (color_field.toLowerCase().indexOf(color_terms[i].toLowerCase()) >= 0) {
+                    match = true;
+                  } else {
+                    // If the color field is present, but does not match, return false.
+                    return false;
+                  }
                 }
               }
             }
-          }
-          // If we're still operating, return the value of match
-          return match;
-        });
+            // If we're still operating, return the value of match
+            return match;
+          });
 
-        // Trigger a re-filter of the filters
-        $(document).trigger('filterFilters');
-      } // END PROCESS FILTERS FROM HASH
-
-
+          // Trigger a re-filter of the filters
+          $(document).trigger('filterFilters');
+        } // END PROCESS FILTERS FROM HASH
+      }
+      sessionStorage.currentpage = current_page;
+      
       /*** DEAL WITH LIST POSITIONING BASED ON HASH ***/
       var pos = hash.get('pos');
       // If position is undefined, start at either 0 or 1, depending on view mode
