@@ -644,7 +644,7 @@ $(document).ready(function() {
           });
           relatedlist.update();
           // Things to do on closing the detailed view mode
-          $('table button.close').off('click touch').on('click touch', function(e) {
+          $('table button.close, li.close > button.close').off('click touch').on('click touch', function(e) {
             $('.itemoverlay').hide(); // Hide the item
             hash.remove('detailedview'); // Remove from the hash
             hash.remove('dpos'); // Remove the position from the hash
@@ -653,7 +653,7 @@ $(document).ready(function() {
           });
 
           // Add to favorites from detailed view
-          $('td.fav button.fav').off().on('click touch', function(e) {
+          $('td.fav button.fav, li.fav button.fav').off().on('click touch', function(e) {
             e.preventDefault();
             addFaves($(this), id);
           });
