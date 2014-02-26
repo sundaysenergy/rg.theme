@@ -185,8 +185,10 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
+      // Create a string that contains parts of the hash that indicates need to refilter
       var current_page = _.map(_.pull(_.keys(hash.get()), 'pos', 'detailedview', 'cpos', 'dpos'), function(key) { return key + '=' + hash.get(key) }).join('&');
       
+      // If there isn't an existing value, create one for string comparison
       if (_.isUndefined(sessionStorage.currentpage)) {
         sessionStorage.currentpage = '';
       }
@@ -210,6 +212,8 @@ $(document).ready(function() {
       $('#anonymous-faves-alert').find('button.close').trigger('click');
       $('#project-list-select').find('button.close').trigger('click');
 
+
+      /**** VISUAL RESETS AND RE-ARRANGE ****/
       $('[id^=collection-menu]').hide();
 
       // Things to do if there is a collection present -- mostly moving things around visually
@@ -285,7 +289,7 @@ $(document).ready(function() {
         $('html,body').css('overflow','auto').css('height', '');
       }
 
-      // Clear any existing filter
+      // Clear any existing filter if our unique string is different 
       if (current_page !== sessionStorage.currentpage) {
         productlist.filter();
         // Remove disabled class from color and attribute filters
@@ -380,8 +384,8 @@ $(document).ready(function() {
       /***********************************/
       var vals = [collection,f,srch,faves,color,desc,lid];
 
+      // Only process the filters if our string has changed 
       if (current_page !== sessionStorage.currentpage) {
-        console.log("Filtering list");
         // Process the filter if there are any terms other than undefined in our hash list
         if (_.some(vals, function(item) { return _.isUndefined(item) == false })) {
           productlist.filter(function(item) {
