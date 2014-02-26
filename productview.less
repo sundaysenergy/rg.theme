@@ -496,12 +496,12 @@ ul.slider,
 }
 
 .itemoverlay table td.fav,
-.itemoverlay table td.fav {
+.itemoverlay table td.close {
   padding: 2px 0 6px 0;
 }
 
-.itemoverlay table tbody td.fav button,
-.itemoverlay table tbody td.close button {
+.itemoverlay .fav button,
+.itemoverlay .close button {
   border: none;
   display: block;
   height: 29px;
@@ -511,15 +511,15 @@ ul.slider,
   overflow: hidden;
 }
 
-.itemoverlay table tbody td.close,
-.itemoverlay table tbody td.close button {
+.itemoverlay .close,
+.itemoverlay .close button {
   float: none;
   text-shadow: none;
   opacity: 1;
   filter: alpha(opacity=100);
 }
 
-.itemoverlay table tbody td h3 {
+.itemoverlay h3 {
   font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
@@ -527,18 +527,18 @@ ul.slider,
   margin: 0;
 }
 
-.itemoverlay table tbody td p {
+.itemoverlay p {
   font-size: 14px;
   font-weight: normal;
   text-transform: capitalize;
   margin: 0;
 }
 
-.itemoverlay table tbody td.fav button {
+.itemoverlay .fav button {
   background: transparent url(img/add-to-fav.png) center center no-repeat;
 }
 
-.itemoverlay table tbody td.close button {
+.itemoverlay .close button {
   background: transparent url(img/detail-big-close.png) center center no-repeat;
 }
 
