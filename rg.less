@@ -116,17 +116,27 @@ main{
   background-image: none;
   border: 1px solid transparent;
   border-radius: 0;
-  width: 160px !important;
+  width: 160px;
 }
 
 .navbar-toggle .icon-bar {
-  background: url('img/nav-dd.png') center center no-repeat;
+  background: url('img/nav-dd.png') center top no-repeat;
   display: block;
-  width: 160px !important;;
-  height: 10px;
+  width: 160px;
+  height: 25px;
   border: 1px solid transparent;
   border-radius: 0;
   text-align: center
+}
+
+.navbar-collapse {
+  max-height: 340px;
+  overflow-x: visible;
+  padding-right: 0;
+  padding-left: 0;
+  border-top: 1px solid transparent;
+  box-shadow: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .masthead {
