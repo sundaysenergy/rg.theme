@@ -288,6 +288,7 @@ $(document).ready(function() {
         $('.itemoverlay').hide();
         $('html,body').css('overflow','auto').css('height', '');
         if (_.isUndefined(sessionStorage.scrollpos) == false) {
+          console.log(sessionStorage.scrollpos);
           $('body').animate({ scrollTop: sessionStorage.scrollpos }, 0);
           delete(sessionStorage.scrollpos);
         }
