@@ -34,6 +34,7 @@ $(document).ready(function() {
     // Compile clientside templates
     var templates = combined.templates;
     var item_template                = Hogan.compile(templates.item),
+        item_mobile_template         = Hogan.compile(templates.item_mobile),
         spotlight_template           = Hogan.compile(templates.spotlight),
         dummy_template               = Hogan.compile(templates.bookends),
         favorites_template           = Hogan.compile(templates.favorites),
@@ -548,6 +549,7 @@ $(document).ready(function() {
       }
       productlist.show(pos, parseInt(productlist.page));
 
+      // If there are no items that are matching show the no results div
       if (productlist.matchingItems.length == 0) {
         $('div.search-noresults').show();
       } else {
@@ -585,7 +587,11 @@ $(document).ready(function() {
           item.item.img_large = item.item.img.replace('640','1536');
           item.pager = item.item.itemcolors().length > 5;
           // Show the detailed view mode and render the html from our mustache template
-          $('.itemoverlay').show().html(item_template.render(item));
+          if ($(window).width() > 768) {
+            $('.itemoverlay').show().html(item_template.render(item));
+          } else {
+            $('.itemoverlay').show().html(item_mobile_template.render(item));
+          }
           $('#related-products button.close').off('click touch').on('click touch', function(e) {
             $('.itemoverlay #related-products').hide();
           });
