@@ -60,15 +60,16 @@ $(document).ready(function() {
                             console.log(bval);
                           }
                         }
+                        var aname = (_.isUndefined(a.values().name)) ? 'ZZZZZ':a.values().name.toLowerCase();
+                        var bname = (_.isUndefined(b.values().name)) ? 'ZZZZZ':b.values().name.toLowerCase();
+                        if(aval<bval) return -1;
+                        if(aval>bval) return 1;
+                        if(aname<bname) return -1;
+                        if(aname>bname) return 1;
+                      } else if (_.isNull(asc_sort) == false) {
                         if (asc_sort === 'price') {
                           aval = (_.isUndefined(item_prices[a.values().id])) ? 9999:parseInt(item_prices[a.values().id]);
                           bval = (_.isUndefined(item_prices[b.values().id])) ? 9999:parseInt(item_prices[b.values().id]);
-                          if (a.values().id == '730001-01') {
-                            console.log(aval);
-                          }
-                          if (b.values().id == '730001-01') {
-                            console.log(bval);
-                          }
                         }
                         var aname = (_.isUndefined(a.values().name)) ? 'ZZZZZ':a.values().name.toLowerCase();
                         var bname = (_.isUndefined(b.values().name)) ? 'ZZZZZ':b.values().name.toLowerCase();
@@ -77,8 +78,6 @@ $(document).ready(function() {
                         if(aval<bval) return 1;
                         if(aname<bname) return -1;
                         if(aname>bname) return 1;
-                      } else if (_.isNull(asc_sort) == false) {
-
                       }
                       return 0;
                     }
