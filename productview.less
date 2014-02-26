@@ -470,6 +470,7 @@ ul.slider,
   padding: 6px 10px 0px 10px;
 }
 
+/* item_mobile styles */
 .itemoverlay nav {
   background: @rg-background !important;
   position: fixed;
@@ -479,6 +480,37 @@ ul.slider,
   width: 100%;
   z-index: 999;
 }
+
+.itemoverlay .xtra-controls {
+   padding:0;
+}
+
+.itemoverlay .xtra-controls li {
+   position: absolute;
+}
+
+.itemoverlay .xtra-controls .fav {
+   left: 10px;
+   top: 10px;
+}
+
+.itemoverlay .xtra-controls .close {
+   right: 10px;
+   top: 10px;
+}
+
+.itemoverlay .nav-header button,
+.itemoverlay .nav-header button span.icon-bar,
+.itemoverlay .navbar-toggle button,
+.itemoverlay .navbar-toggle button span.icon-bar {
+ display: block;
+ width: 100%;
+ min-width: 100%;
+ max-width: 100%;
+ margin 0 auto;
+ text-align: center;
+}
+/* end item_mobile styles */
 
 .itemoverlay table {
   margin: 0;
