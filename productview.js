@@ -285,6 +285,8 @@ $(document).ready(function() {
       // If no detailed view is present, make sure we hide the element
       // Creates back button functionality that matches what a user would expect
       if (_.isUndefined(hash.get('detailedview'))) {
+        $('body').animate({ scrollTop: sessionStorage.scrollpos }, 0);
+        delete(sessionStorage.scrollpos);
         $('.itemoverlay').hide();
         $('html,body').css('overflow','auto').css('height', '');
       }
