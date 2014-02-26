@@ -287,7 +287,10 @@ $(document).ready(function() {
       if (_.isUndefined(hash.get('detailedview'))) {
         $('.itemoverlay').hide();
         $('html,body').css('overflow','auto').css('height', '');
-
+        if (_.isUndefined(sessionStorage.scrollpos) == false) {
+          $('body').animate({ scrollTop: sessionStorage.scrollpos }, 0);
+          delete(sessionStorage.scrollpos);
+        }
       }
 
       // Clear any existing filter if our unique string is different 
