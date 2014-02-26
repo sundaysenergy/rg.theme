@@ -43,7 +43,25 @@ $(document).ready(function() {
       page: 50,
       plugins: [
                   ListFuzzySearch()
-               ]
+               ],
+      sortFunction: function(a,b) {
+                      var asc_sort = $('th.asc').data('sort');
+                      var desc_sort = $('th.desc').data('sort');
+                      if (_.isNull(desc_sort) == false) {
+                        var aval = (_.isUndefined(a.values()[desc_sort])) ? 'ZZZZZ':a.values()[desc_sort].toLowerCase();
+                        var bval = (_.isUndefined(b.values()[desc_sort])) ? 'ZZZZZ':b.values()[desc_sort].toLowerCase();
+                        var aname = (_.isUndefined(a.values().name)) ? 'ZZZZZ':a.values().name.toLowerCase();
+                        var bname = (_.isUndefined(b.values().name)) ? 'ZZZZZ':b.values().name.toLowerCase();
+                        console.log(aval,bval,aname,bname);
+                        if(aval< bval) return -1;
+                        if(aval>bval) return 1;
+                        if(aname<bname) return -1;
+                        if(aname>bname) return 1;
+                      } else if (_.isNull(asc_sort) == false) {
+
+                      }
+                      return 0;
+                    }
     };
     // Init list
     var textiles = new List('textiles', options, data);
