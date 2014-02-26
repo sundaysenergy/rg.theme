@@ -164,40 +164,52 @@ main{
 }
 
 .masthead nav ul li ul.trade-login {
-  height: 0;
-  opacity: 0;
-  overflow: hidden;
-  margin: 0 0 0 -275px;
+  margin: 0;
   padding: 0;
-  width: 550px;
-  position: relative;
-  left: 50%;
-}
-
-.masthead nav ul li ul.trade-login li,
-.masthead nav ul li ul.collection-filter li {
-  border-top: none;
-  display: block;
-  float:left;
-  height: auto;
-  min-height:25px;
-  max-height:35px;
-  margin: 6px 10px 0 10px;
-  padding: 0;
-  width: auto;
+  width: 100%;
 }
 
 .masthead nav ul li ul.trade-login li {
-  margin-top: 0;
-  width: 90px;
+  border-top: none;
+  display: block;
+  float:none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
-.masthead nav ul li ul.collection-filter li:first-child {
-  margin-left: 0;
-}
-
-.masthead nav ul li ul.collection-filter li:last-child {
-  margin-right: 0;
+@media (min-width: @screen-sm-min) {
+  .masthead nav ul li ul.trade-login {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin: 0 0 0 -275px;
+    padding: 0;
+    width: 550px;
+    position: relative;
+    left: 50%;
+  }
+  
+  .masthead nav ul li ul.trade-login li {
+    border-top: none;
+    display: block;
+    float:left;
+    height: auto;
+    min-height:25px;
+    max-height:35px;
+    margin: 0 10px;
+    padding: 0;
+    width: auto;
+    width: 90px;
+  }
+  
+  .masthead nav ul li ul.collection-filter li:first-child {
+    margin-left: 0;
+  }
+  
+  .masthead nav ul li ul.collection-filter li:last-child {
+    margin-right: 0;
+  }
 }
 
 .masthead nav ul li ul.trade-login li a, 
