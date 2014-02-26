@@ -1,3 +1,4 @@
+
 .landing {
   width: 100%;
   padding: 0;
@@ -44,29 +45,6 @@
 .carousel-indicators {
   bottom: 0px
 }
-
-/* this makes the layout as designed, but is too hard to click on the indicators... sticking with default bootstrap other than colors updated to RG variable */
-/* 
-.carousel-indicators li {
-  display: inline-block;
-  background-color: @rg-background;
-  border: none;
-  border-radius: 4px;
-  width: 4px;
-  height: 4px;
-  margin-bottom: 4px;
-  text-indent: -999px;
-  cursor: pointer;
-}
-
-.carousel-indicators .active {
-  margin: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 12px;
-  background-color: @rg-background;
-}
-*/
 
 .carousel-indicators li {
   border-color: @rg-background !important;
@@ -116,7 +94,6 @@
   color: @rg-gray;
   display:none;
   font-family: @font-family-serif;
-  /*margin:50px;*/
   padding: 7px 15px;
   position:absolute;
   top:66%;
@@ -127,7 +104,7 @@
   z-index:999999;
 }
 
-/* Probably a better way to do this, but eliminates the flicker when hovering the popover */
 .landing-popover:hover {
   display: block !important;
 }
+
