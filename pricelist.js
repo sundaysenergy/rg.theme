@@ -54,10 +54,10 @@ $(document).ready(function() {
                           aval = (_.isUndefined(item_prices[a.values().id])) ? 9999:parseInt(item_prices[a.values().id]);
                           bval = (_.isUndefined(item_prices[b.values().id])) ? 9999:parseInt(item_prices[b.values().id]);
                           if (a.values().id == '730001-01') {
-                            console.log(aval);
+                            aval = 129;
                           }
                           if (b.values().id == '730001-01') {
-                            console.log(bval);
+                            bval = 129
                           }
                         }
                         var aname = (_.isUndefined(a.values().name)) ? 'ZZZZZ':a.values().name.toLowerCase();
@@ -67,9 +67,17 @@ $(document).ready(function() {
                         if(aname<bname) return -1;
                         if(aname>bname) return 1;
                       } else if (_.isNull(asc_sort) == false) {
+                        var aval = (_.isUndefined(a.values()[desc_sort])) ? 'ZZZZZ':a.values()[desc_sort].toLowerCase();
+                        var bval = (_.isUndefined(b.values()[desc_sort])) ? 'ZZZZZ':b.values()[desc_sort].toLowerCase();
                         if (asc_sort === 'price') {
                           aval = (_.isUndefined(item_prices[a.values().id])) ? 9999:parseInt(item_prices[a.values().id]);
                           bval = (_.isUndefined(item_prices[b.values().id])) ? 9999:parseInt(item_prices[b.values().id]);
+                          if (a.values().id == '730001-01') {
+                            aval = 129;
+                          }
+                          if (b.values().id == '730001-01') {
+                            bval = 129
+                          }
                         }
                         var aname = (_.isUndefined(a.values().name)) ? 'ZZZZZ':a.values().name.toLowerCase();
                         var bname = (_.isUndefined(b.values().name)) ? 'ZZZZZ':b.values().name.toLowerCase();
