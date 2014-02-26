@@ -106,6 +106,39 @@ main{
 /** Logo, Nav, Masthead... **/
 /** ************************************************************ **/
 /** ************************************************************ **/
+.navbar-toggle {
+  position: relative;
+  float: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  width: 160px;
+}
+
+.navbar-toggle .icon-bar {
+  background: url('img/nav-dd.png') center top no-repeat;
+  display: block;
+  width: 160px;
+  height: 25px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  text-align: center
+}
+
+.navbar-collapse {
+  max-height: 340px;
+  overflow-x: visible;
+  padding-right: 0;
+  padding-left: 0;
+  border-top: 1px solid transparent;
+  box-shadow: none;
+  -webkit-overflow-scrolling: touch;
+}
+
 .masthead {
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -120,6 +153,8 @@ main{
 }
 
 @media (min-width: @screen-sm-min) { 
+  .navbar-toggle { display: none; }
+  
   .masthead, .masthead:hover {
     -webkit-transition: none;
     -moz-transition: none;
@@ -260,11 +295,24 @@ main{
 .masthead nav ul li:hover > ul {
   display: block;
   height: auto;
-  min-height:25px;
-  max-height:35px;
+  min-height:auto;
+  max-height:auto;
   overflow: visible;
   opacity: 1;
 }
+
+@media (min-width: @screen-sm-min) {
+  .masthead nav ul li > ul.active, 
+  .masthead nav ul li:hover > ul {
+    display: block;
+    height: auto;
+    min-height:25px;
+    max-height:35px;
+    overflow: visible;
+    opacity: 1;
+  }
+}
+
 .masthead nav ul li > ul.disabled{
   display: none;
 }
