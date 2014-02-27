@@ -135,7 +135,6 @@ $(document).ready(function() {
         $(this).append(' <i class="fa fa-caret-up"></i>');
       }
     });
-    $('table th:nth-of-type(1)').trigger('click');
     $('#pricelist-view-number a').each(function(i) {
       $(this).on('click touch', function(e) {
         e.preventDefault();
