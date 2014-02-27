@@ -894,14 +894,14 @@ $(document).ready(function() {
         // Swipe handler for mobile
         $("ul.slider li:nth-of-type(2) .img").swipe({
           swipeLeft:function(event, direction, distance, duration, fingerCount) {
-            $('ul.slider li:nth-of-type(2)').animate({'left',$(window).width()*-1}, 'slow');
+            $('ul.slider li:nth-of-type(2)').animate({'left':$(window).width()*-1}, 'slow');
             hash.remove('cpos');
             var p = parseInt(productlist.i)+1;
             if (p == productlist.matchingItems.length) p = 0;
             hash.add({pos:p});
           },
           swipeRight:function(event, direction, distance, duration, fingerCount) {
-            $('ul.slider li:nth-of-type(2)').animate({'left',$(window).width()}, 'slow');
+            $('ul.slider li:nth-of-type(2)').animate({'left':$(window).width()}, 'slow');
             hash.remove('cpos');
             var p = parseInt(productlist.i)-1;
             if (p == -1) p = productlist.matchingItems.length-1;
