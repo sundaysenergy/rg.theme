@@ -5,10 +5,11 @@ default:
   js:
     - js/variables.js
     - lodash.compat.js
-    - rg.js
+    - jquery.touchSwipe.min.js
     - hash.js
     - hogan-2.0.0.js
     - jquery.cookie.js
+    - rg.js
 projects:
   css:
     - variables.less
