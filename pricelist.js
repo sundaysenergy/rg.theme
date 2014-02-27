@@ -65,8 +65,8 @@ $(document).ready(function() {
                         var aval = (_.isUndefined(a.values()[desc_sort])) ? 'ZZZZZ':a.values()[desc_sort].toLowerCase();
                         var bval = (_.isUndefined(b.values()[desc_sort])) ? 'ZZZZZ':b.values()[desc_sort].toLowerCase();
                         if (asc_sort === 'price') {
-                          aval = (_.isUndefined(item_prices[a.values().id])) ? 129:parseInt(item_prices[a.values().id]);
-                          bval = (_.isUndefined(item_prices[b.values().id])) ? 129:parseInt(item_prices[b.values().id]);
+                          aval = (_.isUndefined(item_prices[a.values().id])) ? 9999:parseInt(item_prices[a.values().id]);
+                          bval = (_.isUndefined(item_prices[b.values().id])) ? 9999:parseInt(item_prices[b.values().id]);
                         }
                         var aname = (_.isUndefined(a.values().name)) ? 'ZZZZZ':a.values().name.toLowerCase();
                         var bname = (_.isUndefined(b.values().name)) ? 'ZZZZZ':b.values().name.toLowerCase();
@@ -80,7 +80,7 @@ $(document).ready(function() {
                     }
     };
     // Init list
-    var textiles = new List('textiles', options, data);
+    var textiles = new List('textiles', options);
     $('tbody.list').show();
     
     // When the list is updated, we need to rework the pager buttons
