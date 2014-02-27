@@ -203,11 +203,13 @@ $(document).ready(function() {
       var faves      = hash.get('faves');
       var color      = hash.get('color');
       var desc       = hash.get('desc');
+      var use        = hash.get('use');
 
       // Reset our filters checkboxes if necessary
       if (_.isUndefined(hash.get('attributes'))) $('.filter-attributes').find(':checkbox').attr('checked',false);
       if (_.isUndefined(hash.get('color'))) $('.filter-color').find(':checkbox').attr('checked',false);
       if (_.isUndefined(hash.get('desc'))) $('.filter-description').find(':checkbox').attr('checked',false);
+      if (_.isUndefined(hash.get('use'))) $('.filter-use').find(':checkbox').attr('checked',false);
 
       // Other resets
       $('#anonymous-faves-alert').find('button.close').trigger('click');
@@ -299,7 +301,7 @@ $(document).ready(function() {
       if (current_page !== sessionStorage.currentpage) {
         productlist.filter();
         // Remove disabled class from color and attribute filters
-        $('.filter-attributes label, .filter-color label, .filter-description label').each(function(i) {
+        $('.filter-attributes label, .filter-color label, .filter-description label, .filter-use label').each(function(i) {
           $(this).removeClass('disabled');
         });
       }
@@ -388,7 +390,7 @@ $(document).ready(function() {
       /***********************************/
       /**** PROCESS FILTERS FROM HASH ****/
       /***********************************/
-      var vals = [collection,f,srch,faves,color,desc,lid];
+      var vals = [collection,f,srch,faves,color,desc,lid,use];
 
       // Only process the filters if our string has changed 
       if (current_page !== sessionStorage.currentpage) {
@@ -497,6 +499,20 @@ $(document).ready(function() {
                   //console.log(desc_field);
                   // If the desc field is present and matches
                   if (desc_field.toLowerCase().indexOf(d[i].toLowerCase()) >= 0) {
+                    match = true;
+                  } else {
+                    // If the desc field is present, but does not match, return false.
+                    return false;
+                  }
+                }
+              }
+              /*** PROCESS USE ***/
+              if (_.isUndefined(use) == false) {
+                var d = use.split(',');
+                for (var i = 0; i<d.length; i++) {
+                  var use_field = (_.isUndefined(item.values().use)) ? '':item.values().use;
+                  // If the desc field is present and matches
+                  if (use_field.toLowerCase().indexOf(d[i].toLowerCase()) >= 0) {
                     match = true;
                   } else {
                     // If the desc field is present, but does not match, return false.
@@ -1007,6 +1023,27 @@ $(document).ready(function() {
       if (productlist.page == rg_options.horizontal_page) { productlist.i = productlist.i-1; }
     });
 
+    // When we check a description filter, do the same
+    $('.filter-use input[type=checkbox]').on('click touch', function(e) {
+      // If it's disabled, return false
+      if ($(this).parent().hasClass('disabled')) {
+        e.preventDefault();
+        return false;
+      }
+      var f = [];
+      $('.filter-use :checkbox:checked').each(function(i) {
+        f.push($(this).val());
+      });
+      hash.remove('pos');
+      // If we have terms filter, otherwise the filter reset will start us fresh
+      if (f.length > 0) {
+        hash.add({use : f.join(',') });
+      } else {
+        hash.remove('use');
+      }
+      if (productlist.page == rg_options.horizontal_page) { productlist.i = productlist.i-1; }
+    });
+
     // Event for filtering the various lists of filters
     $(document).on('filterFilters', function() {
       // Check unchecked filter buttons for matches. Hide if no matches
@@ -1052,6 +1089,17 @@ $(document).ready(function() {
         // Hide the parents of any item that does not have a match.
         if (m == false) $(this).parent().addClass('disabled');
       });
+      // Do the same thing for use filters
+      $('.filter-use :checkbox:not(:checked)').each(function(i) {
+        var a = $(this)[0].value;
+        // Determine if any potential matches exist from currently matched items. Breaks on first true
+        var m = _.some(productlist.matchingItems, function(item) {
+          var use = (_.isUndefined(item.values().use)) ? '':item.values().use;
+          if (use.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
+        });
+        // Hide the parents of any item that does not have a match.
+        if (m == false) $(this).parent().addClass('disabled');
+      });
     });
 
     // Process the hash if we're just loading the page and have values
@@ -1078,6 +1126,14 @@ $(document).ready(function() {
         // Toggle checkboxes for any attributes that are found.
         for (var i=0; i<f.length; i++) {
           $('.filter-description').find(':checkbox[value="' + f[i] +'"]').attr('checked',true);
+        }
+      }
+      var u = hash.get('desc');
+      if (typeof(u) != 'undefined') {
+        var f = u.split(',');
+        // Toggle checkboxes for any attributes that are found.
+        for (var i=0; i<f.length; i++) {
+          $('.filter-use').find(':checkbox[value="' + f[i] +'"]').attr('checked',true);
         }
       }
       // Trigger a hashchange event to actually process the filter
