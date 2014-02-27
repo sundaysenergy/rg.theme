@@ -892,7 +892,7 @@ $(document).ready(function() {
         colorslist.update();
 
         // Swipe handler for mobile
-/*        $("ul.slider li:nth-of-type(2) .img").swipe({
+       $("ul.slider li:nth-of-type(2) .img").swipe({
           swipeLeft:function(event, direction, distance, duration, fingerCount) {
             $.when($('ul.slider li:nth-of-type(2)').animate({'left':$(window).width()*-1}, 'slow')).then(function() {
               hash.remove('cpos');
@@ -915,7 +915,7 @@ $(document).ready(function() {
               });
             });
           },
-        }); */
+        });
 
         // Click on the left image should decrement by one, while the right image should increment
         $('ul.slider li:nth-of-type(1) .img').off('click touch').on('click touch', function(e) {
