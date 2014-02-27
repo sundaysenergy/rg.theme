@@ -55,6 +55,10 @@ $(document).ready(function() {
                           aval = (_.isUndefined(item_prices[a.values().id])) ? 129:parseInt(item_prices[a.values().id]);
                           bval = (_.isUndefined(item_prices[b.values().id])) ? 129:parseInt(item_prices[b.values().id]);
                         }
+                        if (desc_sort === 'width' || desc_sort === 'repeat') {
+                          aval = parseInt(aval);
+                          bval = parseInt(bval);
+                        }
                         if (desc_sort !== 'name') {
                           var aname = (_.isUndefined(a.values().name)) ? 'zzzz':a.values().name.toLowerCase();
                           var bname = (_.isUndefined(b.values().name)) ? 'zzzz':b.values().name.toLowerCase();
@@ -72,6 +76,10 @@ $(document).ready(function() {
                         if (asc_sort === 'price') {
                           aval = (_.isUndefined(item_prices[a.values().id])) ? 9999:parseInt(item_prices[a.values().id]);
                           bval = (_.isUndefined(item_prices[b.values().id])) ? 9999:parseInt(item_prices[b.values().id]);
+                        }
+                        if (asc_sort === 'width' || asc_sort === 'repeat') {
+                          aval = parseInt(aval);
+                          bval = parseInt(bval);
                         }
                         if (asc_sort !== 'name') {
                           var aname = (_.isUndefined(a.values().name)) ? 'zzzz':a.values().name.toLowerCase();
