@@ -45,36 +45,45 @@ $(document).ready(function() {
                   ListFuzzySearch()
                ],
       sortFunction: function(a,b) {
-                      var asc_sort = $('th.asc').data('sort');
-                      var desc_sort = $('th.desc').data('sort');
+                      var desc_sort = $('th.asc').data('sort');
+                      var asc_sort = $('th.desc').data('sort');
                       if (_.isNull(desc_sort) == false) {
-                        var aval = (_.isUndefined(a.values()[desc_sort])) ? 'ZZZZZ':a.values()[desc_sort].toLowerCase();
-                        var bval = (_.isUndefined(b.values()[desc_sort])) ? 'ZZZZZ':b.values()[desc_sort].toLowerCase();
+                        var aval = (_.isUndefined(a.values()[desc_sort])) ? 'zzzz':a.values()[desc_sort].toLowerCase();
+                        var bval = (_.isUndefined(b.values()[desc_sort])) ? 'zzzz':b.values()[desc_sort].toLowerCase();
                         if (desc_sort === 'price') {
                           if (_.isUndefined(item_prices[a.values().id])) console.log(a.values());
                           aval = (_.isUndefined(item_prices[a.values().id])) ? 129:parseInt(item_prices[a.values().id]);
                           bval = (_.isUndefined(item_prices[b.values().id])) ? 129:parseInt(item_prices[b.values().id]);
                         }
-                        var aname = (_.isUndefined(a.values().name)) ? 'ZZZZZ':a.values().name.toLowerCase();
-                        var bname = (_.isUndefined(b.values().name)) ? 'ZZZZZ':b.values().name.toLowerCase();
-                        if(aval<bval) return -1;
-                        if(aval>bval) return 1;
-                        if(aname<bname) return -1;
-                        if(aname>bname) return 1;
+                        if (desc_sort !== 'name') {
+                          var aname = (_.isUndefined(a.values().name)) ? 'zzzz':a.values().name.toLowerCase();
+                          var bname = (_.isUndefined(b.values().name)) ? 'zzzz':b.values().name.toLowerCase();
+                          if(aval<bval) return -1;
+                          if(aval>bval) return 1;
+                          if(aname<bname) return -1;
+                          if(aname>bname) return 1;
+                        } else {
+                          if(aval<bval) return -1;
+                          if(aval>bval) return 1; 
+                        }
                       } else if (_.isNull(asc_sort) == false) {
-                        var aval = (_.isUndefined(a.values()[desc_sort])) ? 'ZZZZZ':a.values()[desc_sort].toLowerCase();
-                        var bval = (_.isUndefined(b.values()[desc_sort])) ? 'ZZZZZ':b.values()[desc_sort].toLowerCase();
+                        var aval = (_.isUndefined(a.values()[asc_sort])) ? 'zzzz':a.values()[asc_sort].toLowerCase();
+                        var bval = (_.isUndefined(b.values()[asc_sort])) ? 'zzzz':b.values()[asc_sort].toLowerCase();
                         if (asc_sort === 'price') {
                           aval = (_.isUndefined(item_prices[a.values().id])) ? 9999:parseInt(item_prices[a.values().id]);
                           bval = (_.isUndefined(item_prices[b.values().id])) ? 9999:parseInt(item_prices[b.values().id]);
                         }
-                        var aname = (_.isUndefined(a.values().name)) ? 'ZZZZZ':a.values().name.toLowerCase();
-                        var bname = (_.isUndefined(b.values().name)) ? 'ZZZZZ':b.values().name.toLowerCase();
-                        // console.log(aval,bval,aname,bname);
-                        if(aval>bval) return -1;
-                        if(aval<bval) return 1;
-                        if(aname<bname) return -1;
-                        if(aname>bname) return 1;
+                        if (asc_sort !== 'name') {
+                          var aname = (_.isUndefined(a.values().name)) ? 'zzzz':a.values().name.toLowerCase();
+                          var bname = (_.isUndefined(b.values().name)) ? 'zzzz':b.values().name.toLowerCase();
+                          if(aval>bval) return -1;
+                          if(aval<bval) return 1;
+                          if(aname<bname) return -1;
+                          if(aname>bname) return 1;
+                        } else {
+                          if(aval>bval) return -1;
+                          if(aval<bval) return 1;                        
+                        }
                       }
                       return 0;
                     }
@@ -109,7 +118,7 @@ $(document).ready(function() {
     textiles.update();
 
     // Manually sort the list with our default order -- change this if list.js has this functionality
-    textiles.sort('name', { order: "asc" });
+    textiles.sort('name', { order: "desc" });
     
     // Add font awesome icons for ascending and descending sorts
     $('th').on('click', function() {
@@ -126,6 +135,7 @@ $(document).ready(function() {
         $(this).append(' <i class="fa fa-caret-up"></i>');
       }
     });
+    $('table th:nth-of-type(1)').trigger('click');
     $('#pricelist-view-number a').each(function(i) {
       $(this).on('click touch', function(e) {
         e.preventDefault();
