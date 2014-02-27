@@ -126,7 +126,7 @@ $(document).ready(function() {
     textiles.update();
 
     // Manually sort the list with our default order -- change this if list.js has this functionality
-    textiles.sort('name', { order: "desc" });
+    textiles.sort('name', { order: "asc" });
     
     // Add font awesome icons for ascending and descending sorts
     $('th').on('click', function() {
