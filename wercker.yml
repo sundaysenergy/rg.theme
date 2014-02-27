@@ -7,9 +7,6 @@ build:
         name: Clone and compile CSS and JS
         code: |
           git clone https://github.com/twbs/bootstrap.git ${WERCKER_ROOT}/bootstrap
-          cd ${WERCKER_ROOT}/bootstrap
-          git checkout 17722e5ef23f58bf661c00c7bb8fea306318bcf2
-          cd ${WERCKER_ROOT}
           node ./node_modules/cape-theme-deploy/compile_assets.js
 deploy:
   steps:
