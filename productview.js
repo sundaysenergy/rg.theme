@@ -892,47 +892,43 @@ $(document).ready(function() {
         colorslist.update();
 
         // Swipe handler for mobile
-       $("ul.slider li:nth-of-type(2) .img").swipe({
+
+        $('ul.slider li').each(function(i,obj) {
+          $(this).attr('style', '');
+        });
+        $("ul.slider li:visible").swipe({
           swipeLeft:function(event, direction, distance, duration, fingerCount) {
-            $.when($('ul.slider li:nth-of-type(3)').css('max-width','100%').css('width','100%').css('position','absolute').show().css('left', 0)).then(function() {
-              $.when($('ul.slider li:nth-of-type(2)').animate({'left':$(window).width()*-1}, 'slow')).then(function() {
-              hash.remove('cpos');
-              var p = parseInt(productlist.i)+1;
-              if (p == productlist.matchingItems.length) p = 0;
-              hash.add({pos:p});
-                $('ul.slider li').each(function(i,obj) {
-                  $(this).attr('style', '');
-                });
-              });
-            });
+            $('ul.slider li:visible').css('z-index',20).animate({ left : "-="+$(window).width()}, {
+                duration: 800,
+                start: function() {
+                  $('ul.slider li:nth-of-type(3)').css('position','absolute').css('z-index',21).css('width','100%').css('max-width','100%').css('left',$(window).width()).show().animate({'left':0}, 800);
+                },
+                complete: function() {
+                  hash.remove('cpos');
+                  var p = parseInt(productlist.i)+1;
+                  if (p == productlist.matchingItems.length) p = 0;
+                  hash.add({pos:p});
+                  $('ul.slider li').swipe('destroy');
+                }
+              }
+            );
           },
           swipeRight:function(event, direction, distance, duration, fingerCount) {
-            $.when($('ul.slider li:nth-of-type(1)').css('max-width','100%').css('width','100%').css('position','absolute').show().css('left', 0)).then(function() {
-              $.when($('ul.slider li:nth-of-type(2)').animate({'left':$(window).width()}, 'slow')).then(function() {
-                hash.remove('cpos');
-                var p = parseInt(productlist.i)-1;
-                if (p == -1) p = productlist.matchingItems.length-1;
-                hash.add({pos:p});
-                $('ul.slider li').each(function(i,obj) {
-                  $(this).attr('style', '');
-                });
-              });
-            });
+            $('ul.slider li:visible').css('z-index',20).animate({ left : "+="+$(window).width()}, {
+                duration: 800,
+                start: function() {
+                  $('ul.slider li:nth-of-type(1)').css('position','absolute').css('z-index',21).css('width','100%').css('max-width','100%').css('left',$(window).width()*-1).show().animate({'left':0}, 800);
+                },
+                complete: function() {
+                  hash.remove('cpos');
+                  var p = parseInt(productlist.i)-1;
+                  if (p == -1) p = productlist.matchingItems.length-1;
+                  hash.add({pos:p});
+                  $('ul.slider li').swipe('destroy');
+                }
+              }
+            );
           },
-        });
-
-        $(window).on('hack', function() {
-          $.when($('ul.slider li:nth-of-type(1)').css('max-width','100%').css('width','100%').css('position','absolute').show().css('left', 0)).then(function() {
-            $.when($('ul.slider li:nth-of-type(2)').animate({'left':$(window).width()}, 'slow')).then(function() {
-              hash.remove('cpos');
-              var p = parseInt(productlist.i)-1;
-              if (p == -1) p = productlist.matchingItems.length-1;
-              hash.add({pos:p});
-              $('ul.slider li').each(function(i,obj) {
-                $(this).attr('style', '');
-              });
-            });
-          });
         });
 
         // Click on the left image should decrement by one, while the right image should increment
