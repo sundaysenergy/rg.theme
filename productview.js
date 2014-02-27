@@ -892,7 +892,7 @@ $(document).ready(function() {
         colorslist.update();
 
         // Swipe handler for mobile
-        $("ul.slider li:nth-of-type(2) .img").swipe({
+/*        $("ul.slider li:nth-of-type(2) .img").swipe({
           swipeLeft:function(event, direction, distance, duration, fingerCount) {
             $.when($('ul.slider li:nth-of-type(2)').animate({'left':$(window).width()*-1}, 'slow')).then(function() {
               hash.remove('cpos');
@@ -915,19 +915,7 @@ $(document).ready(function() {
               });
             });
           },
-        });
-
-        $(window).on('hackc', function() {
-          $.when($('ul.slider li:nth-of-type(2)').animate({'left':$(window).width()}, 'slow')).then(function() {
-            hash.remove('cpos');
-            var p = parseInt(productlist.i)-1;
-            if (p == -1) p = productlist.matchingItems.length-1;
-            hash.add({pos:p});
-            $('ul.slider li').each(function(i,obj) {
-              $(this).css('position', 'relative').css('left', '');
-            });
-          });
-        });
+        }); */
 
         // Click on the left image should decrement by one, while the right image should increment
         $('ul.slider li:nth-of-type(1) .img').off('click touch').on('click touch', function(e) {
