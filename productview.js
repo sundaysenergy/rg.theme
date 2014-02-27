@@ -891,6 +891,22 @@ $(document).ready(function() {
         });
         colorslist.update();
 
+        // Swipe handler for mobile
+        $("ul.slider li:nth-of-type(2) .img").swipe({
+          swipeLeft:function(event, direction, distance, duration, fingerCount) {
+            hash.remove('cpos');
+            var p = parseInt(productlist.i)+1;
+            if (p == productlist.matchingItems.length) p = 0;
+            hash.add({pos:p});
+          },
+          swipeRight:function(event, direction, distance, duration, fingerCount) {
+            hash.remove('cpos');
+            var p = parseInt(productlist.i)-1;
+            if (p == -1) p = productlist.matchingItems.length-1;
+            hash.add({pos:p});
+          },
+        });
+
         // Click on the left image should decrement by one, while the right image should increment
         $('ul.slider li:nth-of-type(1) .img').off('click touch').on('click touch', function(e) {
           hash.remove('cpos');
