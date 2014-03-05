@@ -234,12 +234,12 @@ button.uppercase { font-size: 1em; }
 /* 3-up Slideshow on collection page */
 /* ================================= */
 /* Do this in a less hacky way for production */
-.slider { }
+.slider { text-align: center; }
 
 .slider > li { 
   overflow: hidden;
   margin: 0;
-  height: 333px; /* set this in JS to keep a 4x3 ratio */
+  height: 333px; /* set this in JS to keep a 4x3 ratio » var h = ((w*3)/4); */
 }
 
 .slider>li:nth-child(2) {
@@ -277,10 +277,12 @@ button.uppercase { font-size: 1em; }
     max-width: 44% !important;
   }
 
+/*
   .slider > li:nth-child(2) img {
     border-left: 5px solid @rg-background;
     border-right: 5px solid @rg-background;
   }
+*/
   
   .slider > li:nth-child(3) {
     margin-left:   1%;
