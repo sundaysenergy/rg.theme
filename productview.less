@@ -175,6 +175,7 @@ ul.collection-controls .open .caret {
   margin: 0 0 5px;
   padding: 0;
   text-align: left;
+  text-transform: uppercase;
 }
 
 #filter-list fieldset label input {
@@ -182,22 +183,16 @@ ul.collection-controls .open .caret {
   margin: 0;
 }
 
-.filter-description label.disabled,
-.filter-color label.disabled,
-.filter-use label.disabled,
-.filter-attributes label.disabled {
+#filter-list fieldset label.disabled {
   text-decoration: line-through;
 }
-.filter-description label.disabled input,
-.filter-color label.disabled input,
-.filter-use label.disabled input,
-.filter-attributes label.disabled input {
+#filter-list fieldset label.disabled input {
   visibility: hidden;
 }
 
 .checkbox-inline+.checkbox-inline {
-margin-top: 0;
-margin-left: 0 !important;
+  margin-top: 0;
+  margin-left: 0 !important;
 }
 
 .pager button.plain {
@@ -208,7 +203,7 @@ margin-left: 0 !important;
 
 button.uppercase { font-size: 1em; }
 
-.pager .on-top p {font-size: 1.25em;}
+.pager .on-top p { font-size: 1.25em; }
 
 .pager, .pager button, .pager p {
   line-height: 20px;
@@ -261,13 +256,6 @@ button.uppercase { font-size: 1em; }
     width: 44% !important;
     max-width: 44% !important;
   }
-
-/*
-  .slider > li:nth-child(2) img {
-    border-left: 5px solid @rg-background;
-    border-right: 5px solid @rg-background;
-  }
-*/
   
   .slider > li:nth-child(3) {
     margin-left:   1%;
@@ -346,28 +334,13 @@ img {
 }
 
 .img-large-container { overflow: hidden; }
-
 .img-large-container img { height: 100%; width: auto;}
 
 @media (min-width: @screen-sm-min) { 
-  .img-large-container img, .rulers img {width: 100%; height: auto;}
+  .img-large-container img, .rulers img { height: auto; width: 100%; }
 }
 
-#related-products {
-  background: @rg-background;
-  height: 120px;
-  margin: 0;
-  margin-left:-260px;
-  padding:15px;
-  width:520px;
-  z-index:100;
-  /**/
-  position:fixed;
-  left:50%;
-  top:120px;
-  display: none;
-}
-
+#related-products,
 #item-colors {
   background: @rg-background;
   height: 120px;
@@ -376,7 +349,6 @@ img {
   padding:15px;
   width:520px;
   z-index:100;
-  /**/
   position:absolute;
   left:50%;
   top:120px;
@@ -453,7 +425,8 @@ button.next:hover,
 }
 
 #item-colors button.close:hover,
-#related-products button.close:hover {
+#related-products button.close:hover,
+.item-information button.item-toggle {
   opacity: 1;
   filter: alpha(opacity=100);
 }
@@ -537,9 +510,10 @@ ul.slider,
   margin-bottom: 15px;
 }
 
-/* end item_mobile styles */
-
 .itemoverlay table {
+  border: 10px solid @rg-background;
+  border-left-width: 20px;
+  border-right-width: 20px;
   margin: 0;
   padding: 0;
   position: fixed;
@@ -549,10 +523,6 @@ ul.slider,
   width: 100%;
   text-align: center;
   vertical-align: middle;
-  /**/
-  border: 10px solid @rg-background;
-  border-left-width: 20px;
-  border-right-width: 40px;
 }
 
 .itemoverlay table tbody {
@@ -755,13 +725,14 @@ ul.collection-controls li.hug-right {
 
 .collection-view-items .search-view-number li > a:hover,
 .collection-view-items .search-view-number li > span:hover {
-background-color: @rg-gray;
+  background-color: @rg-gray;
 }
+
 /* Undoing some Bootstrap stuff i think? */
 .btn-group.open .dropdown-toggle {
--webkit-box-shadow: none;
--moz-box-shadow: none;
-box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 div.search-noresults {
