@@ -896,6 +896,7 @@ $(document).ready(function() {
         $('ul.slider li').each(function(i,obj) {
           $(this).attr('style', '');
         });
+        $('ul.slider li:visible').swipe('destroy');
         $("ul.slider li:visible").swipe({
           swipeLeft:function(event, direction, distance, duration, fingerCount) {
             $('ul.slider li:visible').css('z-index',20).animate({ left : "-="+$(window).width()}, {
