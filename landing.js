@@ -74,13 +74,13 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-  if (('header').width() >= 768 ){
+  if ($('header').width() >= 768 ){
     $('.navwrap').removeClass( "collapse navbar-collapse" )
   }
 });
 
 $(window).resize(function(){     
-  if (('header').width() >= 768 ){
+  if ($('header').width() >= 768 ){
     $('.navwrap').removeClass( "collapse navbar-collapse" )
   }
 });
