@@ -796,6 +796,14 @@ $(document).ready(function() {
           var itemvals = productlist.visibleItems[parseInt(n)].values();
           itemvals.pager = itemvals.itemcolors().length > 5;
           $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(itemvals));
+          
+          // STUFF KB IS TRYING TO ADD FOR STYLING IMAGES IN 3-UP SLIDESHOW
+          var slideWidth  = $('.slider > li:nth-child(2)').width();
+          var slideHeight = ((slideWidth*3)/4);
+          
+          $('.slider > li').height(slideHeight);
+          $('.slider > li img').width(slideWidth);
+          
           $.fn.editable.defaults.mode = 'inline';
           // Make fields editable
         }
@@ -1250,14 +1258,6 @@ $(document).ready(function() {
       $(this).tab('show');
       return false;
     });
-    
-    
-    // STUFF KB IS TRYING TO ADD FOR STYLING IMAGES IN 3-UP SLIDESHOW
-    var slideWidth  = $('.slider > li:nth-child(2)').width();
-    var slideHeight = ((slideWidth*3)/4);
-    
-    $('.slider > li').height(slideHeight);
-    $('.slider > li img').width(slideWidth);
     
   });
 });
