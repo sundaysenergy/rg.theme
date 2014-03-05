@@ -53,21 +53,25 @@ ul.slider div.add-fave {
 button.slide {
   display: none;
 }
+
 #products ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  text-align: center;
 }
+
 .list li {
   float: left;
   position: relative;
   width: 32%;
   max-width: 32%;
-  height: 300px;
+  height: 300px; 
   overflow: hidden;
   margin-right: 2%; /* this is still slightly too wide... will have to figure out a JS solution based on screen widths maybe? */
   margin-bottom: 20px; /* need to make this the same as margin-right... perhaps decalaring in JS would make this easier? */
 }
+
 .list li:nth-child(3n) {
   margin-right: 0;
 }
@@ -76,6 +80,7 @@ ul.list li img,
 ul.list li div.item-spotlight {
   cursor: pointer;
 }
+
 .list .item-favorite-remove {
   display: none;
 }
@@ -225,9 +230,16 @@ button.uppercase { font-size: 1em; }
   letter-spacing: 2px;
 }
 
+/* ================================= */
+/* 3-up Slideshow on collection page */
+/* ================================= */
 /* Do this in a less hacky way for production */
-.slider > li {
-  margin: 0 0 20px 0;
+.slider { }
+
+.slider > li { 
+  overflow: hidden;
+  margin: 0;
+  height: 333px; /* set this in JS to keep a 4x3 ratio */
 }
 
 .slider>li:nth-child(2) {
@@ -258,6 +270,16 @@ button.uppercase { font-size: 1em; }
   .slider > li:nth-child(2) {
     width: 44% !important;
     max-width: 44% !important;
+  }
+  
+  .slider > li:nth-child(2) {
+    width: 44% !important;
+    max-width: 44% !important;
+  }
+
+  .slider > li:nth-child(2) img {
+    border-left: 5px solid @rg-background;
+    border-right: 5px solid @rg-background;
   }
   
   .slider > li:nth-child(3) {
