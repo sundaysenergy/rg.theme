@@ -72,3 +72,15 @@ $(document).ready(function() {
   // Initial load
   loadBeauty(item_template);
 });
+
+$(document).ready(function() {
+  if (('header').width() >= 768 ){
+    $('.navwrap').removeClass( "collapse navbar-collapse" )
+  }
+});
+
+$(window).resize(function(){     
+  if (('header').width() >= 768 ){
+    $('.navwrap').removeClass( "collapse navbar-collapse" )
+  }
+});
