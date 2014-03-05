@@ -22,6 +22,7 @@ div.add-fave {
   top: 0;
   right: 0;
 }
+
 ul.project-list div.add-fave,
 ul.slider div.add-fave {
   display: none !important;
@@ -105,6 +106,15 @@ ul.collection-controls .open .caret {
   content: "";
 }
 
+.btn-group button.on-top {
+  position: relative;
+}
+
+.btn-group.open .dropdown-toggle,
+.btn-group button.on-top {
+  z-index: 100;
+}
+
 #filter-list,
 #filter-list-leather {
   position: absolute;
@@ -121,15 +131,6 @@ ul.collection-controls .open .caret {
   width: 700px; /*this solution is problematic, not flexible, a YOLO solution... */
   left: -70px; /*this solution is problematic, not flexible, a YOLO solution... */
   top:-10px;
-}
-
-.btn-group button.on-top {
-  position: relative;
-}
-
-.btn-group.open .dropdown-toggle,
-.btn-group button.on-top {
-  z-index: 100;
 }
 
 #filter-list ul.nav-tabs,
@@ -638,7 +639,9 @@ div.ruler-wrap .rulers img {
   margin-left: 190px;
 }
 
-.rulers .ruler-cm {display: none;}
+.rulers .ruler-cm {
+ display: none;
+}
 
 ul.collections {
   text-align: center;
