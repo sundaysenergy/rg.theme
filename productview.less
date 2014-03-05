@@ -41,9 +41,11 @@ ul.slider div.add-fave {
 #collection-menu-search-collection {
   display: none;
 }
+
 #collection-menu-search-collection button {
   width: 33%;
 }
+
 button.slide {
   display: none;
 }
@@ -70,14 +72,15 @@ button.slide {
   margin-right: 0;
 }
 
-ul.list li img,
-ul.list li div.item-spotlight {
+.list li img,
+.list li div.item-spotlight {
   cursor: pointer;
 }
 
 .list .item-favorite-remove {
   display: none;
 }
+
 .anon-favorites .item-favorite-remove {
   display: block;
 }
@@ -129,20 +132,24 @@ ul.collection-controls .open .caret {
   z-index: 100;
 }
 
-#filter-list ul.nav-tabs {
+#filter-list ul.nav-tabs,
+#filter-list-leather ul.nav-tabs {
   margin: 0 20px;
   position: relative;
   top: 40px;
   text-align: center;
 }
 
-#filter-list ul.nav-tabs li {
+#filter-list ul.nav-tabs li,
+#filter-list-leather ul.nav-tabs li {
   display: inline-block;
   float: none;
 }
 
-#filter-list ul.nav-tabs li > a,
-#filter-list ul.nav-tabs li > span {
+#filter-list ul.nav-tabs li > a,,
+#filter-list ul.nav-tabs li > span,
+#filter-list-leather ul.nav-tabs li > a,
+#filter-list-leather ul.nav-tabs li > span {
   background-color: transparent;
   border: none;
   color: @rg-gray;
@@ -155,11 +162,14 @@ ul.collection-controls .open .caret {
 }
 
 #filter-list ul.nav-tabs li.active > a,
-#filter-list ul.nav-tabs li.active > span {
+#filter-list ul.nav-tabs li.active > span,
+#filter-list-leather ul.nav-tabs li.active > a,
+#filter-list-leather ul.nav-tabs li.active > span {
   color: @rg-black;
 }
 
-#filter-list fieldset {
+#filter-list fieldset,
+#filter-list-leather fieldset {
   border: none;
   color: @rg-gray;
   font-size: 11px;
@@ -168,7 +178,8 @@ ul.collection-controls .open .caret {
   margin: 0;
 }
 
-#filter-list fieldset label {
+#filter-list fieldset label,
+#filter-list-leather fieldset label {
   display: block;
   float: left;
   width: 25%;
@@ -178,15 +189,19 @@ ul.collection-controls .open .caret {
   text-transform: uppercase;
 }
 
-#filter-list fieldset label input {
+#filter-list fieldset label input,
+#filter-list-leather fieldset label input {
   float: none;
   margin: 0;
 }
 
-#filter-list fieldset label.disabled {
+#filter-list fieldset label.disabled,
+#filter-list-leather fieldset label.disabled {
   text-decoration: line-through;
 }
-#filter-list fieldset label.disabled input {
+
+#filter-list fieldset label.disabled input,
+#filter-list-leather fieldset label.disabled input {
   visibility: hidden;
 }
 
