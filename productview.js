@@ -1250,5 +1250,15 @@ $(document).ready(function() {
       $(this).tab('show');
       return false;
     });
+    
+    
+    // STUFF KB IS TRYING TO ADD FOR STYLING IMAGES IN 3-UP SLIDESHOW
+    var slideWidth  = $('.slider > li:nth-child(2)').width();
+    var slideHeight = ((slideWidth*3)/4);
+    
+    $('.slider > li').height(slideHeight);
+    $('.slider > li img').width(slideWidth);
+    
   });
 });
+

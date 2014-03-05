@@ -171,6 +171,10 @@ main{
   .masthead h1.sitename:hover {
     box-shadow: none;
   }
+
+ .landing .navbar-collapse.collapse {
+  display: none !important;
+  }
 }
 
 .masthead nav,
@@ -186,14 +190,6 @@ main{
   width: 160px;
   margin: 0 auto;
   padding-top: 30px;
-}
-
-.landing nav {
-  background: url('img/nav-dd.png') center 10px no-repeat;
-}
-
-.landing nav:hover {
-  background: none;
 }
 
 .masthead nav .navwrap {
@@ -231,7 +227,7 @@ main{
 }
 
 .masthead nav ul li ul.trade-login {
-  margin: 0;
+  margin: 10px 0;
   padding: 0;
   width: 100%;
   height: 0;
@@ -249,6 +245,14 @@ main{
 }
 
 @media (min-width: @screen-sm-min) {
+  .landing nav {
+    background: url('img/nav-dd.png') center 10px no-repeat;
+  }
+  
+  .landing nav:hover {
+    background: none;
+  }
+
   .masthead nav ul li ul.trade-login {
     margin: 0 0 0 -275px;
     padding: 0;
