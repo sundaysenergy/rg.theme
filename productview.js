@@ -816,13 +816,6 @@ $(document).ready(function() {
           sessionStorage.scrollpos = document.body.scrollTop;
           hash.add({detailedview:id});
         });
-
-        // STUFF KB IS TRYING TO ADD FOR STYLING IMAGES IN 3-UP SLIDESHOW
-        var slideWidth  = $('ul.slider > li:nth-child(2)').width();
-        var slideHeight = ((slideWidth*3)/4);
-        
-        $('ul.slider > li').height(slideHeight);
-        $('ul.slider > li img').width(slideWidth);
         
         // Create click handlers for the icon and the close button
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
@@ -938,6 +931,15 @@ $(document).ready(function() {
             );
           },
         });
+
+        // STUFF KB IS TRYING TO ADD FOR STYLING IMAGES IN 3-UP SLIDESHOW
+        var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
+        var slideHeight = ((slideWidth*3)/4);
+        
+        console.log(slideWidth, slideHeight);
+        
+        $('ul.slider > li').height(slideHeight);
+        $('ul.slider > li img').width(slideWidth);
 
         // Click on the left image should decrement by one, while the right image should increment
         $('ul.slider li:nth-of-type(1) .img').off('click touch').on('click touch', function(e) {
