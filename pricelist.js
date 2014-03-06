@@ -171,7 +171,7 @@ $(document).ready(function() {
       doc.setFontType("bold");
       // Add the logo from the image data
       doc.addImage(logo,'JPEG',105,10,64,15);
-      doc.text(130,42,"Pricelist");
+      doc.text(130,32,"Pricelist");
       doc.setFontSize(10);
       // Line that appears below the column headers
       doc.line(20, 53, 260, 53);
@@ -208,10 +208,10 @@ $(document).ready(function() {
         // If we're at the magical number of 206, add a footer and start over
         if (pos == 194) {
           pos = pos + 6;
-          doc.text(25, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     e info@rogersandgoffigon.com     t 310 659 9550     f 310 659 9000");
+          doc.text(35, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     e info@rogersandgoffigon.com     t 310 659 9550     f 310 659 9000");
           pos = pos + 6;
           doc.setFontType("italic");
-          doc.text(23, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
+          doc.text(32, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
           doc.setFontType("normal");
           pos = 20;
           doc.addPage();
