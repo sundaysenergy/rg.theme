@@ -116,23 +116,23 @@ thead {
   font-variant: small-caps;
 }
 
-th.name, td.name,
-th.color, td.color {
-  width: 12%;
+th.name, td.name {
+  width: 17%;
 }
 
-th.id, td.id {
-  width: 9%;
+th.id, td.id,
+th.tradeprice, td.tradeprice {
+  width: 10%;
 }
 
 th.content, td.content {
-  width: 37%;
+  width: 30%;
 }
 
+th.color, td.color,
 th.repeat, td.repeat,
-th.width, td.width,
-th.tradeprice, td.tradeprice {
-  width: 10%;
+th.width, td.width {
+  width: 11%;
 }
 
 th {
