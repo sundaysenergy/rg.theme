@@ -221,7 +221,11 @@ button.uppercase { font-size: 1em; }
 
 .pager .on-top p { font-size: 1.25em; }
 
-.pager, .pager button, .pager p {
+.pager, 
+.pager button, 
+.pager p,
+.item-information strong,
+.item-spotlight .item-icons .item-colors {
   line-height: 20px;
   letter-spacing: 2px;
 }
@@ -472,8 +476,6 @@ ul.slider,
   background: @rg-background !important;
   padding: 5px 9px 2px;
 }
-
-.item-spotlight .item-icons .item-colors { letter-spacing: 1px; }
 
 /* item_mobile styles */
 .itemoverlay nav {
@@ -763,3 +765,25 @@ div.search-noresults {
   width: 100%;
   text-align: center;
 }
+
+/* centering info on textile/leather */
+
+.item-information .outer { height: 100%; }
+
+ /* The ghost, nudged to maintain perfect centering */
+.item-information .outer:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: 0; /* Adjusts for spacing */
+}
+
+/* The element to be centered, can
+   also be of any width and height */ 
+.item-information .inner {
+  display: inline-block;
+  vertical-align: middle;
+  height: auto;
+}
+
