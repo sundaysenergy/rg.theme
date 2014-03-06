@@ -174,15 +174,15 @@ $(document).ready(function() {
       doc.text(130,32,"Pricelist");
       doc.setFontSize(10);
       // Line that appears below the column headers
-      doc.line(20, 53, 260, 53);
+      doc.line(20, 44, 260, 53);
       // Add the column headers
-      doc.text(20, 50, "ID");
-      doc.text(45, 50, "Name");
-      doc.text(95, 50, "Content");
-      doc.text(155, 50, "Color");
-      doc.text(180, 50, "Repeat");
-      doc.text(205, 50, "Width");
-      doc.text(230, 50, "Price");
+      doc.text(20, 41, "ID");
+      doc.text(45, 41, "Name");
+      doc.text(95, 41, "Content");
+      doc.text(155, 41, "Color");
+      doc.text(180, 41, "Repeat");
+      doc.text(205, 41, "Width");
+      doc.text(230, 41, "Price");
       doc.setFontType("normal");
       // Loop through the items
       _.forEach(items, function(item) {
@@ -206,12 +206,12 @@ $(document).ready(function() {
         // Add 6 units for the next line
         pos = pos + 6;
         // If we're at the magical number of 206, add a footer and start over
-        if (pos == 194) {
+        if (pos == 188) {
           pos = pos + 6;
-          doc.text(35, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     e info@rogersandgoffigon.com     t 310 659 9550     f 310 659 9000");
+          doc.text(39, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     e info@rogersandgoffigon.com     t 310 659 9550     f 310 659 9000");
           pos = pos + 6;
           doc.setFontType("italic");
-          doc.text(32, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
+          doc.text(36, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
           doc.setFontType("normal");
           pos = 20;
           doc.addPage();
