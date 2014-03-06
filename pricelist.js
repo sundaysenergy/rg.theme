@@ -170,19 +170,19 @@ $(document).ready(function() {
       doc.setFont("times");
       doc.setFontType("bold");
       // Add the logo from the image data
-      doc.addImage(logo,'JPEG',105,10,64,15);
-      doc.text(130,32,"Pricelist");
+      doc.addImage(logo,'JPEG',115,10,64,15);
+      doc.text(135,32,"Pricelist");
       doc.setFontSize(10);
       // Line that appears below the column headers
-      doc.line(20, 43, 260, 43);
+      doc.line(30, 43, 260, 43);
       // Add the column headers
-      doc.text(20, 41, "ID");
-      doc.text(45, 41, "Name");
-      doc.text(95, 41, "Content");
-      doc.text(155, 41, "Color");
-      doc.text(180, 41, "Repeat");
-      doc.text(205, 41, "Width");
-      doc.text(230, 41, "Price");
+      doc.text(30, 41, "ID");
+      doc.text(55, 41, "Name");
+      doc.text(105, 41, "Content");
+      doc.text(165, 41, "Color");
+      doc.text(190, 41, "Repeat");
+      doc.text(215, 41, "Width");
+      doc.text(240, 41, "Price");
       doc.setFontType("normal");
       // Loop through the items
       _.forEach(items, function(item) {
@@ -196,32 +196,36 @@ $(document).ready(function() {
             width   = (_.isUndefined(values['width'])) ? '':values['width'],
             price   = (_.isUndefined(item_prices[id])) ? 'Not available':'$'+parseInt(item_prices[id]).toFixed(2);
         // Add the item to the document
-        doc.text(20, pos, id);
-        doc.text(45, pos, name);
-        doc.text(95, pos, content);
-        doc.text(155, pos, color);
-        doc.text(180, pos, repeat);
-        doc.text(205, pos, width);
-        doc.text(230, pos, price);
+        doc.text(30, pos, id);
+        doc.text(55, pos, name);
+        doc.text(105, pos, content);
+        doc.text(165, pos, color);
+        doc.text(190, pos, repeat);
+        doc.text(215, pos, width);
+        doc.text(240, pos, price);
         // Add 6 units for the next line
         pos = pos + 6;
         // If we're at the magical number of 206, add a footer and start over
-        if (pos == 188) {
+        if (pos == 182) {
           pos = pos + 6;
-          doc.text(39, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     e info@rogersandgoffigon.com     t 310 659 9550     f 310 659 9000");
+          doc.line(30, pos, 260, pos);
+          pos = pos + 6;
+          doc.text(49, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     e info@rogersandgoffigon.com     t 310 659 9550     f 310 659 9000");
           pos = pos + 6;
           doc.setFontType("italic");
-          doc.text(36, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
+          doc.text(46, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
           doc.setFontType("normal");
           pos = 20;
           doc.addPage();
         }
       });
       pos = pos + 6;
-      doc.text(39, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     e info@rogersandgoffigon.com     t 310 659 9550     f 310 659 9000");
+      doc.line(30, pos, 260, pos);
+      pos = pos + 6;
+      doc.text(49, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     e info@rogersandgoffigon.com     t 310 659 9550     f 310 659 9000");
       pos = pos + 6;
       doc.setFontType("italic");
-      doc.text(36, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
+      doc.text(46, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
       doc.setFontType("normal");
       doc.save('RG-pricelist.pdf');
     });
