@@ -180,8 +180,8 @@ $(document).ready(function() {
       doc.text(33, 40, "ID");
       doc.text(58, 40, "NAME");
       doc.text(108, 40, "CONTENT");
-      doc.text(167, 40, "COLOR");
-      doc.text(192, 40, "REAPEAT");
+      doc.text(166, 40, "COLOR");
+      doc.text(193, 40, "REPEAT");
       doc.text(217, 40, "WIDTH");
       doc.text(242, 40, "PRICE");
       doc.setFontSize(10);
@@ -200,8 +200,8 @@ $(document).ready(function() {
         doc.text(33, pos, id);
         doc.text(58, pos, name);
         doc.text(108, pos, content);
-        doc.text(167, pos, color);
-        doc.text(192, pos, repeat);
+        doc.text(166, pos, color);
+        doc.text(193, pos, repeat);
         doc.text(217, pos, width);
         doc.text(242, pos, price);
         // Add 6 units for the next line
