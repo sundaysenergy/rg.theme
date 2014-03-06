@@ -758,22 +758,49 @@ li.showroom span.smallcaps {
 /** add to projects popup styles **/
 
 #project-list-select {
-  display: table;
+  display: block;
   background: #fff;
   box-shadow: 0 0 10px 0 #848484;
-  height: 150px;
+  height: 138px;
   margin:0;
+  padding: 0;
   position:fixed; 
   text-align: center;
   vertical-align: middle;
   width: 400px;
   z-index:11111;
   top:50%;
-  margin-top: -75px;
+  margin-top: -66px;
   left:50%;
   margin-left: -200px;
 }
 
-#project-list-select {
-  display: table-cell;
+#project-list-select form {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+#project-list-select form .form-control {
+  display: inline-block;
+  width: 55%;
+}
+
+#project-list-select form button.close {
+  background: transparent url(img/close-x.png) center center no-repeat;
+  display: block;
+  float: none;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  height: 11px;
+  width: 11px;
+  text-indent: -9999px;
+  text-shadow: none;
+  white-space: nowrap;
+  overflow: hidden;
+  opacity: .75;
+  filter: alpha(opacity=75);
+  border: none;
+  padding: 0;
+  margin:0;
 }
