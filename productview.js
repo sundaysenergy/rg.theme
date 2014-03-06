@@ -934,7 +934,7 @@ $(document).ready(function() {
 
         // STUFF KB IS TRYING TO ADD FOR STYLING IMAGES IN 3-UP SLIDESHOW
         var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
-        var slideHeight = ((slideWidth*4)/7);
+        var slideHeight = ((slideWidth*5)/7);
         
         console.log(slideWidth, slideHeight);
         
