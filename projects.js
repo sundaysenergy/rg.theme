@@ -52,6 +52,7 @@ $(document).ready(function() {
         // Expand the list
         $('#'+list._id+' .list-name').on('click touch', function(e) {
           $('input.project-share').parent().hide();
+/*           $('input.project-share').siblings('label').hide(); */
           var longurl = $(this).parent().data('longurl');
           var $list = $(this).parent();
           var new_list = $(this).parent().find('ul.trade-items').length == 0;
@@ -66,7 +67,7 @@ $(document).ready(function() {
               }
             )
             .done(function(response) {
-              $list.find('input.project-share').val(response.data.url).show();
+              $list.find('input.project-share').val(response.data.url).parent().show();
 /*
               var w = $('input.project-share:visible').siblings('label').show().width();
               $list.find('input.project-share').css('left', w+6);
