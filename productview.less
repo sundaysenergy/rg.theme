@@ -804,7 +804,7 @@ div.search-noresults {
   display: block;
   background: @rg-background;
   box-shadow: 0 0 10px 0 #848484;
-  height: 138px;
+  height: 160px;
   margin:0;
   padding: 0;
   position:fixed; 
@@ -813,13 +813,13 @@ div.search-noresults {
   width: 400px;
   z-index:11111;
   top:50%;
-  margin-top: -66px;
+  margin-top: -80px;
   left:50%;
   margin-left: -200px;
 }
 
 #project-list-select > form {
-  margin-top: 30px;
+  margin-top: 41px;
   margin-bottom: 10px;
 }
 
@@ -829,8 +829,10 @@ div.search-noresults {
 }
 
 #project-list-select button.close,
-#project-list-select button.editable-cancel {
+#project-list-select button.editable-cancel,
+#project-list-select button.editable-submit {
   border: none;
+  box-shadow: none;
   display: block;
   float: none;
   margin:0;
@@ -853,6 +855,7 @@ div.search-noresults {
 }
 
 /** create new project custom entry field styles **/
+/** why don't these seem to be working on the website??? */
 
 #project-list-select .editable-container.editable-inline,
 #project-list-select .editable-container.editable-inline * {
@@ -863,15 +866,29 @@ div.search-noresults {
   width: 55%;
 }
 
-#project-list-select .editableform .form-control {width: 100%; padding: 0 !important;}
+#project-list-select .editableform .form-control {
+  width: 100%;
+  padding: 0 !important;
+}
 
 #project-list-select .editableform .editable-buttons {
   width: 37%;
   text-align: left;
 }
 
-#project-list-select button.editable-cancel {
-  background: transparent url(img/detail-big-close.png) center center no-repeat;
+#project-list-select .editable-containe button.editable-submit,
+#project-list-select .editable-containe button.editable-cancel {
+  display: inline-block;
   height: 29px;
-  width: 29px;
+  width: 36px;
+  vertical-align: middle;
+}
+
+#project-list-select .editable-containe button.editable-submit {
+  background: @rg-dark-gold;
+  color: @rg-background;
+}
+
+#project-list-select .editable-containe button.editable-cancel {
+  background: transparent url(img/detail-big-close.png) center center no-repeat;
 }
