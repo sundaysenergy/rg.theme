@@ -174,7 +174,7 @@ $(document).ready(function() {
       doc.text(130,32,"Pricelist");
       doc.setFontSize(10);
       // Line that appears below the column headers
-      doc.line(20, 44, 260, 53);
+      doc.line(20, 43, 260, 43);
       // Add the column headers
       doc.text(20, 41, "ID");
       doc.text(45, 41, "Name");
