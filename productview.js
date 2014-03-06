@@ -934,12 +934,12 @@ $(document).ready(function() {
 
         // STUFF KB IS TRYING TO ADD FOR STYLING IMAGES IN 3-UP SLIDESHOW
         var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
-        var slideHeight = ((slideWidth*3)/4);
+        var slideHeight = ((slideWidth*4)/7);
         
         console.log(slideWidth, slideHeight);
         
         $('ul.slider > li').height(slideHeight);
-        $('ul.slider > li img').width(slideWidth);
+        $('ul.slider > li > img').width(slideWidth);
 
         // Click on the left image should decrement by one, while the right image should increment
         $('ul.slider li:nth-of-type(1) .img').off('click touch').on('click touch', function(e) {
