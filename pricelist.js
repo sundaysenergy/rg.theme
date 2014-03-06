@@ -171,15 +171,15 @@ $(document).ready(function() {
       doc.setFontType("bold");
       // Add the logo from the image data
       doc.addImage(logo,'JPEG',116,10,64,15);
-      doc.text(140,31,"PRICELIST");
+      doc.text(139,31,"PRICELIST");
       // Line that appears below the column headers
-      doc.line(31, 43, 264, 43);
+      doc.line(31, 43, 265, 43);
       // Add the column headers
       doc.setFontSize(9);
       doc.setFontType("normal");
-      doc.text(32, 40, "ID");
-      doc.text(57, 40, "NAME");
-      doc.text(107, 40, "CONTENT");
+      doc.text(33, 40, "ID");
+      doc.text(58, 40, "NAME");
+      doc.text(108, 40, "CONTENT");
       doc.text(167, 40, "COLOR");
       doc.text(192, 40, "REAPEAT");
       doc.text(217, 40, "WIDTH");
@@ -197,9 +197,9 @@ $(document).ready(function() {
             width   = (_.isUndefined(values['width'])) ? '':values['width'],
             price   = (_.isUndefined(item_prices[id])) ? 'Not available':'$'+parseInt(item_prices[id]).toFixed(2);
         // Add the item to the document
-        doc.text(32, pos, id);
-        doc.text(57, pos, name);
-        doc.text(107, pos, content);
+        doc.text(33, pos, id);
+        doc.text(58, pos, name);
+        doc.text(108, pos, content);
         doc.text(167, pos, color);
         doc.text(192, pos, repeat);
         doc.text(217, pos, width);
@@ -208,7 +208,7 @@ $(document).ready(function() {
         pos = pos + 6;
         // If we're near the bottom (somewhere close to 206), add a footer and start over
         if (pos == 182) {
-          doc.line(31, pos, 264, pos);
+          doc.line(31, pos, 265, pos);
           pos = pos + 9;
           doc.setFontSize(9);
           doc.text(59, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     e info@rogersandgoffigon.com     t 310 659 9550     f 310 659 9000");
@@ -243,13 +243,13 @@ $(document).ready(function() {
           doc.setFontSize(10);
           doc.setFont("times");
           doc.setFontType("bold");
-          doc.text(140,31,"PRICELIST");
-          doc.line(31, 43, 264, 43);
+          doc.text(139,31,"PRICELIST");
+          doc.line(31, 43, 265, 43);
           doc.setFontSize(9);
           doc.setFontType("normal");
-          doc.text(32, 40, "ID");
-          doc.text(57, 40, "NAME");
-          doc.text(107, 40, "CONTENT");
+          doc.text(33, 40, "ID");
+          doc.text(58, 40, "NAME");
+          doc.text(108, 40, "CONTENT");
           doc.text(167, 40, "COLOR");
           doc.text(192, 40, "REAPEAT");
           doc.text(217, 40, "WIDTH");
@@ -264,9 +264,9 @@ $(document).ready(function() {
                 repeat  = (_.isUndefined(values['repeat'])) ? '':values['repeat'],
                 width   = (_.isUndefined(values['width'])) ? '':values['width'],
                 price   = (_.isUndefined(item_prices[id])) ? 'Not available':'$'+parseInt(item_prices[id]).toFixed(2);
-            doc.text(32, pos, id);
-            doc.text(57, pos, name);
-            doc.text(107, pos, content);
+            doc.text(33, pos, id);
+            doc.text(58, pos, name);
+            doc.text(108, pos, content);
             doc.text(167, pos, color);
             doc.text(192, pos, repeat);
             doc.text(217, pos, width);
