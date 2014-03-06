@@ -171,9 +171,9 @@ $(document).ready(function() {
       doc.setFontType("bold");
       // Add the logo from the image data
       doc.addImage(logo,'JPEG',116,10,64,15);
-      doc.text(140,32,"PRICELIST");
+      doc.text(140,31,"PRICELIST");
       // Line that appears below the column headers
-      doc.line(30, 43, 260, 43);
+      doc.line(32, 43, 262, 43);
       // Add the column headers
       doc.text(32, 41, "ID");
       doc.text(57, 41, "Name");
@@ -206,28 +206,26 @@ $(document).ready(function() {
         pos = pos + 6;
         // If we're at the magical number of 206, add a footer and start over
         if (pos == 182) {
-          doc.line(30, pos, 260, pos);
+          doc.line(32, pos, 262, pos);
           pos = pos + 9;
           doc.setFontSize(9);
-          doc.text(49, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     e info@rogersandgoffigon.com     t 310 659 9550     f 310 659 9000");
+          doc.text(54, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     e info@rogersandgoffigon.com     t 310 659 9550     f 310 659 9000");
           pos = pos + 6;
           doc.setFontType("italic");
-          doc.text(46, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
+          doc.text(51, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
           doc.setFontType("normal");
           doc.setFontSize(10);
           pos = 20;
           doc.addPage();
         }
       });
-      doc.line(30, pos, 260, pos);
+      doc.line(30, pos, 262, pos);
       pos = pos + 9;
       doc.setFontSize(9);
-      doc.text(49, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     e info@rogersandgoffigon.com     t 310 659 9550     f 310 659 9000");
+      doc.text(54, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     e info@rogersandgoffigon.com     t 310 659 9550     f 310 659 9000");
       pos = pos + 6;
       doc.setFontType("italic");
-      doc.text(46, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
-      doc.setFontType("normal");
-      doc.setFontSize(10);
+      doc.text(51, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
       doc.save('RG-pricelist.pdf');
     });
     $('button.download-pdf-flash').off('click touch').on('click touch', function(e) {
