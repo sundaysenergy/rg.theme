@@ -56,6 +56,7 @@ $(document).ready(function() {
     $(this).parent().children(".slider").slideToggle();
     $('section.general-inquiries').children(".slider").slideUp();
     
+/*
     var topheight = -1;
     $('.top li.showroom').each(function() {
       topheight = topheight > $(this).height() ? topheight : $(this).height();
@@ -79,6 +80,7 @@ $(document).ready(function() {
     $('.aust-europe li.showroom').each(function() {
       $(this).height(aeheight);
     });
+*/
 
   });
   
