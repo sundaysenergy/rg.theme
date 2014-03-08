@@ -52,14 +52,14 @@ $(document).ready(function() {
     $('section.showrooms').children(".slider").slideUp();
   });
 
-  $("section.showrooms h2").click(function () {
-    $(this).parent().children(".slider").slideToggle();
-    $('section.general-inquiries').children(".slider").slideUp();
+  $('section.showrooms h2').click(function () {
+    $(this).parent().children('.slider').slideToggle();
+    $('section.general-inquiries').children('.slider').slideUp();
 
     $('.top li.showroom:nth-child(1)').addClass('col-md-offset-2');
     $('.aust-europe li.showroom:nth-child(1)').addClass('col-md-offset-2');
     $('.north-america li.showroom:nth-child(2n)').after('<div class="clearfix visible-sm"></div>');
-    $('.north-america li.showroom:nth-child(3n)').after('<div class="clearfix visible-md"></div>');
+    $('.north-america li.showroom:nth-child(3n)').after('<div class="clearfix visible-md visible-lg"></div>');
   });
 
 
