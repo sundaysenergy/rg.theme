@@ -21,6 +21,8 @@ div.add-fave {
   position: absolute;
   top: 0;
   right: 0;
+  height: 22px;
+  width: 22px;
 }
 
 ul.project-list div.add-fave,
@@ -803,7 +805,6 @@ div.search-noresults {
 #project-list-select,
 #projects-anonymous,
 #anonymous-faves-alert {
-  display: none;
   background: @rg-background;
   box-shadow: 0 0 10px 0 #848484;
   height: 160px;
@@ -836,10 +837,6 @@ div.search-noresults {
   width: 55%;
 }
 
-.add-fave {
-  position: relative;
-}
-
 .add-fave button,
 .alert-favorite button.close,
 #project-list-select button.editable-cancel,
@@ -869,11 +866,8 @@ div.search-noresults {
 
 .add-fave button {
   background: transparent url(img/small-add-to-fav.png) center center no-repeat;
-  position: absolute;
-  top: 0;
-  right: 0;
-  opacity: .75;
-  filter: alpha(opacity=75);
+  height: 22px;
+  width: 22px;
 }
 
 #project-list-select .editable-container.editable-inline,
