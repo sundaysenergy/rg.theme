@@ -803,7 +803,7 @@ div.search-noresults {
 #project-list-select,
 #projects-anonymous,
 #anonymous-faves-alert {
-  display: block;
+  display: none;
   background: @rg-background;
   box-shadow: 0 0 10px 0 #848484;
   height: 160px;
@@ -836,6 +836,11 @@ div.search-noresults {
   width: 55%;
 }
 
+.add-fave {
+  position: relative;
+}
+
+.add-fave button,
 .alert-favorite button.close,
 #project-list-select button.editable-cancel,
 #project-list-select button.editable-submit {
@@ -858,6 +863,15 @@ div.search-noresults {
   right: 14px;
   height: 11px;
   width: 11px;
+  opacity: .75;
+  filter: alpha(opacity=75);
+}
+
+.add-fave button {
+  background: transparent url(img/small-add-to-fav.png) center center no-repeat;
+  position: absolute;
+  top: 0;
+  right: 0;
   opacity: .75;
   filter: alpha(opacity=75);
 }
