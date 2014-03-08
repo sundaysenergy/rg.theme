@@ -680,6 +680,8 @@ button.plain {
 .showrooms ul {
   border-color: #EEE;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .showrooms .slider > ul {
@@ -692,13 +694,21 @@ button.plain {
 
 .showrooms ul > li.showroom {
   font-size: 1.15em;
-  vertical-align: top;
   margin-bottom: 30px;
+  vertical-align: top;
+  width: 100%;
 }
 
-.showrooms ul ul {
-  margin: 0;
-  padding: 0;
+@media (min-width: @screen-sm-min) { 
+  .showrooms ul > li.showroom {
+    width: 50%;
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .showrooms ul > li.showroom {
+    width: 33%;
+  }
 }
 
 .showrooms .top ul > li.showroom {
