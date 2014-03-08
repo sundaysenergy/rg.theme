@@ -85,16 +85,17 @@ ul.trade-items button.remove-trade-item {
   font-size: 1.25em;
 }
 
-div.project-share {
-  display: block;
-  float: none;
-  position: absolute;
-  top: 6px;
-  left: 6px;
-}
-
 div.project-share label { 
   letter-spacing: 2px; 
   font-weight: normal; 
 }
 
+@media (min-width: @screen-sm-min) {
+  div.project-share {
+    display: block;
+    float: none;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+  }
+}
