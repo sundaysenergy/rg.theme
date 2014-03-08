@@ -56,29 +56,7 @@ $(document).ready(function() {
     $(this).parent().children('.slider').slideToggle();
     $('section.general-inquiries').children('.slider').slideUp();
 
-    $('.top li.showroom:nth-child(1)').addClass('col-md-offset-2');
-    $('.aust-europe li.showroom:nth-child(1)').addClass('col-md-offset-2');
-    
-    var srw = $('section.showrooms').width();
-
-    if (srw == 720) {
-      $('.north-america li.showroom:nth-child(2n)').after('<div class="clearfix visible-sm"></div>');
-    }
-    if (srw >= 940) {
-      $('.north-america li.showroom:nth-child(3n)').after('<div class="clearfix visible-md visible-lg"></div>');
-    }
-    
   });
 
 });
 
-$(window).resize(function() {
-  var srw = $('section.showrooms').width();
-
-  if (srw == 720) {
-    $('.north-america li.showroom:nth-child(2n)').after('<div class="clearfix visible-sm"></div>');
-  }
-  if (srw >= 940) {
-    $('.north-america li.showroom:nth-child(3n)').after('<div class="clearfix visible-md visible-lg"></div>');
-  }
-});
