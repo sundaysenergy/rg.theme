@@ -55,7 +55,13 @@ $(document).ready(function() {
   $("section.showrooms h2").click(function () {
     $(this).parent().children(".slider").slideToggle();
     $('section.general-inquiries').children(".slider").slideUp();
-    
+
+    $('.top li.showroom:nth-child(1)').addClass('col-md-offset-2');
+    $('.aust-europe li.showroom:nth-child(1)').addClass('col-md-offset-2');
+
+  });
+
+
 /*
     var topheight = -1;
     $('.top li.showroom').each(function() {
@@ -80,8 +86,8 @@ $(document).ready(function() {
     $('.aust-europe li.showroom').each(function() {
       $(this).height(aeheight);
     });
-*/
 
   });
-  
+  */
+
 });
