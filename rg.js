@@ -58,8 +58,8 @@ $(document).ready(function() {
 
     $('.top li.showroom:nth-child(1)').addClass('col-md-offset-2');
     $('.aust-europe li.showroom:nth-child(1)').addClass('col-md-offset-2');
-    $(".north-america li.showroom:nth-child(2n)").after("<div class="clearfix visible-sm"></div>");
-    $(".north-america li.showroom:nth-child(3n)").after("<div class="clearfix visible-md"></div>");
+    $('.north-america li.showroom:nth-child(2n)').after('<div class="clearfix visible-sm"></div>');
+    $('.north-america li.showroom:nth-child(3n)').after('<div class="clearfix visible-md"></div>');
   });
 
 
