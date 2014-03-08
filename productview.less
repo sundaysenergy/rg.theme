@@ -779,10 +779,10 @@ div.search-noresults {
 
 /* centering info on textile/leather */
 
-.item-information .outer { height: 100%; }
+.outer { height: 100%; }
 
  /* The ghost, nudged to maintain perfect centering */
-.item-information .outer:before {
+.outer:before {
   content: '';
   display: inline-block;
   height: 100%;
@@ -792,7 +792,7 @@ div.search-noresults {
 
 /* The element to be centered, can
    also be of any width and height */ 
-.item-information .inner {
+.inner {
   display: inline-block;
   vertical-align: middle;
   height: auto;
@@ -800,7 +800,9 @@ div.search-noresults {
 
 /** add to projects popup styles **/
 
-#project-list-select {
+#project-list-select,
+#projects-anonymous,
+#anonymous-faves-alert {
   display: block;
   background: @rg-background;
   box-shadow: 0 0 10px 0 #848484;
@@ -834,7 +836,7 @@ div.search-noresults {
   width: 55%;
 }
 
-#project-list-select button.close,
+.alert-favorite button.close,
 #project-list-select button.editable-cancel,
 #project-list-select button.editable-submit {
   border: none;
@@ -849,7 +851,7 @@ div.search-noresults {
   white-space: nowrap;
 }
 
-#project-list-select button.close {
+.alert-favorite button.close {
   background: transparent url(img/close-x.png) center center no-repeat;
   position: absolute;
   top: 14px;
@@ -859,9 +861,6 @@ div.search-noresults {
   opacity: .75;
   filter: alpha(opacity=75);
 }
-
-/** create new project custom entry field styles **/
-/** why don't these seem to be working on the website??? */
 
 #project-list-select .editable-container.editable-inline,
 #project-list-select .editable-container.editable-inline * {
