@@ -243,17 +243,6 @@ $(document).ready(function() {
           // Move the #products div after the passementerie header bar
           $('#products').insertAfter('#collection-menu-passementerie');
           $('#products ul.list').addClass('passementerie');
-          if (productlist.page == rg_options.horizontal_page) {
-            $('#products ul.passementerie li').each(function() {
-              var $image = $(this).find('.img');
-              $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg'));     
-            });
-          } else {
-            $('#products ul.passementerie li').each(function() {
-              var $image = $(this).find('.img');
-              $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg'));     
-            });
-          }
         }
         /*** LEATHER COLLECTION ***/
         if (collection == 'leather') {
@@ -720,6 +709,17 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE LIST UPDATES (i.e. position, items, or filters change) ****/
     productlist.on('updated', function() {
+      if (productlist.page == rg_options.horizontal_page) {
+        $('#products ul.passementerie li').each(function() {
+          var $image = $(this).find('.img');
+          $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg'));     
+        });
+      } else {
+        $('#products ul.passementerie li').each(function() {
+          var $image = $(this).find('.img');
+          $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg'));     
+        });
+      }
       // Update i if we have fewer items than the starting position
       if (productlist.i > productlist.matchingItems.length) {
         productlist.i = productlist.matchingItems.length;
