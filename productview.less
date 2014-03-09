@@ -130,32 +130,31 @@ ul.collection-controls .open .caret {
 #filter-list,
 #filter-list-leather {
   position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 10 !important;
-  float: none;
-  padding: 0;
-  margin: 0;
-  list-style: none;
+  left: -90px;
+  top:-10px;
+  /**/
   background-color: #fff;
   border: none;
   box-shadow: 0 0 10px 0 #848484;
-  width: 700px; /*this solution is problematic, not flexible, a YOLO solution... */
-  left: -70px; /*this solution is problematic, not flexible, a YOLO solution... */
-  top:-10px;
+  float: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 220px; 
+  z-index: 10 !important;
+  text-align: left;
 }
 
 #filter-list ul.nav-tabs,
 #filter-list-leather ul.nav-tabs {
-  margin: 0 20px;
+  margin: 0;
   position: relative;
   top: 40px;
-  text-align: center;
 }
 
 #filter-list ul.nav-tabs li,
 #filter-list-leather ul.nav-tabs li {
-  display: inline-block;
+  display: list-item;
   float: none;
 }
 
@@ -168,8 +167,8 @@ ul.collection-controls .open .caret {
   color: @rg-gray;
   border-radius: 0 0 0 0;
   display: block;
-  margin:0 20px;
-  padding: 5px 14px;
+  margin:0 25px 4px;
+  padding: 0;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -187,15 +186,15 @@ ul.collection-controls .open .caret {
   color: @rg-gray;
   font-size: 11px;
   letter-spacing: 1px;
-  padding: 50px 10px 15px 20px;
+  padding: 50px 25px 15px 25px;
   margin: 0;
 }
 
 #filter-list fieldset label,
 #filter-list-leather fieldset label {
-  display: block;
-  float: left;
-  width: 25%;
+  display: list-item;
+  float: none;
+  width: auto;
   margin: 0 0 4px;
   padding: 0;
   text-align: left;
@@ -216,6 +215,55 @@ ul.collection-controls .open .caret {
 #filter-list fieldset label.disabled input,
 #filter-list-leather fieldset label.disabled input {
   visibility: hidden;
+}
+
+@media (min-width: @screen-sm-min) { 
+  #filter-list,
+  #filter-list-leather {
+    width: 700px; /*this solution is problematic, not flexible, a YOLO solution... */
+    left: -70px; /*this solution is problematic, not flexible, a YOLO solution... */
+    top:-10px;
+    text-align: center;
+  }
+  
+  #filter-list ul.nav-tabs,
+  #filter-list-leather ul.nav-tabs {
+    margin: 0 20px;
+    text-align: center;
+  }
+  
+  #filter-list ul.nav-tabs li,
+  #filter-list-leather ul.nav-tabs li {
+    display: inline-block;
+    float: none;
+  }
+  
+  #filter-list ul.nav-tabs li > a,
+  #filter-list ul.nav-tabs li > span,
+  #filter-list-leather ul.nav-tabs li > a,
+  #filter-list-leather ul.nav-tabs li > span {
+    margin:0 20px;
+    padding: 5px 14px;
+  }
+  
+  #filter-list ul.nav-tabs li.active > a,
+  #filter-list ul.nav-tabs li.active > span,
+  #filter-list-leather ul.nav-tabs li.active > a,
+  #filter-list-leather ul.nav-tabs li.active > span {
+    color: @rg-black;
+  }
+  
+  #filter-list fieldset,
+  #filter-list-leather fieldset {
+    padding: 50px 10px 15px 20px;
+  }
+  
+  #filter-list fieldset label,
+  #filter-list-leather fieldset label {
+    display: block;
+    float: left;
+    width: 25%;
+  }
 }
 
 .checkbox-inline+.checkbox-inline {
