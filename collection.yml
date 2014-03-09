@@ -26,13 +26,13 @@ productview:
   js:
     - list.min.js
     - js/bootstrap-editable.min.js
-    - js/moment.min.js
     - productview.js
 pricelist:
   css:
     - variables.less
     - pricelist.css
   js:
+    - js/moment.min.js
     - list.min.js
     - list.fuzzysearch.min.js
     - js/jspdf.min.js
