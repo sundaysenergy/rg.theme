@@ -398,6 +398,7 @@ $(document).ready(function() {
       /**** PROCESS FILTERS FROM HASH ****/
       /***********************************/
       var vals = [collection,f,srch,faves,color,desc,lid,use];
+      var pass_filter = [ 'P-0101-01', 'P-0103-01', 'P-0103-02', 'P-0103-05' ];
 
       // Only process the filters if our string has changed 
       if (current_page !== sessionStorage.currentpage) {
@@ -406,6 +407,15 @@ $(document).ready(function() {
           productlist.filter(function(item) {
             // Set our default to false, and explicit define matches
             var match = false;
+
+            if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') == 'passementerie') {
+              if (item.values().id.indexOf('P-') > -1) {
+                if (_.isUndefined(item.values().img) == false) {
+                  if (item.values().img.indexOf('img.cape.io.img.cape.io') > -1) return false;
+                }
+                if (_.indexOf(pass_filter, item.values().id) > -1) return false;
+              }
+            }
 
             /*** PROCESS THE FAVORITES LIST ***/
             if (_.isUndefined(faves) == false) {
