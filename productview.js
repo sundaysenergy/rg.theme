@@ -243,6 +243,12 @@ $(document).ready(function() {
           // Move the #products div after the passementerie header bar
           $('#products').insertAfter('#collection-menu-passementerie');
           $('#products ul.list').addClass('passementerie');
+          $('#products ul.passementerie li').each(function() {
+            var $image = $(this).find('.img');
+            if (_.isUndefined($image.attr('src')) == false) {
+              $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg')); 
+            }    
+          });
         }
         /*** LEATHER COLLECTION ***/
         if (collection == 'leather') {
