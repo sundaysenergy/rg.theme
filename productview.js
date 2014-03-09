@@ -969,6 +969,8 @@ $(document).ready(function() {
           hash.add({pos:p});
         });
       } else {
+        // Remove any inline styling for list items
+        $('ul.list > li').attr('style','');
         // Click handler for detailed view from vertical view
         $('ul.list li .img').off('click touch').on('click touch', function(e) {
           var id = $(this).parent().find('.id').html();
