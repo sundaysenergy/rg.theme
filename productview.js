@@ -712,12 +712,16 @@ $(document).ready(function() {
       if (productlist.page == rg_options.horizontal_page) {
         $('#products ul.passementerie li').each(function() {
           var $image = $(this).find('.img');
-          $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg'));     
+          if (_.isUndefined($image.attr('src')) == false) {
+            $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg')); 
+          }    
         });
       } else {
         $('#products ul.passementerie li').each(function() {
           var $image = $(this).find('.img');
-          $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg'));     
+          if (_.isUndefined($image.attr('src')) == false) {
+            $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg'));
+          } 
         });
       }
       // Update i if we have fewer items than the starting position
@@ -948,9 +952,6 @@ $(document).ready(function() {
         // STUFF KB IS TRYING TO ADD FOR STYLING IMAGES IN 3-UP SLIDESHOW
         var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
         var slideHeight = ((slideWidth*5)/7);
-        
-        console.log(slideWidth, slideHeight);
-        
         $('ul.slider > li').height(slideHeight);
         $('ul.slider > li > img').width(slideWidth);
 
@@ -972,7 +973,11 @@ $(document).ready(function() {
         $('ul.list li .img').off('click touch').on('click touch', function(e) {
           var id = $(this).parent().find('.id').html();
           sessionStorage.scrollpos = document.body.scrollTop;
-          hash.add({detailedview:id});
+          if ((hash.get('collection') == 'passementerie') && ($(window).width() > 767)) {
+            // Nothing here yet
+          } else {
+            hash.add({detailedview:id});
+          }
         });
 
         // When hovering over list items, show a plus button!
