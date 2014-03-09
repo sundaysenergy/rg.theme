@@ -709,19 +709,12 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE LIST UPDATES (i.e. position, items, or filters change) ****/
     productlist.on('updated', function() {
-      if (productlist.page == rg_options.vertical_page) {
+      if (hash.get('collection') == 'passementerie') {
         $('#products ul.passementerie li').each(function() {
           var $image = $(this).find('.img');
           if (_.isUndefined($image.attr('src')) == false) {
             $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg')); 
           }    
-        });
-      } else {
-        $('#products ul.passementerie li').each(function() {
-          var $image = $(this).find('.img');
-          if (_.isUndefined($image.attr('src')) == false) {
-            $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg'));
-          } 
         });
       }
       // Update i if we have fewer items than the starting position
