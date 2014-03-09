@@ -26,6 +26,7 @@ productview:
   js:
     - list.min.js
     - js/bootstrap-editable.min.js
+    - js/moment.min.js
     - productview.js
 pricelist:
   css:
