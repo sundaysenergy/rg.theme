@@ -643,8 +643,14 @@ button.plain {
   padding: 2em 0;
 }
 
-.account-information .editable-click, a.editable-click, a.editable-click:hover {
+.account-information .editable-click, .account-information a.editable-click,
+#project-list-select .editable-click, #project-list-select a.editable-click {
   border-bottom: dashed 1px @rg-gold;
+}
+
+.account-information a.editable-click:hover,
+#project-list-select a.editable-click:hover {
+  border-bottom: dashed 1px @rg-dark-gold;
 }
 
 #project-edit, #project-new, .download-pdf, .download-pdf-flash {
