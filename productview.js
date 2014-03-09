@@ -709,7 +709,7 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE LIST UPDATES (i.e. position, items, or filters change) ****/
     productlist.on('updated', function() {
-      if (productlist.page == rg_options.horizontal_page) {
+      if (productlist.page == rg_options.vertical_page) {
         $('#products ul.passementerie li').each(function() {
           var $image = $(this).find('.img');
           if (_.isUndefined($image.attr('src')) == false) {
