@@ -218,7 +218,8 @@ $(document).ready(function() {
 
       /**** VISUAL RESETS AND RE-ARRANGE ****/
       $('[id^=collection-menu]').hide();
-
+      $('#products ul.list').removeClass('passementerie');
+      
       // Things to do if there is a collection present -- mostly moving things around visually
       if (_.isUndefined(collection) == false && _.isUndefined(srch)) {
         /*** TEXTILE COLLECTION ***/
@@ -241,6 +242,7 @@ $(document).ready(function() {
           }
           // Move the #products div after the passementerie header bar
           $('#products').insertAfter('#collection-menu-passementerie');
+          $('#products ul.list').addClass('passementerie');
         }
         /*** LEATHER COLLECTION ***/
         if (collection == 'leather') {
