@@ -30,20 +30,23 @@ $(document).ready(function() {
   }
 
   // Navigation menu sliding for landing page
-  $.when($('.landing .navwrap').hide()).then(function () {
-    $('.landing header').hover(
-      function() {
-        if ($('.landing nav .navwrap').is(':visible') == false) {
-          $('.landing nav .navwrap').slideDown();
+  var mcw = $('main.container').width();
+  if (mcw >= 750) {
+    $.when($('.landing .navwrap').hide()).then(function () {
+      $('.landing header').hover(
+        function() {
+          if ($('.landing nav .navwrap').is(':visible') == false) {
+            $('.landing nav .navwrap').slideDown();
+          }
+        }, function() {
+          if ($('.landing nav .navwrap').is(':visible') == true) {
+            $('.landing nav .navwrap').slideUp();
+          }
         }
-      }, function() {
-        if ($('.landing nav .navwrap').is(':visible') == true) {
-          $('.landing nav .navwrap').slideUp();
-        }
-      }
-    );
-  });
-
+      );
+    });
+  }
+  
   // Contact page basics 
   $("section.toggle .slider").hide();
  
