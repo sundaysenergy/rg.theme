@@ -722,6 +722,13 @@ $(document).ready(function() {
             $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg')); 
           }    
         });
+      } else {
+        $('#products ul.list li').each(function() {
+          var $image = $(this).find('.img');
+          if (_.isUndefined($image.attr('src')) == false) {
+            $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg')); 
+          }    
+        });
       }
       // Update i if we have fewer items than the starting position
       if (productlist.i > productlist.matchingItems.length) {
