@@ -824,13 +824,21 @@ $(document).ready(function() {
           }
           var id = $(this).parent().find('.id').html();
           sessionStorage.scrollpos = document.body.scrollTop;
-          hash.add({detailedview:id});
+          if ((hash.get('collection') == 'passementerie') && ($(window).width() > 767)) {
+            // Nothing here yet
+          } else {
+            hash.add({detailedview:id});
+          }
         });
         // Fallback click handler for ie9 since you can't attach to absolute positioned element
         $('ul.slider li .item-spotlight').parent().find('.img').off('click touch').on('click touch', function(e) {
           var id = $(this).parent().find('.id').html();
           sessionStorage.scrollpos = document.body.scrollTop;
-          hash.add({detailedview:id});
+          if ((hash.get('collection') == 'passementerie') && ($(window).width() > 767)) {
+            // Nothing here yet
+          } else {
+            hash.add({detailedview:id});
+          }        
         });
         
         // Create click handlers for the icon and the close button
