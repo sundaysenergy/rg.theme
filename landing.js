@@ -13,6 +13,40 @@ $(document).ready(function() {
   }).done(function(data) {
     item_template = Hogan.compile(data);
   });
+
+  var item_template_mobile;
+  $.ajax({
+    url: rg_options.api + "/templates/mini/landing.html",
+    context: document.body,
+    async: false,
+    error:  function (jqXHR, textStatus, errorThrown) {
+              console.log(errorThrown);
+            }
+  }).done(function(data) {
+    item_template_mobile = Hogan.compile(data);
+  });
+
+  function loadBeautyMobile(item_template) {
+    // Retrieve the JSON that we will use to generate the slideshow
+    $.getJSON(rg_options.api + '/beautyshots/index.json', function(data) {
+      // Set the active attribute true for a random item
+      data[_.random(0,data.length-1)].active = true;
+      // Add the html to the document
+      $.when($('.carousel').html(item_template_mobile.render({slides:data}))).then(function() {
+        // Start the carousel
+        $('.carousel').carousel();
+        // Workaround for the indicators being buggy out of the box
+        $('.carousel').on('slid.bs.carousel', function() {
+          var to_slide = $('.carousel-inner .item.active').attr('id');
+          $('.carousel-indicators').children().removeClass('active');
+          $('.carousel-indicators [data-slide-to=' + to_slide.replace('item-','') + ']').addClass('active');
+        });
+
+      });
+    });
+    return true;
+  }
+
   // Function for loading the template into the document
   function loadBeauty(item_template) {
     // Retrieve the JSON that we will use to generate the slideshow
@@ -67,10 +101,19 @@ $(document).ready(function() {
   }
   // When we resize, regenerate everything since the coordinates will be different
   $(window).on('resize', function() {
-    loadBeauty(item_template);
+    // Initial load
+    if ($(window).width() > 767) {
+      loadBeauty(item_template);
+    } else {
+      loadBeautyMobile(item_template_mobile);
+    }  
   });
   // Initial load
-  loadBeauty(item_template);
+  if ($(window).width() > 767) {
+    loadBeauty(item_template);
+  } else {
+    loadBeautyMobile(item_template_mobile);
+  }
 });
 
 $(document).ready(function() {
