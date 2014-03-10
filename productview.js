@@ -731,7 +731,7 @@ $(document).ready(function() {
     /*** JAVASCRIPT TWEAKS FOR SETTING IMAGE HEIGHT ***/
     $(window).on('resizeSlides', function() {
       if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') !== 'passementerie') {
-        $('ul.list li:visible .img,ul.list.slider li:visible').attr('style','');
+        $('ul.list li:visible .img,ul.list li:visible').attr('style','');
         var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
         var slideHeight = ((slideWidth*5)/7);
         $('ul.slider > li').height(slideHeight);

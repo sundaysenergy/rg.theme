@@ -1,17 +1,16 @@
 $(document).ready(function() {
+  $('#search-items').off('submit').on('submit', function(e) {
+    e.preventDefault();
+    var collection = hash.get('collection');
+    if (_.isUndefined(collection)) collection = 'textile';
+    window.location = '/collection.html#collection='+collection+'&search=' + encodeURIComponent($('#search-items').find('input').val());
+  });
   // Expose a search box when hovering over the icon
-  $('.fa-search').hover(function() {
-    $('#search-items').slideToggle();
-    // Capture the form submission and redirect with a default collection
-    $('#search-items').on('submit', function(e) {
-      e.preventDefault();
-      var collection = hash.get('collection');
-      if (_.isUndefined(collection)) collection = 'textile';
-      window.location = '/collection.html#collection='+collection+'&search=' + encodeURIComponent($('#search-items').find('input').val());
-    });
+  $('.fa-search').parent().hover(function() {
+    $('#search-items').slideDown();
     $('.fa-search').off('mouseenter');
   }, function() {
-
+    $('#search-items').slideUp();
   });
   // If there's a token, enable the sub navigation menu
   var token = $.cookie('token');
