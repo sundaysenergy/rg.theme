@@ -16,8 +16,21 @@
   max-width: 100%;
 }
 
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  width: auto;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @screen-sm-min) {
+  
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+    width: 100%;
+    max-width: 100%;
+  }
+  
   .landing {
     width: 100%;
     height: auto
