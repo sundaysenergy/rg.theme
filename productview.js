@@ -987,6 +987,7 @@ $(document).ready(function() {
 
         // Visual tweak for 4x3 images
         if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') !== 'passementerie') {
+          $('ul.list li:visible .img,ul.list.slider li:visible').attr('style','');
           var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
           var slideHeight = ((slideWidth*5)/7);
           $('ul.slider > li').height(slideHeight);
