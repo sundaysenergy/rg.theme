@@ -737,7 +737,7 @@ $(document).ready(function() {
         $('ul.slider > li').height(slideHeight);
         $('ul.slider > li > img').width(slideWidth);
       } else {
-        $('ul.passementerie.slider li:visible .img:visible,ul.passementerie.slider li:visible').attr('style','');
+        $('ul.passementerie li:visible .img:visible,ul.passementerie li:visible').attr('style','');
         $('ul.passementerie.slider li:visible').each(function() {
           var $li = $(this);
           var $img = $li.find('.img');
