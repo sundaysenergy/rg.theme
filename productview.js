@@ -38,6 +38,7 @@ $(document).ready(function() {
         spotlight_template           = Hogan.compile(templates.spotlight),
         spotlight_pass_template      = Hogan.compile(templates.spotlight_passementerie),
         dummy_template               = Hogan.compile(templates.bookends),
+        dummy_template_pass          = Hogan.compile(templates.bookends_passementerie),
         favorites_template           = Hogan.compile(templates.favorites),
         detailed_favorites_template  = Hogan.compile(templates.detailed_faves_alert),
         itemdel_template             = Hogan.compile(templates.itemdel),
@@ -748,10 +749,15 @@ $(document).ready(function() {
         }
       } else {
         $('ul.passementerie li:visible .img:visible,ul.passementerie li:visible').attr('style','');
-        $('ul.passementerie.slider li:visible').each(function() {
+        var maxheight = $('ul.passementerie.slider li:visible:nth-of-type(2)').find('.img').height();
+        console.log(maxheight);
+        $('ul.passementerie.slider li:visible').each(function(index, value) {
           var $li = $(this);
           var $img = $li.find('.img');
-
+          if (index !== 1 && maxheight>0) {
+            $img.css('width','auto');
+            $li.css('overflow','hidden');
+          }
           var margin = ($li.height() / 2) - ($img.height() / 2);
           $li.css('margin-top',margin).height($li.height()-margin);
         });
@@ -839,7 +845,14 @@ $(document).ready(function() {
         if (productlist.matchingItems.length > 0) {
           var last_item = productlist.matchingItems.length-1;
           if (last_item < 0) last_item = 0;
-          var dummy_item = dummy_template.render(productlist.matchingItems[last_item].values());
+          var template_data = productlist.matchingItems[last_item].values();
+          template_data.img_pass = productlist.matchingItems[last_item].values().img.replace('640.jpg','1170.jpg');
+          var dummy_item = '';
+          if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') === 'passementerie') {
+            dummy_item = dummy_template.render(template_data);
+          } else {
+            dummy_item = dummy_template_pass.render(template_data);
+          }
           $('#products > ul.slider').prepend(dummy_item);
         }
       } 
@@ -865,10 +878,8 @@ $(document).ready(function() {
           var itemvals = productlist.visibleItems[parseInt(n)].values();
           itemvals.pager = itemvals.itemcolors().length > 5;
           if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') !== 'passementerie') {
-            console.log("Appending non passementerie template");
             $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(itemvals));
           } else {
-            console.log("Appending passementerie template");
             $('#products > ul.slider li:nth-child(2)').append(spotlight_pass_template.render(itemvals));
           }
           $.fn.editable.defaults.mode = 'inline';
