@@ -137,7 +137,6 @@ ul.collection-controls .open .caret {
   position: absolute;
   left: -70px;
   top:-10px;
-  /**/
   background-color: #fff;
   border: none;
   box-shadow: 0 0 10px 0 #848484;
@@ -153,12 +152,10 @@ ul.collection-controls .open .caret {
 #filter-list ul.nav-tabs,
 #filter-list-leather ul.nav-tabs {
   margin: 0;
+  padding: 0;
   position: relative;
-  top: 40px;
-  /**/
-  margin-top: 5px;
+  top: 35px;
   border-top: 1px solid #ddd;
-  padding-top: 5px;
 }
 
 #filter-list ul.nav-tabs li,
@@ -176,10 +173,15 @@ ul.collection-controls .open .caret {
   color: @rg-gray;
   border-radius: 0 0 0 0;
   display: block;
-  margin:0 25px 4px;
-  padding: 0;
+  margin:0;
+  padding: 3px 25px 0;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+#filter-list ul.nav-tabs li:hover {
+  background: @rg-dark-gold;
+  color: white;
 }
 
 #filter-list ul.nav-tabs li.active > a,
@@ -229,8 +231,8 @@ ul.collection-controls .open .caret {
 @media (min-width: @screen-sm-min) { 
   #filter-list,
   #filter-list-leather {
-    width: 700px; /*this solution is problematic, not flexible, a YOLO solution... */
-    left: -70px; /*this solution is problematic, not flexible, a YOLO solution... */
+    width: 700px;
+    left: -70px;
     top:-10px;
     text-align: center;
   }
@@ -241,6 +243,7 @@ ul.collection-controls .open .caret {
     padding-top: 0;
     margin: 0 20px;
     text-align: center;
+    top: 40px;
   }
   
   #filter-list ul.nav-tabs li,
