@@ -142,7 +142,11 @@ $(document).ready(function() {
               contentType: 'application/json',
               success: function(result) {
                 $('#project-list-select').remove();
-                $('body').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
+                if ($('#anonymous-faves-alert').length == 0 && _.isUndefined(hash.get('detailedview')) && $('#products ul.slider').length > 0) {
+                  $('ul.slider li:visible:nth-of-type(2)').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
+                } else {
+                  $('body').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
+                }
                 $('.alert-favorite').find('a').attr('href','/trade/projects.html');
               },
               fail: function(result) {
