@@ -742,10 +742,15 @@ $(document).ready(function() {
           var $li = $(this);
           var $img = $li.find('.img');
 
-          $img.on('load', function() {
+          if ($img.height() == 0) {
+            $img.on('load', function() {
+              var margin = ($li.height() / 2) - ($img.height() / 2);
+              $li.css('margin-top',margin).height($li.height()-margin);
+            });
+          } else {
             var margin = ($li.height() / 2) - ($img.height() / 2);
             $li.css('margin-top',margin).height($li.height()-margin);
-          });
+          }
         });
       }
     });
