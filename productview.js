@@ -184,6 +184,72 @@ $(document).ready(function() {
     if (_.isUndefined(hash.get('pos'))) hash.add({pos:0});
 
 
+    /**** VISUAL RESETS AND RE-ARRANGE ****/
+    $(window).on('visRearrange', function() {
+      var collection = hash.get('collection');
+      var srch       = hash.get('search');
+
+      $('[id^=collection-menu]').hide();
+      $('#products ul.list').removeClass('passementerie');
+      
+      // Things to do if there is a collection present -- mostly moving things around visually
+      if (_.isUndefined(collection) == false && _.isUndefined(srch)) {
+        /*** TEXTILE COLLECTION ***/
+        if (collection == 'textile') {
+          $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
+          // Move the inactive headers to a different container if they're not there already
+          if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
+            $('#collection-menu-passementerie-inactive').appendTo('#collection-headers-after > div.row');
+            $('#collection-menu-leather-inactive').insertAfter($('#collection-menu-passementerie-inactive'));
+          }
+          // Move the #products div after the textile header bar
+          $('#products').insertAfter('#collection-menu-main');
+        }
+        /*** PASSEMENTERIE COLLECTION ***/
+        if (collection == 'passementerie') {
+          $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
+          // Move the inactive headers to a different container if they're not there already
+          if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 0) {
+            $('#collection-menu-leather-inactive').appendTo('#collection-headers-after > div.row');
+          }
+          // Move the #products div after the passementerie header bar
+          $('#products ul.list').addClass('passementerie');
+          $('#products ul.passementerie li').each(function() {
+            var $image = $(this).find('.img');
+            if (_.isUndefined($image.attr('src')) == false) {
+              $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg')); 
+            }
+          });
+          $('#products').insertAfter('#collection-menu-passementerie');
+          console.log("passementerie");
+        }
+        /*** LEATHER COLLECTION ***/
+        if (collection == 'leather') {
+          $('#products,#collection-menu-leather,#collection-menu-main-inactive,#collection-menu-passementerie-inactive').show();
+          // Move inactive headers back to original container if necessary
+          if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 1) {
+            $('#collection-menu-passementerie-inactive').prependTo('div#collection-row-passementerie');
+          }
+          if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 1) {
+            $('#collection-menu-leather-inactive').prependTo('div#collection-row-leather');
+          }
+          // Move products after the leather header
+          $('#products').insertAfter('#collection-menu-leather');
+        }
+        // If the page size and buttons don't match up, simulate click -- workaround for back button issue with search
+        if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
+          $('button.thumbs').trigger('click');
+        }
+      }
+
+      // Move the product list inside or outside of the main container depending on viewing mode
+      if (productlist.page == rg_options.horizontal_page) {
+        if ($('div.threeup div#products').length == 0) $('div#products').appendTo('div.threeup');
+      } else {
+        if ($('div.threeup div#products').length > 0) $('div#products').appendTo('main.container div#collection-row-textile');
+      }
+    });
+
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
@@ -215,67 +281,7 @@ $(document).ready(function() {
       // Other resets
       $('#anonymous-faves-alert').find('button.close').trigger('click');
       $('#project-list-select').find('button.close').trigger('click');
-
-
-      /**** VISUAL RESETS AND RE-ARRANGE ****/
-      $('[id^=collection-menu]').hide();
-      $('#products ul.list').removeClass('passementerie');
-      
-      // Things to do if there is a collection present -- mostly moving things around visually
-      if (_.isUndefined(collection) == false && _.isUndefined(srch)) {
-        /*** TEXTILE COLLECTION ***/
-        if (collection == 'textile') {
-          $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
-          // Move the inactive headers to a different container if they're not there already
-          if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
-            $('#collection-menu-passementerie-inactive').appendTo('#collection-headers-after > div.row');
-            $('#collection-menu-leather-inactive').insertAfter($('#collection-menu-passementerie-inactive'));
-          }
-          // Move the #products div after the textile header bar
-          $('#products').insertAfter('#collection-menu-main');
-        }
-        /*** PASSEMENTERIE COLLECTION ***/
-        if (collection == 'passementerie') {
-          $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
-          // Move the inactive headers to a different container if they're not there already
-          if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 0) {
-            $('#collection-menu-leather-inactive').appendTo('#collection-headers-after > div.row');
-          }
-          // Move the #products div after the passementerie header bar
-          $('#products').insertAfter('#collection-menu-passementerie');
-          $('#products ul.list').addClass('passementerie');
-          $('#products ul.passementerie li').each(function() {
-            var $image = $(this).find('.img');
-            if (_.isUndefined($image.attr('src')) == false) {
-              $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg')); 
-            }    
-          });
-        }
-        /*** LEATHER COLLECTION ***/
-        if (collection == 'leather') {
-          $('#products,#collection-menu-leather,#collection-menu-main-inactive,#collection-menu-passementerie-inactive').show();
-          // Move inactive headers back to original container if necessary
-          if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 1) {
-            $('#collection-menu-passementerie-inactive').prependTo('div#collection-row-passementerie');
-          }
-          if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 1) {
-            $('#collection-menu-leather-inactive').prependTo('div#collection-row-leather');
-          }
-          // Move products after the leather header
-          $('#products').insertAfter('#collection-menu-leather');
-        }
-        // If the page size and buttons don't match up, simulate click -- workaround for back button issue with search
-        if ($('button.thumbs').is(":visible") && productlist.page == rg_options.vertical_page) {
-          $('button.thumbs').trigger('click');
-        }
-      }
-
-      // Move the product list inside or outside of the main container depending on viewing mode
-      if (productlist.page == rg_options.horizontal_page) {
-        if ($('div.threeup div#products').length == 0) $('div#products').appendTo('div.threeup');
-      } else {
-        if ($('div.threeup div#products').length > 0) $('div#products').appendTo('main.container div#collection-row-textile');
-      }
+      $(window).trigger('visRearrange');
 
       // Copy faves from the hash to localStorage for sharing and updates via the url
       if (_.isUndefined(hash.get('faves')) == false) {
@@ -1255,6 +1261,7 @@ $(document).ready(function() {
       $('.thumbs').toggle();
       $('.collection-view-items').hide();
       hash.add({pos:pos});
+      $(window).trigger('visRearrange');
     });
 
     // Toggle to thumb view mode
@@ -1299,6 +1306,7 @@ $(document).ready(function() {
       $('ul.list li .item-spotlight').remove();
       hash.add({pos:pos});
       productlist.update();
+      $(window).trigger('visRearrange');
     });
 
     // Keep the dropdown menu from closing after an option is selected
