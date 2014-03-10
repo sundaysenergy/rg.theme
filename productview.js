@@ -760,6 +760,7 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE LIST UPDATES (i.e. position, items, or filters change) ****/
     productlist.on('updated', function() {
+      $('ul.anon-favorites li').attr('style','');
       if (hash.get('collection') == 'passementerie') {
         $('#products ul.passementerie li').each(function() {
           var $image = $(this).find('.img');
