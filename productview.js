@@ -991,6 +991,17 @@ $(document).ready(function() {
           var slideHeight = ((slideWidth*5)/7);
           $('ul.slider > li').height(slideHeight);
           $('ul.slider > li > img').width(slideWidth);
+        } else {
+          $('ul.passementerie.slider li:visible').each(function() {
+            var $li = $(this);
+            var $maxheight = $('ul.passementerie.slider:visible li:visible:nth-of-type(2) .img:visible').height();
+            var $img = $li.find('.img');
+            if ($img.attr('src').indexOf('1170') > -1) {
+              console.log($maxheight);
+            }
+            var $margin = $li.height() - $img.height() / 2;
+            $li.css('margin-top',$margin);
+          });
         }
 
         // Click on the left image should decrement by one, while the right image should increment
