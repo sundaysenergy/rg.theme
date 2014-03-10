@@ -90,6 +90,7 @@ button.slide {
   cursor: pointer;
 }
 
+.passementerie li div.item-spotlight,
 .passementerie li img  {
   cursor: default;
 }
@@ -136,7 +137,6 @@ ul.collection-controls .open .caret {
   position: absolute;
   left: -70px;
   top:-10px;
-  /**/
   background-color: #fff;
   border: none;
   box-shadow: 0 0 10px 0 #848484;
@@ -152,12 +152,10 @@ ul.collection-controls .open .caret {
 #filter-list ul.nav-tabs,
 #filter-list-leather ul.nav-tabs {
   margin: 0;
+  padding: 0;
   position: relative;
-  top: 40px;
-  /**/
-  margin-top: 5px;
+  top: 35px;
   border-top: 1px solid #ddd;
-  padding-top: 5px;
 }
 
 #filter-list ul.nav-tabs li,
@@ -175,8 +173,8 @@ ul.collection-controls .open .caret {
   color: @rg-gray;
   border-radius: 0 0 0 0;
   display: block;
-  margin:0 25px 4px;
-  padding: 0;
+  margin:0;
+  padding: 3px 25px 0;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -228,8 +226,8 @@ ul.collection-controls .open .caret {
 @media (min-width: @screen-sm-min) { 
   #filter-list,
   #filter-list-leather {
-    width: 700px; /*this solution is problematic, not flexible, a YOLO solution... */
-    left: -70px; /*this solution is problematic, not flexible, a YOLO solution... */
+    width: 700px;
+    left: -70px;
     top:-10px;
     text-align: center;
   }
@@ -240,6 +238,7 @@ ul.collection-controls .open .caret {
     padding-top: 0;
     margin: 0 20px;
     text-align: center;
+    top: 40px;
   }
   
   #filter-list ul.nav-tabs li,
@@ -314,6 +313,7 @@ button.uppercase { font-size: 1em; }
   overflow: hidden;
   margin: 0;
   height: 333px; /* set this in JS to keep a 4x3 ratio » var h = ((w*3)/4); */
+  vertical-align: middle;
 }
 
 .slider>li:nth-child(2) {
@@ -322,28 +322,25 @@ button.uppercase { font-size: 1em; }
   margin:0;
 }
 
-.slider>li:nth-child(1),
-.slider>li:nth-child(3) {
-  display:none;
+@media (max-width: @screen-xs-max) {
+  .slider>li:nth-child(1),
+  .slider>li:nth-child(3) {
+    display:none;
+  }
 }
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @screen-sm-min) {
-  .slider>li:nth-child(1),
-  .slider>li:nth-child(3) {
+  .slider > li:nth-child(1),
+  .slider > li:nth-child(3) {
     display:list-item;
+    width: 28% !important;
+    max-width: 28% !important;
   }
 
   .slider > li:nth-child(1) {
     margin-left:  -1%;
     margin-right:  1%;
-    width: 28% !important;
-    max-width: 28% !important;
-  }
-  
-  .slider > li:nth-child(2) {
-    width: 44% !important;
-    max-width: 44% !important;
   }
   
   .slider > li:nth-child(2) {
@@ -354,9 +351,30 @@ button.uppercase { font-size: 1em; }
   .slider > li:nth-child(3) {
     margin-left:   1%;
     margin-right: -1%;
-    width: 28% !important;
-    max-width: 28% !important;
   }
+
+  ul.passementerie > li {
+    display:table-cell;
+    margin: 0;
+    border-bottom: none;
+    border-top: none;
+  }
+
+  ul.passementerie > li:nth-child(1),
+  ul.passementerie > li:nth-child(3) {
+    width: 10% !important;
+    max-width: 10% !important;
+  }
+  
+  ul.passementerie > li:nth-child(2) {
+    width: 80% !important;
+    max-width: 80% !important;
+  }
+
+  ul.passementerie > li .table { display: table; }
+  ul.passementerie > li .table-cell { display: table-cell; border: 2px solid @rg-background; }
+  ul.passementerie > li .table, ul.passementerie > li .table-cell { height: 100%; width: 100%; }
+  
 }
 
 img {

@@ -1,25 +1,40 @@
-/* temporary fix... need to see what I actually need to have everywhere, and what should just be on the mobile/universal side */
-.landing {
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-}
 
+.landing,
 #carousel-example-generic,
 #carousel-example-generic .item,
 #carousel-example-generic .item img {
   height: 100%;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
 }
 
-.carousel-indicators, .carousel-control, .landing-popover, .landing-popover:hover {
-  display: none;
+#carousel-example-generic,
+#carousel-example-generic .item {
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
 }
 
-/* temporary fix... need to see what I actually need to have everywhere, and what should just be on the mobile/universal side */
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  width: auto;
+  max-width: none;
+  position: relative;
+  left: -12.5%;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @screen-sm-min) {
+  
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+    width: 100%;
+    max-width: 100%;
+    position: static;
+  }
+  
   .landing {
     width: 100%;
     height: auto

@@ -16,7 +16,7 @@ $(document).ready(function() {
 
   var item_template_mobile;
   $.ajax({
-    url: rg_options.api + "/templates/mini/landing.html",
+    url: rg_options.api + "/templates/mini/landing_mobile.html",
     context: document.body,
     async: false,
     error:  function (jqXHR, textStatus, errorThrown) {
