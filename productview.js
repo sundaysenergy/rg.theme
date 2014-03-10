@@ -973,6 +973,8 @@ $(document).ready(function() {
         });
 
         // STUFF KB IS TRYING TO ADD FOR STYLING IMAGES IN 3-UP SLIDESHOW
+        // if $('ul.slider').hasClass('passementerie') { //declare a height based on tallest passementerie image }
+        // else { below }
         var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
         var slideHeight = ((slideWidth*5)/7);
         $('ul.slider > li').height(slideHeight);
