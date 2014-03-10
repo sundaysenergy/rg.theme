@@ -992,15 +992,15 @@ $(document).ready(function() {
           $('ul.slider > li').height(slideHeight);
           $('ul.slider > li > img').width(slideWidth);
         } else {
+          $('ul.passementerie.slider li:visible .img').attr('style','');
+          var maxheight = $('ul.passementerie.slider:visible li:visible:nth-of-type(2) .img:visible').height();
+          console.log(maxheight);
+          $('ul.passementerie.slider:visible li:visible:nth-of-type(1) .img:visible,ul.passementerie.slider:visible li:visible:nth-of-type(3) .img:visible').height(maxheight);
           $('ul.passementerie.slider li:visible').each(function() {
             var $li = $(this);
-            var $maxheight = $('ul.passementerie.slider:visible li:visible:nth-of-type(2) .img:visible').height();
             var $img = $li.find('.img');
-            if ($img.attr('src').indexOf('1170') > -1) {
-              console.log($maxheight);
-            }
-            var $margin = $li.height() - $img.height() / 2;
-            $li.css('margin-top',$margin);
+            var margin = $li.height() - $img.height() / 2;
+            $li.css('margin-top',margin);
           });
         }
 
