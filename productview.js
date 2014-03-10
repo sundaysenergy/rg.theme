@@ -36,6 +36,7 @@ $(document).ready(function() {
     var item_template                = Hogan.compile(templates.item),
         item_mobile_template         = Hogan.compile(templates.item_mobile),
         spotlight_template           = Hogan.compile(templates.spotlight),
+        spotlight_pass_template      = Hogan.compile(templates.spotlight_passementerie),
         dummy_template               = Hogan.compile(templates.bookends),
         favorites_template           = Hogan.compile(templates.favorites),
         detailed_favorites_template  = Hogan.compile(templates.detailed_faves_alert),
@@ -827,7 +828,13 @@ $(document).ready(function() {
         if (productlist.matchingItems.length > 0) {
           var itemvals = productlist.visibleItems[parseInt(n)].values();
           itemvals.pager = itemvals.itemcolors().length > 5;
-          $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(itemvals));
+          if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') !== 'passementerie') {
+            console.log("Appending non passementerie template");
+            $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(itemvals));
+          } else {
+            console.log("Appending passementerie template");
+            $('#products > ul.slider li:nth-child(2)').append(spotlight_pass_template.render(itemvals));
+          }
           $.fn.editable.defaults.mode = 'inline';
           // Make fields editable
         }
@@ -972,11 +979,13 @@ $(document).ready(function() {
           },
         });
 
-        // STUFF KB IS TRYING TO ADD FOR STYLING IMAGES IN 3-UP SLIDESHOW
-        var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
-        var slideHeight = ((slideWidth*5)/7);
-        $('ul.slider > li').height(slideHeight);
-        $('ul.slider > li > img').width(slideWidth);
+        // Visual tweak for 4x3 images
+        if (hash.get('collection') !== 'passementerie') {
+          var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
+          var slideHeight = ((slideWidth*5)/7);
+          $('ul.slider > li').height(slideHeight);
+          $('ul.slider > li > img').width(slideWidth);
+        }
 
         // Click on the left image should decrement by one, while the right image should increment
         $('ul.slider li:nth-of-type(1) .img').off('click touch').on('click touch', function(e) {
