@@ -221,7 +221,7 @@ $(document).ready(function() {
             }
           });
           $('#products').insertAfter('#collection-menu-passementerie');
-          console.log("passementerie");
+          $(window).trigger('resizeSlides');
         }
         /*** LEATHER COLLECTION ***/
         if (collection == 'leather') {
@@ -728,6 +728,27 @@ $(document).ready(function() {
     });
 
     
+    /*** JAVASCRIPT TWEAKS FOR SETTING IMAGE HEIGHT ***/
+    $(window).on('resizeSlides', function() {
+      if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') !== 'passementerie') {
+        $('ul.list li:visible .img,ul.list.slider li:visible').attr('style','');
+        var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
+        var slideHeight = ((slideWidth*5)/7);
+        $('ul.slider > li').height(slideHeight);
+        $('ul.slider > li > img').width(slideWidth);
+      } else {
+        $('ul.passementerie.slider li:visible .img:visible,ul.passementerie.slider li:visible').attr('style','');
+        $('ul.passementerie.slider li:visible').each(function() {
+          var $li = $(this);
+          var $img = $li.find('.img');
+
+          $img.on('load', function() {
+            var margin = ($li.height() / 2) - ($img.height() / 2);
+            $li.css('margin-top',margin).height($li.height()-margin);
+          });
+        });
+      }
+    });
 
     /**** THINGS TO DO WHEN THE LIST UPDATES (i.e. position, items, or filters change) ****/
     productlist.on('updated', function() {
@@ -985,25 +1006,7 @@ $(document).ready(function() {
           },
         });
 
-        // Visual tweak for 4x3 images
-        if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') !== 'passementerie') {
-          $('ul.list li:visible .img,ul.list.slider li:visible').attr('style','');
-          var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
-          var slideHeight = ((slideWidth*5)/7);
-          $('ul.slider > li').height(slideHeight);
-          $('ul.slider > li > img').width(slideWidth);
-        } else {
-          $('ul.passementerie.slider li:visible .img,ul.passementerie.slider li:visible').attr('style','');
-          var maxheight = $('ul.passementerie.slider:visible li:visible:nth-of-type(2) .img:visible').height();
-          $('ul.passementerie.slider:visible li:visible:nth-of-type(1) .img:visible,ul.passementerie.slider:visible li:visible:nth-of-type(3) .img:visible').height(maxheight);
-          $('ul.passementerie.slider li:visible').each(function() {
-            var $li = $(this);
-            var $img = $li.find('.img');
-            var margin = ($li.height() / 2) - ($img.height() / 2);
-            console.log($li.height(),$img.height(),margin);
-            $li.css('margin-top',margin).height($li.height()-margin);
-          });
-        }
+        $(window).trigger('resizeSlides');
 
         // Click on the left image should decrement by one, while the right image should increment
         $('ul.slider li:nth-of-type(1) .img').off('click touch').on('click touch', function(e) {
@@ -1331,7 +1334,6 @@ $(document).ready(function() {
       $(this).tab('show');
       return false;
     });
-    
   });
 });
 
