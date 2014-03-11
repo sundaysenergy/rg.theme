@@ -373,8 +373,13 @@ button.uppercase { font-size: 1em; }
     margin-right: -1%;
   }
 
+  /* ====================================== */
+  /* ====================================== */
+  /* Crazy Passementerie Styles             */ 
+  /* ====================================== */
+  /* ====================================== */
   ul.slider.passementerie {
-    position: relative;
+    position: relative !important;
   }
 
   ul.slider.passementerie > li {
@@ -386,6 +391,7 @@ button.uppercase { font-size: 1em; }
     max-width: 750px !important;
     position: absolute;
     z-index: 1;
+    top: 0;
   }
 
   ul.slider.passementerie > li:nth-child(1) { left: 0; }
@@ -396,21 +402,20 @@ button.uppercase { font-size: 1em; }
     margin-left: -375px;
     border-left: 4px solid @rg-background;
     border-right: 4px solid @rg-background;
+    z-index: 2;
   }
-
-/*
-  ul.slider.passementerie > li:nth-child(2) {
-    min-width: 80% !important;
-    width: 80% !important;
-    max-width: 80% !important;
-  }
-*/
 
   ul.slider.passementerie > li .table { display: table; }
   ul.slider.passementerie > li .table-cell { display: table-cell; border: 2px solid @rg-background; }
   ul.slider.passementerie > li .table, ul.passementerie > li .table-cell { height: 100%; width: 100%; }
   
 }
+
+  /* ====================================== */
+  /* ====================================== */
+  /* Crazy Passementerie Styles             */ 
+  /* ====================================== */
+  /* ====================================== */
 
 @media (min-width: @screen-md-min) {
   ul.slider.passementerie > li {
@@ -423,6 +428,12 @@ button.uppercase { font-size: 1em; }
     margin-left: -485px;
   }
 }
+
+  /* ====================================== */
+  /* ====================================== */
+  /* Crazy Passementerie Styles             */ 
+  /* ====================================== */
+  /* ====================================== */
 
 @media (min-width: @screen-lg-min) {
   ul.slider.passementerie > li {
