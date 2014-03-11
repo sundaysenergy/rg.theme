@@ -29,6 +29,11 @@ $(document).ready(function() {
   function loadBeautyMobile(item_template) {
     // Retrieve the JSON that we will use to generate the slideshow
     $.getJSON(rg_options.api + '/beautyshots/index.json', function(data) {
+      _.forEach(data, function(item) {
+        item.pos = function() {
+          return _.findIndex(data, {img:item.img});  
+        }
+      });
       // Set the active attribute true for a random item
       data[_.random(0,data.length-1)].active = true;
       // Add the html to the document
