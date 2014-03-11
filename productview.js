@@ -754,15 +754,12 @@ $(document).ready(function() {
         $('ul.passementerie.slider li:visible').each(function(index, value) {
           var $li = $(this);
           var $img = $li.find('.img');
-          console.log($img);
           if (index !== 1 && maxheight>0) {
             $img.css('width','auto');
             $li.css('overflow','hidden');
           }
-          $img.on('load', function() {
-            var margin = ($li.height() / 2) - ($img.height() / 2);
-            $li.css('margin-top',margin).height($li.height()-margin);
-          });
+          var margin = ($li.height() / 2) - ($img.height() / 2);
+          $li.css('margin-top',margin).height($li.height()-margin);
         });
       }
     });
