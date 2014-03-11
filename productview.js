@@ -201,7 +201,10 @@ $(document).ready(function() {
       $('[id^=collection-menu]').hide();
       $('#products ul.list').removeClass('passementerie');
       $('ul.list li:visible .img,ul.list li:visible').attr('style','');
-      
+      $('li.collection-category a').on('click', function() {
+        console.log("resetting");
+        $('ul.list li:visible .img,ul.list li:visible').attr('style','');
+      });
       // Things to do if there is a collection present -- mostly moving things around visually
       if (_.isUndefined(collection) == false && _.isUndefined(srch)) {
         /*** TEXTILE COLLECTION ***/
