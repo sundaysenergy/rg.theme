@@ -40,13 +40,6 @@ $(document).ready(function() {
       $.when($('.carousel').html(item_template_mobile.render({slides:data}))).then(function() {
         // Start the carousel
         $('.carousel').carousel();
-        // Workaround for the indicators being buggy out of the box
-        $('.carousel').on('slid.bs.carousel', function() {
-          var to_slide = $('.carousel-inner .item.active').attr('id');
-          $('.carousel-indicators').children().removeClass('active');
-          $('.carousel-indicators [data-slide-to=' + to_slide.replace('item-','') + ']').addClass('active');
-        });
-
       });
     });
     return true;
@@ -105,14 +98,14 @@ $(document).ready(function() {
     return true;
   }
   // When we resize, regenerate everything since the coordinates will be different
-  $(window).on('resize', function() {
-    // Initial load
-    if ($(window).width() > 767) {
-      loadBeauty(item_template);
-    } else {
-      loadBeautyMobile(item_template_mobile);
-    }  
-  });
+  // $(window).on('resize', function() {
+  //   // Initial load
+  //   if ($(window).width() > 767) {
+  //     loadBeauty(item_template);
+  //   } else {
+  //     loadBeautyMobile(item_template_mobile);
+  //   }  
+  // });
   // Initial load
   if ($(window).width() > 767) {
     loadBeauty(item_template);
