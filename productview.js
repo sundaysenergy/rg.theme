@@ -262,6 +262,7 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
+      $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       // Create a string that contains parts of the hash that indicates need to refilter
       var current_page = _.map(_.pull(_.keys(hash.get()), 'pos', 'detailedview', 'cpos', 'dpos'), function(key) { return key + '=' + hash.get(key) }).join('&');
       
