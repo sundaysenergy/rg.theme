@@ -854,9 +854,9 @@ $(document).ready(function() {
           template_data.img_pass = productlist.matchingItems[last_item].values().img.replace('640.jpg','1170.jpg');
           var dummy_item = '';
           if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') === 'passementerie') {
-            dummy_item = dummy_template.render(template_data);
-          } else {
             dummy_item = dummy_template_pass.render(template_data);
+          } else {
+            dummy_item = dummy_template.render(template_data);
           }
           $('#products > ul.slider').prepend(dummy_item);
         }
