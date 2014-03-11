@@ -45,8 +45,10 @@ ul.slider div.add-fave {
   display: none;
 }
 
+#collection-menu-search-collection { text-align: center; }
+
 #collection-menu-search-collection button {
-  width: 33%;
+  width: 32.9%;
 }
 
 button.slide {
@@ -104,17 +106,28 @@ button.slide {
 }
 
 ul.collection-controls > li, 
-ul.collection-controls > li button {
+ul.collection-controls > li button,
+#collection-menu-search > li,
+#collection-menu-search > li button {
   font-weight: bold;
 } 
+
+#collection-menu-search > li.on-top,
+#collection-menu-search > li.on-top p.uppercase {
+  font-weight: normal;
+}
 
 ul.collection-controls li button {
   z-index: 100;
 } 
 
-ul.collection-controls > li.hug-center .uppercase {
+ul.collection-controls > li.hug-center .uppercase,
+#collection-menu-search-collection {
   font-weight: normal;
-  letter-spacing: 3px;
+}
+
+#collection-menu-search-collection button.active {
+  font-weight: bold;
 }
 
 ul.collection-controls .open .caret {
@@ -306,7 +319,8 @@ button.uppercase { font-size: 1em; }
 }
 
 .collection-controls.border-top {
-  padding-top: 10px !important;
+  padding-top: 12px !important;
+  margin-bottom: 10px;
 }
 
 /* ================================= */
@@ -359,27 +373,81 @@ button.uppercase { font-size: 1em; }
     margin-right: -1%;
   }
 
+  /* ====================================== */
+  /* ====================================== */
+  /* Crazy Passementerie Styles             */ 
+  /* ====================================== */
+  /* ====================================== */
+  ul.slider.passementerie {
+    position: relative !important;
+    height: 410px;
+  }
+
   ul.slider.passementerie > li {
     margin: 0;
     border-bottom: none;
     border-top: none;
+    min-width: 750px !important;
+    width: 750px !important;
+    max-width: 750px !important;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    height: 410px;
   }
 
-  ul.slider.passementerie > li:nth-child(1),
-  ul.slider.passementerie > li:nth-child(3) {
-    width: 10% !important;
-    max-width: 10% !important;
-  }
+  ul.slider.passementerie > li:nth-child(1) { left: 0; }
+  ul.slider.passementerie > li:nth-child(3) { right: 0; }
   
   ul.slider.passementerie > li:nth-child(2) {
-    width: 80% !important;
-    max-width: 80% !important;
+    background: @rg-background;
+    left: 50%;
+    margin-left: -375px;
+    border-left: 4px solid @rg-background;
+    border-right: 4px solid @rg-background;
+    z-index: 2;
   }
 
   ul.slider.passementerie > li .table { display: table; }
   ul.slider.passementerie > li .table-cell { display: table-cell; border: 2px solid @rg-background; }
   ul.slider.passementerie > li .table, ul.passementerie > li .table-cell { height: 100%; width: 100%; }
   
+}
+
+  /* ====================================== */
+  /* ====================================== */
+  /* Crazy Passementerie Styles             */ 
+  /* ====================================== */
+  /* ====================================== */
+
+@media (min-width: @screen-md-min) {
+  ul.slider.passementerie > li {
+    min-width: 970px !important;
+    width: 970px !important;
+    max-width: 970px !important;
+  }
+
+  ul.slider.passementerie > li:nth-child(2) {
+    margin-left: -485px;
+  }
+}
+
+  /* ====================================== */
+  /* ====================================== */
+  /* Crazy Passementerie Styles             */ 
+  /* ====================================== */
+  /* ====================================== */
+
+@media (min-width: @screen-lg-min) {
+  ul.slider.passementerie > li {
+    min-width: 1170px !important;
+    width: 1170px !important;
+    max-width: 1170px !important;
+  }
+
+  ul.slider.passementerie > li:nth-child(2) {
+    margin-left: -585px;
+  }
 }
 
 img {
@@ -574,6 +642,10 @@ ul.slider,
 .item-spotlight .item-icons {
   margin-top: 10px;
   margin-right: 10px;
+}
+
+.passementerie .item-spotlight .item-icons {
+  margin-top: 160px;
 }
 
 .item-spotlight .item-icons button {
@@ -809,7 +881,8 @@ ul.collection-controls li.hug-right {
 }
 
 /* Search Filter Amount Menu Styles */
-.collection-view-items .search-view-number {
+.collection-view-items .search-view-number,
+#collection-menu-search #search-view-number {
   top: 0;
   left: 50%;
   float: none;
@@ -820,21 +893,24 @@ ul.collection-controls li.hug-right {
   -webkit-box-shadow: 0 0 10px 0 @rg-gray;
   box-shadow: 0 0 10px 0 @rg-gray;
   background-clip: padding-box;
-  width: 40px;
-  min-width: 40px;
-  max-width: 40px;
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
   z-index: 10 !important;
 }
 
-.collection-view-items .search-view-number li {
+.collection-view-items .search-view-number li,
+#collection-menu-search #search-view-number li {
   display: list-item;
   margin: 0;
   padding: 0;
-  width: 40px;
+  width: 50px;
 }
 
 .collection-view-items .search-view-number li > a,
-.collection-view-items .search-view-number li > span {
+.collection-view-items .search-view-number li > span,
+#collection-menu-search #search-view-number li > a,
+#collection-menu-search #search-view-number li > span {
   background-color: transparent;
   display: block;
   clear: none;
@@ -846,11 +922,13 @@ ul.collection-controls li.hug-right {
   line-height: inherit;
   color: @rg-black;
   white-space: nowrap;
-  width: 40px
+  width: 50px
 }
 
 .collection-view-items .search-view-number li > a:hover,
-.collection-view-items .search-view-number li > span:hover {
+.collection-view-items .search-view-number li > span:hover,
+#collection-menu-search #search-view-number li > a:hover,
+#collection-menu-search #search-view-number li > span:hover {
   background-color: @rg-gray;
 }
 
@@ -929,9 +1007,7 @@ div.search-noresults {
 }
 
 .add-fave button,
-.alert-favorite button.close,
-#project-list-select button.editable-cancel,
-#project-list-select button.editable-submit {
+.alert-favorite button.close {
   border: none;
   box-shadow: none;
   display: block;
@@ -961,8 +1037,7 @@ div.search-noresults {
   width: 29px;
 }
 
-#project-list-select .editable-container.editable-inline,
-#project-list-select .editable-container.editable-inline * {
+#project-list-select .editable-container.editable-inline {
   width: 100%;
 }
 
@@ -973,28 +1048,6 @@ div.search-noresults {
 #project-list-select .editableform .form-control {
   width: 100%;
   padding: 0 !important;
-}
-
-#project-list-select .editableform .editable-buttons {
-  width: 37%;
-  text-align: left;
-}
-
-#project-list-select .editable-container button.editable-submit,
-#project-list-select .editable-container button.editable-cancel {
-  display: inline-block;
-  height: 29px;
-  width: 36px;
-  vertical-align: middle;
-}
-
-#project-list-select .editable-container button.editable-submit {
-  background: @rg-dark-gold;
-  color: @rg-background;
-}
-
-#project-list-select .editable-container button.editable-cancel {
-  background: transparent url(img/detail-big-close.png) center center no-repeat;
 }
 
 /* tim adds */

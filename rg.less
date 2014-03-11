@@ -1,3 +1,5 @@
+/* font stack?   font-family: "Adobe Caslon Pro", "adobe-caslon-pro", "Droid Serif", "Times New Roman", Times, Georgia, serif; */
+
 button, a, map, map area {
   outline:none;
   -moz-user-select: none;
@@ -52,13 +54,44 @@ span.caret-up {
 .item-spotlight .item-information {
   background: @rg-background;
   display: none;
-  margin: 0 28%;
+  margin: 0 -125px;
   padding: 10px;
   position: absolute;
-  top: 6%;
-  width: 44%;
-  height: 88%;
+  top: 10%;
+  left: 50%;
+  width: 250px;
+  height: 80%;
   overflow: auto;
+  font-size: 1.15em;
+  box-shadow: 0 0 10px 0 #848484;
+}
+
+.passementerie .item-spotlight .item-information {
+  margin: 0 12.5%;
+  position: absolute;
+  top: 165px;
+  left: inherit;
+  width: 75%;
+  height: auto;
+  overflow: auto;
+}
+
+.passementerie .item-spotlight .item-information table {
+  padding: 14px;
+  vertical-align: middle;
+  text-align: center;
+  width: 100%;
+}
+
+.passementerie .item-spotlight .item-information table td {
+  padding: 0 7px;
+  vertical-align: middle;
+  text-align: center;
+  width: auto;
+}
+
+.passementerie .item-spotlight .item-information table p {
+  margin: .66em 0;
 }
 
 .item-spotlight .item-icons {
@@ -67,13 +100,22 @@ span.caret-up {
   right: 0;
 }
 
+.passementerie .item-spotlight .item-icons button {
+  display: list-item;
+  margin-bottom: 5px;
+  position: absolute;
+  right: 0;
+}
+
+.passementerie .item-spotlight .item-icons button:nth-child(1) { top: 5px; }
+.passementerie .item-spotlight .item-icons button:nth-child(2) { top: 37px; }
+.passementerie .item-spotlight .item-icons button:nth-child(3) { top: 69px; }
+
 .item-spotlight #item-colors {
   background: @rg-background;
   height: 120px;
   padding: 15px;
 }
-
-/* font stack?   font-family: "Adobe Caslon Pro", "adobe-caslon-pro", "Droid Serif", "Times New Roman", Times, Georgia, serif; */
 
 body {
   padding-bottom: 60px;
@@ -348,7 +390,7 @@ main{
 .masthead h1.sitename {
   background: @rg-background;
   box-shadow: none;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   margin: 0 auto;
   padding-top: 20px;
 }
@@ -497,16 +539,18 @@ ul#collection li {
 .add-bottom { margin-bottom: 40px; }
 .add-top    { margin-top: 40px; }
 .border-top { border-top: 1px solid @rg-black; padding-top: 20px; }
-.uppercase  { text-transform: uppercase; }
+.uppercase  { text-transform: uppercase; letter-spacing: 2px; }
 
 /** general text page styles **/
 .text-area {
   max-width: 720px;
   margin: 20px auto 0;
   padding: 0;
-  font-size: 1.25em;
-  line-height: 1.6;
+  font-size: 1.15em;
+  line-height: 1.55;
 }
+
+.about .text-area p { margin-bottom: 1.15em; }
 
 @media screen and (max-width: 740px) {
   .text-area {
@@ -562,11 +606,6 @@ footer p, footer ul {
   padding: 0;
 }
 
-footer span.uppercase {
-  text-transform: lowercase;
-  font-variant:small-caps;
-}
-
 footer .disclaimer-img {
   color:@rg-gray;
   margin-bottom: 1em;
@@ -585,17 +624,33 @@ ul.footerlinks li {
   margin: 0 10px;
 }
 
+footer span.uppercase,
 footer .link-two {
-  text-transform: lowercase;
-  font-variant:small-caps;
+  text-transform: uppercase;
+  font-size: .9em;
 }
 
 .link-two, .trade-login ul a {
   color: @rg-black;
   text-decoration: underline;
 }
+
 .link-two:hover, .trade-login ul a:hover {
   color: @rg-gray;
+}
+
+ul.collections li a:hover,
+ul.pager li button:hover,
+ul.existing-projects li .list-name:hover,
+ul.existing-projects li button:hover {
+  color: @rg-gray;
+  text-decoration: none;
+}
+
+.pager #search-view-number li > a:hover, .pager #search-view-number li > a:focus {
+  background: transparent;
+  color: @rg-gray;
+  text-decoration: none;
 }
 
 button.plain {
@@ -664,7 +719,6 @@ button.plain {
 }
 
 #project-edit, #project-new, .download-pdf, .download-pdf-flash {
-  letter-spacing: 2px; 
   margin: 0 10px;
   padding: 8px 16px 4px;
 }
@@ -689,7 +743,6 @@ button.plain {
 .contact .toggle h2 { 
   cursor: pointer; 
   font-size: 1.2em;
-  letter-spacing: 2px;
   line-height: 1;
   margin: 0;
   padding: 0;
@@ -716,7 +769,8 @@ button.plain {
 
 .showrooms ul > li.showroom {
   font-size: 1.15em;
-  margin-bottom: 2em;
+  margin-top: 1em;
+  margin-bottom: 4em;
   vertical-align: top;
   width: 99%;
 }

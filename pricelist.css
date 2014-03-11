@@ -14,17 +14,13 @@
   margin: 0;
 }
 
-.pager li>a, .pager li>span {
+.pager li > a, .pager li > span, .pager li > a:hover, .pager li > span:hover,.pager .disabled > a, .pager .disabled > a:hover, .pager .disabled > a:focus, .pager .disabled > span {
   background: transparent;
   border: 0;
 }
 
-.pager .disabled>a, .pager .disabled>a:hover, .pager .disabled>a:focus, .pager .disabled>span {
-  background: transparent;
-}
-
 .pricelist-header,
-.pricelist-header .pager button{
+.pricelist-header .pager button {
   font-weight: bold;
   letter-spacing: 2px;
   font-size: 1em;
@@ -120,19 +116,28 @@ th.name, td.name {
   width: 17%;
 }
 
-th.id, td.id,
-th.tradeprice, td.tradeprice {
+th.color, td.color {
+  width: 11%;
+}
+
+th.id, td.id {
   width: 10%;
 }
 
 th.content, td.content {
-  width: 30%;
+  width: 28%;
 }
 
-th.color, td.color,
-th.repeat, td.repeat,
+th.repeat, td.repeat {
+  width: 13%;
+}
+
 th.width, td.width {
   width: 11%;
+}
+
+th.tradeprice, td.tradeprice {
+  width: 10%;
 }
 
 th {

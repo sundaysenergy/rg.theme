@@ -753,18 +753,15 @@ $(document).ready(function() {
           $('ul.slider > li > img').width(slideWidth);
         }
       } else {
+      
         $('ul.passementerie li:visible .img:visible,ul.passementerie li:visible').attr('style','');
         var maxheight = $('ul.passementerie.slider li:visible:nth-of-type(2)').find('.img').height();
         //console.log(maxheight);
         $('ul.passementerie.slider li:visible').each(function(index, value) {
           var $li = $(this);
           var $img = $li.find('.img');
-          if (index !== 1 && maxheight>0) {
-            $img.css('width','auto');
-            $li.css('overflow','hidden');
-          }
-          var margin = ($li.height() / 2) - ($img.height() / 2);
-          $li.css('margin-top',margin).height($li.height()-margin);
+          var margin = (($li.height() - $img.height())/2);
+          $img.css('margin-top',margin); /* this is simpler for now with more reliable results, but I am setting the height initially of the ul and li in the css... will eventually need a dynamic solution */
         });
       }
     });
