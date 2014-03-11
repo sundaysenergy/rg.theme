@@ -584,10 +584,6 @@ ul.footerlinks li {
 
 footer span.uppercase,
 footer .link-two {
-/*
-  text-transform: lowercase;
-  font-variant:small-caps;
-*/
   text-transform: uppercase;
   font-size: .9em;
 }
@@ -604,7 +600,13 @@ footer .link-two {
 ul.collections li a:hover,
 ul.pager li button:hover,
 ul.existing-projects li .list-name:hover,
-ul.existing-projects li button:hover  {
+ul.existing-projects li button:hover {
+  color: @rg-gray;
+  text-decoration: none;
+}
+
+.pager li > a:hover, .pager li > a:focus {
+  background: transparent;
   color: @rg-gray;
   text-decoration: none;
 }
