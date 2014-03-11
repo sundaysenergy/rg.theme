@@ -106,9 +106,16 @@ button.slide {
 }
 
 ul.collection-controls > li, 
-ul.collection-controls > li button {
+ul.collection-controls > li button,
+#collection-menu-search > li,
+#collection-menu-search > li button {
   font-weight: bold;
 } 
+
+#collection-menu-search > li.on-top,
+#collection-menu-search > li.on-top p.uppercase {
+  font-weight: normal;
+}
 
 ul.collection-controls li button {
   z-index: 100;
@@ -312,7 +319,8 @@ button.uppercase { font-size: 1em; }
 }
 
 .collection-controls.border-top {
-  padding-top: 10px !important;
+  padding-top: 12px !important;
+  margin-bottom: 10px;
 }
 
 /* ================================= */
