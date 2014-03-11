@@ -31,26 +31,29 @@ html,body {
   max-width: none;
 }
 
-@media screen and (min-device-aspect-ratio: 4/3) {
+@media screen and (min-aspect-ratio: 4/3) {
   html,body {
     width: 100% !important;
     max-width: 100% !important;
   }
 
   #carousel-example-generic,
-  #carousel-example-generic .item,
-  .carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
+  #carousel-example-generic .item {
     overflow: hidden;
     max-height: none;
-    min-width: 100%;
     width: 100%;
+    min-width: 100%;
     max-width: none;
   }
 
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
     height: auto;
+    min-height: none;
+    max-height: none;
+    width: 100%;
+    min-width: 100%;
+    max-width: none;
   }
 }
 

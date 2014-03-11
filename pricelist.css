@@ -14,17 +14,17 @@
   margin: 0;
 }
 
-.pager li>a, .pager li>span {
+.pager li > a, .pager li > span {
   background: transparent;
   border: 0;
 }
 
-.pager .disabled>a, .pager .disabled>a:hover, .pager .disabled>a:focus, .pager .disabled>span {
+.pager .disabled > a, .pager .disabled > a:hover, .pager .disabled > a:focus, .pager .disabled > span {
   background: transparent;
 }
 
 .pricelist-header,
-.pricelist-header .pager button{
+.pricelist-header .pager button {
   font-weight: bold;
   letter-spacing: 2px;
   font-size: 1em;
