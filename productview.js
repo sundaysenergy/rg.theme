@@ -766,8 +766,8 @@ $(document).ready(function() {
           }
           var margin = ($li.height() / 2) - ($img.height() / 2);
           $li.css('margin-top',margin).height($li.height()-margin);
-*/
         });
+*/
       }
     });
 
