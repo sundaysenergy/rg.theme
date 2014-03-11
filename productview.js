@@ -752,7 +752,8 @@ $(document).ready(function() {
           $('ul.slider > li').height(slideHeight);
           $('ul.slider > li > img').width(slideWidth);
         }
-      } else {
+      } else {/*
+
         $('ul.passementerie li:visible .img:visible,ul.passementerie li:visible').attr('style','');
         var maxheight = $('ul.passementerie.slider li:visible:nth-of-type(2)').find('.img').height();
         //console.log(maxheight);
@@ -765,6 +766,7 @@ $(document).ready(function() {
           }
           var margin = ($li.height() / 2) - ($img.height() / 2);
           $li.css('margin-top',margin).height($li.height()-margin);
+*/
         });
       }
     });
