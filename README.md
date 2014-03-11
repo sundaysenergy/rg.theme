@@ -1,1 +1,1 @@
-Rogers and Goffigon theme files
+Rogers and Goffigon theme files.

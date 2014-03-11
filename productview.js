@@ -750,16 +750,19 @@ $(document).ready(function() {
       } else {
         $('ul.passementerie li:visible .img:visible,ul.passementerie li:visible').attr('style','');
         var maxheight = $('ul.passementerie.slider li:visible:nth-of-type(2)').find('.img').height();
-        console.log(maxheight);
+        //console.log(maxheight);
         $('ul.passementerie.slider li:visible').each(function(index, value) {
           var $li = $(this);
           var $img = $li.find('.img');
+          console.log($img);
           if (index !== 1 && maxheight>0) {
             $img.css('width','auto');
             $li.css('overflow','hidden');
           }
-          var margin = ($li.height() / 2) - ($img.height() / 2);
-          $li.css('margin-top',margin).height($li.height()-margin);
+          $img.on('load', function() {
+            var margin = ($li.height() / 2) - ($img.height() / 2);
+            $li.css('margin-top',margin).height($li.height()-margin);
+          });
         });
       }
     });
