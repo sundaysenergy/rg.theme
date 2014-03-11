@@ -13,7 +13,13 @@ html,body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+}
+
+#carousel-example-generic {
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: -1;
 }
 
 #carousel-example-generic,
@@ -21,15 +27,21 @@ html,body {
   text-align: center;
   width: 100%;
   max-width: 100%;
+  overflow: hidden;
 }
-
 
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   width: auto;
   max-width: none;
-  position: relative;
-  left: -12.5%;
+}
+
+@media screen and (device-aspect-ratio: 4/3) {
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+    height: auto;
+    width: 100%;
+  }
 }
 
 /* Small devices (tablets, 768px and up) */
@@ -50,6 +62,9 @@ html,body {
   #carousel-example-generic {
     width: 100%;
     cursor: pointer;
+    position: relative;
+    top: auto;
+    left: auto;
   }
   
   .carousel-inner .item {
