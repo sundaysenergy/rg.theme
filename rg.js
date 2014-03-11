@@ -7,10 +7,13 @@ $(document).ready(function() {
   });
   // Expose a search box when hovering over the icon
   $('.fa-search').parent().hover(function() {
-    $('#search-items').slideDown();
-    $('.fa-search').off('mouseenter');
+    if ($('#search-items').is(':visible') == false) {
+      $('#search-items').slideDown();
+    }
   }, function() {
-    $('#search-items').slideUp();
+    if ($('#search-items').is(':visible') == true) {
+      $('#search-items').slideUp();
+    }
   });
   // If there's a token, enable the sub navigation menu
   var token = $.cookie('token');
