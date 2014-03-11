@@ -1349,11 +1349,21 @@ $(document).ready(function() {
       e.stopPropagation();
     });
 
-    $('ul.nav-tabs li a').on('click touch', function(e) {
+    $('ul.nav-tabs li a').on('click touch touchstart', function(e) {
       e.preventDefault();
       $(this).tab('show');
       return false;
     });
+
+    $('.dropdown-toggle').click(function(e) {
+      e.preventDefault();
+      setTimeout($.proxy(function() {
+        if ('ontouchstart' in document.documentElement) {
+          $(this).siblings('.dropdown-backdrop').off().remove();
+        }
+      }, this), 0);
+    });
+
   });
 });
 
