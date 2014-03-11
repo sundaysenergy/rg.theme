@@ -79,16 +79,20 @@ span.caret-up {
 
 .passementerie .item-spotlight .item-information table {
   padding: 4px;
-  vertical-align: top;
+  vertical-align: middle;
   text-align: center;
   width: 100%;
 }
 
 .passementerie .item-spotlight .item-information table td {
   padding: 0 7px;
-  vertical-align: top;
+  vertical-align: middle;
   text-align: center;
   width: auto;
+}
+
+.passementerie .item-spotlight .item-information table p {
+  margin: .66em 0;
 }
 
 .item-spotlight .item-icons {
@@ -97,14 +101,16 @@ span.caret-up {
   right: 0;
 }
 
-.passementerie .item-spotlight .item-icons { text-align: right; }
 .passementerie .item-spotlight .item-icons button {
   display: list-item;
-  text-align: right;
   margin-bottom: 5px;
   position: absolute;
   right: 0;
 }
+
+.passementerie .item-spotlight .item-icons button:nth-child(1) { top: 5px; }
+.passementerie .item-spotlight .item-icons button:nth-child(2) { top: 37px; }
+.passementerie .item-spotlight .item-icons button:nth-child(3) { top: 69px; }
 
 .item-spotlight #item-colors {
   background: @rg-background;
