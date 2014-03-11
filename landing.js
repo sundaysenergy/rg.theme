@@ -98,14 +98,14 @@ $(document).ready(function() {
     return true;
   }
   // When we resize, regenerate everything since the coordinates will be different
-  // $(window).on('resize', function() {
-  //   // Initial load
-  //   if ($(window).width() > 767) {
-  //     loadBeauty(item_template);
-  //   } else {
-  //     loadBeautyMobile(item_template_mobile);
-  //   }  
-  // });
+  $(window).on('resize', function() {
+    // Initial load
+    if ($(window).width() > 767) {
+      loadBeauty(item_template);
+    } else {
+      loadBeautyMobile(item_template_mobile);
+    }  
+  });
   // Initial load
   if ($(window).width() > 767) {
     loadBeauty(item_template);
