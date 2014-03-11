@@ -15,13 +15,6 @@ html,body {
   padding: 0;
 }
 
-#carousel-example-generic {
-  position: absolute;
-  top:0;
-  left:0;
-  z-index: -1;
-}
-
 #carousel-example-generic,
 #carousel-example-generic .item {
   text-align: center;
@@ -36,7 +29,14 @@ html,body {
   max-width: none;
 }
 
-@media screen and (device-aspect-ratio: 4/3) {
+@media screen and (min-device-aspect-ratio: 4/3) {
+  #carousel-example-generic,
+  #carousel-example-generic .item {
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
     height: auto;
@@ -62,9 +62,6 @@ html,body {
   #carousel-example-generic {
     width: 100%;
     cursor: pointer;
-    position: relative;
-    top: auto;
-    left: auto;
   }
   
   .carousel-inner .item {
