@@ -200,6 +200,7 @@ $(document).ready(function() {
 
       $('[id^=collection-menu]').hide();
       $('#products ul.list').removeClass('passementerie');
+      $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       
       // Things to do if there is a collection present -- mostly moving things around visually
       if (_.isUndefined(collection) == false && _.isUndefined(srch)) {
@@ -262,7 +263,7 @@ $(document).ready(function() {
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
-      $('ul.list li:visible .img,ul.list li:visible').attr('style','');
+
       // Create a string that contains parts of the hash that indicates need to refilter
       var current_page = _.map(_.pull(_.keys(hash.get()), 'pos', 'detailedview', 'cpos', 'dpos'), function(key) { return key + '=' + hash.get(key) }).join('&');
       
