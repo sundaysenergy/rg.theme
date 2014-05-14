@@ -31,7 +31,7 @@ $(document).ready(function() {
     $.getJSON(rg_options.api + '/beautyshots/index.json', function(data) {
       _.forEach(data, function(item) {
         item.pos = function() {
-          return _.findIndex(data, {img:item.img});  
+          return _.findIndex(data, {img:item.img});
         }
       });
       // Set the active attribute true for a random item
@@ -54,7 +54,7 @@ $(document).ready(function() {
       // Index our slides
       _.forEach(data, function(item) {
         item.pos = function() {
-          return _.findIndex(data, {img:item.img});  
+          return _.findIndex(data, {img:item.img});
         }
         // Add coordinate information to each item
         for (var i=1;i<=5;i++) {
@@ -104,7 +104,7 @@ $(document).ready(function() {
       loadBeauty(item_template);
     } else {
       loadBeautyMobile(item_template_mobile);
-    }  
+    }
   });
   // Initial load
   if ($(window).width() > 767) {
@@ -120,7 +120,7 @@ $(document).ready(function() {
   }
 });
 
-$(window).resize(function(){     
+$(window).resize(function(){
   if ($('header').width() >= 768 ){
     $('.navwrap').removeClass( "collapse navbar-collapse" )
   }
