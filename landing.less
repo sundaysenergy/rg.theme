@@ -98,10 +98,18 @@ html,body {
   }
   
   .carousel-indicators li {
-    border-color: @rg-background !important;
+    border-color: none !important;
+    background-color: @rg-background !important;
+    width: 4px;
+    height: 4px;
+    margin: 2px 4px;
   }
   .carousel-indicators .active {
+    border-color: none !important;
     background-color: @rg-background !important;
+    margin: 0px 0 -2px;
+    width: 12px;
+    height: 12px;
   }
   
   .carousel-control {
