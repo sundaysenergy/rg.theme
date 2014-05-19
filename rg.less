@@ -196,28 +196,6 @@ main{
   box-shadow: 0 0 10px 0 #c8c8c8;
 }
 
-@media (min-width: @screen-sm-min) { 
-  .navbar-toggle { display: none; }
-  
-  .masthead, .masthead:hover {
-    -webkit-transition: none;
-    -moz-transition: none;
-    -o-transition: none;
-    -ms-transition: none;
-    transition: none;
-    box-shadow: none;
-  }
-  
-  .masthead h1.sitename {
-    box-shadow: none;
-  }
-  
-  .masthead h1.sitename:hover {
-    box-shadow: none;
-  }
-
-}
-
 .masthead nav,
 .masthead nav .navwrap,
 .masthead nav ul,
@@ -230,7 +208,7 @@ main{
 .masthead nav {
   width: 160px;
   margin: 0 auto;
-  padding-top: 30px;
+  padding-top: 0;
 }
 
 .masthead nav .navwrap {
@@ -289,6 +267,29 @@ main{
 }
 
 @media (min-width: @screen-sm-min) {
+  .navbar-toggle { display: none; }
+  
+  .masthead, .masthead:hover {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    -ms-transition: none;
+    transition: none;
+    box-shadow: none;
+  }
+  
+  .masthead h1.sitename {
+    box-shadow: none;
+  }
+  
+  .masthead h1.sitename:hover {
+    box-shadow: none;
+  }
+
+  .masthead nav {
+    padding-top: 30px;
+  }
+
   .landing nav {
     background: url('img/nav-dd.png') center 10px no-repeat;
   }
@@ -393,7 +394,6 @@ main{
   box-shadow: none;
   letter-spacing: 2px;
   margin: 0 auto;
-  padding-top: 20px;
 }
 
 .masthead h1.sitename a {
@@ -423,7 +423,6 @@ main{
   .masthead h1.sitename {
     box-shadow: 0 0 10px 0 #eae8e3;
     margin: 40px auto 0;
-    padding-top: 0;
   }
   
   .masthead h1.sitename:hover {
@@ -584,13 +583,10 @@ ul#collection li {
 }
 
 @media screen and (min-height:901px) {
-  .text-area, main.contact {
-    margin-top: 150px;
-  }
   .contact .text-area.slider {
     margin-bottom: 150px;
   }
-  footer {margin-top: 210px;}
+  footer {margin-top: 150px;}
 }
 
 .text-area.add-bottom {
