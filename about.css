@@ -1,6 +1,7 @@
 #carousel-example-generic {
   max-width: 800px;
   max-height: 400px;
+  margin: 20px auto 0;
 }
 
 .carousel-indicators li {
@@ -18,3 +19,5 @@
   margin: 0;
   width: 16px;
 }
+
+.text-area p { margin-bottom: 1.25em; }
