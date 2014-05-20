@@ -9,12 +9,11 @@ html,body {
 
 header, .masthead {
   background: @rg-background;
-  padding-top: 40px;
-  box-shadow: 0 0 10px 0 #EAE8E3;
+  box-shadow: 0 0 10px 0 @rg-black;
 }
 
-h1.sitename {
-  padding-top: 0 !important;
+.masthead h1.sitename {
+  margin-top: 0 !important;
 }
 
 .landing,
@@ -79,7 +78,11 @@ h1.sitename {
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: @screen-sm-min) {
-  
+
+  header, .masthead {
+    padding-top: 40px;
+  }
+   
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
     width: 100%;
