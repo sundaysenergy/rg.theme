@@ -101,8 +101,14 @@ button.slide {
   display: none;
 }
 
+/*
 #products ul.anon-favorites {
   margin-top: 10px;
+}
+
+*/
+#collection-menu-faves {
+  padding-top: 9px;
 }
 
 .anon-favorites li:hover .item-favorite-remove,
@@ -142,6 +148,10 @@ button.slide {
   margin: 0 0 10px 0;
 }
 
+.anon-favorites .pager button.plain {
+  margin: -5px -10px;
+} 
+
 @media (min-width: @screen-sm-min) {
   .anon-favorites > li {
     height: auto;
@@ -153,6 +163,7 @@ button.slide {
     padding-right: 5px;
     margin: 0 0 10px 0;
   }
+
 }
 
 @media (min-width: @screen-md-min) {
@@ -166,6 +177,33 @@ button.slide {
     padding-right: 5px;
     margin: 0 0 10px 0;
   }
+}
+
+div.anonymous-share-field,
+div.anonymous-share-field input,
+div.anonymous-share-field label {
+  position: relative;
+}
+
+div.anonymous-share-field input,
+div.anonymous-share-field label {
+  display: inline-block;
+}
+
+div.anonymous-share-field {
+  top:-2px;
+}
+
+div.anonymous-share-field label {
+  font-size: 14px;
+  font-weight: normal;
+  height: 20px;
+  letter-spacing: 2px;
+  line-height: 20px;
+}
+
+div.anonymous-share-field input {
+  top:-1px;
 }
 
 ul.collection-controls > li, 
