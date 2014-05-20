@@ -407,7 +407,7 @@ $(document).ready(function() {
           },
           function(response) {
             // We're just throwing this information in one of the headers for now
-            $('.pager li:nth-child(4)')
+            $('.pager li:nth-child(2)')
             .find('input')
             .val(response.data.url)
             .on('click', function(e) { $(this).select(); });
