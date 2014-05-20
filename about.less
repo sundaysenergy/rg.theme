@@ -1,8 +1,44 @@
 #carousel-example-generic {
   max-width: 800px;
-  max-height: 400px;
-  margin: 20px auto 0;
+  margin: 20px auto;
   position: relative;
+  overflow: hidden;
+  text-align: center;
+  min-height: 200px;
+  max-height: 200px;
+}
+
+.carousel-inner,  
+.carousel-inner > .item {
+  height: 200px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  #carousel-example-generic {
+    min-height: 200px;
+    max-height: 350px;
+  }
+  
+  .carousel-inner,  
+  .carousel-inner > .item {
+    height: 350px;
+    text-align: center;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #carousel-example-generic {
+    max-height: 400px;
+  }
+  
+  .carousel-inner,  
+  .carousel-inner > .item {
+    height: 400px;
+  }
 }
 
 .carousel-indicators li {
@@ -57,6 +93,27 @@
   text-decoration: none;
   opacity: 1 !important;
   filter: alpha(opacity=100) !important;
+}
+
+/* http://css-tricks.com/centering-in-the-unknown/ - this is what I used for vertical centering... works like a charm! */
+/* here is some other info too: http://gtwebdev.com/workshop/vcenter/vcenter-inline-css.php */
+
+.carousel-inner > .item:before {
+  content: '';
+  display: inline-block;
+  height: 100%; 
+  vertical-align: middle;
+  margin: -.5%;
+ }
+
+.carousel-inner > .item > img, 
+.carousel-inner > .item > a > img {
+  display: inline-block;
+  vertical-align: middle;
+  max-height: 100%;
+  max-width: 98%;
+  height: auto;
+  margin: 0;
 }
 
 .text-area p { margin-bottom: 1.25em; }
