@@ -7,7 +7,12 @@ ul.trade-items > li > img {
   min-width: 103%;
 }
 
-ul.trade-items button.remove-trade-item,
+ul.trade-item button.remove-trade-item,
+.list .item-favorite-remove {
+  display: none;
+}
+
+ul.trade-items li:hover button.remove-trade-item,
 .anon-favorites li:hover .item-favorite-remove,
 .anon-favorites li:hover .item-favorite-remove button {
   display: block;
