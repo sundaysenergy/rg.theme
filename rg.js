@@ -60,7 +60,6 @@ $(document).ready(function() {
   $('section.showrooms h2').click(function () {
     $(this).parent().children('.slider').slideToggle();
     $('section.general-inquiries').children('.slider').slideUp();
-
   });
 
 });
