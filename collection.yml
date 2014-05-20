@@ -70,3 +70,7 @@ landing:
     - landing.less
   js:
     - landing.js
+about:
+  css:
+    - variables.less
+    - about.less
