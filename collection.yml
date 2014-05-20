@@ -74,4 +74,5 @@ about:
   css:
     - variables.less
     - about.less
-
+  js:
+    - about.js
