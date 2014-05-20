@@ -205,10 +205,14 @@ $(document).ready(function() {
         console.log("resetting");
         $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       });
+            
+      $('#collection-headers-after').removeClass('border-top');
+
       // Things to do if there is a collection present -- mostly moving things around visually
       if (_.isUndefined(collection) == false && _.isUndefined(srch)) {
         /*** TEXTILE COLLECTION ***/
         if (collection == 'textile') {
+          $('#collection-headers-after').removeClass('border-top');
           $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
@@ -220,6 +224,7 @@ $(document).ready(function() {
         }
         /*** PASSEMENTERIE COLLECTION ***/
         if (collection == 'passementerie') {
+          $('#collection-headers-after').removeClass('border-top');
           $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 0) {
@@ -238,6 +243,7 @@ $(document).ready(function() {
         }
         /*** LEATHER COLLECTION ***/
         if (collection == 'leather') {
+          $('#collection-headers-after').addClass('border-top');
           $('#products,#collection-menu-leather,#collection-menu-main-inactive,#collection-menu-passementerie-inactive').show();
           // Move inactive headers back to original container if necessary
           if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 1) {
