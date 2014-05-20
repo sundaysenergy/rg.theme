@@ -434,115 +434,9 @@ main{
 
 /** END Logo, Nav, Masthead... **/
 /** ************************************************************ **/
-/** ************************************************************ **/
-/* ===== Styles for jquery carousel ===== */
-/* LAYOUT */
-#l-collection{
-  overflow: hidden;
-}
-
-/* MODULES */
-#collection{ }
-ul#collection{ }
-ul#collection li {
-  float: left;
-  display: block;
-  overflow: hidden;
-  margin-right: 10px;
-  position: relative;
-}
-
-/* what are these styles for? */
-.cotton{
-  background-color: grey;
-}
-.horsehair{
-  background-color: aqua;
-}
-.wool{
-  background-color: fuchsia;
-}
-.alpaca{
-  background-color: navy;
-}
-.linen{
-  background-color: red;
-}
-/* === */
-
-/* PANEL STYLES*/
-.collection-panel{
-  border-top: 2px solid black;
-  text-align: center;
-}
-.collection-panel *:not(li){
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.pagination p + p:before{
-  content: "/ ";
-}
-.collection-panel-wrap{
-  margin: 0 auto;
-}
-#rightarrow{
-  float: right;
-}
-#leftarrow{
-  float: left;
-}
-
-/* FILTER */
-#filter{
-  float: left;
-  position: absolute;
-  z-index: 4;
-  margin-left: -115px;
-  margin-top: 20px;
-}
-
-#filter:hover{
-  background-color: #ffffff;
-  box-shadow: 0px 0px 1px 2px #e8e8e8;
-}
-
-#filter ul{
-  text-align: left;
-  padding-left: 9px;
-  padding-right: 9px;
-  margin-top: 6px;
-}
-#filter ul:before {
-  content: "Filter";
-}
-
-#filter ul li{
-  display: none;
-}
-#filter:hover li{
-  display: list-item;
-}
-#filter ul li a:before{
-  display: inline-block;
-  width: 9px;
-  height: 9px;
-  border: 1px solid rgba(160,160,160,1);
-  margin-right: 9px;
-  content: "";
-}
-#filter ul li a.active:before{
-  display: inline-block;
-  width: 9px;
-  height: 9px;
-  background-color: rgba(160,160,160,1);
-  margin-right: 9px;
-  content: "";
-}
 
 /** general usefulness **/
-.add-bottom { margin-bottom: 40px; }
-.add-top    { margin-top: 40px; }
+.add-bottom { margin-bottom: 30px; }
 .border-top { border-top: 1px solid @rg-black; padding-top: 20px; }
 .uppercase  { text-transform: uppercase; letter-spacing: 2px; }
 
@@ -555,7 +449,7 @@ ul#collection li {
   line-height: 1.55;
 }
 
-.about .text-area p { margin-bottom: 1.15em; }
+.about .text-area p { margin-bottom: 1.25em; }
 
 @media screen and (max-width: 740px) {
   .text-area {
