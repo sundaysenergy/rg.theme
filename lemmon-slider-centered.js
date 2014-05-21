@@ -99,61 +99,6 @@
             }
 
           } );
-          $slider.bind( 'nextPage', function( e, t ) {
-
-            var scroll = $slider.scrollLeft();
-            var w = $slider.width();
-            var x = 0;
-            var slide = 0;
-
-            $items.each( function( i ) {
-              if( $( this ).position().left < w ) {
-                x = $( this ).position().left;
-                slide = i;
-              }
-            } );
-
-            if( x > 0 && scroll + w + 1 < originalWidth ) {
-              slideTo( e, $slider, scroll + x, slide, 'slow' );
-            } else if( options.loop ) {
-              // return to first
-              slideTo( e, $slider, 0, 0, 'slow' );
-            }
-
-          } );
-          $slider.bind( 'prevPage', function( e, t ) {
-
-            var scroll = $slider.scrollLeft();
-            var w = $slider.width();
-            var x = 0;
-
-            $items.each( function( i ) {
-              if( $( this ).position().left < 1 - w ) {
-                x = $( this ).next().position().left;
-                slide = i;
-              }
-            } );
-
-            if( scroll ) {
-              if( x == 0 ) {
-                //$slider.animate({ 'scrollLeft' : 0 }, 'slow' );
-                slideTo( e, $slider, 0, 0, 'slow' );
-              } else {
-                //$slider.animate({ 'scrollLeft' : scroll + x }, 'slow' );
-                slideTo( e, $slider, scroll + x, slide, 'slow' );
-              }
-            } else if( options.loop ) {
-              // return to last
-              var a = $sliderContainer.outerWidth() - $slider.width();
-              var b = $items.filter( ':last' ).position().left;
-              if( a > b ) {
-                $slider.animate( { 'scrollLeft': b }, 'slow' );
-              } else {
-                $slider.animate( { 'scrollLeft': a }, 'slow' );
-              }
-            }
-
-          } );
           $slider.bind( 'slideTo', function( e, i, t ) {
 
             slideTo(
@@ -164,20 +109,21 @@
           } );
 
           // controls
+          var $li = $('.slider li').not('.-before, .-after');
+          var $cili = $('.carousel-indicators li');
+          var n = $li.length;
+          var o = ($li.filter('.active').index())-n;  
+
           $sliderControls.find( '.next-slide' ).click( function() {
             $slider.trigger( 'nextSlide' );
+            $cili.removeClass('active');
+            $cili.eq(o).addClass('active');
             return false;
           } );
           $sliderControls.find( '.prev-slide' ).click( function() {
             $slider.trigger( 'prevSlide' );
-            return false;
-          } );
-          $sliderControls.find( '.next-page' ).click( function() {
-            $slider.trigger( 'nextPage' );
-            return false;
-          } );
-          $sliderControls.find( '.prev-page' ).click( function() {
-            $slider.trigger( 'prevPage' );
+            $cili.removeClass('active');
+            $cili.eq(o).addClass('active');
             return false;
           } );
 
@@ -231,14 +177,10 @@
 
         $slider.unbind( 'nextSlide' );
         $slider.unbind( 'prevSlide' );
-        $slider.unbind( 'nextPage' );
-        $slider.unbind( 'prevPage' );
         $slider.unbind( 'slideTo' );
 
         $sliderControls.find( '.next-slide' ).unbind( 'click' );
         $sliderControls.find( '.prev-slide' ).unbind( 'click' );
-        $sliderControls.find( '.next-page' ).unbind( 'click' );
-        $sliderControls.find( '.next-page' ).unbind( 'click' );
 
         $slider.removeData( 'slider' );
 

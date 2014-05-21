@@ -19,3 +19,15 @@ $(window).resize(function() {
   $('#photostream').width(ww).css('margin-left', (ww/2)*-1);
 });
 
+var $li = $('.slider li').not('.-before, .-after');
+var n = $li.length;
+var o = ($li.filter('.active').index())-n;  
+
+$('.controls').on('click','a.carousel-control',function() {
+  $('.carousel-indicators li').removeClass('active').eq(o).addClass('active');
+});
+
+console.log(n);
+console.log(o);
+
+$('.carousel-indicators li').removeClass('active').eq(o).addClass('active');
