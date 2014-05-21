@@ -1,3 +1,12 @@
+#project-list-select,
+#projects-anonymous,
+#anonymous-faves-alert,
+.passementerie .item-spotlight .item-information table,
+.passementerie .item-spotlight .item-information table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
 .item-spotlight {
   top: 0;
   right: 0;
@@ -32,15 +41,11 @@
 
 .passementerie .item-spotlight .item-information table {
   padding: 14px;
-  vertical-align: middle;
-  text-align: center;
   width: 100%;
 }
 
 .passementerie .item-spotlight .item-information table td {
   padding: 0 7px;
-  vertical-align: middle;
-  text-align: center;
   width: auto;
 }
 
@@ -78,18 +83,37 @@
 #anonymous-faves-alert {
   background: @rg-background;
   box-shadow: 0 0 10px 0 #848484;
-  height: 160px;
   margin:0;
   padding: 0;
   position:fixed; 
-  text-align: center;
-  vertical-align: middle;
-  width: 430px;
   z-index:11111;
   top:50%;
-  margin-top: -80px;
   left:50%;
+}
+
+#project-list-select,
+#projects-anonymous {
+  height: 160px;
+  width: 430px;
+  margin-top: -80px;
   margin-left: -215px;
+}
+
+#anonymous-faves-alert {
+  height: 110px;
+  width: 280px;
+  margin-top: -55px;
+  margin-left: -140px;
+}
+
+#anonymous-faves-alert .inner p {
+  margin: 0;
+  line-height: 1.66;
+}
+
+#anonymous-faves-alert .inner p a {
+  color: @rg-black;
+  text-decoration: underline;
 }
 
 #project-list-select > form,
