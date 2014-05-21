@@ -239,8 +239,52 @@ $(document).ready(function() {
             }
           });
           $('#products').insertAfter('#collection-menu-passementerie');
+
+          // Toggle to thumb view mode
+          // Hide details for center slide in "horizontal" view
+          productlist.page = rg_options.vertical_page;
+          productlist.update();
+          var pos = 0;
+          // If we have fewer visible items than page size and matching != visible (one page with only a few items)
+          if ((productlist.visibleItems.length < productlist.page) && 
+              (productlist.visibleItems.length != productlist.matchingItems.length)) {
+            var remainder = productlist.matchingItems.length;
+            var pagesize = productlist.page;
+            // Calculate the remainder -- switch to math based method below sometime.
+            while (remainder > pagesize) { remainder = remainder - pagesize; }
+            pos = parseInt(productlist.matchingItems.length-remainder+1);
+          }  else {
+            // Calculate the nearest multiple of per page by casting as an integer without going over. Like The Price is Right.
+            pos = parseInt(productlist.i / rg_options.vertical_page) * rg_options.vertical_page + 1;
+          }
+          $('#products > ul.list').removeClass('slider');
+          $('.slide').toggle();
+          $('.thumbs').toggle();
+          $('.collection-view-items').show();
+          $('.collection-view-items a').each(function(i) {
+            $(this).on('click touch', function(e) {
+              e.preventDefault();
+              var items = $(this).data('show-items');
+              var i = productlist.i;
+              productlist.page = items;
+              rg_options.vertical_page = items; 
+              // Set position to the same page that would contain item with new quantity/page
+              var newpos = parseInt(productlist.i / items) * items + 1;
+              // Set the display value to the current number of items
+              $('button .show-items').html(items);
+              // Add our position to the hash and update the list
+              hash.add({pos:newpos});
+              productlist.update();
+            });
+          });
+          $('ul.list li .item-spotlight').remove();
+          hash.add({pos:pos});
+          productlist.update();
+          $(window).trigger('visRearrange');
+
           $(window).trigger('resizeSlides');
         }
+        
         /*** LEATHER COLLECTION ***/
         if (collection == 'leather') {
           $('#collection-headers-after').addClass('border-top');
