@@ -77,7 +77,5 @@ about:
     - variables.less
     - about.less
   js:
-    - cycle2.js
-    - cycle2.carousel.js
-    - lemmon-slider.js
+    - lemmon-slider-centered.js
     - about.js
