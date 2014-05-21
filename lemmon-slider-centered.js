@@ -90,7 +90,7 @@
               // return to last
               var a = $sliderContainer.outerWidth() - $slider.width();
               var b = $items.filter( ':last' ).position().left;
-              slide = $items.size() - 1;
+              slide = $items.length() - 1;
               if( a > b ) {
                 slideTo( e, $slider, b, slide, 'slow' );
               } else {
@@ -109,21 +109,12 @@
           } );
 
           // controls
-          var $li = $('.slider li').not('.-before, .-after');
-          var $cili = $('.carousel-indicators li');
-          var n = $li.length;
-          var o = ($li.filter('.active').index())-n;  
-
           $sliderControls.find( '.next-slide' ).click( function() {
             $slider.trigger( 'nextSlide' );
-            $cili.removeClass('active');
-            $cili.eq(o).addClass('active');
             return false;
           } );
           $sliderControls.find( '.prev-slide' ).click( function() {
             $slider.trigger( 'prevSlide' );
-            $cili.removeClass('active');
-            $cili.eq(o).addClass('active');
             return false;
           } );
 
@@ -230,14 +221,14 @@
     var $active = $slider.items.filter( '.active' );
     if( $active.hasClass( '-before' ) ) {
 
-      var i = $active.prevAll().size();
+      var i = $active.prevAll().length();
       $active.removeClass( 'active' );
       $active = $slider.items.filter( ':not(.-before):eq(' + i + ')' ).addClass( 'active' );
       $slider.scrollLeft( $slider.scrollLeft() + $active.position().left - $slider.options.offset );
 
     } else if( $active.hasClass( '-after' ) ) {
 
-      var i = $active.prevAll( '.-after' ).size();
+      var i = $active.prevAll( '.-after' ).length();
       $active.removeClass( 'active' );
       $active = $slider.items.filter( ':not(.-before):eq(' + i + ')' ).addClass( 'active' );
       $slider.scrollLeft( $slider.scrollLeft() + $active.position().left - $slider.options.offset );
