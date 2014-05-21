@@ -3,7 +3,7 @@
   var _css = {};
 
   var methods = {
-    //
+
     // Initialzie plugin
     //
     init:    function( options ) {
@@ -17,9 +17,9 @@
         if( !data ) {
 
           var $sliderContainer = $slider.find( options.slider ),
-            $sliderControls = $slider.next().filter( '.controls' ),
-            $items = $sliderContainer.find( options.items ),
-            originalWidth = 1;
+              $sliderControls = $slider.next().filter( '.controls' ),
+              $items = $sliderContainer.find( options.items ),
+              originalWidth = 1;
 
           $items.each( function() { originalWidth += $( this ).outerWidth( true ) } );
           $sliderContainer.width( originalWidth );
@@ -130,7 +130,7 @@
       } );
 
     },
-    //
+
     // Add Item
     //
     addItem: function( options ) {
@@ -154,7 +154,7 @@
       }
       methods.init.apply( this, [options] );
     },
-    //
+
     // Destroy plugin
     //
     destroy: function() {
@@ -162,9 +162,9 @@
       return this.each( function() {
 
         var $slider = $( this ),
-          $sliderControls = $slider.next().filter( '.controls' ),
-          $items = $slider.find( '> *:first > *' ),
-          data = $slider.data( 'slider' );
+            $sliderControls = $slider.next().filter( '.controls' ),
+            $items = $slider.find( '> *:first > *' ),
+            data = $slider.data( 'slider' );
 
         $slider.unbind( 'nextSlide' );
         $slider.unbind( 'prevSlide' );
@@ -183,11 +183,9 @@
       } );
 
     }
-    //
-    //
-    //
+
   }
-  //
+
   // Private functions
   //
   function slideTo( e, $slider, x, i, t ) {
@@ -237,14 +235,12 @@
 
   }
 
-  //
   // Debug
   //
   function debug( text ) {
     $( '#debug span' ).text( text );
   }
 
-  //
   //
   //
   $.fn.lemmonSlider = function( method, options ) {
@@ -257,7 +253,7 @@
     }
 
   };
-  //
+
   //
   //
   $.fn.lemmonSlider.defaults = {
