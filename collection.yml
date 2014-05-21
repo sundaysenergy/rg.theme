@@ -79,4 +79,5 @@ about:
   js:
     - cycle2.js
     - cycle2.carousel.js
+    - lemmon-slider.js
     - about.js
