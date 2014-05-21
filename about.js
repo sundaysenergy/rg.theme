@@ -4,6 +4,7 @@
 // commenting to see if this works
 var ww = $(window).width();
 $('#photostream').width(ww).css('margin-left', (ww/2)*-1);
+$('#slider1').width(ww).css('margin-left', (ww/2)*-1);
 
 // lemmon
 
