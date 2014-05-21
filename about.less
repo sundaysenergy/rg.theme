@@ -2,7 +2,13 @@
 /* started with stuff from here: http://jquery.lemmonjuice.com/plugins/slider-variable-widths.php then heavily customized and tweaked */
 
 #photostream, #slider1, .slider, .slider ul, .slider li, .slider img {
-  height: 400px;
+  height: 200px;
+}
+
+@media (min-width: @screen-sm-min) {
+  #photostream, #slider1, .slider, .slider ul, .slider li, .slider img {
+    height: 400px;
+  }
 }
 
 #photostream {
