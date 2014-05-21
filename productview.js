@@ -272,34 +272,6 @@ $(document).ready(function() {
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
     $(window).on('hashchange', function(e) {
 
-      var $anon = $('#products ul.list');
-      var anontxt = $('#anon-fav-text');
-      var maintxt = $('#main-text');
-      var favtxt_shown = false;
-    
-      var show_favtxt = function() {
-        if ($anon.hasClass('anon-favorites')) {
-          console.log('show favtxt');
-          anontxt.show();
-          maintxt.hide();
-          favtxt_shown = true;
-        }
-        else if (favtxt_shown) {
-          console.log('hide favtxt');
-          anontxt.hide();
-          maintxt.show();
-          favtxt_shown = false;
-        }
-        else {
-          console.log('hide favtxt');
-          anontxt.hide();
-          maintxt.show();
-          favtxt_shown = false;
-        }
-      }
-  
-      show_favtxt();
-
       // Create a string that contains parts of the hash that indicates need to refilter
       var current_page = _.map(_.pull(_.keys(hash.get()), 'pos', 'detailedview', 'cpos', 'dpos'), function(key) { return key + '=' + hash.get(key) }).join('&');
       
@@ -1131,6 +1103,26 @@ $(document).ready(function() {
               }
               alert("Item " + id + " removed from favorites!");
             });
+            
+            var $prodlist = $('#products ul.list');
+            var anontxt = $('#anon-fav-text');
+            var maintxt = $('#main-text');
+          
+            var show_favtxt = function() {
+              if ($prodlist.hasClass('anon-favorites')) {
+                console.log('show favtxt');
+                anontxt.show();
+                maintxt.hide();
+              }
+              else {
+                console.log('hide favtxt');
+                anontxt.hide();
+                maintxt.show();
+              }
+            }
+        
+            show_favtxt();
+            
           });
         }
         $('ul.list li .item-spotlight').remove();
@@ -1397,29 +1389,20 @@ $(document).ready(function() {
       }, this), 0);
     });
 
-    var $anon = $('#products ul.list');
+    var $prodlist = $('#products ul.list');
     var anontxt = $('#anon-fav-text');
     var maintxt = $('#main-text');
-    var favtxt_shown = false;
   
     var show_favtxt = function() {
-      if ($anon.hasClass('anon-favorites')) {
+      if ($prodlist.hasClass('anon-favorites')) {
         console.log('show favtxt');
         anontxt.show();
         maintxt.hide();
-        favtxt_shown = true;
-      }
-      else if (favtxt_shown) {
-        console.log('hide favtxt');
-        anontxt.hide();
-        maintxt.show();
-        favtxt_shown = false;
       }
       else {
         console.log('hide favtxt');
         anontxt.hide();
         maintxt.show();
-        favtxt_shown = false;
       }
     }
 
