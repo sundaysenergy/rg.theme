@@ -90,7 +90,7 @@
               // return to last
               var a = $sliderContainer.outerWidth() - $slider.width();
               var b = $items.filter( ':last' ).position().left;
-              slide = $items.length() - 1;
+              slide = $items.size() - 1;
               if( a > b ) {
                 slideTo( e, $slider, b, slide, 'slow' );
               } else {
@@ -285,14 +285,14 @@
     var $active = $slider.items.filter( '.active' );
     if( $active.hasClass( '-before' ) ) {
 
-      var i = $active.prevAll().length();
+      var i = $active.prevAll().size();
       $active.removeClass( 'active' );
       $active = $slider.items.filter( ':not(.-before):eq(' + i + ')' ).addClass( 'active' );
       $slider.scrollLeft( $slider.scrollLeft() + $active.position().left - $slider.options.offset );
 
     } else if( $active.hasClass( '-after' ) ) {
 
-      var i = $active.prevAll( '.-after' ).length();
+      var i = $active.prevAll( '.-after' ).size();
       $active.removeClass( 'active' );
       $active = $slider.items.filter( ':not(.-before):eq(' + i + ')' ).addClass( 'active' );
       $slider.scrollLeft( $slider.scrollLeft() + $active.position().left - $slider.options.offset );
