@@ -1,39 +1,36 @@
 
 /* started with stuff from here: http://jquery.lemmonjuice.com/plugins/slider-variable-widths.php then heavily customized and tweaked */
 
-#photostream {
+#photostream, #slider1, .slider, .slider ul, .slider li, .slider img {
   height: 400px;
+}
+
+#photostream {
   position: relative;
   width: 100%;
   left: 50%;
   margin-left: 50%;
   z-index: 1;
-  margin-bottom: 50px
+  margin-bottom: 50px;
+  overflow: hidden;
 }
 
 /* Necessary CSS */
 #slider1 {
-  height: 400px;
   position: relative;
   width: 100%;
   z-index: 1;
 }
 
 .slider    { overflow:hidden; position:relative; }
-.slider ul { margin:0; padding:0; }
+.slider ul { margin:0; padding:0; position:relative; }
 .slider li { float:left; margin:0 5px 0 0; list-style:none; }
-.slider li img { 
-  height: 400px;
-  width: auto;
-}
+.slider li img { width: auto; }
+
 /* IE6 issues */
 .slider ul { width:100%; }
 
 /* slideshow controls */
-
-.carousel-indicators, .carousel-control {
-  z-index: 99;
-}
 
 .carousel-indicators {
   bottom: 0;
