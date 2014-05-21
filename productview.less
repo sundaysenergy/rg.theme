@@ -146,8 +146,7 @@ ul.collection-controls .pagecount {
   z-index: 100;
 }
 
-#filter-list,
-#filter-list-leather {
+.filter-list {
   position: absolute;
   left: -70px;
   top:-10px;
@@ -163,8 +162,7 @@ ul.collection-controls .pagecount {
   text-align: left;
 }
 
-#filter-list ul.nav-tabs,
-#filter-list-leather ul.nav-tabs {
+.filter-list ul.nav-tabs {
   margin: 0;
   padding: 0 0 10px 0;
   position: relative;
@@ -172,16 +170,13 @@ ul.collection-controls .pagecount {
   border-top: 1px solid #ddd;
 }
 
-#filter-list ul.nav-tabs li,
-#filter-list-leather ul.nav-tabs li {
+.filter-list ul.nav-tabs li {
   display: list-item;
   float: none;
 }
 
-#filter-list ul.nav-tabs li > a,
-#filter-list ul.nav-tabs li > span,
-#filter-list-leather ul.nav-tabs li > a,
-#filter-list-leather ul.nav-tabs li > span {
+.filter-list ul.nav-tabs li > a,
+.filter-list ul.nav-tabs li > span {
   background-color: transparent;
   border: none;
   color: @rg-gray;
@@ -193,15 +188,12 @@ ul.collection-controls .pagecount {
   letter-spacing: 1px;
 }
 
-#filter-list ul.nav-tabs li.active > a,
-#filter-list ul.nav-tabs li.active > span,
-#filter-list-leather ul.nav-tabs li.active > a,
-#filter-list-leather ul.nav-tabs li.active > span {
+.filter-list ul.nav-tabs li.active > a,
+.filter-list ul.nav-tabs li.active > span {
   color: @rg-black;
 }
 
-#filter-list fieldset,
-#filter-list-leather fieldset {
+.filter-list  fieldset {
   border: none;
   color: @rg-gray;
   font-size: 11px;
@@ -210,8 +202,7 @@ ul.collection-controls .pagecount {
   margin: 0;
 }
 
-#filter-list fieldset label,
-#filter-list-leather fieldset label {
+.filter-list  fieldset label {
   display: list-item;
   float: none;
   width: auto;
@@ -221,33 +212,28 @@ ul.collection-controls .pagecount {
   text-transform: uppercase;
 }
 
-#filter-list fieldset label input,
-#filter-list-leather fieldset label input {
+.filter-list fieldset label input {
   float: none;
   margin: 0;
 }
 
-#filter-list fieldset label.disabled,
-#filter-list-leather fieldset label.disabled {
+.filter-list fieldset label.disabled {
   color: #ccc; 
 }
 
-#filter-list fieldset label.disabled input,
-#filter-list-leather fieldset label.disabled input {
+.filter-list fieldset label.disabled input {
   visibility: hidden;
 }
 
 @media (min-width: @screen-sm-min) { 
-  #filter-list,
-  #filter-list-leather {
+  .filter-list {
     width: 700px;
     left: -70px;
     top:-10px;
     text-align: center;
   }
   
-  #filter-list ul.nav-tabs,
-  #filter-list-leather ul.nav-tabs {
+  .filter-list ul.nav-tabs {
     border-top: none;
     padding-top: 0;
     margin: 0 20px;
@@ -255,34 +241,27 @@ ul.collection-controls .pagecount {
     top: 40px;
   }
   
-  #filter-list ul.nav-tabs li,
-  #filter-list-leather ul.nav-tabs li {
+  .filter-list ul.nav-tabs li {
     display: inline-block;
     float: none;
   }
   
-  #filter-list ul.nav-tabs li > a,
-  #filter-list ul.nav-tabs li > span,
-  #filter-list-leather ul.nav-tabs li > a,
-  #filter-list-leather ul.nav-tabs li > span {
+  .filter-list ul.nav-tabs li > a,
+  .filter-list ul.nav-tabs li > span {
     margin:0 20px;
     padding: 5px 14px;
   }
   
-  #filter-list ul.nav-tabs li.active > a,
-  #filter-list ul.nav-tabs li.active > span,
-  #filter-list-leather ul.nav-tabs li.active > a,
-  #filter-list-leather ul.nav-tabs li.active > span {
+  .filter-list ul.nav-tabs li.active > a,
+  .filter-list ul.nav-tabs li.active > span {
     color: @rg-black;
   }
   
-  #filter-list fieldset,
-  #filter-list-leather fieldset {
+  .filter-list fieldset {
     padding: 60px 10px 15px 20px;
   }
   
-  #filter-list fieldset label,
-  #filter-list-leather fieldset label {
+  .filter-list fieldset label {
     display: block;
     float: left;
     width: 25%;
