@@ -5,7 +5,6 @@
     background: transparent !important;
     box-shadow: none !important;
   }
-  .visible-print { display: block; }
   a,
   a:visited {
     text-decoration: underline;
@@ -69,4 +68,30 @@
   .table-bordered td {
     border: 1px solid #ddd !important;
   }
+  
+  
+  /**** favorites related stuff *****/
+  @page {
+    margin: 0.5in;
+  }
+
+  .visible-print { display: block; display: initial; }
+
+  body, .container, .row, .pager { 
+    width: 100%; 
+    margin-left: 0; 
+    margin-right: 0; 
+    padding-left: 0; 
+    padding-right: 0;
+    font-size: 12pt;
+  }
+  
+  header, video, audio, object, embed {
+    display: none;
+  }
+  
+  img {
+    max-width: 500px;
+  }
+  
 }
