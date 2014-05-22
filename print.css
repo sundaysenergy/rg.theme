@@ -1,10 +1,20 @@
 @media print {
-  * {
+  * { 
+    background: transparent !important; 
     color: #000 !important;
-    text-shadow: none !important;
-    background: transparent !important;
+    text-shadow: none !important; 
+    filter:none !important; 
+    -ms-filter: none !important; 
+    -webkit-box-shadow: none !important; 
+    -moz-box-shadow: none !important; 
     box-shadow: none !important;
+    margin: 0;
+    padding: 0;
   }
+  
+  thead { display: table-header-group; } /* h5bp.com/t */
+  tr, img { page-break-inside: avoid; }
+  
   a,
   a:visited {
     text-decoration: underline;
@@ -69,13 +79,15 @@
     border: 1px solid #ddd !important;
   }
   
-  
   /**** favorites related stuff *****/
   @page {
     margin: 0.5in;
   }
 
-  .visible-print { display: block; display: initial; }
+  .visible-print {
+    display: block !important;
+    display: initial !important;
+  }
 
   body, .container, .row, .pager { 
     width: 100%; 
@@ -86,12 +98,29 @@
     font-size: 12pt;
   }
   
-  header, video, audio, object, embed {
+  header, video, audio, object, embed,
+  main .text-area {
     display: none;
   }
-  
-  img {
-    max-width: 500px;
+    
+  .anon-favorites li {
+    height: 1.25in;
+    max-width: 33%;
+    width: 33%;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 0 0 10px 0;
+    overflow: auto;
+    position: relative;
   }
-  
+
+  .anon-favorites li img {
+    width: 100%;
+    position: relative;
+  }
+
+  .anon-favorites li img {
+    width: 100%;
+    position: relative;
+  }  
 }

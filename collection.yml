@@ -16,6 +16,7 @@ projects:
     - projects.less
     - popups.less
     - favorites.less
+    - print.css
   js:
     - sortable.min.js
     - list.min.js
@@ -27,6 +28,7 @@ productview:
     - productview.less
     - popups.less
     - favorites.less
+    - print.css
   js:
     - list.min.js
     - js/bootstrap-editable.min.js
