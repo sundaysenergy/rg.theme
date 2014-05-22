@@ -7,6 +7,30 @@
   text-align: center;
 }
 
+.new-project.alert,
+#project-list-select,
+#projects-anonymous,
+#anonymous-faves-alert,
+.item-spotlight .item-information {
+  background: @rg-background;
+  -webkit-box-shadow: @popup-box-shadow;
+  -moz-box-shadow: @popup-box-shadow;
+  box-shadow: @popup-box-shadow;
+}
+
+.new-project.alert,
+#project-list-select,
+#projects-anonymous,
+#anonymous-faves-alert {
+  margin:0;
+  padding: 0;
+  position:fixed; 
+  z-index:11111;
+  top:50%;
+  left:50%;
+}
+
+
 .item-spotlight {
   top: 0;
   right: 0;
@@ -15,20 +39,34 @@
 }
 
 .item-spotlight .item-information {
-  background: @rg-background;
   display: none;
   margin: 0 -125px;
   padding: 10px;
   position: absolute;
-  top: 10%;
+  top: 50%;
   left: 50%;
   width: 250px;
-  height: 80%;
   overflow: auto;
-  font-size: 1.15em;
-  -webkit-box-shadow: @popup-box-shadow;
-  -moz-box-shadow: @popup-box-shadow;
-  box-shadow: @popup-box-shadow;
+}
+
+.item-spotlight .item-information .no-price {
+  height: 280px;
+  margin-top: -140px;
+}
+
+.item-spotlight .item-information .price {
+  height: 320px;
+  margin-top: -160px;
+}
+
+.passementerie .item-spotlight .item-information p,
+.item-spotlight .item-information p {
+  color: @rg-gray;
+}
+
+.passementerie .item-spotlight .item-information p strong,
+.item-spotlight .item-information p strong{
+  color: @rg-black;
 }
 
 .passementerie .item-spotlight .item-information {
@@ -84,22 +122,6 @@
 /*********************************************/
 /*********************************************/
 /*********************************************/
-
-.new-project.alert,
-#project-list-select,
-#projects-anonymous,
-#anonymous-faves-alert {
-  background: @rg-background;
-  -webkit-box-shadow: @popup-box-shadow;
-  -moz-box-shadow: @popup-box-shadow;
-  box-shadow: @popup-box-shadow;
-  margin:0;
-  padding: 0;
-  position:fixed; 
-  z-index:11111;
-  top:50%;
-  left:50%;
-}
 
 #project-list-select {
   height: 120px;
@@ -240,6 +262,10 @@ ul.slider #anonymous-faves-alert {
   position: absolute;
 }
 
-/* appearance:button;
-/* -moz-appearance:button; /* Firefox */
-/* -webkit-appearance:button; /* Safari and Chrome */
+
+/*********************************************/
+/*********************************************/
+/*********************************************/
+/*********************************************/
+/*********************************************/
+/*********************************************/
