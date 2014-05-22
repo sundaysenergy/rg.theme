@@ -42,6 +42,8 @@ span.caret-up {
   border-top: none !important; 
   border-bottom: none !important;
   border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
   box-shadow: none;
   text-align: center;
 }
@@ -108,6 +110,8 @@ main{
   padding-right: 0;
   padding-left: 0;
   border-top: 1px solid transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
   box-shadow: none;
   -webkit-overflow-scrolling: touch;
 }
@@ -118,10 +122,14 @@ main{
   -o-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-  box-shadow: 0 0 10px 0 #848484;
+  -webkit-box-shadow: @popup-box-shadow;
+  -moz-box-shadow: @popup-box-shadow;
+  box-shadow: @popup-box-shadow;
 }
 
 .masthead:hover {
+  -webkit-box-shadow: 0 0 10px 0 #c8c8c8;
+  -moz-box-shadow: 0 0 10px 0 #c8c8c8;
   box-shadow: 0 0 10px 0 #c8c8c8;
 }
 
@@ -198,20 +206,21 @@ main{
 @media (min-width: @screen-sm-min) {
   .navbar-toggle { display: none; }
   
-  .masthead, .masthead:hover {
+  .masthead,
+  .masthead:hover {
     -webkit-transition: none;
     -moz-transition: none;
     -o-transition: none;
     -ms-transition: none;
     transition: none;
-    box-shadow: none;
   }
   
-  .masthead h1.sitename {
-    box-shadow: none;
-  }
-  
+  .masthead,
+  .masthead:hover,
+  .masthead h1.sitename,
   .masthead h1.sitename:hover {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
     box-shadow: none;
   }
 
@@ -320,6 +329,8 @@ main{
 .masthead h1.sitename {
   width: 90%;
   background: @rg-background;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
   box-shadow: none;
   letter-spacing: 2px;
   margin: 0 auto;
@@ -351,12 +362,16 @@ main{
   }
   
   .masthead h1.sitename {
+    -webkit-box-shadow: 0 0 10px 0 #eae8e3;
+    -moz-box-shadow: 0 0 10px 0 #eae8e3;
     box-shadow: 0 0 10px 0 #eae8e3;
     margin: 40px auto 0;
     padding: 0;
   }
   
   .masthead h1.sitename:hover {
+    -webkit-box-shadow: 0 0 10px 0 #c8c8c8;
+    -moz-box-shadow: 0 0 10px 0 #c8c8c8;
     box-shadow: 0 0 10px 0 #c8c8c8;
   }
 }
@@ -658,5 +673,7 @@ li.showroom span.smallcaps {
 
 /* tim adds */
 input[name="item-search"]:focus {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
   box-shadow: none;
 }
