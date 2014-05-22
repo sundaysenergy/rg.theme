@@ -102,7 +102,8 @@
   main .text-area {
     display: none;
   }
-    
+  
+  ul.trade-items li,
   .anon-favorites li {
     height: 1.25in;
     max-width: 33%;
@@ -114,13 +115,17 @@
     position: relative;
   }
 
+  ul.trade-items li,
   .anon-favorites li img {
     width: 100%;
     position: relative;
   }
 
-  .anon-favorites li img {
+  ul.trade-items li .extras,
+  .anon-favorites li .extras {
     width: 100%;
-    position: relative;
+    position: absolute;
+    top:0;
+    background:white;
   }  
 }
