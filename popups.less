@@ -179,6 +179,7 @@
 /*********************************************/
 /*********************************************/
 
+.new-project button.close,
 .add-fave button,
 .alert-favorite button.close {
   border: none;
@@ -193,6 +194,7 @@
   white-space: nowrap;
 }
 
+.new-project button.close,
 .alert-favorite button.close {
   background: transparent url(img/close-x.png) center center no-repeat;
   position: absolute;
@@ -208,6 +210,26 @@
   background: transparent url(img/small-add-to-fav.png) center center no-repeat;
   height: 29px;
   width: 29px;
+}
+
+.new-project.alert {
+  background: @rg-background;
+  position:fixed;
+  top:50%;
+  left:50%;
+  margin-top: -50px;
+  margin-left: -175px;
+  height: 100px;
+  width: 350px;
+  box-shadow: 0 0 10px 0 #EAE8E3;
+}
+
+.new-project.alert > form {
+  margin-top: 15px;
+}
+
+.new-project.alert > form input.form-control {
+  margin-left: 18px;
 }
 
 /* tim adds */
