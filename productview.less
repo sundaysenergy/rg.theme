@@ -46,10 +46,20 @@ button.slide {
   display: none;
 }
 
-#collection-menu-search-collection { text-align: center; }
+#collection-menu-search-collection {
+  text-align: center;
+}
 
 #collection-menu-search-collection button {
-  width: 32.9%;
+  display: block;
+  width: 100%;
+}
+
+@media (min-width: @screen-md-min) {
+  #collection-menu-search-collection button {
+    display: inline-block;
+    width: 32.9%;
+  }
 }
 
 #collection-menu-faves {
