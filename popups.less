@@ -133,6 +133,7 @@
 #project-list-select .editable-container.editable-inline {
   margin-left:15px;
   margin-right:15px;
+  white-space: nowrap; /* prevent wrapping buttons on new line */
 }
 
 #project-list-select > form {
@@ -140,28 +141,35 @@
   margin-bottom: 10px;
 }
 
-#project-list-select > label {
+#project-list-select label {
   color: #848484;
   background-color: transparent;
   font-weight: normal;
 }
 
-#project-list-select span.editable-container.editable-inline {
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-}
-
 #project-list-select > form .form-control {
+  width: 60%;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 #project-list-select .editable-container.editable-inline {
+  display: block;
+  text-align: center;
+}
+
+#project-list-select .editableform .control-group {
+  width:100%;
 }
 
 #project-list-select .editableform .editable-input {
+  margin-left: 45px;
 }
 
 #project-list-select .editableform .form-control {
+  width: 200px;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 /*********************************************/
