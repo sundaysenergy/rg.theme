@@ -2,15 +2,15 @@
 
 $(document).ready(function() {
   /* Initialize the dropzones */
-  var dz_closeup = $('.closeup form').dropzone({ 
-                                url: "http://h2.cape.io/upload", 
-                                maxFiles: 1, 
+  var dz_closeup = $('.closeup form').dropzone({
+                                url: "http://h2.cape.io/upload",
+                                maxFiles: 1,
                                 acceptedFiles: 'image/jpeg'
                               });
-  var dz_faraway = $('.faraway form').dropzone({ 
-                                url: "http://h2.cape.io/upload", 
-                                maxFiles: 1, 
-                                acceptedFiles: 'image/jpeg' 
+  var dz_faraway = $('.faraway form').dropzone({
+                                url: "http://h2.cape.io/upload",
+                                maxFiles: 1,
+                                acceptedFiles: 'image/jpeg'
                               });
   /* Typeahead.js for autocompleting products */
   $.ajax({ url: rg_options.api + '/items/client_data.json' })
