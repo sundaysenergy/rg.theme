@@ -232,12 +232,12 @@ $(document).ready(function() {
           }
           // Move the #products div after the passementerie header bar
           $('#products ul.list').addClass('passementerie');
-          $('#products ul.passementerie li').each(function() {
-            var $image = $(this).find('.img');
-            if (_.isUndefined($image.attr('src')) == false) {
-              $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg'));
-            }
-          });
+          // $('#products ul.passementerie li').each(function() {
+          //   var $image = $(this).find('.img');
+          //   if (_.isUndefined($image.attr('src')) == false) {
+          //     $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg'));
+          //   }
+          // });
           $('#products').insertAfter('#collection-menu-passementerie');
           $(window).trigger('resizeSlides');
         }
@@ -774,21 +774,21 @@ $(document).ready(function() {
     /**** THINGS TO DO WHEN THE LIST UPDATES (i.e. position, items, or filters change) ****/
     productlist.on('updated', function() {
       $('ul.anon-favorites li').attr('style','');
-      if (hash.get('collection') == 'passementerie') {
-        $('#products ul.passementerie li').each(function() {
-          var $image = $(this).find('.img');
-          if (_.isUndefined($image.attr('src')) == false) {
-            $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg'));
-          }
-        });
-      } else {
-        $('#products ul.list li').each(function() {
-          var $image = $(this).find('.img');
-          if (_.isUndefined($image.attr('src')) == false) {
-            $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg'));
-          }
-        });
-      }
+      // if (hash.get('collection') == 'passementerie') {
+      //   $('#products ul.passementerie li').each(function() {
+      //     var $image = $(this).find('.img');
+      //     if (_.isUndefined($image.attr('src')) == false) {
+      //       $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg'));
+      //     }
+      //   });
+      // } else {
+      //   $('#products ul.list li').each(function() {
+      //     var $image = $(this).find('.img');
+      //     if (_.isUndefined($image.attr('src')) == false) {
+      //       $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg'));
+      //     }
+      //   });
+      // }
       // Update i if we have fewer items than the starting position
       if (productlist.i > productlist.matchingItems.length) {
         productlist.i = productlist.matchingItems.length;
@@ -853,7 +853,7 @@ $(document).ready(function() {
           var last_item = productlist.matchingItems.length-1;
           if (last_item < 0) last_item = 0;
           var template_data = productlist.matchingItems[last_item].values();
-          template_data.img_pass = productlist.matchingItems[last_item].values().img.replace('640.jpg','1170.jpg');
+          template_data.img_pass = productlist.matchingItems[last_item].values().img;//.replace('640.jpg','1170.jpg');
           var dummy_item = '';
           if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') === 'passementerie') {
             dummy_item = dummy_template_pass.render(template_data);
