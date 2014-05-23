@@ -34,11 +34,31 @@
 }
 
 .pricelist-header .pageselect {
-  left: -35%;
+  left: -11%;
 }
 
 .pricelist-header .pagecount {
-  left: 35%;
+  left: 11%;
+}
+
+@media screen and (min-width:768px) {
+  .pricelist-header .pageselect {
+    left: -22%;
+  }
+  
+  .pricelist-header .pagecount {
+    left: 22%;
+  }
+}
+
+@media screen and (min-width:992px) {
+  .pricelist-header .pageselect {
+    left: -33%;
+  }
+  
+  .pricelist-header .pagecount {
+    left: 33%;
+  }
 }
 
 .pricelist-header .pageselect button.on-top {
@@ -154,6 +174,10 @@ th {
 }
 
 button.download-pdf-flash {
+  display: none;
+}
+
+li.disabled {
   display: none;
 }
 
