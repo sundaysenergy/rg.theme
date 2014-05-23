@@ -57,7 +57,7 @@ $(document).ready(function() {
     var colors = combined.colors;
 
     // Function for calculating related products in different colors
-    var findColors = function(itemno) { 
+    var findColors = function(itemno) {
       var variations = this[itemno];
       return _.map(variations, function(v) { return itemno + '-' + v; });
     }
@@ -187,7 +187,7 @@ $(document).ready(function() {
 
     /*** CREATE A NEW PRODUCT LIST ***/
     var productlist = new List('products', options, data);
-    
+
     // Set defaults for horizontal mode including position and slider class
     $('#products > ul.list').addClass('slider');
     if (_.isUndefined(hash.get('pos'))) hash.add({pos:0});
@@ -205,7 +205,7 @@ $(document).ready(function() {
         console.log("resetting");
         $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       });
-            
+
       $('#collection-headers-after').removeClass('border-top');
 
       // Things to do if there is a collection present -- mostly moving things around visually
@@ -235,7 +235,7 @@ $(document).ready(function() {
           $('#products ul.passementerie li').each(function() {
             var $image = $(this).find('.img');
             if (_.isUndefined($image.attr('src')) == false) {
-              $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg')); 
+              $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg'));
             }
           });
           $('#products').insertAfter('#collection-menu-passementerie');
@@ -274,7 +274,7 @@ $(document).ready(function() {
 
       // Create a string that contains parts of the hash that indicates need to refilter
       var current_page = _.map(_.pull(_.keys(hash.get()), 'pos', 'detailedview', 'cpos', 'dpos'), function(key) { return key + '=' + hash.get(key) }).join('&');
-      
+
       // If there isn't an existing value, create one for string comparison
       if (_.isUndefined(sessionStorage.currentpage)) {
         sessionStorage.currentpage = '';
@@ -330,7 +330,7 @@ $(document).ready(function() {
         }
       }
 
-      // Clear any existing filter if our unique string is different 
+      // Clear any existing filter if our unique string is different
       if (current_page !== sessionStorage.currentpage) {
         productlist.filter();
         // Remove disabled class from color and attribute filters
@@ -344,7 +344,7 @@ $(document).ready(function() {
         // Show the search header bar and hide the others
         $('#products,#collection-menu-search,#collection-menu-search-collection').show();
         // Switch between search collections
-        $("#collection-menu-search-collection button").on('click touch', function(e) { 
+        $("#collection-menu-search-collection button").on('click touch', function(e) {
           e.preventDefault();
           var col = $(this).data('collection');
           hash.add({collection: col });
@@ -404,7 +404,7 @@ $(document).ready(function() {
         // Get the bit.ly url
         $.getJSON(
           "http://api.bitly.com/v3/shorten?callback=?",
-          { 
+          {
             "format": "json",
             "apiKey": "R_b83cfe54d0ecae82a9086a21fe834814",
             "login": "sundaysenergy",
@@ -419,14 +419,14 @@ $(document).ready(function() {
           }
         );
       }
-      
+
       /***********************************/
       /**** PROCESS FILTERS FROM HASH ****/
       /***********************************/
       var vals = [collection,f,srch,faves,color,desc,lid,use];
       var pass_filter = [ 'P-0101-01', 'P-0103-01', 'P-0103-02', 'P-0103-05' ];
 
-      // Only process the filters if our string has changed 
+      // Only process the filters if our string has changed
       if (current_page !== sessionStorage.currentpage) {
         // Process the filter if there are any terms other than undefined in our hash list
         if (_.some(vals, function(item) { return _.isUndefined(item) == false })) {
@@ -469,7 +469,7 @@ $(document).ready(function() {
               var search_string = _.chain(item.values()).values().compact().filter(function(val) { return _.isFunction(val) == false; }).join(' ').value();
               // Split the search string and sort into two arrays for colors and not colors
               var search_terms = srch.split(' ');
-              var color_search_terms = _.remove(search_terms, function(item) { 
+              var color_search_terms = _.remove(search_terms, function(item) {
                                                                 var col = _.indexOf(combined.color_words, item.toUpperCase());
                                                                 return col >= 0;
                                                               });
@@ -503,7 +503,7 @@ $(document).ready(function() {
               // any color search terms
               if (!match) return false;
             }
-            
+
             /*** PROCESS COLLECTION FILTER ***/
             if (typeof(collection) != 'undefined') {
               if (item.values().collection.toLowerCase().indexOf(collection.toLowerCase()) >= 0) {
@@ -514,7 +514,7 @@ $(document).ready(function() {
             }
 
             /* PROCESS ATTRIBUTES AND COLORS
-               If we've either matched the collection, or there is no collection specified, proceed. 
+               If we've either matched the collection, or there is no collection specified, proceed.
                Assumption is that anything else means the collection is specified, but failed to match. */
             if (match || (typeof(collection) == 'undefined')) {
               /*** PROCESS ATTRIBUTES ***/
@@ -595,7 +595,7 @@ $(document).ready(function() {
         } // END PROCESS FILTERS FROM HASH
       }
       sessionStorage.currentpage = current_page;
-      
+
       /*** DEAL WITH LIST POSITIONING BASED ON HASH ***/
       var pos = hash.get('pos');
       // If position is undefined, start at either 0 or 1, depending on view mode
@@ -746,7 +746,7 @@ $(document).ready(function() {
       return false;
     });
 
-    
+
     /*** JAVASCRIPT TWEAKS FOR SETTING IMAGE HEIGHT ***/
     $(window).on('resizeSlides', function() {
       $('ul.list li:visible .img,ul.list li:visible').attr('style','');
@@ -758,7 +758,7 @@ $(document).ready(function() {
           $('ul.slider > li > img').width(slideWidth);
         }
       } else {
-      
+
         $('ul.passementerie li:visible .img:visible,ul.passementerie li:visible').attr('style','');
         var maxheight = $('ul.passementerie.slider li:visible:nth-of-type(2)').find('.img').height();
         //console.log(maxheight);
@@ -778,15 +778,15 @@ $(document).ready(function() {
         $('#products ul.passementerie li').each(function() {
           var $image = $(this).find('.img');
           if (_.isUndefined($image.attr('src')) == false) {
-            $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg')); 
-          }    
+            $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg'));
+          }
         });
       } else {
         $('#products ul.list li').each(function() {
           var $image = $(this).find('.img');
           if (_.isUndefined($image.attr('src')) == false) {
-            $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg')); 
-          }    
+            $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg'));
+          }
         });
       }
       // Update i if we have fewer items than the starting position
@@ -862,10 +862,10 @@ $(document).ready(function() {
           }
           $('#products > ul.slider').prepend(dummy_item);
         }
-      } 
+      }
       if (productlist.i == productlist.matchingItems.length-1) {
         $('#products > ul.slider').append(dummy_template.render(productlist.matchingItems[0].values()));
-      } 
+      }
       if ((!((productlist.i == productlist.matchingItems.length-1) || (productlist.i <= 0)) && (productlist.matchingItems.length != 1)) ||
           (productlist.page == rg_options.vertical_page)) {
         $('#products > ul.slider li.item-bookends').remove();
@@ -915,9 +915,9 @@ $(document).ready(function() {
             // Nothing here yet
           } else {
             hash.add({detailedview:id});
-          }        
+          }
         });
-        
+
         // Create click handlers for the icon and the close button
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
           e.preventDefault();
@@ -1103,11 +1103,11 @@ $(document).ready(function() {
               }
               alert("Item " + id + " removed from favorites!");
             });
-            
+
             var $prodlist = $('#products ul.list');
             var anontxt = $('#anon-fav-text');
             var maintxt = $('#main-text');
-          
+
             var show_favtxt = function() {
               if ($prodlist.hasClass('anon-favorites')) {
                 console.log('show favtxt');
@@ -1120,9 +1120,9 @@ $(document).ready(function() {
                 maintxt.show();
               }
             }
-        
+
             show_favtxt();
-            
+
           });
         }
         $('ul.list li .item-spotlight').remove();
@@ -1332,7 +1332,7 @@ $(document).ready(function() {
       productlist.update();
       var pos = 0;
       // If we have fewer visible items than page size and matching != visible (one page with only a few items)
-      if ((productlist.visibleItems.length < productlist.page) && 
+      if ((productlist.visibleItems.length < productlist.page) &&
           (productlist.visibleItems.length != productlist.matchingItems.length)) {
         var remainder = productlist.matchingItems.length;
         var pagesize = productlist.page;
@@ -1353,7 +1353,7 @@ $(document).ready(function() {
           var items = $(this).data('show-items');
           var i = productlist.i;
           productlist.page = items;
-          rg_options.vertical_page = items; 
+          rg_options.vertical_page = items;
           // Set position to the same page that would contain item with new quantity/page
           var newpos = parseInt(productlist.i / items) * items + 1;
           // Set the display value to the current number of items
@@ -1392,7 +1392,7 @@ $(document).ready(function() {
     var $prodlist = $('#products ul.list');
     var anontxt = $('#anon-fav-text');
     var maintxt = $('#main-text');
-  
+
     var show_favtxt = function() {
       if ($prodlist.hasClass('anon-favorites')) {
         console.log('show favtxt');
