@@ -8,6 +8,7 @@
   border-bottom: 1px solid #848484;
   margin-top: 90px;
   margin-bottom: 15px;
+  height: 39px;
 }
 
 .pricelist-header .pager {
@@ -34,11 +35,31 @@
 }
 
 .pricelist-header .pageselect {
-  left: -35%;
+  left: -11%;
 }
 
 .pricelist-header .pagecount {
-  left: 35%;
+  left: 11%;
+}
+
+@media screen and (min-width:768px) {
+  .pricelist-header .pageselect {
+    left: -22%;
+  }
+  
+  .pricelist-header .pagecount {
+    left: 22%;
+  }
+}
+
+@media screen and (min-width:992px) {
+  .pricelist-header .pageselect {
+    left: -33%;
+  }
+  
+  .pricelist-header .pagecount {
+    left: 33%;
+  }
 }
 
 .pricelist-header .pageselect button.on-top {
@@ -64,30 +85,30 @@
 
 .pricelist-header .pageselect #pricelist-view-number li>a, 
 .pricelist-header .pageselect #pricelist-view-number li>span {
-background-color: transparent;
-display: block;
-clear: none;
-margin: 0;
-padding: 3px 0 0 0;
-border: none;
-border-radius: 0;
-font-weight: inherit;
-line-height: inherit;
-color: #262019;
-white-space: nowrap;
-width: 55px;
+  background-color: transparent;
+  display: block;
+  clear: none;
+  margin: 0;
+  padding: 3px 0 0 0;
+  border: none;
+  border-radius: 0;
+  font-weight: inherit;
+  line-height: inherit;
+  color: #262019;
+  white-space: nowrap;
+  width: 55px;
 }
 
 .btn-group.open .dropdown-toggle {
--webkit-box-shadow: none;
--moz-box-shadow: none;
-box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .pricelist-header .open .caret {
-border-top: 0;
-border-bottom: 4px solid;
-content: "";
+  border-top: 0;
+  border-bottom: 4px solid;
+  content: "";
 }
 
 .pricelist-list {position: relative;}
@@ -155,5 +176,24 @@ th {
 
 button.download-pdf-flash {
   display: none;
+}
+
+li.disabled {
+  display: none;
+}
+
+@media screen and (max-width:768px) {
+  .pricelist-list {
+    overflow: auto;
+    max-width: 100%;
+    -webkit-box-shadow: inset -6px -2px 10px 0px #bfbfbf;
+    -moz-box-shadow: inset -6px -2px 10px 0px #bfbfbf;
+    box-shadow: inset -6px -2px 10px 0px #bfbfbf;
+  }
+  
+  .pricelist-list table tr:hover,
+  .pricelist-list table tr:hover td {
+    background: transparent;
+  }
 }
 
