@@ -75,8 +75,7 @@ $(document).ready(function() {
       $nhead.css("visibility","hidden");
       $nfoot.css("visibility","visible");
     }
-  
-    else {
+    else if ($nmenu.hasClass('collapse');) {
       $nhead.css("visibility","visible");
       $nfoot.css("visibility","hidden");
     }
