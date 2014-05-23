@@ -104,6 +104,10 @@ main{
   text-align: center
 }
 
+.navbar-footer .navbar-toggle .icon-bar {
+  background: url('img/nav-dd-up.png') center top no-repeat;
+}
+
 .navbar-collapse {
   max-height: 340px;
   overflow-x: visible;
@@ -208,7 +212,8 @@ main{
 }
 
 @media (min-width: @screen-sm-min) {
-  .navbar-toggle { display: none; }
+
+  .navbar-header, .navbar-toggle, .navbar-footer { display: none; }
   
   .masthead,
   .masthead:hover {

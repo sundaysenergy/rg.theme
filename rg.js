@@ -62,5 +62,27 @@ $(document).ready(function() {
     $('section.general-inquiries').children('.slider').slideUp();
   });
 
+  // some nav bar upgrades...
+  var $nhead = $('.navbar-header button');
+  var $nfoot = $('.navbar-footer button');
+  var $nmenu = $('.navbar-collapse');
+
+  $nhead.css("visibility","visible");
+  $nfoot.css("visibility","hidden");
+
+  var navswap = (function() {
+    if ($nmenu.hasClass('in');) {
+      $nhead.css("visibility","hidden");
+      $nfoot.css("visibility","visible");
+    }
+  
+    else {
+      $nhead.css("visibility","visible");
+      $nfoot.css("visibility","hidden");
+    }
+  });
+
+  navswap();
+
 });
 
