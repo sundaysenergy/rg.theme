@@ -746,15 +746,16 @@ $(document).ready(function() {
       return false;
     });
 
-
     /*** JAVASCRIPT TWEAKS FOR SETTING IMAGE HEIGHT ***/
+    // need this to be more dynamic and forgiving...
+    // causing all sorts of issues when you resize a window
     $(window).on('resizeSlides', function() {
       $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') !== 'passementerie') {
         if (rg_options.horizontal_page === productlist.page) {
           var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
-          var slideHeight = ((slideWidth*5)/7);
-          $('ul.slider > li').height(slideHeight);
+          //var slideHeight = ((slideWidth*5)/7);
+          //$('ul.slider > li').height(slideHeight);
           $('ul.slider > li > img').width(slideWidth);
         }
       } else {
@@ -1101,7 +1102,7 @@ $(document).ready(function() {
               } else {
                 hash.add({faves:_.compact(_.uniq(f)).join(',')})
               }
-              alert("Item " + id + " removed from favorites!");
+              // alert("Item " + id + " removed from favorites!");
             });
 
             var $prodlist = $('#products ul.list');
