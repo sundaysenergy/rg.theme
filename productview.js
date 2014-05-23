@@ -1101,7 +1101,7 @@ $(document).ready(function() {
               } else {
                 hash.add({faves:_.compact(_.uniq(f)).join(',')})
               }
-              alert("Item " + id + " removed from favorites!");
+              //alert("Item " + id + " removed from favorites!");
             });
 
             var $prodlist = $('#products ul.list');
