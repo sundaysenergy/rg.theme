@@ -185,12 +185,13 @@ li.disabled {
   .pricelist-list {
     overflow: auto;
     max-width: 100%;
-    -webkit-box-shadow: inset -6px -2px 12px 0px #bfbfbf;
-    -moz-box-shadow: inset -6px -2px 12px 0px #bfbfbf;
-    box-shadow: inset -6px -2px 12px 0px #bfbfbf;
+    -webkit-box-shadow: inset -6px -2px 10px 0px #bfbfbf;
+    -moz-box-shadow: inset -6px -2px 10px 0px #bfbfbf;
+    box-shadow: inset -6px -2px 10px 0px #bfbfbf;
   }
   
-  .pricelist-list table tr:hover {
+  .pricelist-list table tr:hover,
+  .pricelist-list table tr:hover td {
     background: transparent;
   }
 }
