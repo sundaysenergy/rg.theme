@@ -922,6 +922,8 @@ $(document).ready(function() {
         // Create click handlers for the icon and the close button
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
           e.preventDefault();
+          $(this).toggleClass( 'active' );
+          $(this).siblings().removeClass( 'active' );
           $('.item-spotlight .item-information').slideToggle();
           $('#item-colors').hide();
           $('#project-list-select').hide();
@@ -935,6 +937,8 @@ $(document).ready(function() {
         $('.item-spotlight .item-icons button.item-favorite').on('click touch', function(e) {
           e.preventDefault();
           var id = $('.list li:nth-child(2)').find('.id').html();
+          $(this).toggleClass( 'active' );
+          $(this).siblings().removeClass( 'active' );
           $('.item-information,#item-colors').hide();
           addFaves($(this), id);
         });
@@ -953,6 +957,9 @@ $(document).ready(function() {
         var colorslist = new List('item-colors', options);
         // Click handler for colors
         $('button.item-colors').off().on('click touch', function(e) {
+          e.preventDefault();
+          $(this).toggleClass( 'active' );
+          $(this).siblings().removeClass( 'active' );
           $('#item-colors').toggle();
           $('.item-information').hide();
           $('#project-list-select').hide();
