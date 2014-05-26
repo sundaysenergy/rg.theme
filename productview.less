@@ -254,7 +254,7 @@ ul.collection-controls .pagecount {
   color: @rg-gray;
   font-size: 11px;
   letter-spacing: 1px;
-  padding: 60px 25px 15px 25px;
+  padding: 55px 25px 15px 25px;
   margin: 0;
 }
 
@@ -289,10 +289,13 @@ ul.collection-controls .pagecount {
 }
 
 @media (min-width: @screen-sm-min) { 
+  ul.collection-controls li.arrange {
+    left: 10px;
+  }
+  
   .filter-list {
-    width: 700px;
+    width: 500px;
     left: -70px;
-    top:-10px;
     text-align: center;
   }
   
@@ -320,17 +323,51 @@ ul.collection-controls .pagecount {
     color: @rg-black;
   }
   
+  .filter-list div.tab-content {
+    padding: 0 20px;
+  }
+
   .filter-list fieldset {
-    padding: 60px 10px 15px 20px;
+    padding: 55px 10px 15px 20px;
   }
   
   .filter-list fieldset label {
     display: block;
     float: left;
-    width: 25%;
-    margin-bottom: 6px;
+    line-height: 14px;
+    margin-bottom: 10px;
+    width: 33%;
+    vertical-align: middle;
   }
 }
+
+@media (min-width: @screen-md-min) { 
+  ul.collection-controls li.arrange {
+    position: relative;
+    left: initial;
+  }
+  
+  .filter-list {
+    width: 700px;
+    left: -125px;
+  }
+  
+  .filter-list fieldset label {
+    display: block;
+    float: left;
+    line-height: 14px;
+    margin-bottom: 10px;
+    width: 25%;
+    vertical-align: middle;
+  }
+}
+
+@media (min-width: @screen-lg-min) { 
+  .filter-list {
+    left: -70px;
+  }
+}
+
 
 .checkbox-inline+.checkbox-inline {
   margin-top: 0;
