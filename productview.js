@@ -375,6 +375,10 @@ $(document).ready(function() {
       } else {
         if (_.isUndefined(collection)) {
           $('#collection-menu-passementerie-inactive,#collection-menu-main-inactive,#collection-menu-leather-inactive').show();
+          if (collection === 'passementerie') {
+            console.log("Forcing vertical view.");
+            productlist.page = rg_options.vertical_page;
+          }
         }
       }
 
