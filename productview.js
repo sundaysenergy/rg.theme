@@ -1419,5 +1419,19 @@ $(document).ready(function() {
     }
 
     show_favtxt();
+    $('a[href*=passementerie').on('click touch', function(e) {
+      if (productlist.page == rg_options.horizontal_page) {
+        productlist.page = rg_options.vertical_page;
+        $('#products > ul.list').removeClass('slider');
+        return true;
+      }
+    });
+    $('a[href*=leather],a[href*=textile]').on('click touch', function(e) {
+      if (productlist.page == rg_options.vertical_page) {
+        productlist.page = rg_options.horizontal_page;
+        $('#products > ul.list').addClass('slider');
+        return true;
+      }
+    });
   });
 });
