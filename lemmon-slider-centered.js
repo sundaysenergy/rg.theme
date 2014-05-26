@@ -1,4 +1,4 @@
-// from here: http://jquery.lemmonjuice.com/plugins/slider-variable-widths.php
+// Originally from here: http://jquery.lemmonjuice.com/plugins/slider-variable-widths.php, heavily tweaked
 
 (function( $ ) {
 
@@ -24,6 +24,49 @@
 
           $items.each( function() { originalWidth += $( this ).outerWidth( true ) } );
           $sliderContainer.width( originalWidth );
+
+
+
+
+          //Tim, Can you help between here and line 65? trying to get the scroll to be smooth and correct when you click on the indicators, we added them ourselves and now can't quite get them working
+          //Populate indicator
+          // added by Jackson and KB
+
+          $items.each(function(){
+            var indicator = $('<li>');
+            var carouselIndicators = $('.carousel-indicators'); 
+            
+            indicator.appendTo(carouselIndicators);
+            
+            $('ol.carousel-indicators li:first-child').addClass('active');
+          });
+          
+          var indicator = $('ol.carousel-indicators li');
+          
+          indicator.click(function(){
+            var scroll = $slider.scrollLeft();
+            var i = $(this).prevAll().size();
+            var slide = i + indicator.length;
+
+            slideTo( {}, $slider, 0, i, 'slow' );
+          });
+          
+          function changeIndicator(i){
+            console.log(indicator.length);
+            if( i == (indicator.length * 2)){
+              i = 0;
+            }
+            else{
+              i = i - indicator.length;
+            }
+            $('ol.carousel-indicators').find(indicator).eq(i).addClass('active').siblings().removeClass('active');
+          }
+          //end Indicator stuff
+          //end added by Jackson and KB
+
+
+
+
 
           // slide to last item
           if( options.slideToLast ) $sliderContainer.css( 'padding-right', $slider.width() );
@@ -60,8 +103,9 @@
               if( x == 0 && $( this ).position().left > options.offset ) {
                 x = $( this ).position().left;
                 slide = i;
+                changeIndicator(slide);
               }
-            } );
+            } );            
 
             if( x > 0 && $sliderContainer.outerWidth() - scroll - $slider.width() - 1 > 0 ) {
               slideTo( e, $slider, scroll + x, slide, 'slow' );
@@ -81,6 +125,7 @@
               if( $( this ).position().left < options.offset ) {
                 x = $( this ).position().left;
                 slide = i;
+                changeIndicator(slide);
               }
             } );
 
@@ -99,88 +144,6 @@
             }
 
           } );
-          $slider.bind( 'nextPage', function( e, t ) {
-
-            var scroll = $slider.scrollLeft();
-            var w = $slider.width();
-            var x = 0;
-            var slide = 0;
-
-            $items.each( function( i ) {
-              if( $( this ).position().left < w ) {
-                x = $( this ).position().left;
-                slide = i;
-              }
-            } );
-
-            if( x > 0 && scroll + w + 1 < originalWidth ) {
-              slideTo( e, $slider, scroll + x, slide, 'slow' );
-            } else if( options.loop ) {
-              // return to first
-              slideTo( e, $slider, 0, 0, 'slow' );
-            }
-
-          } );
-          $slider.bind( 'prevPage', function( e, t ) {
-
-            var scroll = $slider.scrollLeft();
-            var w = $slider.width();
-            var x = 0;
-
-            $items.each( function( i ) {
-              if( $( this ).position().left < 1 - w ) {
-                x = $( this ).next().position().left;
-                slide = i;
-              }
-            } );
-
-            if( scroll ) {
-              if( x == 0 ) {
-                //$slider.animate({ 'scrollLeft' : 0 }, 'slow' );
-                slideTo( e, $slider, 0, 0, 'slow' );
-              } else {
-                //$slider.animate({ 'scrollLeft' : scroll + x }, 'slow' );
-                slideTo( e, $slider, scroll + x, slide, 'slow' );
-              }
-            } else if( options.loop ) {
-              // return to last
-              var a = $sliderContainer.outerWidth() - $slider.width();
-              var b = $items.filter( ':last' ).position().left;
-              if( a > b ) {
-                $slider.animate( { 'scrollLeft': b }, 'slow' );
-              } else {
-                $slider.animate( { 'scrollLeft': a }, 'slow' );
-              }
-            }
-
-          } );
-          
-          $slider.bind( 'slideTo', function( e, i, t ) {
-
-            slideTo(
-              e, $slider,
-              $slider.scrollLeft() + $items.filter( ':eq(' + i + ')' ).position().left,
-              i, t );
-
-          } );
-
-          // controls
-          $sliderControls.find( '.next-slide' ).click( function() {
-            $slider.trigger( 'nextSlide' );
-            return false;
-          } );
-          $sliderControls.find( '.prev-slide' ).click( function() {
-            $slider.trigger( 'prevSlide' );
-            return false;
-          } );
-          $sliderControls.find( '.next-page' ).click( function() {
-            $slider.trigger( 'nextPage' );
-            return false;
-          } );
-          $sliderControls.find( '.prev-page' ).click( function() {
-            $slider.trigger( 'prevPage' );
-            return false;
-          } );
 
           //if ( typeof $slider.options.create == 'function' ) $slider.options.create();
           $slider.data( 'slider', {
@@ -193,7 +156,7 @@
       } );
 
     },
-
+   
     // Add Item
     //
     addItem: function( options ) {
@@ -231,14 +194,10 @@
 
         $slider.unbind( 'nextSlide' );
         $slider.unbind( 'prevSlide' );
-        $slider.unbind( 'nextPage' );
-        $slider.unbind( 'prevPage' );
         $slider.unbind( 'slideTo' );
 
         $sliderControls.find( '.next-slide' ).unbind( 'click' );
         $sliderControls.find( '.prev-slide' ).unbind( 'click' );
-        $sliderControls.find( '.next-page' ).unbind( 'click' );
-        $sliderControls.find( '.next-page' ).unbind( 'click' );
 
         $slider.removeData( 'slider' );
 
@@ -261,7 +220,7 @@
     if( $slider.options.center ) {
       var currentElement = $( $slider.items[ i ] );
       $slider.options.offset = Math.floor( ( $( window ).width() - currentElement.width() ) / 2 );
-      console.log( 'set offset to ', $slider.options.offset );
+      /* console.log( 'set offset to ', $slider.options.offset ); */
     }
 
     if( typeof t == 'undefined' ) {
@@ -322,7 +281,6 @@
     'loop':        true,
     'slideToLast': false,
     'slider':      '> *:first',
-    // since 0.2
     'infinite':    true,
     'center':      true,
     'offset':      0
