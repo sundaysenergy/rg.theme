@@ -297,15 +297,6 @@ $(document).ready(function() {
       if (_.isUndefined(hash.get('desc'))) $('.filter-description').find(':checkbox').attr('checked',false);
       if (_.isUndefined(hash.get('use'))) $('.filter-use').find(':checkbox').attr('checked',false);
 
-
-      // Quick hack to force vertical page view with passementerie
-      if (collection === 'passementerie') {
-        if (productlist.page != rg_options.vertical_page) {
-          productlist.page = rg_options.vertical_page;
-          $('#products > ul.list').removeClass('slider');
-        }
-      }
-      
       // Other resets
       $('#anonymous-faves-alert').find('button.close').trigger('click');
       $('#project-list-select').find('button.close').trigger('click');
@@ -428,14 +419,6 @@ $(document).ready(function() {
           }
         );
       }
-
-      console.log(collection);
-      
-      // if (_.isUndefined(collection) == false && collection == 'passementerie') {
-      //   console.log("Forcing vertical view.");
-      //   productlist.page = rg_options.vertical_page;
-      //   $(window).trigger('visRearrange');
-      // }
 
       /***********************************/
       /**** PROCESS FILTERS FROM HASH ****/
