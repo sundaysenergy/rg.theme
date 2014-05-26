@@ -53,6 +53,10 @@ $(document).ready(function() {
       i: 0
     };
 
+    if (_.isUndefined(hash.get('collection') == false) &&hash.get('collection') == 'passementerie') {
+      options.page = rg_options.vertical_page;
+    }
+
     var data = combined.items;
     var colors = combined.colors;
 
@@ -1416,12 +1420,5 @@ $(document).ready(function() {
     }
 
     show_favtxt();
-    // Force vertical view for passementerie
-    if (productlist.page == rg_options.horizontal_page && collection == 'passementerie') {
-      productlist.page = rg_options.vertical_page;
-      $('#products > ul.list').removeClass('slider');
-      productlist.update();
-      $(window).trigger('visRearrange');
-    }
   });
 });
