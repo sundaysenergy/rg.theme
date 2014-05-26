@@ -64,7 +64,7 @@
             $('ol.carousel-indicators').find(indicator).eq(i).addClass('active').siblings().removeClass('active');
           }
           
-          $items = $sliderContainer.find( options.items ),
+          $items = $sliderContainer.find( options.items );
 
           //end Indicator stuff
           //end added by Jackson and KB
