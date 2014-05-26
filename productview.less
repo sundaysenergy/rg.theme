@@ -12,6 +12,10 @@
   }
 }
 
+img {
+  width: 100%;
+}
+
 ul.collections:last-child {
   border-bottom: 1px solid;
 }
@@ -126,6 +130,99 @@ button.slide {
 .passementerie li div.item-spotlight,
 .passementerie li img  {
   cursor: default;
+}
+
+/* ================================= */
+/* 3-up Slideshow on collection page */
+/* ================================= */
+/* Do this in a less hacky way for production */
+.slider { text-align: center; }
+
+.slider > li { 
+  overflow: hidden;
+  margin: 0;
+  vertical-align: middle;
+  float: left;
+  position: relative;
+  width: 32%;
+  max-width: 32%;
+  height: 200px; 
+  overflow: hidden;
+  margin-right: 2%; /* this is still slightly too wide... will have to figure out a JS solution based on screen widths maybe? */
+  margin-bottom: 20px; /* need to make this the same as margin-right... perhaps decalaring in JS would make this easier? */
+}
+
+@media (min-width: @screen-sm-min) {
+  .slider li {
+    height: 250px;
+  }
+  .slider li img {
+    min-height: 100%;
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .slider li {
+    height: 300px;
+  }
+}
+
+@media (min-width: @screen-lg-min) {
+  .slider li {
+    height: 350px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .slider li {
+    height: 400px;
+  }
+}
+
+.slider>li:nth-child(2) {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin:0;
+}
+
+@media (max-width: @screen-xs-max) {
+  .slider>li:nth-child(1),
+  .slider>li:nth-child(3) {
+    display:none;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) {
+  .slider > li:nth-child(1),
+  .slider > li:nth-child(3) {
+    display:list-item;
+    width: 28% !important;
+    max-width: 28% !important;
+  }
+
+  .slider > li:nth-child(1) {
+    margin-left:  -1%;
+    margin-right:  1%;
+  }
+  
+  .slider > li:nth-child(2) {
+    width: 44% !important;
+    max-width: 44% !important;
+  }
+  
+  .slider > li:nth-child(3) {
+    margin-left:   1%;
+    margin-right: -1%;
+  }
+
+}
+
+/* In slide view, if we are on the first item we add a dummy
+   to push it into the center section. Hide the fourth element
+   from display in this instance */
+.slider > li:nth-of-type(4) {
+  display: none;
 }
 
 #collection-menu-faves {
@@ -378,178 +475,6 @@ button.uppercase { font-size: 1em; }
 .collection-controls.border-top {
   padding-top: 12px !important;
   margin-bottom: 10px;
-}
-
-/* ================================= */
-/* 3-up Slideshow on collection page */
-/* ================================= */
-/* Do this in a less hacky way for production */
-.slider { text-align: center; }
-
-.slider > li { 
-  overflow: hidden;
-  margin: 0;
-  vertical-align: middle;
-  float: left;
-  position: relative;
-  width: 32%;
-  max-width: 32%;
-  height: 200px; 
-  overflow: hidden;
-  margin-right: 2%; /* this is still slightly too wide... will have to figure out a JS solution based on screen widths maybe? */
-  margin-bottom: 20px; /* need to make this the same as margin-right... perhaps decalaring in JS would make this easier? */
-}
-
-@media (min-width: @screen-sm-min) {
-  .slider li {
-    height: 250px;
-  }
-  .slider li img {
-    min-height: 100%;
-  }
-}
-
-@media (min-width: @screen-md-min) {
-  .slider li {
-    height: 300px;
-  }
-}
-
-@media (min-width: @screen-lg-min) {
-  .slider li {
-    height: 350px;
-  }
-}
-
-@media (min-width: 1600px) {
-  .slider li {
-    height: 400px;
-  }
-}
-
-.slider>li:nth-child(2) {
-  width: 100% !important;
-  max-width: 100% !important;
-  margin:0;
-}
-
-@media (max-width: @screen-xs-max) {
-  .slider>li:nth-child(1),
-  .slider>li:nth-child(3) {
-    display:none;
-  }
-}
-
-/* Small devices (tablets, 768px and up) */
-@media (min-width: @screen-sm-min) {
-  .slider > li:nth-child(1),
-  .slider > li:nth-child(3) {
-    display:list-item;
-    width: 28% !important;
-    max-width: 28% !important;
-  }
-
-  .slider > li:nth-child(1) {
-    margin-left:  -1%;
-    margin-right:  1%;
-  }
-  
-  .slider > li:nth-child(2) {
-    width: 44% !important;
-    max-width: 44% !important;
-  }
-  
-  .slider > li:nth-child(3) {
-    margin-left:   1%;
-    margin-right: -1%;
-  }
-
-  /* ====================================== */
-  /* ====================================== */
-  /* Crazy Passementerie Styles             */ 
-  /* ====================================== */
-  /* ====================================== */
-  ul.slider.passementerie {
-    position: relative !important;
-    height: 410px;
-  }
-
-  ul.slider.passementerie > li {
-    margin: 0;
-    border-bottom: none;
-    border-top: none;
-    min-width: 750px !important;
-    width: 750px !important;
-    max-width: 750px !important;
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    height: 410px;
-  }
-
-  ul.slider.passementerie > li:nth-child(1) { left: 0; }
-  ul.slider.passementerie > li:nth-child(3) { right: 0; }
-  
-  ul.slider.passementerie > li:nth-child(2) {
-    background: @rg-background;
-    left: 50%;
-    margin-left: -375px;
-    border-left: 4px solid @rg-background;
-    border-right: 4px solid @rg-background;
-    z-index: 2;
-  }
-
-  ul.slider.passementerie > li .table { display: table; }
-  ul.slider.passementerie > li .table-cell { display: table-cell; border: 2px solid @rg-background; }
-  ul.slider.passementerie > li .table, ul.passementerie > li .table-cell { height: 100%; width: 100%; }
-  
-}
-
-/* ====================================== */
-/* ====================================== */
-/* Crazy Passementerie Styles             */ 
-/* ====================================== */
-/* ====================================== */
-
-@media (min-width: @screen-md-min) {
-  ul.slider.passementerie > li {
-    min-width: 970px !important;
-    width: 970px !important;
-    max-width: 970px !important;
-  }
-
-  ul.slider.passementerie > li:nth-child(2) {
-    margin-left: -485px;
-  }
-}
-
-/* ====================================== */
-/* ====================================== */
-/* Crazy Passementerie Styles             */ 
-/* ====================================== */
-/* ====================================== */
-
-@media (min-width: @screen-lg-min) {
-  ul.slider.passementerie > li {
-    min-width: 1170px !important;
-    width: 1170px !important;
-    max-width: 1170px !important;
-  }
-
-  ul.slider.passementerie > li:nth-child(2) {
-    margin-left: -585px;
-  }
-}
-
-img {
-  width: 100%;
-}
-
-/* In slide view, if we are on the first item we add a dummy
-   to push it into the center section. Hide the fourth element
-   from display in this instance */
-.slider > li:nth-of-type(4) {
-  display: none;
 }
 
 /* ITEM OVERLAY DISPLAY STYLES */
