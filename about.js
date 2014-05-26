@@ -8,14 +8,12 @@ $('#photostream').width(ww).css('margin-left', (ww/2)*-1);
 $( '#slider1' ).lemmonSlider({
   'infinite' : true,
 });
-/*
 
 $('.carousel-indicators').on('click','li',function() {
   $(this).addClass('active');
   $(this).siblings().removeClass('active');
 });
 
-*/
 $(window).resize(function() {
   var ww = $(window).width();
   $('#photostream').width(ww).css('margin-left', (ww/2)*-1);
