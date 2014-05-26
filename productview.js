@@ -787,12 +787,13 @@ $(document).ready(function() {
           }
         });
       } else {
-      //   $('#products ul.list li').each(function() {
-      //     var $image = $(this).find('.img');
-      //     if (_.isUndefined($image.attr('src')) == false) {
-      //       $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg'));
-      //     }
-      //   });
+        // This was commented, but it was breaking toggling between passementerie and anything else.
+        $('#products ul.list li').each(function() {
+         var $image = $(this).find('.img');
+          if (_.isUndefined($image.attr('src')) == false) {
+            $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg'));
+          }
+        });
       }
       // Update i if we have fewer items than the starting position
       if (productlist.i > productlist.matchingItems.length) {
