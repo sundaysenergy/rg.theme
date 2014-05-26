@@ -319,11 +319,12 @@ $(document).ready(function() {
         $('#products > ul.list').removeClass('slider');
         productlist.update();
       }
-      // Did this work?
+      // Force vertical view for passementerie
       if (productlist.page == rg_options.horizontal_page && collection == 'passementerie') {
         productlist.page = rg_options.vertical_page;
         $('#products > ul.list').removeClass('slider');
         productlist.update();
+        $(window).trigger('visRearrange');
       }
       // If no detailed view is present, make sure we hide the element
       // Creates back button functionality that matches what a user would expect
