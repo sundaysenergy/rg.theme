@@ -776,6 +776,7 @@ $(document).ready(function() {
     productlist.on('updated', function() {
       $('ul.anon-favorites li').attr('style','');
       if (hash.get('collection') == 'passementerie') {
+        productlist.page = rg_options.vertical_page;
         $('#products ul.passementerie li').each(function() {
           var $image = $(this).find('.img');
           if (_.isUndefined($image.attr('src')) == false) {
