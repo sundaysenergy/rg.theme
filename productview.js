@@ -53,7 +53,7 @@ $(document).ready(function() {
       i: 0
     };
 
-    if (_.isUndefined(hash.get('collection') == false) &&hash.get('collection') == 'passementerie') {
+    if (_.isUndefined(hash.get('collection') == false) && hash.get('collection') == 'passementerie') {
       options.page = rg_options.vertical_page;
     }
 
@@ -235,7 +235,6 @@ $(document).ready(function() {
           }
           // Move the #products div after the passementerie header bar
           $('#products ul.list').addClass('passementerie');
-          $('#products ul.list').removeClass('slider');
           $('#products ul.passementerie li').each(function() {
             var $image = $(this).find('.img');
             if (_.isUndefined($image.attr('src')) == false) {
