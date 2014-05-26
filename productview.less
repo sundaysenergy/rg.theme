@@ -90,41 +90,18 @@ button.slide {
 }
 
 .list li {
-  float: left;
-  position: relative;
-  width: 32%;
-  max-width: 32%;
-  height: 200px; 
+  height: auto;
+  max-width: 33%;
+  max-height: 213px;
+  min-height: 100px;
+  width: 33%;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 0 0 10px 0;
   overflow: hidden;
-  margin-right: 2%; /* this is still slightly too wide... will have to figure out a JS solution based on screen widths maybe? */
-  margin-bottom: 20px; /* need to make this the same as margin-right... perhaps decalaring in JS would make this easier? */
-}
-
-@media (min-width: @screen-sm-min) {
-  .list li {
-    height: 250px;
-  }
-  .list li img {
-    min-height: 100%;
-  }
-}
-
-@media (min-width: @screen-md-min) {
-  .list li {
-    height: 300px;
-  }
-}
-
-@media (min-width: @screen-lg-min) {
-  .list li {
-    height: 350px;
-  }
-}
-
-@media (min-width: 1600px) {
-  .list li {
-    height: 400px;
-  }
+  position: relative;
+  float: left;
+  overflow: hidden;
 }
 
 #collection-row-passementerie .passementerie li {
@@ -413,6 +390,41 @@ button.uppercase { font-size: 1em; }
   overflow: hidden;
   margin: 0;
   vertical-align: middle;
+  float: left;
+  position: relative;
+  width: 32%;
+  max-width: 32%;
+  height: 200px; 
+  overflow: hidden;
+  margin-right: 2%; /* this is still slightly too wide... will have to figure out a JS solution based on screen widths maybe? */
+  margin-bottom: 20px; /* need to make this the same as margin-right... perhaps decalaring in JS would make this easier? */
+}
+
+@media (min-width: @screen-sm-min) {
+  .slider li {
+    height: 250px;
+  }
+  .slider li img {
+    min-height: 100%;
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .slider li {
+    height: 300px;
+  }
+}
+
+@media (min-width: @screen-lg-min) {
+  .slider li {
+    height: 350px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .slider li {
+    height: 400px;
+  }
 }
 
 .slider>li:nth-child(2) {
