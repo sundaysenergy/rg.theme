@@ -30,23 +30,26 @@ ul.existing-projects button {
   margin: 0;
 }
 
-ul.existing-projects button.edit-list {
+ul.existing-projects button.edit-list,
+ul.existing-projects button.download-pdf,
+ul.existing-projects button.delete-list {
   position: absolute;
+  display: block;
+}
+
+ul.existing-projects button.edit-list {
   right: 80px;
   top: 10px;
 }
 
-ul.existing-projects button.print-list {
-  position: absolute;
+ul.existing-projects button.download-pdf {
   right: 47px;
   top: 10px;
 }
 
 ul.existing-projects button.delete-list {
   background: transparent url(img/close-x.png) center center no-repeat;
-  display: block;
   float: none;
-  position: absolute;
   top: 14px;
   right: 14px;
   height: 11px;
