@@ -421,6 +421,7 @@ $(document).ready(function() {
       }
 
       console.log(collection);
+      
       if (_.isUndefined(collection) == false && collection == 'passementerie') {
         console.log("Forcing vertical view.");
         productlist.page = rg_options.vertical_page;
