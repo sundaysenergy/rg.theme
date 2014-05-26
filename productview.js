@@ -202,7 +202,6 @@ $(document).ready(function() {
       $('#products ul.list').removeClass('passementerie');
       $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       $('li.collection-category a').on('click', function() {
-        console.log("resetting");
         $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       });
 
@@ -232,6 +231,7 @@ $(document).ready(function() {
           }
           // Move the #products div after the passementerie header bar
           $('#products ul.list').addClass('passementerie');
+          $('#products ul.list').removeClass('slider');
           $('#products ul.passementerie li').each(function() {
             var $image = $(this).find('.img');
             if (_.isUndefined($image.attr('src')) == false) {
@@ -316,6 +316,12 @@ $(document).ready(function() {
       if (productlist.page == rg_options.horizontal_page && (_.isUndefined(hash.get('faves')) == false || _.isUndefined(hash.get('search')) == false || _.isUndefined(lid) == false)) {
         productlist.page = rg_options.vertical_page;
         var pos = 1;
+        $('#products > ul.list').removeClass('slider');
+        productlist.update();
+      }
+      // Did this work?
+      if (productlist.page == rg_options.horizontal_page && collection == 'passementerie') {
+        productlist.page = rg_options.vertical_page;
         $('#products > ul.list').removeClass('slider');
         productlist.update();
       }
