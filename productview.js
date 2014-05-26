@@ -657,6 +657,7 @@ $(document).ready(function() {
             });
             $('.toggle-colors button').on('click touch', function(e) {
               e.preventDefault();
+              $(this).toggleClass( 'active' );
               $('.itemoverlay #related-products').toggle();
             });
             // Get the position in the mini slider
