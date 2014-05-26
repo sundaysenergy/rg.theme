@@ -32,6 +32,8 @@
           //Populate indicator
           // added by Jackson and KB
 
+          $items = $('.slider li').not('.-before, .-after');
+
           $items.each(function(){
             var indicator = $('<li>');
             var carouselIndicators = $('.carousel-indicators'); 
@@ -61,6 +63,9 @@
             }
             $('ol.carousel-indicators').find(indicator).eq(i).addClass('active').siblings().removeClass('active');
           }
+          
+          $items = $sliderContainer.find( options.items ),
+
           //end Indicator stuff
           //end added by Jackson and KB
 
