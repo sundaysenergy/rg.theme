@@ -752,7 +752,6 @@ $(document).ready(function() {
 
     /*** JAVASCRIPT TWEAKS FOR SETTING IMAGE HEIGHT ***/
     // need this to be more dynamic and forgiving...
-    // causing all sorts of issues when you resize a window
     $(window).on('resizeSlides', function() {
       $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') !== 'passementerie') {
@@ -976,10 +975,15 @@ $(document).ready(function() {
           var total_pages = parseInt(colorslist.matchingItems.length / 5);
           if (colorslist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
           // Set the width of the color swatch thing
+          var ww = $(window).width();
           var thumbcount = $("#item-colors > ul.list-inline").children("li").length;
-          $('#item-colors').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
-          $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
-
+          if ( ww <= 1100 ){
+            $('#item-colors').css('width', (160+60*(thumbcount-1))).css('margin-left',-80+(-30*(thumbcount-1)));
+            $('#item-colors > ul.list-inline').css('width', 60*thumbcount);
+          } else {
+            $('#item-colors').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
+            $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
+          }
           $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
           $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
           $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
@@ -1435,7 +1439,9 @@ $(document).ready(function() {
       }
     });
   });
-    
+
+  
+
 });
 
 // I don't know where to put this
@@ -1443,4 +1449,6 @@ $(window).resize(function() {
   var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
   $('ul.slider > li > img').width(slideWidth-10);
 });
+
+
 
