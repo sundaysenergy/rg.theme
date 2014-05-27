@@ -143,6 +143,7 @@ $(document).ready(function() {
         $(this).append(' <i class="fa fa-caret-up"></i>');
       }
     });
+    
     $('#pricelist-view-number a').each(function(i) {
       $(this).on('click touch', function(e) {
         e.preventDefault();
@@ -160,6 +161,7 @@ $(document).ready(function() {
         textiles.update();
       });
     });
+    
     $('button.download-pdf').off('click touch').on('click touch', function(e) {
       e.preventDefault();
       var doc = new jsPDF('landscape');
