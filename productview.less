@@ -951,10 +951,19 @@ ul.collection-controls li.hug-right {
 }
 
 /* Search Filter Amount Menu Styles */
+.collection-view-items span.show-items {
+  display: inline-block;
+  margin-left: 11px;
+}
+
+.collection-view-items span.caret{
+  margin-left: 0;
+}
+
 .collection-view-items .search-view-number,
 #collection-menu-search #search-view-number {
   top: 0;
-  left: 50%;
+  left: 53%;
   float: none;
   padding: 20px 0 0 0;
   margin: 0;
@@ -970,12 +979,19 @@ ul.collection-controls li.hug-right {
   z-index: 10 !important;
 }
 
+.collection-view-items ul,
+#collection-menu-search ul {
+  list-style: none;
+}
+
 .collection-view-items .search-view-number li,
 #collection-menu-search #search-view-number li {
   display: list-item;
   margin: 0;
   padding: 0;
   width: 50px;
+  min-width: 50px;
+  max-width: 50px;
 }
 
 .collection-view-items .search-view-number li > a,
@@ -986,21 +1002,26 @@ ul.collection-controls li.hug-right {
   display: block;
   clear: none;
   margin: 0;
-  padding: 3px 0 0 0;
   border: none;
   border-radius: 0;
-  font-weight: inherit;
-  line-height: inherit;
   color: @rg-black;
   white-space: nowrap;
-  width: 50px
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  font-size: 12px;
+  line-height: 16px;
 }
 
 .collection-view-items .search-view-number li > a:hover,
 .collection-view-items .search-view-number li > span:hover,
 #collection-menu-search #search-view-number li > a:hover,
 #collection-menu-search #search-view-number li > span:hover {
+  background: transparent;
   background-color: @rg-gray;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 /* Undoing some Bootstrap stuff i think? */
