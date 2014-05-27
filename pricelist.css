@@ -24,7 +24,16 @@
 .pricelist-header .pager button {
   font-weight: bold;
   letter-spacing: 2px;
-  font-size: 1em;
+  font-size: 12px;
+}
+
+.pricelist-header .pageselect span.show-items {
+  display: inline-block;
+  margin-left: 11px;
+}
+
+.pricelist-header .pageselect span.caret{
+  margin-left: 0;
 }
 
 .pricelist-header .pageselect,
@@ -69,34 +78,63 @@
 
 .pricelist-header .pageselect #pricelist-view-number {
   top: 0;
-  left: 50%;
+  left: 53%;
   float: none;
-  padding: 20px 0 0 0;
+  padding: 20px 0 7px 0;
   margin: 0;
   border: none;
-  -webkit-box-shadow: 0 0 10px 0 #848484;
-  box-shadow: 0 0 10px 0 #848484;
+  -webkit-box-shadow: 0 0 10px 0 #848484;;
+  -moz-box-shadow: 0 0 10px 0 #848484;;
+  box-shadow: 0 0 10px 0 #848484;;
   background-clip: padding-box;
-  width: 55px;
-  min-width: 55px;
-  max-width: 55px;
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
   z-index: 10 !important;
+  list-style: none;
 }
 
-.pricelist-header .pageselect #pricelist-view-number li>a, 
-.pricelist-header .pageselect #pricelist-view-number li>span {
+.pricelist-header .pageselect #pricelist-view-number li,
+.pricelist-header .pageselect #pricelist-view-number li {
+  display: list-item;
+  margin: 0;
+  padding: 0;
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+}
+
+.pricelist-header .pageselect #pricelist-view-number li > a, 
+.pricelist-header .pageselect #pricelist-view-number li > span {
   background-color: transparent;
   display: block;
   clear: none;
   margin: 0;
-  padding: 3px 0 0 0;
   border: none;
   border-radius: 0;
-  font-weight: inherit;
-  line-height: inherit;
   color: #262019;
   white-space: nowrap;
-  width: 55px;
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  padding: 5px 5px 0 5px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.pricelist-header .pageselect #pricelist-view-number li > a:hover, 
+.pricelist-header .pageselect #pricelist-view-number li > span:hover {
+  background: transparent;
+  background-color: #CECECE;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .btn-group.open .dropdown-toggle {
