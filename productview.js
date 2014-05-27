@@ -1435,4 +1435,12 @@ $(document).ready(function() {
       }
     });
   });
+    
 });
+
+// I don't know where to put this
+$(window).resize(function() {
+  var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
+  $('ul.slider > li > img').width(slideWidth);
+});
+

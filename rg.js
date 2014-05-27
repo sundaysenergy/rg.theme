@@ -48,7 +48,25 @@ $(document).ready(function() {
       );
     });
   }
-  
+
+  $('.navbar-toggle .icon-bar').on('click touch', function() {
+
+    var ncollapse = $('nav .navwrap').hasClass('collapse');
+    var ncollapsing = $('nav .navwrap').hasClass('collapsing');
+    var nin = $('nav .navwrap').hasClass('in');
+
+    if (ncollapse === true) {
+      $('.navbar-header').css('visibility','hidden');
+    } else if (ncollapsing === true) {
+      $('.navbar-header').css('visibility','hidden');
+    } else if (nin === true) {
+      $('.navbar-header').css('visibility','visible');
+    } else {
+      $('.navbar-header').css('visibility','visible');
+    }
+    
+  });
+
   // Contact page basics 
   $("section.toggle .slider").hide();
  
