@@ -47,16 +47,27 @@
   width: 240px;
   overflow: auto;
   font-size: 12px;
-}
-
-.item-spotlight .no-price {
-  height: 260px;
-  margin-top: -120px;
-}
-
-.item-spotlight .price {
   height: 300px;
   margin-top: -150px;
+}
+
+.item-spotlight .no-repeat,
+.item-spotlight .no-width,
+.item-spotlight .no-price {
+  height: 260px;
+  margin-top: -130px;
+}
+
+.item-spotlight .no-repeat.no-width,
+.item-spotlight .no-price.no-width,
+.item-spotlight .no-price.no-repeat {
+  height: 220px;
+  margin-top: -110px;
+}
+
+.item-spotlight .no-repeat.no-width.no-price {
+  height: 180px;
+  margin-top: -90px;
 }
 
 .passementerie .item-spotlight .item-information p,
