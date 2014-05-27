@@ -141,17 +141,15 @@ button.slide {
 .slider > li { 
   overflow: hidden;
   margin: 0;
+  padding: 0 5px;
   vertical-align: middle;
-  float: left;
   position: relative;
-  width: 32%;
-  max-width: 32%;
   height: 200px; 
   max-height: 200px;
   min-height: 200px;
   overflow: hidden;
-  margin-right: 2%; /* this is still slightly too wide... will have to figure out a JS solution based on screen widths maybe? */
   margin-bottom: 20px; /* need to make this the same as margin-right... perhaps decalaring in JS would make this easier? */
+  box-sizing: border-box;
 }
 
 @media (min-width: @screen-sm-min) {
@@ -207,25 +205,21 @@ button.slide {
   .slider > li:nth-child(1),
   .slider > li:nth-child(3) {
     display:list-item;
-    width: 28% !important;
-    max-width: 28% !important;
+    width: 25% !important;
+    max-width: 25% !important;
   }
 
-  .slider > li:nth-child(1) {
-    margin-left:  -1%;
-    margin-right:  1%;
+  .slider > li:nth-child(1),
+  .slider > li:nth-child(3) {
+    margin: 0;
+    padding: 0;
   }
   
   .slider > li:nth-child(2) {
-    width: 44% !important;
-    max-width: 44% !important;
+    width: 50% !important;
+    max-width: 50% !important;
   }
   
-  .slider > li:nth-child(3) {
-    margin-left:   1%;
-    margin-right: -1%;
-  }
-
 }
 
 /* In slide view, if we are on the first item we add a dummy
