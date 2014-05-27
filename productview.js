@@ -760,7 +760,7 @@ $(document).ready(function() {
           var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
           //var slideHeight = ((slideWidth*5)/7);
           //$('ul.slider > li').height(slideHeight);
-          $('ul.slider > li > img').width(slideWidth);
+          $('ul.slider > li > img').width(slideWidth-10);
         }
       } else {
 
@@ -1441,6 +1441,6 @@ $(document).ready(function() {
 // I don't know where to put this
 $(window).resize(function() {
   var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
-  $('ul.slider > li > img').width(slideWidth);
+  $('ul.slider > li > img').width(slideWidth-10);
 });
 

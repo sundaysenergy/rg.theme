@@ -141,7 +141,7 @@ button.slide {
 .slider > li { 
   overflow: hidden;
   margin: 0;
-  padding: 0 5px;
+  padding: 0;
   vertical-align: middle;
   position: relative;
   height: 200px; 
@@ -220,6 +220,12 @@ button.slide {
     max-width: 50% !important;
   }
   
+  .slider > li:nth-child(2) img {
+    display: block;
+    margin: 0 5px;
+  }
+  
+
 }
 
 /* In slide view, if we are on the first item we add a dummy
