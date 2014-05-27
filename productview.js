@@ -774,6 +774,27 @@ $(document).ready(function() {
           $img.css('margin-top',margin); /* this is simpler for now with more reliable results, but I am setting the height initially of the ul and li in the css... will eventually need a dynamic solution */
         });
       }
+    $(window).resize(function() {
+      $('ul.list li:visible .img,ul.list li:visible').attr('style','');
+      if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') !== 'passementerie') {
+        if (rg_options.horizontal_page === productlist.page) {
+          var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
+          //var slideHeight = ((slideWidth*5)/7);
+          //$('ul.slider > li').height(slideHeight);
+          $('ul.slider > li > img').width(slideWidth);
+        }
+      } else {
+
+        $('ul.passementerie li:visible .img:visible,ul.passementerie li:visible').attr('style','');
+        var maxheight = $('ul.passementerie.slider li:visible:nth-of-type(2)').find('.img').height();
+        //console.log(maxheight);
+        $('ul.passementerie.slider li:visible').each(function(index, value) {
+          var $li = $(this);
+          var $img = $li.find('.img');
+          var margin = (($li.height() - $img.height())/2);
+          $img.css('margin-top',margin); /* this is simpler for now with more reliable results, but I am setting the height initially of the ul and li in the css... will eventually need a dynamic solution */
+        });
+      }
     });
 
     /**** THINGS TO DO WHEN THE LIST UPDATES (i.e. position, items, or filters change) ****/
