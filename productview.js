@@ -1148,10 +1148,7 @@ $(document).ready(function() {
     }); // end productlist.on('updated')
 
     $('ul.filter-list ul li.clear a').on('click touch', function(e) {
-      hash.remove('attributes');
-      hash.remove('color');
-      hash.remove('use');
-      hash.remove('desc');
+      hash.remove(['attributes', 'color', 'use', 'desc']);
     });
 
     // When we check or uncheck a box, recalculate search terms
