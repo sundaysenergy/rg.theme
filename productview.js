@@ -934,6 +934,11 @@ $(document).ready(function() {
           $('#project-list-select').hide();
           $('div.alert-dismissable button.close').trigger('click');
         });
+        
+        $('.item-spotlight button.item-toggle').click(function() { 
+          $('.item-spotlight .item-icons').find('button.active').removeClass('active');
+        });
+
         // Handle closing the color list with an X
         $('#item-colors button.close').off('click touch').on('click touch', function(e) {
           $('#item-colors').hide();
@@ -943,7 +948,7 @@ $(document).ready(function() {
         $('.item-spotlight .item-icons button.item-favorite').on('click touch', function(e) {
           e.preventDefault();
           var id = $('.list li:nth-child(2)').find('.id').html();
-          $(this).toggleClass( 'active' );
+          //$(this).toggleClass( 'active' );
           $(this).siblings().removeClass( 'active' );
           $('.item-information,#item-colors').hide();
           addFaves($(this), id);
@@ -1393,6 +1398,7 @@ $(document).ready(function() {
     });
 
     // Keep the dropdown menu from closing after an option is selected
+    // need to add passementerie to this...
     $('#collection-menu-main .dropdown-menu input, #collection-menu-main .dropdown-menu label, #collection-menu-leather .dropdown-menu input, #collection-menu-leather .dropdown-menu label').click(function(e) {
       e.stopPropagation();
     });
@@ -1430,6 +1436,7 @@ $(document).ready(function() {
     }
 
     show_favtxt();
+    
     $('a[href*=passementerie').on('click touch', function(e) {
       if (productlist.page == rg_options.horizontal_page) {
         productlist.page = rg_options.vertical_page;
@@ -1437,6 +1444,7 @@ $(document).ready(function() {
         return true;
       }
     });
+    
     $('a[href*=leather],a[href*=textile]').on('click touch', function(e) {
       if (productlist.page == rg_options.vertical_page) {
         productlist.page = rg_options.horizontal_page;
@@ -1446,8 +1454,6 @@ $(document).ready(function() {
     });
   });
 
-
-
 });
 
 // I don't know where to put this
@@ -1455,21 +1461,3 @@ $(window).resize(function() {
   var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
   $('ul.slider > li > img').width(slideWidth-10);
 });
-
-var swapicon = function() {
-  $('.itemoverlay .nav .navbar-header').on('click touch','.navbar-toggle',function() {
-  
-    var ncollapse = $('nav .navwrap').hasClass('collapse');
-    var ncollapsing = $('nav .navwrap').hasClass('collapsing');
-    var nin = $('nav .navwrap').hasClass('in');
-  
-    if (ncollapse === false) {
-      $('.navbar-header .navbar-toggle').addClass('go-up');
-    } else {
-      $('.navbar-header .navbar-toggle').removeClass('go-up');
-    }
-  
-  });
-};
-
-swapicon();
