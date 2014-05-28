@@ -171,6 +171,10 @@ thead {
   font-variant: small-caps;
 }
 
+text-transform: capitalize; {
+  text-transform: capitalize;
+}
+
 th.name, td.name {
   width: 17%;
 }
