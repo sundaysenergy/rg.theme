@@ -319,7 +319,6 @@ $(document).ready(function() {
         productlist.page = rg_options.vertical_page;
         var pos = 1;
         $('#products > ul.list').removeClass('slider');
-        $('#products ul.list').addClass('search-layout');
         productlist.update();
       }
       // If no detailed view is present, make sure we hide the element
@@ -1099,7 +1098,7 @@ $(document).ready(function() {
         if (_.isUndefined(hash.get('faves')) == false) {
           // Hide details for center slide in "horizontal" view
           productlist.page = rg_options.vertical_page;
-          $('#products > ul.list').removeClass('slider');
+          $('#products > ul.list').removeClass('slider search-layout');
           $('#products > ul.list').addClass('anon-favorites');
           $('ul.list li .item-spotlight').remove();
 
