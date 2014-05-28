@@ -3,7 +3,7 @@
 $(document).ready(function() {
   var item_prices = [];
   var token = $.cookie('token');
-  
+
   // If there is a token, try to get the item prices
   if (_.isUndefined(token) == false) {
     $.ajax({
@@ -25,7 +25,7 @@ $(document).ready(function() {
 
   // Retrieve the pricelist json file and get started
   $.getJSON(rg_options.api + '/items/client_data.json', function(data) {
-    
+
     _.forEach(data.items, function(item) {
       item.tradeprice = _.bind(itemPrice, item_prices, item.id);
       item.content = (_.isUndefined(item.content)) ? '':(item.content.charAt(0) + item.content.slice(1).toLowerCase());
@@ -33,7 +33,7 @@ $(document).ready(function() {
       item.color = (_.isUndefined(item.color)) ? '':(item.color.charAt(0) + item.color.slice(1).toLowerCase());
     });
 
-    var template = Hogan.compile('{{#items}}<tr><td class="name">{{name}}</td><td class="color">{{color}}</td><td class="id">{{id}}</td><td class="content">{{content}}</td><td class="repeat">{{repeat}}</td><td class="width">{{width}}</td><td class="tradeprice">{{tradeprice}}</td></tr>{{/items}}'); 
+    var template = Hogan.compile('{{#items}}<tr><td class="name">{{name}}</td><td class="color">{{color}}</td><td class="id">{{id}}</td><td class="content">{{contents}}</td><td class="repeat">{{repeat}}</td><td class="width">{{width}}</td><td class="tradeprice">{{tradeprice}}</td></tr>{{/items}}');
     $('tbody.list').hide();
     $('tbody.list').html(template.render(data));
 
@@ -68,7 +68,7 @@ $(document).ready(function() {
                           if(aname>bname) return 1;
                         } else {
                           if(aval<bval) return -1;
-                          if(aval>bval) return 1; 
+                          if(aval>bval) return 1;
                         }
                       } else if (_.isNull(asc_sort) == false) {
                         var aval = (_.isUndefined(a.values()[asc_sort])) ? 'zzzz':a.values()[asc_sort].toLowerCase();
@@ -90,7 +90,7 @@ $(document).ready(function() {
                           if(aname>bname) return 1;
                         } else {
                           if(aval>bval) return -1;
-                          if(aval<bval) return 1;                        
+                          if(aval<bval) return 1;
                         }
                       }
                       return 0;
@@ -99,7 +99,7 @@ $(document).ready(function() {
     // Init list
     var textiles = new List('textiles', options);
     $('tbody.list').show();
-    
+
     // When the list is updated, we need to rework the pager buttons
     textiles.on('updated', function() {
       $('.previous, .next').removeClass('disabled');
@@ -127,10 +127,10 @@ $(document).ready(function() {
 
     // Manually sort the list with our default order -- change this if list.js has this functionality
     textiles.sort('name', { order: "asc" });
-    
+
     // Add font awesome icons for ascending and descending sorts
     $('th').on('click', function() {
-      
+
       // First remove any existing sort indicators
       $('.fa-caret-down, .fa-caret-up').each(function(i) {
         $(this).remove();
@@ -192,7 +192,7 @@ $(document).ready(function() {
         var id      = (_.isUndefined(values['id'])) ? '':values['id'],
             name    = (_.isUndefined(values['name'])) ? '':values['name'].charAt(0) + values['name'].slice(1).toLowerCase(),
             color   = (_.isUndefined(values['color'])) ? '':values['color'].charAt(0) + values['color'].slice(1).toLowerCase(),
-            content = (_.isUndefined(values['content'])) ? '':values['content'].charAt(0) + values['content'].slice(1).toLowerCase(), 
+            content = (_.isUndefined(values['content'])) ? '':values['content'].charAt(0) + values['content'].slice(1).toLowerCase(),
             repeat  = (_.isUndefined(values['repeat'])) ? '':values['repeat'],
             width   = (_.isUndefined(values['width'])) ? '':values['width'],
             price   = (_.isUndefined(item_prices[id])) ? 'Not available':'$'+parseInt(item_prices[id]).toFixed(2);
@@ -235,7 +235,7 @@ $(document).ready(function() {
       var items = textiles.matchingItems;
       Downloadify.create('downloadify',{
         filename: 'RG-pricelist'+moment.format('YYYY-MM-DD')+'.pdf',
-        data: function(){ 
+        data: function(){
           var doc = new jsPDF('landscape');
           var pos = 62;
           var items = textiles.matchingItems;
@@ -260,7 +260,7 @@ $(document).ready(function() {
             var id      = (_.isUndefined(values['id'])) ? '':values['id'],
                 name    = (_.isUndefined(values['name'])) ? '':values['name'].charAt(0) + values['name'].slice(1).toLowerCase(),
                 color   = (_.isUndefined(values['color'])) ? '':values['color'].charAt(0) + values['color'].slice(1).toLowerCase(),
-                content = (_.isUndefined(values['content'])) ? '':values['content'].charAt(0) + values['content'].slice(1).toLowerCase(), 
+                content = (_.isUndefined(values['content'])) ? '':values['content'].charAt(0) + values['content'].slice(1).toLowerCase(),
                 repeat  = (_.isUndefined(values['repeat'])) ? '':values['repeat'],
                 width   = (_.isUndefined(values['width'])) ? '':values['width'],
                 price   = (_.isUndefined(item_prices[id])) ? 'Not available':'$'+parseInt(item_prices[id]).toFixed(2);
