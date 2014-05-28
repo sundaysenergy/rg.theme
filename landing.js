@@ -125,3 +125,9 @@ $(window).resize(function(){
     $('.navwrap').removeClass( "collapse navbar-collapse" )
   }
 });
+
+var itemMissing = function() {
+  $('area.no-item').attr( "href", "#" );
+};
+
+itemMissing();
