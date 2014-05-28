@@ -579,10 +579,6 @@ button.uppercase { font-size: 1em; }
   .img-large-container img, .rulers img { height: auto; width: 100%; }
 }
 
-@media (min-width: 1600px) { 
-  .rulers img { height: 100%; width: auto; }
-}
-
 #related-products,
 #item-colors {
   background: @rg-background;
@@ -875,9 +871,15 @@ div.ruler-wrap .rulers {
 
 div.ruler-wrap .rulers img {
   display: block;
+  position: relative;
   width: 100%;
   margin-left: 190px;
 }
+
+media (min-width: 1600px) { 
+  .rulers img { width: auto; top: -4px; }
+}
+
 
 .rulers .ruler-cm {
  display: none;
