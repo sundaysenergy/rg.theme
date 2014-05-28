@@ -53,6 +53,10 @@ $(document).ready(function() {
       i: 0
     };
 
+    if (_.isUndefined(hash.get('collection') == false) && hash.get('collection') == 'passementerie') {
+      options.page = rg_options.vertical_page;
+    }
+
     var data = combined.items;
     var colors = combined.colors;
 
@@ -202,7 +206,6 @@ $(document).ready(function() {
       $('#products ul.list').removeClass('passementerie');
       $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       $('li.collection-category a').on('click', function() {
-        console.log("resetting");
         $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       });
 
@@ -653,6 +656,7 @@ $(document).ready(function() {
             });
             $('.toggle-colors button').on('click touch', function(e) {
               e.preventDefault();
+              $(this).toggleClass( 'active' );
               $('.itemoverlay #related-products').toggle();
             });
             // Get the position in the mini slider
@@ -748,7 +752,6 @@ $(document).ready(function() {
 
     /*** JAVASCRIPT TWEAKS FOR SETTING IMAGE HEIGHT ***/
     // need this to be more dynamic and forgiving...
-    // causing all sorts of issues when you resize a window
     $(window).on('resizeSlides', function() {
       $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') !== 'passementerie') {
@@ -756,7 +759,7 @@ $(document).ready(function() {
           var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
           //var slideHeight = ((slideWidth*5)/7);
           //$('ul.slider > li').height(slideHeight);
-          $('ul.slider > li > img').width(slideWidth);
+          $('ul.slider > li > img').width(slideWidth-10);
         }
       } else {
 
@@ -783,12 +786,13 @@ $(document).ready(function() {
           }
         });
       } else {
-      //   $('#products ul.list li').each(function() {
-      //     var $image = $(this).find('.img');
-      //     if (_.isUndefined($image.attr('src')) == false) {
-      //       $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg'));
-      //     }
-      //   });
+        // This was commented, but it was breaking toggling between passementerie and anything else.
+        $('#products ul.list li').each(function() {
+         var $image = $(this).find('.img');
+          if (_.isUndefined($image.attr('src')) == false) {
+            $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg'));
+          }
+        });
       }
       // Update i if we have fewer items than the starting position
       if (productlist.i > productlist.matchingItems.length) {
@@ -922,6 +926,8 @@ $(document).ready(function() {
         // Create click handlers for the icon and the close button
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
           e.preventDefault();
+          $(this).toggleClass( 'active' );
+          $(this).siblings().removeClass( 'active' );
           $('.item-spotlight .item-information').slideToggle();
           $('#item-colors').hide();
           $('#project-list-select').hide();
@@ -935,6 +941,8 @@ $(document).ready(function() {
         $('.item-spotlight .item-icons button.item-favorite').on('click touch', function(e) {
           e.preventDefault();
           var id = $('.list li:nth-child(2)').find('.id').html();
+          $(this).toggleClass( 'active' );
+          $(this).siblings().removeClass( 'active' );
           $('.item-information,#item-colors').hide();
           addFaves($(this), id);
         });
@@ -953,6 +961,9 @@ $(document).ready(function() {
         var colorslist = new List('item-colors', options);
         // Click handler for colors
         $('button.item-colors').off().on('click touch', function(e) {
+          e.preventDefault();
+          $(this).toggleClass( 'active' );
+          $(this).siblings().removeClass( 'active' );
           $('#item-colors').toggle();
           $('.item-information').hide();
           $('#project-list-select').hide();
@@ -964,10 +975,15 @@ $(document).ready(function() {
           var total_pages = parseInt(colorslist.matchingItems.length / 5);
           if (colorslist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
           // Set the width of the color swatch thing
+          var ww = $(window).width();
           var thumbcount = $("#item-colors > ul.list-inline").children("li").length;
-          $('#item-colors').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
-          $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
-
+          if ( ww <= 1100 ){
+            $('#item-colors').css('width', (160+60*(thumbcount-1))).css('margin-left',-80+(-30*(thumbcount-1)));
+            $('#item-colors > ul.list-inline').css('width', 60*thumbcount);
+          } else {
+            $('#item-colors').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
+            $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
+          }
           $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
           $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
           $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
@@ -1408,6 +1424,31 @@ $(document).ready(function() {
     }
 
     show_favtxt();
-
+    $('a[href*=passementerie').on('click touch', function(e) {
+      if (productlist.page == rg_options.horizontal_page) {
+        productlist.page = rg_options.vertical_page;
+        $('#products > ul.list').removeClass('slider');
+        return true;
+      }
+    });
+    $('a[href*=leather],a[href*=textile]').on('click touch', function(e) {
+      if (productlist.page == rg_options.vertical_page) {
+        productlist.page = rg_options.horizontal_page;
+        $('#products > ul.list').addClass('slider');
+        return true;
+      }
+    });
   });
+
+  
+
 });
+
+// I don't know where to put this
+$(window).resize(function() {
+  var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
+  $('ul.slider > li > img').width(slideWidth-10);
+});
+
+
+

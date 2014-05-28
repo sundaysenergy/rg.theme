@@ -24,6 +24,53 @@
 
           $items.each( function() { originalWidth += $( this ).outerWidth( true ) } );
           $sliderContainer.width( originalWidth );
+          
+          
+          
+          
+          //Tim, Can you help between here and line 65? trying to get the scroll to be smooth and correct when you click on the indicators, we added them ourselves and now can't quite get them working
+          //Populate indicator
+          // added by Jackson and KB
+          
+          $items.each(function(){
+            var indicator = $('<li>');
+            var carouselIndicators = $('.carousel-indicators'); 
+            
+            indicator.appendTo(carouselIndicators);
+            
+            $('ol.carousel-indicators li:first-child').addClass('active');
+          });
+          
+          var indicator = $('ol.carousel-indicators li');
+          
+          indicator.click(function(){
+            
+            var scroll = $slider.scrollLeft();
+            var i = $(this).prevAll().size();
+            var slide = i + indicator.length;            
+            
+            slideTo( {}, $slider, 0, i, 'slow' );
+            
+          });
+          function changeIndicator(i){
+            
+            console.log(indicator.length);
+            if( i == (indicator.length * 2)){
+              i = 0;
+            }
+            else{
+              i = i - indicator.length;
+            }
+            
+            $('ol.carousel-indicators').find(indicator).eq(i).addClass('active').siblings().removeClass('active');
+            
+          }
+
+          //end Indicator stuff
+          //end added by Jackson and KB
+
+
+
 
           // slide to last item
           if( options.slideToLast ) $sliderContainer.css( 'padding-right', $slider.width() );
@@ -60,8 +107,9 @@
               if( x == 0 && $( this ).position().left > options.offset ) {
                 x = $( this ).position().left;
                 slide = i;
+                changeIndicator(slide);
               }
-            } );
+            } );            
 
             if( x > 0 && $sliderContainer.outerWidth() - scroll - $slider.width() - 1 > 0 ) {
               slideTo( e, $slider, scroll + x, slide, 'slow' );
@@ -81,6 +129,7 @@
               if( $( this ).position().left < options.offset ) {
                 x = $( this ).position().left;
                 slide = i;
+                changeIndicator(slide);
               }
             } );
 
@@ -193,7 +242,7 @@
       } );
 
     },
-
+   
     // Add Item
     //
     addItem: function( options ) {
@@ -261,7 +310,7 @@
     if( $slider.options.center ) {
       var currentElement = $( $slider.items[ i ] );
       $slider.options.offset = Math.floor( ( $( window ).width() - currentElement.width() ) / 2 );
-      console.log( 'set offset to ', $slider.options.offset );
+      /* console.log( 'set offset to ', $slider.options.offset ); */
     }
 
     if( typeof t == 'undefined' ) {
@@ -329,3 +378,4 @@
   }
 
 })( jQuery );
+

@@ -179,17 +179,38 @@ header, .masthead {
     color: @rg-gray;
     display:none;
     font-family: @font-family-serif;
-    padding: 7px 15px;
+    padding: 8px 12px;
     position:absolute;
     top:66%;
     text-align: center;
     text-transform: capitalize !important;
     width:150px;
     z-index:999999;
+    line-height: 16px;
+    vertical-align: center;
   }
   
   .landing-popover:hover {
     display: block !important;
   }
+
+  .landing-popover.no-item, .landing-popover.no-item:hover {
+    display: none !important;
+  }
+
+
+  .landing-popover strong,
+  .landing-popover span,  
+  .landing-popover br {
+    margin: 0;
+    padding: 0;
+    position: static;
+  }
   
+  .landing-popover strong.uppercase {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: @rg-black;
+  }
+
 }

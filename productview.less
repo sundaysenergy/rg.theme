@@ -12,6 +12,10 @@
   }
 }
 
+img {
+  width: 100%;
+}
+
 ul.collections:last-child {
   border-bottom: 1px solid;
 }
@@ -20,7 +24,7 @@ div.add-fave {
   display: none;
   position: absolute;
   top: 5px;
-  right: 5px;
+  right: 10px;
   height: 29px;
   width: 29px;
 }
@@ -90,41 +94,18 @@ button.slide {
 }
 
 .list li {
-  float: left;
-  position: relative;
-  width: 32%;
-  max-width: 32%;
-  height: 200px; 
+  height: auto;
+  max-height: 213px;
+  min-height: 100px;
+  width: 33.33333333%;
+  max-width: 33.33333333%;
+  padding-left: 2.5px;
+  padding-right: 2.5px;
+  margin: 0 0 5px 0;
   overflow: hidden;
-  margin-right: 2%; /* this is still slightly too wide... will have to figure out a JS solution based on screen widths maybe? */
-  margin-bottom: 20px; /* need to make this the same as margin-right... perhaps decalaring in JS would make this easier? */
-}
-
-@media (min-width: @screen-sm-min) {
-  .list li {
-    height: 250px;
-  }
-  .list li img {
-    min-height: 100%;
-  }
-}
-
-@media (min-width: @screen-md-min) {
-  .list li {
-    height: 300px;
-  }
-}
-
-@media (min-width: @screen-lg-min) {
-  .list li {
-    height: 350px;
-  }
-}
-
-@media (min-width: 1600px) {
-  .list li {
-    height: 400px;
-  }
+  position: relative;
+  float: left;
+  overflow: hidden;
 }
 
 #collection-row-passementerie .passementerie li {
@@ -149,6 +130,109 @@ button.slide {
 .passementerie li div.item-spotlight,
 .passementerie li img  {
   cursor: default;
+}
+
+/* ================================= */
+/* 3-up Slideshow on collection page */
+/* ================================= */
+/* Do this in a less hacky way for production */
+.slider { text-align: center; }
+
+.slider > li { 
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+  position: relative;
+  height: 200px; 
+  max-height: 200px;
+  min-height: 200px;
+  overflow: hidden;
+  margin-bottom: 20px; /* need to make this the same as margin-right... perhaps decalaring in JS would make this easier? */
+  box-sizing: border-box;
+}
+
+@media (min-width: @screen-sm-min) {
+  .slider li {
+    height: 250px; 
+    max-height: 250px;
+    min-height: 250px;
+  }
+  .slider li img {
+    min-height: 100%;
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .slider li {
+    height: 300px; 
+    max-height: 300px;
+    min-height: 300px;
+  }
+}
+
+@media (min-width: @screen-lg-min) {
+  .slider li {
+    height: 350px; 
+    max-height: 350px;
+    min-height: 350px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .slider li {
+    height: 400px; 
+    max-height: 400px;
+    min-height: 400px;
+  }
+}
+
+.slider>li:nth-child(2) {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin:0;
+}
+
+@media (max-width: @screen-xs-max) {
+  .slider>li:nth-child(1),
+  .slider>li:nth-child(3) {
+    display:none;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) {
+  .slider > li:nth-child(1),
+  .slider > li:nth-child(3) {
+    display:list-item;
+    width: 25% !important;
+    max-width: 25% !important;
+  }
+
+  .slider > li:nth-child(1),
+  .slider > li:nth-child(3) {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .slider > li:nth-child(2) {
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+  
+  .slider > li:nth-child(2) img {
+    display: block;
+    margin: 0 5px;
+  }
+  
+
+}
+
+/* In slide view, if we are on the first item we add a dummy
+   to push it into the center section. Hide the fourth element
+   from display in this instance */
+.slider > li:nth-of-type(4) {
+  display: none;
 }
 
 #collection-menu-faves {
@@ -248,13 +332,21 @@ ul.collection-controls .pagecount {
 .filter-list ul.nav-tabs li.active > span {
   color: @rg-black;
 }
+.nav-tabs > li.active > a, 
+.nav-tabs > li.active > a:hover, 
+.nav-tabs > li.active > a:focus {
+  color: @rg-black;
+  background-color: transparent;
+  border: none;
+  border-bottom-color: none;
+}
 
 .filter-list  fieldset {
   border: none;
   color: @rg-gray;
   font-size: 11px;
   letter-spacing: 1px;
-  padding: 60px 25px 15px 25px;
+  padding: 55px 25px 15px 25px;
   margin: 0;
 }
 
@@ -288,11 +380,22 @@ ul.collection-controls .pagecount {
   font-size: 11px;
 }
 
+.search-related #collection-menu-search {
+  margin-bottom: 30px !important;
+}
+
 @media (min-width: @screen-sm-min) { 
+  .search-related #collection-menu-search {
+    margin-bottom: 10px !important;
+  }
+
+  ul.collection-controls li.arrange {
+    left: 10px;
+  }
+  
   .filter-list {
-    width: 700px;
+    width: 500px;
     left: -70px;
-    top:-10px;
     text-align: center;
   }
   
@@ -320,15 +423,48 @@ ul.collection-controls .pagecount {
     color: @rg-black;
   }
   
+  .filter-list div.tab-content {
+    padding: 0 20px;
+  }
+
   .filter-list fieldset {
-    padding: 60px 10px 15px 20px;
+    padding: 55px 10px 15px 20px;
   }
   
   .filter-list fieldset label {
     display: block;
     float: left;
+    line-height: 14px;
+    margin-bottom: 10px;
+    width: 33%;
+    vertical-align: middle;
+  }
+}
+
+@media (min-width: @screen-md-min) { 
+  ul.collection-controls li.arrange {
+    position: relative;
+    left: initial;
+  }
+  
+  .filter-list {
+    width: 700px;
+    left: -125px;
+  }
+  
+  .filter-list fieldset label {
+    display: block;
+    float: left;
+    line-height: 14px;
+    margin-bottom: 10px;
     width: 25%;
-    margin-bottom: 6px;
+    vertical-align: middle;
+  }
+}
+
+@media (min-width: @screen-lg-min) { 
+  .filter-list {
+    left: -70px;
   }
 }
 
@@ -366,143 +502,9 @@ button.uppercase { font-size: 1em; }
   margin-bottom: 10px;
 }
 
-/* ================================= */
-/* 3-up Slideshow on collection page */
-/* ================================= */
-/* Do this in a less hacky way for production */
-.slider { text-align: center; }
-
-.slider > li { 
-  overflow: hidden;
-  margin: 0;
-  height: 333px; /* set this in JS to keep a 4x3 ratio » var h = ((w*3)/4); */
-  vertical-align: middle;
-}
-
-.slider>li:nth-child(2) {
-  width: 100% !important;
-  max-width: 100% !important;
-  margin:0;
-}
-
-@media (max-width: @screen-xs-max) {
-  .slider>li:nth-child(1),
-  .slider>li:nth-child(3) {
-    display:none;
-  }
-}
-
-/* Small devices (tablets, 768px and up) */
-@media (min-width: @screen-sm-min) {
-  .slider > li:nth-child(1),
-  .slider > li:nth-child(3) {
-    display:list-item;
-    width: 28% !important;
-    max-width: 28% !important;
-  }
-
-  .slider > li:nth-child(1) {
-    margin-left:  -1%;
-    margin-right:  1%;
-  }
-  
-  .slider > li:nth-child(2) {
-    width: 44% !important;
-    max-width: 44% !important;
-  }
-  
-  .slider > li:nth-child(3) {
-    margin-left:   1%;
-    margin-right: -1%;
-  }
-
-  /* ====================================== */
-  /* ====================================== */
-  /* Crazy Passementerie Styles             */ 
-  /* ====================================== */
-  /* ====================================== */
-  ul.slider.passementerie {
-    position: relative !important;
-    height: 410px;
-  }
-
-  ul.slider.passementerie > li {
-    margin: 0;
-    border-bottom: none;
-    border-top: none;
-    min-width: 750px !important;
-    width: 750px !important;
-    max-width: 750px !important;
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    height: 410px;
-  }
-
-  ul.slider.passementerie > li:nth-child(1) { left: 0; }
-  ul.slider.passementerie > li:nth-child(3) { right: 0; }
-  
-  ul.slider.passementerie > li:nth-child(2) {
-    background: @rg-background;
-    left: 50%;
-    margin-left: -375px;
-    border-left: 4px solid @rg-background;
-    border-right: 4px solid @rg-background;
-    z-index: 2;
-  }
-
-  ul.slider.passementerie > li .table { display: table; }
-  ul.slider.passementerie > li .table-cell { display: table-cell; border: 2px solid @rg-background; }
-  ul.slider.passementerie > li .table, ul.passementerie > li .table-cell { height: 100%; width: 100%; }
-  
-}
-
-/* ====================================== */
-/* ====================================== */
-/* Crazy Passementerie Styles             */ 
-/* ====================================== */
-/* ====================================== */
-
-@media (min-width: @screen-md-min) {
-  ul.slider.passementerie > li {
-    min-width: 970px !important;
-    width: 970px !important;
-    max-width: 970px !important;
-  }
-
-  ul.slider.passementerie > li:nth-child(2) {
-    margin-left: -485px;
-  }
-}
-
-/* ====================================== */
-/* ====================================== */
-/* Crazy Passementerie Styles             */ 
-/* ====================================== */
-/* ====================================== */
-
-@media (min-width: @screen-lg-min) {
-  ul.slider.passementerie > li {
-    min-width: 1170px !important;
-    width: 1170px !important;
-    max-width: 1170px !important;
-  }
-
-  ul.slider.passementerie > li:nth-child(2) {
-    margin-left: -585px;
-  }
-}
-
-img {
-  width: 100%;
-}
-
-/* In slide view, if we are on the first item we add a dummy
-   to push it into the center section. Hide the fourth element
-   from display in this instance */
-.slider > li:nth-of-type(4) {
-  display: none;
-}
+/*********************************************/
+/*********************************************/
+/*********************************************/
 
 /* ITEM OVERLAY DISPLAY STYLES */
 .itemoverlay { z-index: 9000; }
@@ -547,19 +549,24 @@ img {
   border: none;
   background: @rg-background;
   color: @rg-gray;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   letter-spacing: 2px;
   line-height: 14px;
-  padding-top: 8px;
+  padding-top: 7px;
+  padding-bottom: 6px;
   width: 100px;
 }
 
 .itemoverlay .toggle-colors button:hover,
+.itemoverlay .toggle-colors button:focus,
 .itemoverlay .toggle-colors button:active,
-.itemoverlay .toggle-colors.open button,
-.itemoverlay .toggle-colors button.open {
-  background: @rg-dark-gold;
+.itemoverlay .toggle-colors button.active,
+.item-spotlight .item-icons button:hover,
+.item-spotlight .item-icons button:focus,
+.item-spotlight .item-icons button:hover:active,
+.item-spotlight .item-icons button.active {
+  background: #BAAC96;
   color: @rg-background;
 }
 
@@ -568,6 +575,10 @@ img {
 
 @media (min-width: @screen-sm-min) { 
   .img-large-container img, .rulers img { height: auto; width: 100%; }
+}
+
+@media (min-width: 1600px) { 
+  .rulers img { height: 100%; width: auto; }
 }
 
 #related-products,
@@ -585,7 +596,7 @@ img {
 }
 
 #related-products {
-  top:120px;
+  top:130px;
 }
 
 #item-colors {
@@ -608,6 +619,8 @@ img {
   max-width: 80px;
   margin-right: 10px;
   height: 60px;
+  min-height: 60px;
+  max-height: 60px;
   padding: 0;
   overflow: hidden;
 }
@@ -694,7 +707,7 @@ ul.slider,
 }
 
 .item-spotlight .item-icons button {
-  background: @rg-background !important;
+  background: @rg-background;
   padding: 5px 9px 2px;
 }
 
@@ -938,14 +951,22 @@ ul.collection-controls li.hug-right {
 }
 
 /* Search Filter Amount Menu Styles */
+.collection-view-items span.show-items {
+  display: inline-block;
+  margin-left: 11px;
+}
+
+.collection-view-items span.caret{
+  margin-left: 0;
+}
+
 .collection-view-items .search-view-number,
 #collection-menu-search #search-view-number {
-  top: 0;
-  left: 50%;
+  top: -3px;
+  left: 53%;
   float: none;
-  padding: 20px 0 0 0;
+  padding: 23px 0 0 0;
   margin: 0;
-  border: none;
   border: none;
   -webkit-box-shadow: @popup-box-shadow;
   -moz-box-shadow: @popup-box-shadow;
@@ -955,6 +976,7 @@ ul.collection-controls li.hug-right {
   min-width: 50px;
   max-width: 50px;
   z-index: 10 !important;
+  list-style: none;
 }
 
 .collection-view-items .search-view-number li,
@@ -963,6 +985,8 @@ ul.collection-controls li.hug-right {
   margin: 0;
   padding: 0;
   width: 50px;
+  min-width: 50px;
+  max-width: 50px;
 }
 
 .collection-view-items .search-view-number li > a,
@@ -973,21 +997,30 @@ ul.collection-controls li.hug-right {
   display: block;
   clear: none;
   margin: 0;
-  padding: 3px 0 0 0;
   border: none;
   border-radius: 0;
-  font-weight: inherit;
-  line-height: inherit;
   color: @rg-black;
   white-space: nowrap;
-  width: 50px
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  padding: 3px 5px;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .collection-view-items .search-view-number li > a:hover,
 .collection-view-items .search-view-number li > span:hover,
 #collection-menu-search #search-view-number li > a:hover,
 #collection-menu-search #search-view-number li > span:hover {
-  background-color: @rg-gray;
+  background: transparent;
+  background-color: #CECECE;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 /* Undoing some Bootstrap stuff i think? */
@@ -1007,7 +1040,6 @@ div.search-noresults {
 }
 
 /* centering info on textile/leather */
-
 .outer { height: 100%; }
 
  /* The ghost, nudged to maintain perfect centering */
@@ -1026,5 +1058,4 @@ div.search-noresults {
   vertical-align: middle;
   height: auto;
 }
-
 
