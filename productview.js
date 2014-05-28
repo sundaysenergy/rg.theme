@@ -653,6 +653,7 @@ $(document).ready(function() {
             $('.itemoverlay').show().html(item_template.render(item));
             $('#related-products button.close').off('click touch').on('click touch', function(e) {
               $('.itemoverlay #related-products').hide();
+              $('.itemoverlay .toggle-colors button').removeClass('active');
             });
             $('.toggle-colors button').on('click touch', function(e) {
               e.preventDefault();
@@ -936,6 +937,7 @@ $(document).ready(function() {
         // Handle closing the color list with an X
         $('#item-colors button.close').off('click touch').on('click touch', function(e) {
           $('#item-colors').hide();
+          $('.item-spotlight .item-icons .item-colors').removeClass('active');
         });
         // Create click handler for favorite
         $('.item-spotlight .item-icons button.item-favorite').on('click touch', function(e) {
