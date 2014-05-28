@@ -1147,7 +1147,7 @@ $(document).ready(function() {
       }
     }); // end productlist.on('updated')
 
-    $('ul.filter-list ul.li.clear a').on('click touch', function(e) {
+    $('ul.filter-list ul li.clear a').on('click touch', function(e) {
       hash.remove('attributes');
     });
 
