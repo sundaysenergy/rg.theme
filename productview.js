@@ -1147,6 +1147,10 @@ $(document).ready(function() {
       }
     }); // end productlist.on('updated')
 
+    $('ul.filter-list ul.li.clear a').on('click touch', function(e) {
+      hash.remove('attributes');
+    });
+
     // When we check or uncheck a box, recalculate search terms
     $('.filter-attributes input[type=checkbox]').on('click touch', function(e) {
       if ($(this).parent().hasClass('disabled')) {
@@ -1440,7 +1444,7 @@ $(document).ready(function() {
     });
   });
 
-  
+
 
 });
 
