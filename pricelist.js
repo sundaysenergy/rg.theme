@@ -35,7 +35,7 @@ $(document).ready(function() {
 
     var template = Hogan.compile('{{#items}}<tr><td class="name">{{name}}</td><td class="color">{{color}}</td><td class="id">{{id}}</td><td class="content">{{contents}}</td><td class="repeat">{{repeat}}</td><td class="width">{{width}}</td><td class="tradeprice">{{tradeprice}}</td></tr>{{/items}}');
     $('tbody.list').hide();
-    data.items = _.sortBy data.items, ['name', 'color']
+    data.items = _.sortBy data.items, ['name', 'id']
     $('tbody.list').html(template.render(data));
 
     // Define value names and other options
