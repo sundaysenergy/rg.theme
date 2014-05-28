@@ -1473,5 +1473,3 @@ var swapicon = function() {
 };
 
 swapicon();
-
-
