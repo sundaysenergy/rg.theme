@@ -35,6 +35,7 @@ $(document).ready(function() {
 
     var template = Hogan.compile('{{#items}}<tr><td class="name">{{name}}</td><td class="color">{{color}}</td><td class="id">{{id}}</td><td class="content">{{contents}}</td><td class="repeat">{{repeat}}</td><td class="width">{{width}}</td><td class="tradeprice">{{tradeprice}}</td></tr>{{/items}}');
     $('tbody.list').hide();
+    data.items = _.sortBy data.items, ['name', 'color']
     $('tbody.list').html(template.render(data));
 
     // Define value names and other options
@@ -143,7 +144,7 @@ $(document).ready(function() {
         $(this).append(' <i class="fa fa-caret-up"></i>');
       }
     });
-    
+
     $('#pricelist-view-number a').each(function(i) {
       $(this).on('click touch', function(e) {
         e.preventDefault();
@@ -161,7 +162,7 @@ $(document).ready(function() {
         textiles.update();
       });
     });
-    
+
     $('button.download-pdf').off('click touch').on('click touch', function(e) {
       e.preventDefault();
       var doc = new jsPDF('landscape');
