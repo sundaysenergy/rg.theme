@@ -229,6 +229,7 @@ $(document).ready(function() {
           $('#collection-headers-after').removeClass('border-top');
           if (productlist.page == rg_options.horizontal_page) {
             productlist.page = rg_options.vertical_page;
+            $('#products > ul.list').removeClass('slider');
           }
           $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
           // Move the inactive headers to a different container if they're not there already
