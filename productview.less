@@ -112,10 +112,12 @@ button.slide {
   float: none;
   width: 100%;
   max-width: 100%;
-  height: auto; 
+  height: auto;
+  min-height: none;
+  max-height: none;
   overflow: hidden;
   margin: 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .list li:nth-child(3n) {
@@ -144,9 +146,9 @@ button.slide {
   padding: 0;
   vertical-align: middle;
   position: relative;
-  height: 200px; 
-  max-height: 200px;
-  min-height: 200px;
+  height: 225px; 
+  max-height: 225px;
+  min-height: 225px;
   overflow: hidden;
   margin-bottom: 20px; /* need to make this the same as margin-right... perhaps decalaring in JS would make this easier? */
   box-sizing: border-box;
@@ -154,9 +156,9 @@ button.slide {
 
 @media (min-width: @screen-sm-min) {
   .slider li {
-    height: 250px; 
-    max-height: 250px;
-    min-height: 250px;
+    height: 275px; 
+    max-height: 275px;
+    min-height: 275px;
   }
   .slider li img {
     min-height: 100%;
@@ -165,25 +167,25 @@ button.slide {
 
 @media (min-width: @screen-md-min) {
   .slider li {
-    height: 300px; 
-    max-height: 300px;
-    min-height: 300px;
-  }
-}
-
-@media (min-width: @screen-lg-min) {
-  .slider li {
     height: 350px; 
     max-height: 350px;
     min-height: 350px;
   }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: @screen-lg-min) {
   .slider li {
     height: 400px; 
     max-height: 400px;
     min-height: 400px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .slider li {
+    height: 475px; 
+    max-height: 475px;
+    min-height: 475px;
   }
 }
 
