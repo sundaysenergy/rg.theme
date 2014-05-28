@@ -1454,5 +1454,22 @@ $(window).resize(function() {
   $('ul.slider > li > img').width(slideWidth-10);
 });
 
+var swapicon = function() {
+  $('.itemoverlay .nav .navbar-header').on('click touch','.navbar-toggle',function() {
+  
+    var ncollapse = $('nav .navwrap').hasClass('collapse');
+    var ncollapsing = $('nav .navwrap').hasClass('collapsing');
+    var nin = $('nav .navwrap').hasClass('in');
+  
+    if (ncollapse === false) {
+      $('.navbar-header .navbar-toggle').addClass('go-up');
+    } else {
+      $('.navbar-header .navbar-toggle').removeClass('go-up');
+    }
+  
+  });
+};
+
+swapicon();
 
 
