@@ -204,6 +204,7 @@ $(document).ready(function() {
 
       $('[id^=collection-menu]').hide();
       $('#products ul.list').removeClass('passementerie');
+      $('#products ul.list').removeClass('search-layout');
       $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       $('li.collection-category a').on('click', function() {
         $('ul.list li:visible .img,ul.list li:visible').attr('style','');
@@ -224,6 +225,7 @@ $(document).ready(function() {
           }
           // Move the #products div after the textile header bar
           $('#products').insertAfter('#collection-menu-main');
+          $('#products ul.list').addClass('search-layout');
         }
         /*** PASSEMENTERIE COLLECTION ***/
         if (collection == 'passementerie') {
