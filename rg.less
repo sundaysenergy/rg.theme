@@ -598,7 +598,7 @@ main.contact { margin-top: 50px; }
   text-decoration: underline;
 }
 
-.showrooms ul {
+.showrooms ul.list-inline {
   border-color: #EEE;
   list-style: none;
   margin: 0;
@@ -606,16 +606,19 @@ main.contact { margin-top: 50px; }
 }
 
 .showrooms .slider > ul {
-  padding: 3em 0 0;
+  padding: 2.75em 0 0;
 }
 
 .showrooms ul > li.showroom {
-  font-size: 1.15em;
   margin-top: 1em;
   margin-bottom: 4em;
   vertical-align: top;
   width: 90%;
   text-align: left;
+}
+
+.showrooms ul.top > li.showroom {
+  margin-bottom: 3em;
 }
 
 @media (min-width: 699px) { 
@@ -651,7 +654,7 @@ li.showroom h3 {
   font-size: 1em;
   font-weight: bold;
   line-height: 1;
-  margin: 0 0 .3em 0;
+  margin: 0 0 .4em 0;
   padding: 0;
 }
 
@@ -662,7 +665,7 @@ li.showroom h3 {
 li.showroom,
 .showroom address,
 .showroom p {
-  line-height: 1.3
+  line-height: 1.25
 }
 
 li.showroom a { text-decoration: underline; }
@@ -671,7 +674,7 @@ li.showroom p { margin: 0; }
 
 li.showroom address { margin: 0; }
 
-li.showroom ul.connect { margin: .3em 0 0 0; }
+li.showroom ul.connect { margin: .4em 0 0 0; }
 
 li.showroom span.smallcaps {
   letter-spacing: 1px;
