@@ -346,6 +346,7 @@ $(document).ready(function() {
       if (_.isUndefined(srch) == false) {
         // Show the search header bar and hide the others
         $('#products,#collection-menu-search,#collection-menu-search-collection').show();
+        $('#products ul.list').addClass('search-layout');
         // Switch between search collections
         $("#collection-menu-search-collection button").on('click touch', function(e) {
           e.preventDefault();
