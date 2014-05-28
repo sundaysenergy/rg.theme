@@ -228,7 +228,7 @@ $(document).ready(function() {
         if (collection == 'passementerie') {
           $('#collection-headers-after').removeClass('border-top');
           if (productlist.page == rg_options.horizontal_page) {
-            console.log("Wrong viewing mode");
+            productlist.page = rg_options.vertical_page;
           }
           $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
           // Move the inactive headers to a different container if they're not there already
