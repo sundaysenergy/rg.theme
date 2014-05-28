@@ -196,15 +196,13 @@ $(document).ready(function() {
     $('#products > ul.list').addClass('slider');
     if (_.isUndefined(hash.get('pos'))) hash.add({pos:0});
 
-
     /**** VISUAL RESETS AND RE-ARRANGE ****/
     $(window).on('visRearrange', function() {
       var collection = hash.get('collection');
       var srch       = hash.get('search');
 
       $('[id^=collection-menu]').hide();
-      $('#products ul.list').removeClass('passementerie');
-      $('#products ul.list').removeClass('search-layout');
+      $('#products ul.list').removeClass('passementerie search-layout');
       $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       $('li.collection-category a').on('click', function() {
         $('ul.list li:visible .img,ul.list li:visible').attr('style','');
@@ -225,7 +223,6 @@ $(document).ready(function() {
           }
           // Move the #products div after the textile header bar
           $('#products').insertAfter('#collection-menu-main');
-          $('#products ul.list').addClass('search-layout');
         }
         /*** PASSEMENTERIE COLLECTION ***/
         if (collection == 'passementerie') {
@@ -322,6 +319,7 @@ $(document).ready(function() {
         productlist.page = rg_options.vertical_page;
         var pos = 1;
         $('#products > ul.list').removeClass('slider');
+        $('#products ul.list').addClass('search-layout');
         productlist.update();
       }
       // If no detailed view is present, make sure we hide the element
