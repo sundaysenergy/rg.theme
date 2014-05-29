@@ -1451,6 +1451,8 @@ $(document).ready(function() {
     $('a[href*="leather"],a[href*="textile"]').on('click touch', function(e) {
       if (productlist.page == rg_options.vertical_page) {
         productlist.page = rg_options.horizontal_page;
+        $('button.thumbs').show();
+        $('button.slides').hide();
         $('#products > ul.list').addClass('slider');
         return true;
       }
