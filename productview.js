@@ -227,7 +227,7 @@ $(document).ready(function() {
         /*** PASSEMENTERIE COLLECTION ***/
         if (collection == 'passementerie') {
           $('#collection-headers-after').removeClass('border-top');
-          if (productlist.page == rg_options.horizontal_page) {
+          if (productlist.visibleItems.length == rg_options.horizontal_page) {
             productlist.page = rg_options.vertical_page;
             $('#products > ul.list').removeClass('slider');
           }
@@ -1440,7 +1440,7 @@ $(document).ready(function() {
 
     show_favtxt();
     
-    $('a[href*=passementerie').on('click touch', function(e) {
+    $('a[href*="passementerie"]').on('click touch', function(e) {
       if (productlist.page == rg_options.horizontal_page) {
         productlist.page = rg_options.vertical_page;
         $('#products > ul.list').removeClass('slider');
@@ -1448,7 +1448,7 @@ $(document).ready(function() {
       }
     });
     
-    $('a[href*=leather],a[href*=textile]').on('click touch', function(e) {
+    $('a[href*="leather"],a[href*="textile"]').on('click touch', function(e) {
       if (productlist.page == rg_options.vertical_page) {
         productlist.page = rg_options.horizontal_page;
         $('#products > ul.list').addClass('slider');
