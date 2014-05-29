@@ -1443,6 +1443,7 @@ $(document).ready(function() {
     $('a[href*="passementerie"]').on('click touch', function(e) {
       if (productlist.page == rg_options.horizontal_page) {
         productlist.page = rg_options.vertical_page;
+        $('.collection-view-items').show();
         $('#products > ul.list').removeClass('slider');
         return true;
       }
