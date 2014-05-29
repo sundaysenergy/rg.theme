@@ -216,7 +216,9 @@ $(document).ready(function() {
         if (collection == 'textile') {
           $('#collection-headers-after').removeClass('border-top');
           $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
-          $('.collection-view-items').hide();
+          if (productlist.page == rg_options.horizontal_page) {
+            $('.collection-view-items').hide();
+          }
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
             $('#collection-menu-passementerie-inactive').appendTo('#collection-headers-after > div.row');
@@ -228,22 +230,23 @@ $(document).ready(function() {
         /*** PASSEMENTERIE COLLECTION ***/
         if (collection == 'passementerie') {
           $('#collection-headers-after').removeClass('border-top');
-          // $('.collection-view-items').show();
-          // $('.collection-view-items a').each(function(i) {
-          //   $(this).on('click touch', function(e) {
-          //     e.preventDefault();
-          //     var items = $(this).data('show-items');
-          //     var i = productlist.i;
-          //     productlist.page = items;
-          //     rg_options.vertical_page = items;
-          //     // Set position to the same page that would contain item with new quantity/page
-          //     var newpos = parseInt(productlist.i / items) * items + 1;
-          //     // Set the display value to the current number of items
-          //     $('button .show-items').html(items);
-          //     // Add our position to the hash and update the list
-          //     hash.add({pos:newpos});
-          //     productlist.update();
-          //   });
+          $('.collection-view-items').show();
+          $('.collection-view-items a').each(function(i) {
+            $(this).on('click touch', function(e) {
+              e.preventDefault();
+              var items = $(this).data('show-items');
+              var i = productlist.i;
+              productlist.page = items;
+              rg_options.vertical_page = items;
+              // Set position to the same page that would contain item with new quantity/page
+              var newpos = parseInt(productlist.i / items) * items + 1;
+              // Set the display value to the current number of items
+              $('button .show-items').html(items);
+              // Add our position to the hash and update the list
+              hash.add({pos:newpos});
+              productlist.update();
+            });
+          });
           if (productlist.visibleItems.length == rg_options.horizontal_page) {
             productlist.page = rg_options.vertical_page;
             $('#products > ul.list').removeClass('slider');
@@ -266,6 +269,9 @@ $(document).ready(function() {
         }
         /*** LEATHER COLLECTION ***/
         if (collection == 'leather') {
+          if (productlist.page == rg_options.horizontal_page) {
+            $('.collection-view-items').hide();
+          }
           $('#collection-headers-after').addClass('border-top');
           $('#products,#collection-menu-leather,#collection-menu-main-inactive,#collection-menu-passementerie-inactive').show();
           // Move inactive headers back to original container if necessary
