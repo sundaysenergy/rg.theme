@@ -917,8 +917,9 @@ $(document).ready(function() {
         if (productlist.matchingItems.length > 0) {
           var itemvals = productlist.visibleItems[parseInt(n)].values();
           itemvals.pager = itemvals.itemcolors().length > 5;
+          itemvals.repeat = (itemvals.repeat == '') ? false:itemvals.repeat;
           if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') !== 'passementerie') {
-            $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render({ item: itemvals }));
+            $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(itemvals));
           } else {
             $('#products > ul.slider li:nth-child(2)').append(spotlight_pass_template.render(itemvals));
           }
