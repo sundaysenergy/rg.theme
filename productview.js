@@ -918,7 +918,7 @@ $(document).ready(function() {
           var itemvals = productlist.visibleItems[parseInt(n)].values();
           itemvals.pager = itemvals.itemcolors().length > 5;
           if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') !== 'passementerie') {
-            $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(itemvals));
+            $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render({ item: itemvals }));
           } else {
             $('#products > ul.slider li:nth-child(2)').append(spotlight_pass_template.render(itemvals));
           }
