@@ -1454,6 +1454,7 @@ $(document).ready(function() {
         productlist.page = rg_options.horizontal_page;
         $('button.thumbs').show();
         $('button.slide').hide();
+        $('.collection-view-items').hide();
         $('#products > ul.list').addClass('slider');
         return true;
       }
