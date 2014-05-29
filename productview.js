@@ -216,6 +216,7 @@ $(document).ready(function() {
         if (collection == 'textile') {
           $('#collection-headers-after').removeClass('border-top');
           $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
+          $('.collection-view-items').hide();
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
             $('#collection-menu-passementerie-inactive').appendTo('#collection-headers-after > div.row');
@@ -231,7 +232,7 @@ $(document).ready(function() {
             productlist.page = rg_options.vertical_page;
             $('#products > ul.list').removeClass('slider');
           }
-          $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
+          $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive,.collection-view-items').show();
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 0) {
             $('#collection-menu-leather-inactive').appendTo('#collection-headers-after > div.row');
@@ -250,6 +251,7 @@ $(document).ready(function() {
         /*** LEATHER COLLECTION ***/
         if (collection == 'leather') {
           $('#collection-headers-after').addClass('border-top');
+          $('.collection-view-items').hide();
           $('#products,#collection-menu-leather,#collection-menu-main-inactive,#collection-menu-passementerie-inactive').show();
           // Move inactive headers back to original container if necessary
           if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 1) {
@@ -1443,7 +1445,6 @@ $(document).ready(function() {
     $('a[href*="passementerie"]').on('click touch', function(e) {
       if (productlist.page == rg_options.horizontal_page) {
         productlist.page = rg_options.vertical_page;
-        $('.collection-view-items').show();
         $('#products > ul.list').removeClass('slider');
         return true;
       }
@@ -1454,7 +1455,6 @@ $(document).ready(function() {
         productlist.page = rg_options.horizontal_page;
         $('button.thumbs').show();
         $('button.slide').hide();
-        $('.collection-view-items').hide();
         $('#products > ul.list').addClass('slider');
         return true;
       }
