@@ -34,6 +34,7 @@ $(document).ready(function() {
     // Compile clientside templates
     var templates = combined.templates;
     var item_template                = Hogan.compile(templates.item),
+        item_passementerie           = Hogan.compile(templates.item_passementerie),
         item_mobile_template         = Hogan.compile(templates.item_mobile),
         spotlight_template           = Hogan.compile(templates.spotlight),
         spotlight_pass_template      = Hogan.compile(templates.spotlight_passementerie),
@@ -1185,6 +1186,12 @@ $(document).ready(function() {
         var $li = $(this);
         if ($(this).find('.item-icons-passementerie').length == 0) {
           $li.append('<div class="item-icons-passementerie pull-right"> <button class="item-colors plain uppercase"> Colors </button> <button class="item-favorite plain hidden-xs"> <i class="fa fa-plus"></i> </button> <button class="item-details plain"> <i class="fa fa-align-justify"></i> </button> </div>');
+          $li.find('.item-icons-passementerie .item-details').on('click touch', function(e) {
+            e.preventDefault();
+            var id = $li.find('.id').html();
+            var item_data = productlist.get('id',id)[0].values();
+            $('body').append(item_passementerie.render(item_data));
+          });
         }
       });
     }); // end productlist.on('updated')
