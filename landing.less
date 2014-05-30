@@ -57,10 +57,48 @@ header, .masthead {
 #carousel-example-generic .item .landing-popover {
   position: absolute;
   background:#fff;
-  width:150px;
   z-index:999999;
   top:66%;
   text-align: center;
+}
+
+.landing-popover {
+  background: @rg-background;
+  color: @rg-gray;
+  display:none;
+  font-family: @font-family-serif;
+  padding: 8px 12px;
+  text-align: center;
+  text-transform: capitalize !important;
+  width:150px;
+  line-height: 16px;
+  vertical-align: center;
+}
+
+.landing-popover:hover {
+  display: block !important;
+}
+
+.landing-popover.no-item, .landing-popover.no-item:hover {
+  display: none !important;
+}
+
+map area.no-item {
+  cursor: default;
+}
+
+.landing-popover strong,
+.landing-popover span,  
+.landing-popover br {
+  margin: 0;
+  padding: 0;
+  position: static;
+}
+
+.landing-popover strong.uppercase {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: @rg-black;
 }
 
 /* Small devices (tablets, 768px and up) */
@@ -74,30 +112,21 @@ header, .masthead {
   .carousel-inner > .item > a > img {
     width: 100%;
     max-width: 100%;
-    position: static;
   }
   
-  .landing {
-    width: 100%;
-    height: auto
-  }
-
   #carousel-example-generic {
-    width: 100%;
     cursor: pointer;
-  }
-  
-  .carousel-inner .item {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
   }
   
   .carousel-inner .item img {
     height: auto;
+    max-height: none;
     width: 100%;
   }
   
+}
+
+/** CONTROLS **/
   .carousel-indicators, .carousel-control {
     display: block;
     position: fixed;
@@ -160,44 +189,3 @@ header, .masthead {
     opacity: 1 !important;
     filter: alpha(opacity=100) !important;
   }
-  
-  .landing-popover {
-    background: @rg-background;
-    color: @rg-gray;
-    display:none;
-    font-family: @font-family-serif;
-    padding: 8px 12px;
-    text-align: center;
-    text-transform: capitalize !important;
-    width:150px;
-    line-height: 16px;
-    vertical-align: center;
-  }
-  
-  .landing-popover:hover {
-    display: block !important;
-  }
-
-  .landing-popover.no-item, .landing-popover.no-item:hover {
-    display: none !important;
-  }
-  
-  map area.no-item {
-    cursor: default;
-  }
-
-  .landing-popover strong,
-  .landing-popover span,  
-  .landing-popover br {
-    margin: 0;
-    padding: 0;
-    position: static;
-  }
-  
-  .landing-popover strong.uppercase {
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: @rg-black;
-  }
-
-}
