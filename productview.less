@@ -446,17 +446,28 @@ ul.collection-controls .pagecount {
   }
 
   .filter-list fieldset {
-    padding: 55px 10px 15px 20px;
+    padding: 55px 0 15px 0;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+    columns: 3;
   }
   
   .filter-list fieldset label {
-    display: block;
-    float: left;
+    display: list-item;
+    float: none;
     line-height: 14px;
-    margin-bottom: 10px;
-    width: 33%;
-    vertical-align: middle;
+    margin: 0 0 8px;
+    padding: 0;
+    text-align: left;
+    text-transform: uppercase;
   }
+  
+  .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"],
+  .filter-list fieldset label input {
+    float: none;
+    margin: 0; 
+  }
+  
 }
 
 @media (min-width: @screen-md-min) { 
@@ -470,14 +481,13 @@ ul.collection-controls .pagecount {
     left: -125px;
   }
   
-  .filter-list fieldset label {
-    display: block;
-    float: left;
-    line-height: 14px;
-    margin-bottom: 10px;
-    width: 25%;
-    vertical-align: middle;
+  .filter-list fieldset {
+    padding: 55px 0 15px 0;
+    -webkit-columns: 4;
+    -moz-columns: 4;
+    columns: 4;
   }
+
 }
 
 @media (min-width: @screen-lg-min) { 
