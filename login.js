@@ -21,7 +21,7 @@ $(document).ready(function() {
                           })
                           .fail(function(data) {
                             if (data.status) {
-                              $('main.container trade-login').append(template.render({message:'Login failed.'}));
+                              $('main.container div.trade-login').append(template.render({message:'Login failed.'}));
                             }
                           });
   });
