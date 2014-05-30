@@ -126,14 +126,16 @@ button.slide {
 
 #collection-row-passementerie .passementerie li {
   float: none;
+  position: relative;
+  display: list-item;
   width: 100%;
   max-width: 100%;
   height: auto;
   min-height: 0;
   max-height: none;
-  overflow: hidden;
+  overflow: auto;
   margin: 0;
-  margin-bottom: 10px;
+  padding: 0;
 }
 
 .list li:nth-child(3n) {
@@ -722,9 +724,13 @@ ul.slider,
   margin-right: 10px;
 }
 
-.passementerie .item-spotlight .item-icons {
-  margin-top: 160px;
+#products ul.passementerie .item-icons-passementerie {
+  display: block !important;
+  position: absolute;
+  right: 0;
+  top: 50%;
 }
+
 
 .item-spotlight .item-icons button {
   background: @rg-background;
