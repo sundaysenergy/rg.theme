@@ -1180,6 +1180,13 @@ $(document).ready(function() {
         $('ul.list li .item-spotlight').remove();
         $(window).trigger('resizeSlides');
       }
+
+      $('#products ul.passementerie li').each(function(i,el) {
+        var $li = $(this);
+        if ($(this).find('.item-icons-passementerie').length == 0) {
+          $li.append('<div class="item-icons-passementerie pull-right"> <button class="item-colors plain uppercase"> Colors </button> <button class="item-favorite plain hidden-xs"> <i class="fa fa-plus"></i> </button> <button class="item-details plain"> <i class="fa fa-align-justify"></i> </button> </div>');
+        }
+      });
     }); // end productlist.on('updated')
 
     $('ul.filter-list ul li.clear a').on('click touch', function(e) {
