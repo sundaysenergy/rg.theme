@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $('form').on('submit', function(e) {
-    var template = Hogan.compile('<div class="login-failed alert alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{message}}</div>');
+    var template = Hogan.compile('<div class="login-failed alert alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><p>{{message}}</p></div>');
     e.preventDefault();
     var username = $('input[type=email]').val();
     var password = $('input[type=password]').val();
@@ -21,7 +21,7 @@ $(document).ready(function() {
                           })
                           .fail(function(data) {
                             if (data.status) {
-                              $('main.container div.trade-login').append(template.render({message:'Login failed.'}));
+                              $('main.container div.trade-login').append(template.render({message:'Login failed'}));
                             }
                           });
   });

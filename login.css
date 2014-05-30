@@ -18,3 +18,35 @@
   margin-left: -125px;
   margin-top: -40px;
 }
+
+.login-failed button.close {
+  background: transparent url(img/close-x.png) center center no-repeat;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: block;
+  float: none;
+  margin:0;
+  padding: 0;
+  overflow: hidden;
+  text-indent: -9999px;
+  text-shadow: none;
+  white-space: nowrap;
+  /**/
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  height: 11px;
+  width: 11px;
+  opacity: .75;
+  filter: alpha(opacity=75);
+}
+
+.login-failed p {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 40px;
+}
