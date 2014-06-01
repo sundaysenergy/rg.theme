@@ -1,10 +1,12 @@
 $(document).ready(function() {
+  
   $('#search-items').off('submit').on('submit', function(e) {
     e.preventDefault();
     var collection = hash.get('collection');
     if (_.isUndefined(collection)) collection = 'textile';
     window.location = '/collection.html#collection='+collection+'&search=' + encodeURIComponent($('#search-items').find('input').val());
   });
+  
   // Expose a search box when hovering over the icon
   $('.fa-search').parent().hover(function() {
     if ($('#search-items').is(':visible') == false) {
@@ -15,6 +17,18 @@ $(document).ready(function() {
       $('#search-items').slideUp();
     }
   });
+
+  // Expose a search box when clicking on the icon
+  $('.fa-search').click(function() {
+    if ($('#search-items').is(':visible') == false) {
+      $('#search-items').slideDown();
+    }
+  }, function() {
+    if ($('#search-items').is(':visible') == true) {
+      $('#search-items').slideUp();
+    }
+  });
+  
   // If there's a token, enable the sub navigation menu
   var token = $.cookie('token');
   if (_.isUndefined(token) == false) {
