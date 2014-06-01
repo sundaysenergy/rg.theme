@@ -449,11 +449,12 @@ ul.collection-controls .pagecount {
 
   .filter-list fieldset {
     padding: 55px 0 15px 0;
-    -webkit-columns: 3;
-    -moz-columns: 3;
-    columns: 3;
+    -webkit-column-count:3; -webkit-column-gap:10px;
+    -moz-column-count:3; -moz-column-gap:10px;
+    -o-column-count:3; -o-column-gap:10px;
+    column-count:3; column-gap:10px;
   }
-  
+    
   .filter-list fieldset label {
     display: list-item;
     float: none;
@@ -462,6 +463,12 @@ ul.collection-controls .pagecount {
     padding: 0;
     text-align: left;
     text-transform: uppercase;
+    /**/
+    -webkit-column-break-inside:avoid;
+    -moz-column-break-inside:avoid;
+    -o-column-break-inside:avoid;
+    -ms-column-break-inside:avoid;
+    column-break-inside:avoid;
   }
   
   .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"],
@@ -485,9 +492,10 @@ ul.collection-controls .pagecount {
   
   .filter-list fieldset {
     padding: 55px 0 15px 0;
-    -webkit-columns: 4;
-    -moz-columns: 4;
-    columns: 4;
+    -webkit-column-count:4; -webkit-column-gap:10px;
+    -moz-column-count:4; -moz-column-gap:10px;
+    -o-column-count:4; -o-column-gap:10px;
+    column-count:4; column-gap:10px;  
   }
 
 }
