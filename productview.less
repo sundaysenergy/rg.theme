@@ -595,10 +595,10 @@ button.uppercase { font-size: 1em; }
   width: 100px;
 }
 
-.item-spotlight .item-favorite button:hover,
-.item-spotlight .item-favorite button:active,
+.item-favorite button:hover,
+.item-favorite button:active,
 .itemoverlay .toggle-colors button.active,
-.item-spotlight .item-icons button.active {
+.item-icons button.active {
   background: #BAAC96;
   color: @rg-background;
 }
@@ -733,11 +733,17 @@ ul.slider,
   margin-right: 10px;
 }
 
-#products ul.passementerie .item-icons-passementerie {
-  display: block !important;
+.passementerie li .item-icons-passementerie {
+  display: none;
   position: absolute;
-  right: 0;
+  right: 10px;
   top: 50%;
+  height:20px;
+  margin-top:-10px;
+}
+
+.passementerie li:hover .item-icons-passementerie {
+  display: block;
 }
 
 .item-spotlight .item-icons button {
