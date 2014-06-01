@@ -231,7 +231,22 @@ main{
     -ms-transition: none;
     transition: none;
   }
-  
+
+  /*stick header at the top so dropdowns don't displace content below... */
+  .masthead {
+    background: @rg-background;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    min-height: 291px;
+  }
+
+  main {
+    position: relative;
+    top: 321px;
+  }
+
   .masthead,
   .masthead:hover,
   .masthead h1.sitename,
