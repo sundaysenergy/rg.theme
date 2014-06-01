@@ -94,5 +94,34 @@ $(document).ready(function() {
     $('section.general-inquiries').children('.slider').slideUp();
   });
 
+  var ww = $(window).width();
+  var wh = $(window).height();
+
+  if (ww >= wh) {
+    $('body').addClass('wider');
+    $('body').removeClass('taller');
+  }
+
+  if (wh > ww) {
+    $('body').addClass('taller');
+    $('body').removeClass('wider');
+  }
+
+});
+
+$(window).resize(function() {
+  var ww = $(window).width();
+  var wh = $(window).height();
+
+  if (ww >= wh) {
+    $('body').addClass('wider');
+    $('body').removeClass('taller');
+  }
+
+  if (wh > ww) {
+    $('body').addClass('taller');
+    $('body').removeClass('wider');
+  }
+
 });
 
