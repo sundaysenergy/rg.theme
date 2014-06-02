@@ -1,7 +1,7 @@
-
 // new totally custom stuff below here...
 
 var aboutss = function() {
+
   var ww = $(window).width();
   $('#photostream').width(ww).css('margin-left', (ww/2)*-1);
   
@@ -9,7 +9,7 @@ var aboutss = function() {
   var accum_width = 0;
   
   // individual image sizes
-  // how do I make this dynamic?
+  // any way to do this dynamically so if the number of slides changes this doesn't have to be rewritten?
   var slot1 = orig_li.eq(0).width() + 5;
   var slot2 = orig_li.eq(1).width() + 5;
   var slot3 = orig_li.eq(2).width() + 5;
@@ -27,13 +27,15 @@ var aboutss = function() {
   orig_li.eq(0).addClass('active');
   
   // reposition
+  // any way to do this dynamically so if the number of slides changes this doesn't have to be rewritten?
   var center1 = accum_width + (slot1/2);
   var center2 = accum_width + slot1 + (slot2/2);
   var center3 = accum_width + slot1 + slot2 + (slot3/2);
   var center4 = accum_width + slot1 + slot2 + slot3 + (slot4/2);
   var center5 = accum_width + slot1 + slot2 + slot3 + slot4 + (slot5/2);
-  
+
   // center on actual active one...
+  // any way to do this dynamically so if the number of slides changes this doesn't have to be rewritten?
   var center_on_active = function() {
     var index;
     var total = orig_li.length;
@@ -43,7 +45,7 @@ var aboutss = function() {
         index = orig_li.filter('.active').index();
     
     var active_one = index-tbefore;
-  
+
     if (active_one === 0 ) {
       $('#photostream ul').css('margin-left', (center1*-1));
       $('.carousel-indicators li').eq(active_one).addClass('active').siblings().removeClass('active');
@@ -68,17 +70,32 @@ var aboutss = function() {
   };
   
   center_on_active();
-  
+
+  // oh crap — what to do when the last or first is reached?
+  // any way to do this dynamically so if the number of slides changes this doesn't have to be rewritten?
+  var before_after_fix = function() {
+    var active_slide     = $('#photostream ul li.active');
+    var active_indicator = $('.carousel-indicators li.active');
+    
+    if ( active_slide.hasClass('-before')) {
+      active_slide.removeClass('active');
+      orig_li.eq(4).addClass('active') // make this the last one, not just eq(4)
+    } else if ( active_slide.hasClass('-after')) {
+      active_slide.removeClass('active');
+      orig_li.eq(0).addClass('active') // make this the last one, not just eq(0)
+    } else {}
+  };
+
   //okay prev/next actions...
-  var next_slide       = $('.controls .next-slide');
-  var prev_slide       = $('.controls .prev-slide');
-  
+  var next_slide = $('.controls .next-slide');
+  var prev_slide = $('.controls .prev-slide');
+
   next_slide.click(function(e) {
     e.preventDefault();
     var active_slide     = $('#photostream ul li.active');
     var active_indicator = $('.carousel-indicators li.active');
     active_slide.removeClass('active').next('li').addClass('active');
-    // how to say that if "next slide has class of "-after" then figure out something else...?
+    before_after_fix();
     center_on_active();
   });
   
@@ -87,34 +104,24 @@ var aboutss = function() {
     var active_slide     = $('#photostream ul li.active');
     var active_indicator = $('.carousel-indicators li.active');
     active_slide.removeClass('active').prev('li').addClass('active');
-    // how to say that if "next slide has class of "-before" then figure out something else...?
+    before_after_fix();
     center_on_active();
   });
-  
-  // oh crap — what to do when the last or first is reached?
-  
+
   // okay... now to figure out the indicators.
+  // any way to do this dynamically so if the number of slides changes this doesn't have to be rewritten?
   // how do I make all the indicators print out automatically based on images that are hard coded?
   $('.carousel-indicators').on('click','li',function() {
-  
     var indicator_count  = $(this).index();
     var tbefore = $('.slider li').filter('.-before').length;
     var active_indicator = indicator_count-tbefore;
-    
     $(this).addClass('active');
     $(this).siblings().removeClass('active');
-    
-    var active_slide     = $('#photostream ul li.active');
-    
+    var active_slide = $('#photostream ul li.active');
     active_slide.removeClass('active');
-    
     orig_li.eq(active_indicator).addClass('active');
-    
     center_on_active();
   });
-  
-  // need to make indicators trigger sliding to its image as well...
-  
   // end slideshow nonsense
 };
 

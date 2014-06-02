@@ -82,7 +82,6 @@ about:
     - variables.less
     - about.less
   js:
-    - lemmon-slider-centered.js
     - about.js
 
 
