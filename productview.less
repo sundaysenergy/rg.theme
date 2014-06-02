@@ -2,12 +2,29 @@
 .page-loading {
 
 }
+
 .item-passementerie .item-information {
-  position: fixed;
-  left: 35%;
+  position: absolute;
+  left: 50%;
   top: 50%;
-  background: #fff;
-  width: 30%;
+  background: @rg-background;
+  width: 500px;
+  margin-left: -250px;
+  height: 60px;
+  margin-top: -30px;
+  -webkit-box-shadow: @popup-box-shadow;
+  -moz-box-shadow: @popup-box-shadow;
+  box-shadow: @popup-box-shadow;
+}
+
+.item-passementerie .item-information table {
+  width: 90%;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.item-passementerie .item-information table p {
+  margin: 0;
 }
 
 /** responsive styling **/
