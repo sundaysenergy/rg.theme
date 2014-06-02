@@ -1192,7 +1192,8 @@ $(document).ready(function() {
             e.preventDefault();
             var id = $li.find('.id').html();
             var item_data = productlist.get('id',id)[0].values();
-            $('body').append(item_passementerie.render(item_data));
+            $('.item-passementerie').remove();
+            $li.append(item_passementerie.render(item_data));
           });
         }
       });
@@ -1480,6 +1481,7 @@ $(document).ready(function() {
 
     show_favtxt();
     
+    // Change viewing mode for passementerie on click
     $('a[href*="passementerie"]').on('click touch', function(e) {
       if (productlist.page == rg_options.horizontal_page) {
         productlist.page = rg_options.vertical_page;
@@ -1488,6 +1490,7 @@ $(document).ready(function() {
       }
     });
     
+    // Change viewing mode back to 3up for textile and leather
     $('a[href*="leather"],a[href*="textile"]').on('click touch', function(e) {
       if (productlist.page == rg_options.vertical_page) {
         productlist.page = rg_options.horizontal_page;
