@@ -1194,7 +1194,7 @@ $(document).ready(function() {
             var item_data = productlist.get('id',id)[0].values();
             $('.item-passementerie').remove();
             $li.append(item_passementerie.render(item_data));
-            $(this).find('.item-toggle').on('click touch', function(e) {
+            $li.find('.item-toggle').on('click touch', function(e) {
               $('.item-passementerie').remove();
             });
           });
