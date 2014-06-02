@@ -206,6 +206,7 @@ $(document).ready(function() {
       var srch       = hash.get('search');
 
       $('[id^=collection-menu]').hide();
+      $('#collection-row-loading').hide();
       $('#products ul.list').removeClass('passementerie search-layout');
       $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       $('li.collection-category a').on('click', function() {
@@ -300,7 +301,6 @@ $(document).ready(function() {
       } else {
         if ($('div.threeup div#products').length > 0) $('div#products').appendTo('main.container div#collection-row-textile');
       }
-      $('#collection-row-loading').hide();
     });
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
