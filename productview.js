@@ -1507,7 +1507,6 @@ $(document).ready(function() {
         return true;
       }
     });
-    $('#collection-row-loading').hide();
   });
 });
 
