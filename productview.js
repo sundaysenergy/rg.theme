@@ -223,9 +223,9 @@ $(document).ready(function() {
           $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
           if (productlist.page == rg_options.horizontal_page) {
             $('.collection-view-items').hide();
-            $('#collection-pager-bottom').prependTo('#collection-headers-after').show();
+            $('#collection-pager-bottom').prependTo('#collection-headers-after');
           } else {
-            $('#collection-pager-bottom').insertAfter('#colletion-menu-main').show();
+            $('#collection-pager-bottom').insertAfter('#colletion-menu-main');
           }
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
