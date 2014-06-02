@@ -1,28 +1,4 @@
 
-// commenting to see if this works
-/*
-var ww = $(window).width();
-$('#photostream').width(ww).css('margin-left', (ww/2)*-1);
-
-// lemmon
-// came from http://jquery.lemmonjuice.com/plugins/slider-variable-widths.php and then customized from there
-$( '#slider1' ).lemmonSlider({
-  'infinite' : true,
-});
-
-$('.carousel-indicators').on('click','li',function() {
-  $(this).addClass('active');
-  $(this).siblings().removeClass('active');
-});
-
-$(window).resize(function() {
-  var ww = $(window).width();
-  $('#photostream').width(ww).css('margin-left', (ww/2)*-1);
-});
-*/
-
-// old is above here and will eventually be deleted
-
 // new totally custom stuff below here...
 
 var aboutss = function() {
@@ -102,6 +78,7 @@ var aboutss = function() {
     var active_slide     = $('#photostream ul li.active');
     var active_indicator = $('.carousel-indicators li.active');
     active_slide.removeClass('active').next('li').addClass('active');
+    // how to say that if "next slide has class of "-after" then figure out something else...?
     center_on_active();
   });
   
@@ -110,18 +87,34 @@ var aboutss = function() {
     var active_slide     = $('#photostream ul li.active');
     var active_indicator = $('.carousel-indicators li.active');
     active_slide.removeClass('active').prev('li').addClass('active');
+    // how to say that if "next slide has class of "-before" then figure out something else...?
     center_on_active();
   });
   
   // oh crap — what to do when the last or first is reached?
   
-  
   // okay... now to figure out the indicators.
   // how do I make all the indicators print out automatically based on images that are hard coded?
   $('.carousel-indicators').on('click','li',function() {
+  
+    var indicator_count  = $(this).index();
+    var tbefore = $('.slider li').filter('.-before').length;
+    var active_indicator = indicator_count-tbefore;
+    
     $(this).addClass('active');
     $(this).siblings().removeClass('active');
+    
+    var active_slide     = $('#photostream ul li.active');
+    
+    active_slide.removeClass('active');
+    
+    orig_li.eq(active_indicator).addClass('active');
+    
+    center_on_active();
   });
+  
+  // need to make indicators trigger sliding to its image as well...
+  
   // end slideshow nonsense
 };
 
