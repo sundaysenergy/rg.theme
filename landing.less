@@ -7,9 +7,14 @@ html,body {
   text-align: center;
 }
 
-header, .masthead {
+.masthead {
   background: @rg-background;
   box-shadow: @popup-box-shadow;
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  z-index: 10; 
 }
 
 .masthead h1.sitename {
