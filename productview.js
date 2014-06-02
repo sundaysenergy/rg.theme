@@ -1506,8 +1506,8 @@ $(document).ready(function() {
         return true;
       }
     });
+    $('#collection-row-loading').hide();
   });
-  // $('.fa-cog').hide();
 });
 
 // I don't know where to put this
