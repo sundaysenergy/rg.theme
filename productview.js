@@ -1,10 +1,9 @@
 $.support.cors = true;
 
 var spinwidth = $('.fa-cog').width();
-$('.fa-cog').css('position','fixed').css('left',($(window).width()-spinwidth)/2).css('top',($(window).height()-spinwidth)/2).show();
+$('.fa-cog').css('position','fixed').css('left',($(window).width()-spinwidth)/2).css('top',($(window).height()-spinwidth)/2);
 
 $(document).ready(function() {
-
 
   /**** DISPLAY & DATA RESETS on page load ****/
   if (_.isUndefined(hash.get('faves')) == false) { localStorage.faves = hash.get('faves'); }
