@@ -1115,7 +1115,7 @@ $(document).ready(function() {
         });
 
         // When hovering over list items, show a plus button!
-        $('div.add-fave button').off('click touch').on('click touch', function(e) {
+        $('div.add-fave button,button.item-favorite').off('click touch').on('click touch', function(e) {
           e.preventDefault();
           var id = $(this).parent().siblings('.id').html();
           addFaves($(this), id);
