@@ -1,7 +1,7 @@
 $.support.cors = true;
 
-var spinwidth = $('.fa-cog').width();
-$('.fa-cog').css('position','fixed').css('left',($(window).width()-spinwidth)/2).css('top',($(window).height()-spinwidth)/2);
+// var spinwidth = $('.fa-cog').width();
+// $('.fa-cog').css('position','fixed').css('left',($(window).width()-spinwidth)/2).css('top',($(window).height()-spinwidth)/2);
 
 $(document).ready(function() {
 
@@ -1507,7 +1507,7 @@ $(document).ready(function() {
       }
     });
   });
-  $('.fa-cog').hide();
+  // $('.fa-cog').hide();
 });
 
 // I don't know where to put this
