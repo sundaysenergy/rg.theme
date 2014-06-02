@@ -568,6 +568,51 @@ button.uppercase { font-size: 1em; }
   bottom:0;
   left:0;
   right:0;
+  overflow: hidden;
+}
+
+.taller { 
+  .img-large-container img {
+    display: inline-block;
+    height: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+    width: auto;
+    max-width: none;
+  }
+  .rulers img {
+    height: 100%;
+    max-height: 100%;
+    width: auto;
+    max-width: none;
+  }
+}
+
+.wider { 
+  .img-large-container img {
+    display: inline-block;
+    height: auto;
+    max-height: none;
+    vertical-align: middle;
+    width: 100%;
+    max-width: 100%;
+  }
+  .rulers img {
+    height: auto;
+    max-height: none;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.rulers img {
+  display: block;
+  position: relative;
+  margin-left: 190px;
+}
+
+@media (min-width: 1600px) { 
+  .rulers img { width: auto; top: -4px; }
 }
 
 .itemoverlay .toggle-colors {
@@ -598,13 +643,6 @@ button.uppercase { font-size: 1em; }
 .item-icons button.active {
   background: #BAAC96;
   color: @rg-background;
-}
-
-.img-large-container { overflow: hidden; }
-.img-large-container img { height: 100%; width: auto;}
-
-@media (min-width: @screen-sm-min) { 
-  .img-large-container img, .rulers img { height: auto; width: 100%; }
 }
 
 #related-products,
@@ -916,18 +954,6 @@ div.ruler-wrap .rulers {
   width: 100%;
   overflow: hidden;
 }
-
-div.ruler-wrap .rulers img {
-  display: block;
-  position: relative;
-  width: 100%;
-  margin-left: 190px;
-}
-
-@media (min-width: 1600px) { 
-  .rulers img { width: auto; top: -4px; }
-}
-
 
 .rulers .ruler-cm {
  display: none;
