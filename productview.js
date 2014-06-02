@@ -1120,6 +1120,7 @@ $(document).ready(function() {
           var id = $(this).parent().siblings('.id').html();
           addFaves($(this), id);
         });
+/*
         $("ul.list > li").hover(function() {
           if (_.isUndefined(hash.get('faves'))) {
             $(this).find('div.add-fave').show();
@@ -1130,6 +1131,7 @@ $(document).ready(function() {
         }, function() {
           $(this).find('div.add-fave').hide();
         });
+*/
         // If we're not in 3-up mode, make sure we don't have any stray item details
         if (_.isUndefined(hash.get('faves')) == false) {
           // Hide details for center slide in "horizontal" view

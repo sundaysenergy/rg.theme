@@ -29,13 +29,17 @@ ul.collections:last-child {
   border-bottom: 1px solid;
 }
 
-div.add-fave {
+.add-fave {
   display: none;
   position: absolute;
   top: 5px;
   right: 10px;
   height: 29px;
   width: 29px;
+}
+
+.list li:hover .add-fave {
+  display: block;
 }
 
 ul.project-list div.add-fave,
@@ -737,6 +741,11 @@ ul.slider,
 
 .passementerie li:hover .item-icons-passementerie {
   display: block;
+}
+
+.passementerie li .add-fave,
+.passementerie li:hover .add-fave {
+  display: none;
 }
 
 .item-icons button {
