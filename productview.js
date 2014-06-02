@@ -223,13 +223,13 @@ $(document).ready(function() {
           $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
           if (productlist.page == rg_options.horizontal_page) {
             $('.collection-view-items').hide();
-            $('#collection-pager-bottom').prependTo('#collection-headers-after');
+            $('#collection-pager-bottom').prependTo('#collection-headers-after').show();
           } else {
-            $('#collection-pager-bottom').insertAfter('#colletion-menu-main');
+            $('#collection-pager-bottom').insertAfter('#colletion-menu-main').show();
           }
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
-            $('#collection-menu-passementerie-inactive').appendTo('#collection-headers-after > div.row');
+            $('#collection-menu-passementerie-inactive').appendTo('#collection-headers-after > div.inactive-headers');
             $('#collection-menu-leather-inactive').insertAfter($('#collection-menu-passementerie-inactive'));
           }
           // Move the #products div after the textile header bar
@@ -262,7 +262,7 @@ $(document).ready(function() {
           $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 0) {
-            $('#collection-menu-leather-inactive').appendTo('#collection-headers-after > div.row');
+            $('#collection-menu-leather-inactive').appendTo('#collection-headers-after > div.inactive-headers');
           }
           // Move the #products div after the passementerie header bar
           $('#products ul.list').addClass('passementerie');
