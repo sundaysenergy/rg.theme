@@ -300,6 +300,7 @@ $(document).ready(function() {
       } else {
         if ($('div.threeup div#products').length > 0) $('div#products').appendTo('main.container div#collection-row-textile');
       }
+      $('#collection-row-loading').hide();
     });
 
     /**** THINGS TO DO WHEN THE HASH CHANGES ****/
@@ -1506,7 +1507,6 @@ $(document).ready(function() {
         return true;
       }
     });
-    $('#collection-row-loading').hide();
   });
 });
 
