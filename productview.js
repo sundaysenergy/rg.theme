@@ -242,7 +242,7 @@ $(document).ready(function() {
             $('#collection-menu-leather-inactive').insertAfter($('#collection-menu-passementerie-inactive'));
           }
           // Move the #products div after the textile header bar
-          $('#products').insertAfter('#collection-menu-main'); 
+          $('#products').insertAfter('#collection-menu-main');
         }
         /*** PASSEMENTERIE COLLECTION ***/
         if (collection == 'passementerie') {
@@ -985,8 +985,8 @@ $(document).ready(function() {
           $('#project-list-select').hide();
           $('div.alert-dismissable button.close').trigger('click');
         });
-        
-        $('.item-spotlight button.item-toggle').click(function() { 
+
+        $('.item-spotlight button.item-toggle').click(function() {
           $('.item-spotlight .item-icons').find('button.active').removeClass('active');
         });
 
@@ -1506,7 +1506,7 @@ $(document).ready(function() {
     }
 
     show_favtxt();
-    
+
     // Change viewing mode for passementerie on click
     $('a[href*="passementerie"]').on('click touch', function(e) {
       $('#products').hide();
@@ -1520,7 +1520,7 @@ $(document).ready(function() {
         $(window).trigger('visRearrange');
       }
     });
-    
+
     // Change viewing mode back to 3up for textile and leather
     $('a[href*="leather"],a[href*="textile"]').on('click touch', function(e) {
       $('#products').hide();
