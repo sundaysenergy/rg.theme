@@ -1509,6 +1509,7 @@ $(document).ready(function() {
     
     // Change viewing mode for passementerie on click
     $('a[href*="passementerie"]').on('click touch', function(e) {
+      $('#products').hide();
       if (productlist.page == rg_options.horizontal_page) {
         productlist.page = rg_options.vertical_page;
         $('#products > ul.list').removeClass('slider');
@@ -1522,6 +1523,7 @@ $(document).ready(function() {
     
     // Change viewing mode back to 3up for textile and leather
     $('a[href*="leather"],a[href*="textile"]').on('click touch', function(e) {
+      $('#products').hide();
       if (productlist.page == rg_options.vertical_page) {
         productlist.page = rg_options.horizontal_page;
         $('button.thumbs').show();
