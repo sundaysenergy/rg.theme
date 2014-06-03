@@ -1509,24 +1509,24 @@ $(document).ready(function() {
     
     // Change viewing mode for passementerie on click
     $('a[href*="passementerie"]').on('click touch', function(e) {
+      $(window).trigger('visRearrange');
       if (productlist.page == rg_options.horizontal_page) {
         productlist.page = rg_options.vertical_page;
         $('#products > ul.list').removeClass('slider');
         $('div.threeup').attr('style','');
-        $(window).trigger('visRearrange');
         return true;
       }
     });
     
     // Change viewing mode back to 3up for textile and leather
     $('a[href*="leather"],a[href*="textile"]').on('click touch', function(e) {
+      $(window).trigger('visRearrange');
       if (productlist.page == rg_options.vertical_page) {
         productlist.page = rg_options.horizontal_page;
         $('button.thumbs').show();
         $('button.slide').hide();
         $('#products > ul.list').addClass('slider');
         $('div.threeup').attr('style','');
-        $(window).trigger('visRearrange');
         return true;
       }
     });
