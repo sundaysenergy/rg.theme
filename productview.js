@@ -216,7 +216,7 @@ $(document).ready(function() {
       $('a.collapse-collection').on('click touch', function(e) {
         e.preventDefault();
         $('[id^=collection-menu],#products,#collection-pager-bottom').hide();
-        //$('div.threeup').insertAfter('#collection-headers-after');
+        $('#collection-headers-after').style('border','0');
         $('#collection-menu-main-inactive,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
         return false;
       });
