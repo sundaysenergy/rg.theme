@@ -1140,6 +1140,7 @@ $(document).ready(function() {
         $('div.add-fave button,button.item-favorite').off('click touch').on('click touch', function(e) {
           e.preventDefault();
           var id = $(this).parent().siblings('.id').html();
+          $('#anonymous-faves-alert').remove();
           addFaves($(this), id);
         });
 /*
