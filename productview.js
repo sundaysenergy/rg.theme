@@ -287,6 +287,7 @@ $(document).ready(function() {
         }
         /*** LEATHER COLLECTION ***/
         if (collection == 'leather') {
+          $('div.threeup').insertBefore('#collection-headers-after');
           $('#collection-headers-after').css('border-top','0').css('border-bottom','1px solid #262019');
           if (productlist.page == rg_options.horizontal_page) {
             $('.collection-view-items').hide();
