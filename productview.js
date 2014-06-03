@@ -1513,7 +1513,7 @@ $(document).ready(function() {
         productlist.page = rg_options.vertical_page;
         $('#products > ul.list').removeClass('slider');
         $('div.threeup').attr('style','');
-        $(window).trigger('hashchange');
+        $(window).trigger('visRearrange');
         return true;
       }
     });
@@ -1526,7 +1526,7 @@ $(document).ready(function() {
         $('button.slide').hide();
         $('#products > ul.list').addClass('slider');
         $('div.threeup').attr('style','');
-        $(window).trigger('hashchange');
+        $(window).trigger('visRearrange');
         return true;
       }
     });
