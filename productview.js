@@ -216,7 +216,7 @@ $(document).ready(function() {
       $('a.collapse-collection').on('click touch', function(e) {
         e.preventDefault();
         $('[id^=collection-menu],#products,#collection-pager-bottom').hide();
-        $('div.threeup').insertAfter('#collection-headers-after');
+        //$('div.threeup').insertAfter('#collection-headers-after');
         $('#collection-menu-main-inactive,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
         return false;
       });
@@ -287,7 +287,6 @@ $(document).ready(function() {
         }
         /*** LEATHER COLLECTION ***/
         if (collection == 'leather') {
-          $('div.threeup').insertBefore('#collection-headers-after');
           $('#collection-headers-after').css('border-top','0').css('border-bottom','1px solid #262019');
           if (productlist.page == rg_options.horizontal_page) {
             $('.collection-view-items').hide();
