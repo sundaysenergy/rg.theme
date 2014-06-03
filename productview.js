@@ -213,6 +213,13 @@ $(document).ready(function() {
         $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       });
 
+      $('a.collapse-collection').on('click touch', function(e) {
+        e.preventDefault();
+        $('[id^=collection-menu],#products,#collection-pager-bottom').hide();
+        $('div.threeup').insertAfter('#collection-headers-after');
+        $('#collection-menu-main-inactive,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
+        return false;
+      });
       $('#collection-headers-after').removeClass('border-top');
 
       // Things to do if there is a collection present -- mostly moving things around visually
