@@ -90,7 +90,7 @@ var aboutss = function() {
   var next_slide = $('.controls .next-slide');
   var prev_slide = $('.controls .prev-slide');
 
-  next_slide.click(function(e) {
+  next_slide.on('click touch', function(e) {
     e.preventDefault();
     var active_slide     = $('#photostream ul li.active');
     var active_indicator = $('.carousel-indicators li.active');
@@ -99,7 +99,7 @@ var aboutss = function() {
     center_on_active();
   });
   
-  prev_slide.click(function(e) {
+  prev_slide.on('click touch', function(e) {
     e.preventDefault();
     var active_slide     = $('#photostream ul li.active');
     var active_indicator = $('.carousel-indicators li.active');
