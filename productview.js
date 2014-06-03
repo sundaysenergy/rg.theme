@@ -466,8 +466,7 @@ $(document).ready(function() {
           function(response) {
             // We're just throwing this information in one of the headers for now
             $('.anonymous-share-field input.anon-share')
-            .find('input')
-            .val(response.data.url)
+            .val(response.data.url.replace('bit.ly', 'fav.rogersandgoffigon.com'))
             .on('click', function(e) { $(this).select(); });
           }
         );
