@@ -217,6 +217,7 @@ $(document).ready(function() {
         e.preventDefault();
         $('[id^=collection-menu],#products,#collection-pager-bottom').hide();
         $('#collection-headers-after').css('border','0');
+        $('div.threeup').css('padding-bottom','0');
         $('#collection-menu-main-inactive,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
         return false;
       });
@@ -1510,6 +1511,7 @@ $(document).ready(function() {
       if (productlist.page == rg_options.horizontal_page) {
         productlist.page = rg_options.vertical_page;
         $('#products > ul.list').removeClass('slider');
+        $('div.threeup').attr('style','');
         return true;
       }
     });
@@ -1521,6 +1523,7 @@ $(document).ready(function() {
         $('button.thumbs').show();
         $('button.slide').hide();
         $('#products > ul.list').addClass('slider');
+        $('div.threeup').attr('style','');
         return true;
       }
     });
