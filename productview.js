@@ -260,6 +260,7 @@ $(document).ready(function() {
             $('#products > ul.list').removeClass('slider');
           }
           $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
+          $('#collection-pager-bottom').insertAfter('#collection-menu-passementerie').show();
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 0) {
             $('#collection-menu-leather-inactive').appendTo('#collection-headers-after > div.inactive-headers');
