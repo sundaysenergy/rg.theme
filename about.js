@@ -89,23 +89,46 @@ var aboutss = function() {
   //okay prev/next actions...
   var next_slide = $('.controls .next-slide');
   var prev_slide = $('.controls .prev-slide');
-
-  next_slide.on('click touch', function(e) {
-    e.preventDefault();
+  
+  var slide_next = function() {
     var active_slide     = $('#photostream ul li.active');
     var active_indicator = $('.carousel-indicators li.active');
     active_slide.removeClass('active').next('li').addClass('active');
     before_after_fix();
     center_on_active();
-  });
-  
-  prev_slide.on('click touch', function(e) {
-    e.preventDefault();
+  };
+
+  var slide_prev = function() {
     var active_slide     = $('#photostream ul li.active');
     var active_indicator = $('.carousel-indicators li.active');
     active_slide.removeClass('active').prev('li').addClass('active');
     before_after_fix();
     center_on_active();
+  };
+
+  next_slide.click(function(e) {
+    e.preventDefault();
+    slide_next();
+  });
+  
+  prev_slide.click(function(e) {
+    e.preventDefault();
+    slide_prev();
+  });
+
+  //Enable swiping...
+  $("#photostream").swipe( {
+    //Generic swipe handler for all directions
+    swipe:function(event, direction, distance, duration, fingerCount) {
+      $('#test').text("You swiped " + direction );
+      if (direction=="left") { 
+        slide_next();
+      } else if (direction=="right") {
+        slide_prev();
+      }
+    },
+    //Default is 75px, set to 0 for demo so any distance triggers swipe
+     threshold:0
   });
 
   // okay... now to figure out the indicators.
