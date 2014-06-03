@@ -219,7 +219,7 @@ $(document).ready(function() {
       if (_.isUndefined(collection) == false && _.isUndefined(srch)) {
         /*** TEXTILE COLLECTION ***/
         if (collection == 'textile') {
-          $('#collection-headers-after').css('border-bottom','0').css('border-top','1px solid #262019');
+          $('#collection-headers-after').css('border-bottom','0').css('border','0');
           $('#collection-headers-after').removeClass('border-top');
           $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
           if (productlist.page == rg_options.horizontal_page) {
@@ -238,7 +238,7 @@ $(document).ready(function() {
         }
         /*** PASSEMENTERIE COLLECTION ***/
         if (collection == 'passementerie') {
-          $('#collection-headers-after').css('border-bottom','0').css('border-top','1px solid #262019');
+          $('#collection-headers-after').css('border-bottom','0').css('border','0');
           $('#collection-headers-after').removeClass('border-top');
           $('.collection-view-items').show();
           $('.collection-view-items a').each(function(i) {
