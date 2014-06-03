@@ -280,6 +280,9 @@ $(document).ready(function() {
         if (collection == 'leather') {
           if (productlist.page == rg_options.horizontal_page) {
             $('.collection-view-items').hide();
+            $('#collection-pager-bottom').prependTo('#collection-headers-after').show();
+          } else {
+            $('#collection-pager-bottom').insertAfter('#colletion-menu-leather').show();
           }
           $('#collection-headers-after').addClass('border-top');
           $('#products,#collection-menu-leather,#collection-menu-main-inactive,#collection-menu-passementerie-inactive').show();
