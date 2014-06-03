@@ -465,7 +465,7 @@ $(document).ready(function() {
           },
           function(response) {
             // We're just throwing this information in one of the headers for now
-            $('.pager li:nth-child(2)')
+            $('.anonymous-share-field input.anon-share')
             .find('input')
             .val(response.data.url)
             .on('click', function(e) { $(this).select(); });
