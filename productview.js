@@ -226,7 +226,7 @@ $(document).ready(function() {
             $('.collection-view-items').hide();
             $('#collection-pager-bottom').prependTo('#collection-headers-after').show();
           } else {
-            $('#collection-pager-bottom').insertAfter('#colletion-menu-main').show();
+            $('#collection-pager-bottom').insertAfter('#colletion-row-textile').show();
           }
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
@@ -262,7 +262,7 @@ $(document).ready(function() {
             $('#products > ul.list').removeClass('slider');
           }
           $('#products,#collection-menu-passementerie,#collection-menu-leather-inactive,#collection-menu-main-inactive').show();
-          $('#collection-pager-bottom').insertAfter('#collection-menu-passementerie').show();
+          $('#collection-pager-bottom').insertAfter('#collection-row-passementerie').show();
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-leather-inactive').length == 0) {
             $('#collection-menu-leather-inactive').appendTo('#collection-headers-after > div.inactive-headers');
@@ -285,7 +285,7 @@ $(document).ready(function() {
             $('.collection-view-items').hide();
             $('#collection-pager-bottom').prependTo('#collection-headers-after').show();
           } else {
-            $('#collection-pager-bottom').insertAfter('#colletion-menu-leather').show();
+            $('#collection-pager-bottom').insertAfter('#colletion-row-leather').show();
           }
           $('#collection-headers-after').addClass('border-top');
           $('#products,#collection-menu-leather,#collection-menu-main-inactive,#collection-menu-passementerie-inactive').show();
