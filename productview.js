@@ -232,7 +232,7 @@ $(document).ready(function() {
           $('#products,#collection-menu-main,#collection-menu-leather-inactive,#collection-menu-passementerie-inactive').show();
           if (productlist.page == rg_options.horizontal_page) {
             $('.collection-view-items').hide();
-            $('#collection-pager-bottom').prependTo('#collection-headers-after').show();
+            //$('#collection-pager-bottom').prependTo('#collection-headers-after').show();
           } else {
             $('#collection-pager-bottom').insertAfter('#colletion-row-textile').show();
           }
@@ -291,7 +291,7 @@ $(document).ready(function() {
           $('#collection-headers-after').css('border-top','0').css('border-bottom','1px solid #262019');
           if (productlist.page == rg_options.horizontal_page) {
             $('.collection-view-items').hide();
-            $('#collection-pager-bottom').prependTo('#collection-headers-after').show();
+            //$('#collection-pager-bottom').prependTo('#collection-headers-after').show();
           } else {
             $('#collection-pager-bottom').insertAfter('#colletion-row-leather').show();
           }
