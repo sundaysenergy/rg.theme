@@ -112,19 +112,6 @@ $(document).ready(function() {
   } else {
     loadBeautyMobile(item_template_mobile);
   }
-
-  //Enable swiping...
-  $("#carousel-example-generic").swipe( {
-    //Generic swipe handler for all directions
-    swipeLeft:function(event, direction, distance, duration, fingerCount) {
-      $(this).carousel('next'); 
-    },
-    swipeRight:function(event, direction, distance, duration, fingerCount) {
-      $(this).carousel('prev'); 
-    },
-    //Default is 75px, set to 0 for demo so any distance triggers swipe
-    threshold:0
-  });
   
 });
 
@@ -145,4 +132,18 @@ var itemMissing = function() {
 };
 
 itemMissing();
+
+$("#photostream").swipe( {
+  //Generic swipe handler for all directions
+  swipe:function(event, direction, distance, duration, fingerCount) {
+    $('#test').text("You swiped " + direction );
+    if (direction=="left") { 
+      $(this).carousel('next');
+    } else if (direction=="right") {
+      $(this).carousel('prev');
+    }
+  },
+  //Default is 75px, set to 0 for demo so any distance triggers swipe
+   threshold:0
+});
 
