@@ -100,18 +100,31 @@ $(document).ready(function() {
   // When we resize, regenerate everything since the coordinates will be different
   $(window).on('resize', function() {
     // Initial load
-    if ($(window).width() > 767) {
+    if ($(window).width() > 769) {
       loadBeauty(item_template);
     } else {
       loadBeautyMobile(item_template_mobile);
     }
   });
   // Initial load
-  if ($(window).width() > 767) {
+  if ($(window).width() > 769) {
     loadBeauty(item_template);
   } else {
     loadBeautyMobile(item_template_mobile);
   }
+
+  $("#carousel-example-generic").swipe( {
+    //Generic swipe handler for all directions
+    swipe:function(event, direction, distance, duration, fingerCount) {
+      if (direction=="left") { 
+        $('#carousel-example-generic').carousel('next');
+      } else if (direction=="right") {
+        $('#carousel-example-generic').carousel('prev');
+      }
+    },
+    //Default is 75px, set to 0 for demo so any distance triggers swipe
+    threshold:0
+  });
   
 });
 
@@ -140,6 +153,18 @@ $(window).resize(function(){
   if ($('header').width() >= 768 ){
     $('.navwrap').removeClass( "collapse navbar-collapse" )
   }
+  $("#carousel-example-generic").swipe( {
+    //Generic swipe handler for all directions
+    swipe:function(event, direction, distance, duration, fingerCount) {
+      if (direction=="left") { 
+        $('#carousel-example-generic').carousel('next');
+      } else if (direction=="right") {
+        $('#carousel-example-generic').carousel('prev');
+      }
+    },
+    //Default is 75px, set to 0 for demo so any distance triggers swipe
+    threshold:0
+  });
 });
 
 var itemMissing = function() {
