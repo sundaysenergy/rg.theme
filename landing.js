@@ -116,24 +116,23 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+
   if ($('header').width() >= 768 ){
     $('.navwrap').removeClass( "collapse navbar-collapse" )
   }
 
-  $("#photostream").swipe( {
+  $("#carousel-example-generic").swipe( {
     //Generic swipe handler for all directions
     swipe:function(event, direction, distance, duration, fingerCount) {
-      $('#test').text("You swiped " + direction );
       if (direction=="left") { 
-        $(this).carousel('next');
+        $('#carousel-example-generic').carousel('next');
       } else if (direction=="right") {
-        $(this).carousel('prev');
+        $('#carousel-example-generic').carousel('prev');
       }
     },
     //Default is 75px, set to 0 for demo so any distance triggers swipe
-     threshold:0
-    }
-  );
+    threshold:0
+  });
 
 });
 
