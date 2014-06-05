@@ -24,7 +24,7 @@ $(document).ready(function() {
   }
 
   // Retrieve the pricelist json file and get started
-  $.getJSON(rg_options.api + '/items/client_data.json', function(data) {
+  $.getJSON(rg_options.cdn + '/items/client_data.json', function(data) {
 
     _.forEach(data.items, function(item) {
       item.tradeprice = _.bind(itemPrice, item_prices, item.id);
