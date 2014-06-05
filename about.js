@@ -120,7 +120,6 @@ var aboutss = function() {
   $("#photostream").swipe( {
     //Generic swipe handler for all directions
     swipe:function(event, direction, distance, duration, fingerCount) {
-      $('#test').text("You swiped " + direction );
       if (direction=="left") { 
         slide_next();
       } else if (direction=="right") {

@@ -4,7 +4,7 @@ $(document).ready(function() {
   // Retrieve the template for the carousel and compile
   var item_template;
   $.ajax({
-    url: rg_options.cdn + "/templates/mini/landing.html",
+    url: rg_options.api + "/templates/mini/landing.html",
     context: document.body,
     async: false,
     error:  function (jqXHR, textStatus, errorThrown) {
@@ -16,7 +16,7 @@ $(document).ready(function() {
 
   var item_template_mobile;
   $.ajax({
-    url: rg_options.cdn + "/templates/mini/landing_mobile.html",
+    url: rg_options.api + "/templates/mini/landing_mobile.html",
     context: document.body,
     async: false,
     error:  function (jqXHR, textStatus, errorThrown) {
@@ -112,26 +112,41 @@ $(document).ready(function() {
   } else {
     loadBeautyMobile(item_template_mobile);
   }
+  
+});
 
-  //Enable swiping...
+$(document).ready(function() {
+
+  if ($('header').width() >= 768 ){
+    $('.navwrap').removeClass( "collapse navbar-collapse" )
+  }
+
   $("#carousel-example-generic").swipe( {
     //Generic swipe handler for all directions
-    swipeLeft:function(event, direction, distance, duration, fingerCount) {
-      $(this).carousel('next');
-    },
-    swipeRight:function(event, direction, distance, duration, fingerCount) {
-      $(this).carousel('prev');
+    swipe:function(event, direction, distance, duration, fingerCount) {
+      if (direction=="left") { 
+        $('#carousel-example-generic').carousel('next');
+      } else if (direction=="right") {
+        $('#carousel-example-generic').carousel('prev');
+      }
     },
     //Default is 75px, set to 0 for demo so any distance triggers swipe
     threshold:0
   });
 
-});
+  $("#carousel-example-generic .item a").swipe( {
+    //Generic swipe handler for all directions
+    swipe:function(event, direction, distance, duration, fingerCount) {
+      if (direction=="left") { 
+        $('#carousel-example-generic').carousel('next');
+      } else if (direction=="right") {
+        $('#carousel-example-generic').carousel('prev');
+      }
+    },
+    //Default is 75px, set to 0 for demo so any distance triggers swipe
+    threshold:0
+  });
 
-$(document).ready(function() {
-  if ($('header').width() >= 768 ){
-    $('.navwrap').removeClass( "collapse navbar-collapse" )
-  }
 });
 
 $(window).resize(function(){
@@ -145,4 +160,3 @@ var itemMissing = function() {
 };
 
 itemMissing();
-
