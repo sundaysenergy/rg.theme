@@ -4,7 +4,7 @@ $(document).ready(function() {
   // Retrieve the template for the carousel and compile
   var item_template;
   $.ajax({
-    url: rg_options.api + "/templates/mini/landing.html",
+    url: rg_options.cdn + "/templates/mini/landing.html",
     context: document.body,
     async: false,
     error:  function (jqXHR, textStatus, errorThrown) {
@@ -16,7 +16,7 @@ $(document).ready(function() {
 
   var item_template_mobile;
   $.ajax({
-    url: rg_options.api + "/templates/mini/landing_mobile.html",
+    url: rg_options.cdn + "/templates/mini/landing_mobile.html",
     context: document.body,
     async: false,
     error:  function (jqXHR, textStatus, errorThrown) {
@@ -117,15 +117,15 @@ $(document).ready(function() {
   $("#carousel-example-generic").swipe( {
     //Generic swipe handler for all directions
     swipeLeft:function(event, direction, distance, duration, fingerCount) {
-      $(this).carousel('next'); 
+      $(this).carousel('next');
     },
     swipeRight:function(event, direction, distance, duration, fingerCount) {
-      $(this).carousel('prev'); 
+      $(this).carousel('prev');
     },
     //Default is 75px, set to 0 for demo so any distance triggers swipe
     threshold:0
   });
-  
+
 });
 
 $(document).ready(function() {
