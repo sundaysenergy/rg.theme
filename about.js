@@ -4,10 +4,10 @@ var aboutss = function() {
 
   var ww = $(window).width();
   $('#photostream').width(ww).css('margin-left', (ww/2)*-1);
-  
+
   var orig_li = $('#photostream ul li.orig');
   var accum_width = 0;
-  
+
   // individual image sizes
   // any way to do this dynamically so if the number of slides changes this doesn't have to be rewritten?
   var slot1 = orig_li.eq(0).width() + 5;
@@ -15,17 +15,17 @@ var aboutss = function() {
   var slot3 = orig_li.eq(2).width() + 5;
   var slot4 = orig_li.eq(3).width() + 5;
   var slot5 = orig_li.eq(4).width() + 5;
-  
+
   orig_li.find('img').each(function() {
      accum_width += $(this).width() + 5;
   });
-  
+
   $('#photostream ul').width(accum_width * 3).css('margin-left', ((accum_width * 3)/2)*-1);
-  
+
   orig_li.clone().addClass('-after').removeClass('orig').insertAfter( orig_li.filter( ':last' ) );
   orig_li.filter( ':first' ).before( orig_li.clone().addClass( '-before' ).removeClass('orig') );
   orig_li.eq(0).addClass('active');
-  
+
   // reposition
   // any way to do this dynamically so if the number of slides changes this doesn't have to be rewritten?
   var center1 = accum_width + (slot1/2);
@@ -41,9 +41,9 @@ var aboutss = function() {
     var total = orig_li.length;
     var tbefore = $('.slider li').filter('.-before').length;
     var tafter = $('.slider li').filter('.-after').length;
-    
+
         index = orig_li.filter('.active').index();
-    
+
     var active_one = index-tbefore;
 
     if (active_one === 0 ) {
@@ -68,7 +68,7 @@ var aboutss = function() {
     }
     else {}
   };
-  
+
   center_on_active();
 
   // oh crap — what to do when the last or first is reached?
@@ -76,7 +76,7 @@ var aboutss = function() {
   var before_after_fix = function() {
     var active_slide     = $('#photostream ul li.active');
     var active_indicator = $('.carousel-indicators li.active');
-    
+
     if ( active_slide.hasClass('-before')) {
       active_slide.removeClass('active');
       orig_li.eq(4).addClass('active') // make this the last one, not just eq(4)
@@ -89,7 +89,7 @@ var aboutss = function() {
   //okay prev/next actions...
   var next_slide = $('.controls .next-slide');
   var prev_slide = $('.controls .prev-slide');
-  
+
   var slide_next = function() {
     var active_slide     = $('#photostream ul li.active');
     var active_indicator = $('.carousel-indicators li.active');
@@ -110,7 +110,7 @@ var aboutss = function() {
     e.preventDefault();
     slide_next();
   });
-  
+
   prev_slide.click(function(e) {
     e.preventDefault();
     slide_prev();
@@ -120,7 +120,7 @@ var aboutss = function() {
   $("#photostream").swipe( {
     //Generic swipe handler for all directions
     swipe:function(event, direction, distance, duration, fingerCount) {
-      if (direction=="left") { 
+      if (direction=="left") {
         slide_next();
       } else if (direction=="right") {
         slide_prev();
