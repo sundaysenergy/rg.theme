@@ -119,6 +119,22 @@ $(document).ready(function() {
   if ($('header').width() >= 768 ){
     $('.navwrap').removeClass( "collapse navbar-collapse" )
   }
+
+  $("#photostream").swipe( {
+    //Generic swipe handler for all directions
+    swipe:function(event, direction, distance, duration, fingerCount) {
+      $('#test').text("You swiped " + direction );
+      if (direction=="left") { 
+        $(this).carousel('next');
+      } else if (direction=="right") {
+        $(this).carousel('prev');
+      }
+    },
+    //Default is 75px, set to 0 for demo so any distance triggers swipe
+     threshold:0
+    }
+  });
+
 });
 
 $(window).resize(function(){
@@ -132,18 +148,3 @@ var itemMissing = function() {
 };
 
 itemMissing();
-
-$("#photostream").swipe( {
-  //Generic swipe handler for all directions
-  swipe:function(event, direction, distance, duration, fingerCount) {
-    $('#test').text("You swiped " + direction );
-    if (direction=="left") { 
-      $(this).carousel('next');
-    } else if (direction=="right") {
-      $(this).carousel('prev');
-    }
-  },
-  //Default is 75px, set to 0 for demo so any distance triggers swipe
-   threshold:0
-});
-
