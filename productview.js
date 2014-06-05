@@ -32,7 +32,7 @@ $(document).ready(function() {
   }
 
   /**** GET THE ITEMS INFORMATION FROM CAPE AND PROCESS IT ****/
-  $.getJSON(rg_options.cdn + '/items/client_data.json', function(combined) {
+  $.getJSON('/items/client_data.json', function(combined) {
 
     // Compile clientside templates
     var templates = combined.templates;
