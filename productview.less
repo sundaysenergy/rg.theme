@@ -8,8 +8,8 @@
   left: 50%;
   top: 50%;
   background: @rg-background;
-  width: 500px;
-  margin-left: -250px;
+  width: 600px;
+  margin-left: -300px;
   height: 60px;
   margin-top: -30px;
   -webkit-box-shadow: @popup-box-shadow;
@@ -21,6 +21,10 @@
   width: 90%;
   height: 100%;
   vertical-align: middle;
+}
+
+.item-passementerie .item-information table td {
+  padding: 2.5px;
 }
 
 .item-passementerie .item-information table p {
@@ -1161,9 +1165,20 @@ div.search-noresults {
 
 /* for collection bottom... put in right place later */
 #collection-pager-bottom {
-  height: 35px;
+  padding-top: 12px;
+  margin-bottom: -5px;
 }
 
 #collection-pager-bottom ul li {
   top:0;
 }
+
+
+
+
+
+
+/** temporary hiding of a few things in passementerie mode **/
+.item-icons-passementerie .item-colors,
+.item-icons-passementerie .item-favorite { display: none; }
+
