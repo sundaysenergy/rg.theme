@@ -694,8 +694,10 @@ $(document).ready(function() {
           // Get the first item that matches the id...we're assuming there would only
           // ever be one item with a given id
           var item = { item : productlist.get('id', id)[0].values() };
+          
           // Create the image url for the large image
           item.item.img_large = item.item.img.replace('640','1536');
+
           item.pager = item.item.itemcolors().length > 5;
           // Show the detailed view mode and render the html from our mustache template
           if ($(window).width() > 768) {
@@ -1142,18 +1144,6 @@ $(document).ready(function() {
           $('#anonymous-faves-alert').remove();
           addFaves($(this), id);
         });
-/*
-        $("ul.list > li").hover(function() {
-          if (_.isUndefined(hash.get('faves'))) {
-            $(this).find('div.add-fave').show();
-          } else {
-            $(this).find('div.add-fave').hide();
-          }
-        // Hide on mouseout
-        }, function() {
-          $(this).find('div.add-fave').hide();
-        });
-*/
         // If we're not in 3-up mode, make sure we don't have any stray item details
         if (_.isUndefined(hash.get('faves')) == false) {
           // Hide details for center slide in "horizontal" view
