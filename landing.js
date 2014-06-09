@@ -118,6 +118,7 @@ $(document).ready(function() {
   if ($(window).width() > 1800 ) {
     $('#carousel-example-generic').find('img').each(function() {
       $(this).attr('src', $(this).attr('src').replace('_1500','_2200'));
+      $(this).attr('src', $(this).attr('src').replace('_700','_2200'));
     });
   }
 
@@ -125,6 +126,7 @@ $(document).ready(function() {
   if ($(window).width() < 700 ) {
     $('#carousel-example-generic').find('img').each(function() {
       $(this).attr('src', $(this).attr('src').replace('_1500','_700'));
+      $(this).attr('src', $(this).attr('src').replace('_2200','_700'));
     });
   }
     
@@ -158,6 +160,7 @@ $(window).resize(function(){
   if ($(window).width() > 1800 ) {
     $('#carousel-example-generic').find('img').each(function() {
       $(this).attr('src', $(this).attr('src').replace('_1500','_2200'));
+      $(this).attr('src', $(this).attr('src').replace('_700','_2200'));
     });
   }
 
@@ -165,9 +168,10 @@ $(window).resize(function(){
   if ($(window).width() < 700 ) {
     $('#carousel-example-generic').find('img').each(function() {
       $(this).attr('src', $(this).attr('src').replace('_1500','_700'));
+      $(this).attr('src', $(this).attr('src').replace('_2200','_700'));
     });
   }
-  
+      
   $('#carousel-example-generic').swipe( {
     //Generic swipe handler for all directions
     swipe:function(event, direction, distance, duration, fingerCount) {
