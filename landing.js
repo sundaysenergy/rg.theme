@@ -116,8 +116,8 @@ $(document).ready(function() {
 
   // load crazy big images
   if ($(window).width() > 1800 ) {
-    $('#carousel-example-generic .item img').each(function() {
-      $(this).attr('src', .attr('src').replace('1500.jpg','2200.jpg'));
+    $('#carousel-example-generic').find('img').each(function() {
+      $(this).attr('src', $(this).attr('src').replace('15','22'));
     });
   }
   
