@@ -700,7 +700,7 @@ $(document).ready(function() {
           if ( ww >= 700 ) {
             item.item.img_large = item.item.img.replace('640','1536');
           }
-          if ( ww >= 1700 ) {
+          if ( ww >= 1800 ) {
             item.item.img_large = item.item.img.replace('640','2560');
           }
 

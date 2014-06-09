@@ -97,6 +97,7 @@ $(document).ready(function() {
     });
     return true;
   }
+  
   // When we resize, regenerate everything since the coordinates will be different
   $(window).on('resize', function() {
     // Initial load
@@ -113,6 +114,13 @@ $(document).ready(function() {
     loadBeautyMobile(item_template_mobile);
   }
 
+  // load crazy big images
+  if ($(window).width() > 1800 ) {
+    $('#carousel-example-generic .item img').each(function() {
+      $(this).attr('src', .attr('src').replace('1500.jpg','2200.jpg'));
+    });
+  }
+  
   // some header stuff
   if ($('header').width() > 768 ){
     $('.navwrap').removeClass( "collapse navbar-collapse" )
@@ -160,3 +168,4 @@ var itemMissing = function() {
 };
 
 itemMissing();
+
