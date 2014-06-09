@@ -569,9 +569,15 @@ button.uppercase { font-size: 1em; }
 /*********************************************/
 
 /* ITEM OVERLAY DISPLAY STYLES */
-.itemoverlay { z-index: 9000; }
+.itemoverlay { z-index: 9000; text-align: center; }
 .itemoverlay table, .itemoverlay .ruler-wrap, .itemoverlay .ruler-wrap .rulers { z-index: 9001; }
 .itemoverlay .ruler-wrap ul { z-index: 9002; }
+
+.itemoverlay .loading {
+  width: auto;
+  position: relative;
+  top: 50%;
+}
 
 .itemoverlay, .itemoverlay table, .itemoverlay .ruler-wrap {
   background: @rg-background;
