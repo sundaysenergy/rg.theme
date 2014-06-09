@@ -1208,12 +1208,15 @@ $(document).ready(function() {
           $li.append('<div class="item-icons-passementerie item-icons pull-right"><button class="item-colors plain uppercase"> Colors </button> <button class="item-favorite plain hidden-xs"> <i class="fa fa-plus"></i> </button> <button class="item-details plain"> <i class="fa fa-align-justify"></i></button></div>');
           $li.find('.item-icons-passementerie .item-details').on('click touch', function(e) {
             e.preventDefault();
+            $(this).toggleClass( 'active' );
+            $(this).siblings().removeClass( 'active' );
             var id = $li.find('.id').html();
             var item_data = productlist.get('id',id)[0].values();
             $('.item-passementerie').remove();
             $li.append(item_passementerie.render(item_data));
             $li.find('.item-toggle').on('click touch', function(e) {
               $('.item-passementerie').remove();
+              $('.item-icons').find('.active').removeClass( 'active' );
             });
           });
         }
