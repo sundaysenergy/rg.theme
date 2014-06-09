@@ -46,8 +46,8 @@ $(document).ready(function() {
   }
 
   // Navigation menu sliding for landing page
-  var mcw = $('main.container').width();
-  if (mcw >= 750) {
+  var ww = $(window).width();
+  if (ww >= 769) {
     $.when($('.landing .navwrap').hide()).then(function () {
       $('.landing header').hover(
         function() {
