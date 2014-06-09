@@ -119,7 +119,6 @@ $(document).ready(function() {
   }
 
   $('.carousel .item').swipe( {
-    $.fn.swipe.defaults.excludedElements = 0;
     //Generic swipe handler for all directions
     swipe:function(event, direction, distance, duration, fingerCount) {
       if (direction == 'left') {
@@ -130,6 +129,7 @@ $(document).ready(function() {
     },
     //Default is 75px, set to 0 for demo so any distance triggers swipe
     threshold:0,
+    excludedElements:0
   });
 
 });
@@ -151,6 +151,7 @@ $(window).resize(function(){
     },
     //Default is 75px, set to 0 for demo so any distance triggers swipe
     threshold:0
+    excludedElements:0
   });
 
 });
