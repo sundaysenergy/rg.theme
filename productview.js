@@ -696,7 +696,13 @@ $(document).ready(function() {
           var item = { item : productlist.get('id', id)[0].values() };
           
           // Create the image url for the large image
-          item.item.img_large = item.item.img.replace('640','1536');
+          var ww = $(window).width();
+          if ( ww >= 700 ) {
+            item.item.img_large = item.item.img.replace('640','1536');
+          }
+          else if ( ww >= 1700 ) {
+            item.item.img_large = item.item.img.replace('640','2560');
+          } else {}
 
           item.pager = item.item.itemcolors().length > 5;
           // Show the detailed view mode and render the html from our mustache template
