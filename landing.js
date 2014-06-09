@@ -141,7 +141,6 @@ $(window).resize(function(){
   }
 
   $('.carousel .item').swipe( {
-    $.fn.swipe.defaults.excludedElements = 0;
     //Generic swipe handler for all directions
     swipe:function(event, direction, distance, duration, fingerCount) {
       if (direction == 'left') {
