@@ -96,10 +96,12 @@ $(document).ready(function() {
         function() {
           if ($('.landing nav .navwrap').is(':visible') == false) {
             $('.landing nav .navwrap').slideDown();
+            console.log('sliding down');
           }
         }, function() {
           if ($('.landing nav .navwrap').is(':visible') == true) {
             $('.landing nav .navwrap').slideUp();
+            console.log('sliding up');
           }
         }
       );
