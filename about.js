@@ -28,21 +28,23 @@ var aboutss = function() {
 
   // reposition
   // any way to do this dynamically so if the number of slides changes this doesn't have to be rewritten?
+  var center0 = accum_width - (slot5/2);
   var center1 = accum_width + (slot1/2);
   var center2 = accum_width + slot1 + (slot2/2);
   var center3 = accum_width + slot1 + slot2 + (slot3/2);
   var center4 = accum_width + slot1 + slot2 + slot3 + (slot4/2);
   var center5 = accum_width + slot1 + slot2 + slot3 + slot4 + (slot5/2);
+  var center6 = accum_width + slot1 + slot2 + slot3 + slot4 + slot5 + (slot1/2);
 
   // center on actual active one...
   // any way to do this dynamically so if the number of slides changes this doesn't have to be rewritten?
   var center_on_active = function() {
     var index;
-    var total = orig_li.length;
+    var total   = orig_li.length;
     var tbefore = $('.slider li').filter('.-before').length;
-    var tafter = $('.slider li').filter('.-after').length;
+    var tafter  = $('.slider li').filter('.-after').length;
 
-        index = orig_li.filter('.active').index();
+        index   = orig_li.filter('.active').index();
 
     var active_one = index-tbefore;
 
@@ -79,10 +81,10 @@ var aboutss = function() {
 
     if ( active_slide.hasClass('-before')) {
       active_slide.removeClass('active');
-      orig_li.eq(4).addClass('active') // make this the last one, not just eq(4)
+      orig_li.eq(4).addClass('active') // make this dynamically find the last one, not just eq(4)
     } else if ( active_slide.hasClass('-after')) {
       active_slide.removeClass('active');
-      orig_li.eq(0).addClass('active') // make this the last one, not just eq(0)
+      orig_li.eq(0).addClass('active') // make this dynamically find the first one, not just eq(0)
     } else {}
   };
 
