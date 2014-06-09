@@ -356,7 +356,8 @@ ul.collection-controls .pagecount {
 
 .filter-list ul.nav-tabs li {
   display: list-item;
-  float: none;
+  float: left;
+  width: 50%;
 }
 
 .filter-list ul.nav-tabs li > a,
@@ -390,18 +391,29 @@ ul.collection-controls .pagecount {
   color: @rg-gray;
   font-size: 11px;
   letter-spacing: 1px;
-  padding: 55px 25px 15px 25px;
+  padding: 55px 0 15px 0;
   margin: 0;
 }
 
+.filter-list fieldset div {
+  -webkit-column-count:2; -webkit-column-gap:10px;
+  -moz-column-count:2; -moz-column-gap:10px;
+  -o-column-count:2; -o-column-gap:10px;
+  column-count:2; column-gap:10px;
+}
+
 .filter-list fieldset label {
-  display: list-item;
-  float: none;
-  width: auto;
-  margin: 0 0 4px;
+  line-height: 14px;
+  margin: 0 0 8px;
   padding: 0;
   text-align: left;
   text-transform: uppercase;
+  /**/
+  -webkit-column-break-inside:avoid;
+  -moz-column-break-inside:avoid;
+  -o-column-break-inside:avoid;
+  -ms-column-break-inside:avoid;
+  column-break-inside:avoid;
 }
 
 .filter-list fieldset label input {
@@ -454,6 +466,7 @@ ul.collection-controls .pagecount {
   .filter-list ul.nav-tabs li {
     display: inline-block;
     float: none;
+    width: auto;
   }
   
   .filter-list ul.nav-tabs li > a,
