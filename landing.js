@@ -119,6 +119,7 @@ $(document).ready(function() {
   }
 
   $('.carousel .item').swipe( {
+    var excludedElements = 0;
     //Generic swipe handler for all directions
     swipe:function(event, direction, distance, duration, fingerCount) {
       if (direction == 'left') {
@@ -128,7 +129,7 @@ $(document).ready(function() {
       }
     },
     //Default is 75px, set to 0 for demo so any distance triggers swipe
-    threshold:0
+    threshold:0,
   });
 
 });
@@ -139,6 +140,7 @@ $(window).resize(function(){
   }
 
   $('.carousel .item').swipe( {
+    var excludedElements = 0;
     //Generic swipe handler for all directions
     swipe:function(event, direction, distance, duration, fingerCount) {
       if (direction == 'left') {
