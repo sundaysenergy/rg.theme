@@ -1329,13 +1329,7 @@ $(document).ready(function() {
         var a = $(this)[0].value;
         // Determine if any potential matches exist from currently matched items. Breaks on first true
         var m = _.some(productlist.matchingItems, function(item) {
-          var colorname = item.values().primarycolor;
-          if (_.isUndefined(colorname)) {
-            colorname = item.values().color;
-          }
-          if (_.isUndefined(colorname)) {
-            colorname = '';
-          }
+          var colorname = item.values().primarycolor || item.values().color || '';
           if (colorname.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
         });
         // Hide the parents of any item that does not have a match.
