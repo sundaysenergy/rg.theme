@@ -188,9 +188,9 @@ $(document).ready(function() {
                         });
                         return returnhash;
                       };
-      item.content = (_.isUndefined(item.content)) ? '':(item.content.charAt(0) + item.content.slice(1).toLowerCase());
-      item.name = (_.isUndefined(item.name)) ? '':(item.name.charAt(0) + item.name.slice(1).toLowerCase());
-      item.color = (_.isUndefined(item.color)) ? '':(item.color.charAt(0) + item.color.slice(1).toLowerCase());
+      item.content = (item.content) ? (item.content.charAt(0) + item.content.slice(1).toLowerCase()):'';
+      item.name = (item.name) ? (item.name.charAt(0) + item.name.slice(1).toLowerCase()):'';
+      item.color = (item.color) ? (item.color.charAt(0) + item.color.slice(1).toLowerCase()):'';
     }); // end forEach()
 
     /*** CREATE A NEW PRODUCT LIST ***/
@@ -694,7 +694,7 @@ $(document).ready(function() {
           // Get the first item that matches the id...we're assuming there would only
           // ever be one item with a given id
           var item = { item : productlist.get('id', id)[0].values() };
-          
+
           // Create the image url for the large image
           var ww = $(window).width();
           if ( ww >= 700 ) {
