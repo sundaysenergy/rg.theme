@@ -605,7 +605,7 @@ $(document).ready(function() {
               if (_.isUndefined(use) == false) {
                 var d = use.split(',');
                 for (var i = 0; i<d.length; i++) {
-                  var use_field = item.values().use || '':;
+                  var use_field = item.values().use || '';
                   // If the desc field is present and matches
                   if (use_field.toLowerCase().indexOf(d[i].toLowerCase()) >= 0) {
                     match = true;
