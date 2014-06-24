@@ -590,7 +590,7 @@ $(document).ready(function() {
                 var d = desc.split(',');
                 for (var i = 0; i<d.length; i++) {
                   //console.log(d[i]);
-                  var desc_field = (_.isUndefined(item.values().design_descriptions)) ? '':item.values().design_descriptions;
+                  var desc_field = item.values().design_descriptions || '';
                   //console.log(desc_field);
                   // If the desc field is present and matches
                   if (desc_field.toLowerCase().indexOf(d[i].toLowerCase()) >= 0) {
@@ -605,7 +605,7 @@ $(document).ready(function() {
               if (_.isUndefined(use) == false) {
                 var d = use.split(',');
                 for (var i = 0; i<d.length; i++) {
-                  var use_field = (_.isUndefined(item.values().use)) ? '':item.values().use;
+                  var use_field = item.values().use || '':;
                   // If the desc field is present and matches
                   if (use_field.toLowerCase().indexOf(d[i].toLowerCase()) >= 0) {
                     match = true;
@@ -620,16 +620,13 @@ $(document).ready(function() {
               if (_.isUndefined(color) == false) {
                 var color_terms = color.split(',');
                 for (var i = 0; i<color_terms.length; i++) {
-                  var color_field = item.values().primarycolor;
+                  var color_field = item.values().primarycolor || item.values().color || false;
                   // If color search is active, but the primary color is not defined, return false
-                  if (_.isUndefined(color_field)) {
-                    color_field = item.values().color;
-                  }
-                  if (_.isUndefined(color_field)) {
+                  if (!color_field) {
                     return false;
                   }
                   // If the color field is present and matches
-                  if (color_field.toLowerCase().indexOf(color_terms[i].toLowerCase()) >= 0) {
+                  else if (color_field.toLowerCase().indexOf(color_terms[i].toLowerCase()) >= 0) {
                     match = true;
                   } else {
                     // If the color field is present, but does not match, return false.
@@ -1340,10 +1337,7 @@ $(document).ready(function() {
         var a = $(this)[0].value;
         // Determine if any potential matches exist from currently matched items. Breaks on first true
         var m = _.some(productlist.matchingItems, function(item) {
-          var ddesc = item.values().design_descriptions;
-          if (_.isUndefined(ddesc)) {
-            ddesc = '';
-          }
+          var ddesc = item.values().design_descriptions || '';
           if (ddesc.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
         });
         // Hide the parents of any item that does not have a match.
@@ -1354,7 +1348,7 @@ $(document).ready(function() {
         var a = $(this)[0].value;
         // Determine if any potential matches exist from currently matched items. Breaks on first true
         var m = _.some(productlist.matchingItems, function(item) {
-          var use = (_.isUndefined(item.values().use)) ? '':item.values().use;
+          var use = item.values().use or '';
           if (use.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
         });
         // Hide the parents of any item that does not have a match.
