@@ -97,7 +97,7 @@ $(document).ready(function() {
     });
     return true;
   }
-  
+
   // When we resize, regenerate everything since the coordinates will be different
   $(window).on('resize', function() {
     // Initial load
@@ -129,7 +129,7 @@ $(document).ready(function() {
       $(this).attr('src', $(this).attr('src').replace('_2200','_700'));
     });
   }
-    
+
   // some header stuff
   if ($('header').width() > 768 ){
     $('.navwrap').removeClass( "collapse navbar-collapse" )
@@ -171,7 +171,7 @@ $(window).resize(function(){
       $(this).attr('src', $(this).attr('src').replace('_2200','_700'));
     });
   }
-      
+
   $('#carousel-example-generic').swipe( {
     //Generic swipe handler for all directions
     swipe:function(event, direction, distance, duration, fingerCount) {
