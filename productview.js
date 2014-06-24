@@ -1348,7 +1348,7 @@ $(document).ready(function() {
         var a = $(this)[0].value;
         // Determine if any potential matches exist from currently matched items. Breaks on first true
         var m = _.some(productlist.matchingItems, function(item) {
-          var use = item.values().use or '';
+          var use = item.values().use || '';
           if (use.toLowerCase().indexOf(a.toLowerCase()) >= 0) return true;
         });
         // Hide the parents of any item that does not have a match.
