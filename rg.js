@@ -21,8 +21,14 @@ $(document).ready(function() {
 
 */
   // Expose a search box when clicking on the icon
-  $('.fa-search').parent().on('click touch', function() {
-    $('#search-items').slideToggle();
+  $('.fa-search').on('click touch', function() {
+    if ($('#search-items').is(':visible') == false) {
+      $('#search-items').slideDown();
+    }
+  }, function {
+    if ($('#search-items').is(':visible') == true) {
+      $('#search-items').slideUp();
+    }
   });
 
   // If there's a token, enable the sub navigation menu
