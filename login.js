@@ -2,7 +2,7 @@ $(document).ready(function() {
   $('form').on('submit', function(e) {
     var template = Hogan.compile('<div class="login-failed alert alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><p>{{message}}</p></div>');
     e.preventDefault();
-    var username = $('input[type=email]').val();
+    var username = $('input[type=text]').val();
     var password = $('input[type=password]').val();
     var posting = $.post(rg_options.api + '/_login',
                           { username: username, password: password },
