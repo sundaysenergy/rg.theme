@@ -7,7 +7,7 @@ $(document).ready(function() {
   .done(function(template) {
     var account_info = Hogan.compile(template);
     // Fetch the user information
-    $.ajax({ url: rg_options.api + '/_api/db/_entity/user/'+$.cookie('uid')+'/profile.json'})
+    $.ajax({ url: rg_options.api + '/_api/user/_entity/'+$.cookie('uid')})
     .done(function(user_info) {
       // Add the compiled and rendered template to the page
       $('.account-information').html(account_info.render(user_info));
@@ -26,7 +26,7 @@ $(document).ready(function() {
             obj[params.name] = params.value;
             var token = $.cookie('token');
             $.ajax({
-              url: rg_options.api + "/_api/db/_entity/user/"+$.cookie("uid")+"/profile.json?merge=true",
+              url: rg_options.api + "/_api/user/_entity/"+$.cookie("uid")+"?merge=true",
               type: 'PUT',
               data: JSON.stringify(obj),
               headers: { Authorization: token },
