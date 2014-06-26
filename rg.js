@@ -8,8 +8,8 @@ $(document).ready(function() {
   });
 
   // Expose a search box when hovering over the icon
-/* they don't like the show search on hover afterall
-  $('.fa-search').on(clickfunction() {
+/*
+  $('.fa-search').parent().hover(function() {
     if ($('#search-items').is(':visible') == false) {
       $('#search-items').slideDown();
     }
@@ -18,17 +18,11 @@ $(document).ready(function() {
       $('#search-items').slideUp();
     }
   });
-*/
 
+*/
   // Expose a search box when clicking on the icon
-  $('.fa-search').click(function() {
-    if ($('#search-items').is(':visible') == false) {
-      $('#search-items').slideDown();
-    }
-  }, function() {
-    if ($('#search-items').is(':visible') == true) {
-      $('#search-items').slideUp();
-    }
+  $('.fa-search').parent().on('click touch', function() {
+    $('#search-items').slideToggle();
   });
 
   // If there's a token, enable the sub navigation menu
