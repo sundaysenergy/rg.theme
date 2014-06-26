@@ -7,19 +7,6 @@ $(document).ready(function() {
     window.location = '/collection.html#collection='+collection+'&search=' + encodeURIComponent($('#search-items').find('input').val());
   });
 
-  // Expose a search box when hovering over the icon
-/*
-  $('.fa-search').parent().hover(function() {
-    if ($('#search-items').is(':visible') == false) {
-      $('#search-items').slideDown();
-    }
-  }, function() {
-    if ($('#search-items').is(':visible') == true) {
-      $('#search-items').slideUp();
-    }
-  });
-
-*/
   // Expose a search box when clicking on the icon
   $('.fa-search').on('click touch', function() {
     $('#search-items').slideToggle();
