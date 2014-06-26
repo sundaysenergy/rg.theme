@@ -1243,6 +1243,18 @@ $(document).ready(function() {
       }
       if (productlist.page == rg_options.horizontal_page) { productlist.i = productlist.i-1; }
     });
+    
+    /*
+    $('.filter-attributes input[type=checkbox]').on('click touch', function() {
+      $('.filter-attributes input[type=checkbox]').each(function() {
+        if ($(this).is(':checked')) {
+            $(this).parent().addClass('checked');
+        } else {
+            $(this).parent().removeClass('checked');
+        }
+      });
+    });
+    */
 
     // When we check a color filter, do the same
     $('.filter-color input[type=checkbox]').on('click touch', function(e) {
