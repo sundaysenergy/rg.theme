@@ -22,13 +22,7 @@ $(document).ready(function() {
 */
   // Expose a search box when clicking on the icon
   $('.fa-search').on('click touch', function() {
-    if ($('#search-items').is(':visible') == false) {
-      $('#search-items').slideDown();
-    }
-  }, function {
-    if ($('#search-items').is(':visible') == true) {
-      $('#search-items').slideUp();
-    }
+    $('#search-items').slideToggle();
   });
 
   // If there's a token, enable the sub navigation menu
