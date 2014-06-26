@@ -30,6 +30,7 @@ var aboutss = function() {
 
   orig_li.clone().addClass('-after').removeClass('orig').insertAfter( orig_li.filter( ':last' ) );
   orig_li.filter( ':first' ).before( orig_li.clone().addClass( '-before' ).removeClass('orig') );
+  
   orig_li.eq(0).addClass('active');
 
   // reposition
@@ -168,7 +169,6 @@ var aboutss = function() {
 
   // okay... now to figure out the indicators.
   // any way to do this dynamically so if the number of slides changes this doesn't have to be rewritten?
-  // how do I make all the indicators print out automatically based on images that are hard coded?
   $('.carousel-indicators').on('click','li',function() {
     var indicator_count  = $(this).index();
     var tbefore = $('.slider li').filter('.-before').length;

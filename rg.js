@@ -8,7 +8,8 @@ $(document).ready(function() {
   });
 
   // Expose a search box when hovering over the icon
-  $('.fa-search').parent().hover(function() {
+/* they don't like the show search on hover afterall
+  $('.fa-search').on(clickfunction() {
     if ($('#search-items').is(':visible') == false) {
       $('#search-items').slideDown();
     }
@@ -17,6 +18,7 @@ $(document).ready(function() {
       $('#search-items').slideUp();
     }
   });
+*/
 
   // Expose a search box when clicking on the icon
   $('.fa-search').click(function() {
