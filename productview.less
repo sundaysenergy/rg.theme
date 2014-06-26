@@ -408,7 +408,7 @@ ul.collection-controls .pagecount {
 .filter-list fieldset label {
   line-height: 14px;
   margin: 0 0 8px;
-  padding: 0;
+  padding: 0 0 0 5px;
   text-align: left;
   text-transform: uppercase;
   display: list-item;
@@ -423,6 +423,8 @@ ul.collection-controls .pagecount {
 .filter-list fieldset div .checkbox-inline input {
   float: none;
   margin: 0;
+  position: relative;
+  left: -5px;
 }
 
 .filter-list fieldset label.disabled {
@@ -497,6 +499,7 @@ ul.collection-controls .pagecount {
     -moz-column-count:3; -moz-column-gap:10px;
     -o-column-count:3; -o-column-gap:10px;
     column-count:3; column-gap:10px;
+    margin: 0;
   }
 
   .filter-list fieldset label {
