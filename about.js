@@ -34,7 +34,6 @@ var aboutss = function() {
 
   // reposition
   // any way to do this dynamically so if the number of slides changes this doesn't have to be rewritten?
-  var center0  = accum_width - (slot5/2);
   var center1  = accum_width + (slot1/2);
   var center2  = accum_width + slot1 + (slot2/2);
   var center3  = accum_width + slot1 + slot2 + (slot3/2);
@@ -46,7 +45,6 @@ var aboutss = function() {
   var center9  = accum_width + slot1 + slot2 + slot3 + slot4 + slot5 + slot6 + slot7 + slot8 + (slot9/2);
   var center10 = accum_width + slot1 + slot2 + slot3 + slot4 + slot5 + slot6 + slot7 + slot8 + slot9 + (slot10/2);
   var center11 = accum_width + slot1 + slot2 + slot3 + slot4 + slot5 + slot6 + slot7 + slot8 + slot9 + slot10 + (slot11/2);
-  var center12 = accum_width + slot1 + slot2 + slot3 + slot4 + slot5 + slot6 + slot7 + slot8 + slot9 + slot10 + slot11 +(slot12/2);
 
   // center on actual active one...
   // any way to do this dynamically so if the number of slides changes this doesn't have to be rewritten?
@@ -117,7 +115,7 @@ var aboutss = function() {
 
     if ( active_slide.hasClass('-before')) {
       active_slide.removeClass('active');
-      orig_li.eq(4).addClass('active') // make this dynamically find the last one, not just eq(4)
+      orig_li.eq(10).addClass('active') // make this dynamically find the last one, not just eq(10)
     } else if ( active_slide.hasClass('-after')) {
       active_slide.removeClass('active');
       orig_li.eq(0).addClass('active') // make this dynamically find the first one, not just eq(0)
