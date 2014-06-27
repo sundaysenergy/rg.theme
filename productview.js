@@ -20,7 +20,7 @@ $(document).ready(function() {
   // If we have a token, get the pricelist to merge with the item list.
   if (_.isUndefined(token) == false) {
     $.ajax({
-      url: rg_options.api + '/items/price.json',
+      url: rg_options.api + '/_/items/price.json',
       type: 'GET',
       async: false,
       headers: { Authorization: 'bearer '+token },
@@ -1243,7 +1243,7 @@ $(document).ready(function() {
       }
       if (productlist.page == rg_options.horizontal_page) { productlist.i = productlist.i-1; }
     });
-    
+
     /*
     $('.filter-attributes input[type=checkbox]').on('click touch', function() {
       $('.filter-attributes input[type=checkbox]').each(function() {

@@ -7,7 +7,7 @@ $(document).ready(function() {
   // If there is a token, try to get the item prices
   if (_.isUndefined(token) == false) {
     $.ajax({
-      url: rg_options.api + '/items/price.json',
+      url: rg_options.api + '/_/items/price.json',
       type: 'GET',
       async: false,
       headers: { Authorization: 'bearer '+token },
