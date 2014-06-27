@@ -1,7 +1,7 @@
 $(document).ready(function() {
   var token = $.cookie('token');
-  $.removeCookie('uid', { path: '/', domain: rg_options.cookiedomain });
-  $.removeCookie('token', { path: '/', domain: rg_options.cookiedomain });
+  $.removeCookie('uid', { path: '/'});
+  $.removeCookie('token', { path: '/'});
 
   $.ajax({
     url: rg_options.api + '/logout',

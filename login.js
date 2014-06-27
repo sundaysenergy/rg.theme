@@ -7,8 +7,8 @@ $(document).ready(function() {
     var posting = $.post(rg_options.api + '/_login',
                           { username: username, password: password },
                           function(data) {
-                            $.cookie('token', data.token, { expires: 1, path: '/', domain: rg_options.cookiedomain });
-                            $.cookie('uid', data.uid, { expires: 1, path: '/', domain: rg_options.cookiedomain });
+                            $.cookie('token', data.token, { expires: 1, path: '/'});
+                            $.cookie('uid', data.uid, { expires: 1, path: '/'});
                             $('form').hide();
                             if (_.isUndefined(hash.get('destination')) == false) {
                               window.location = hash.get('destination');
