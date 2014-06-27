@@ -1,46 +1,32 @@
 $(document).ready(function() {
+  var token = $.cookie('token');
   // Redirect to login page if we don't have a token
-  if (_.isUndefined($.cookie('token'))) window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
-  $.ajaxSetup({ cache: false });
+  if (!token) window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
+
   // Fetch the template
-  $.ajax({ url: rg_options.api + "/templates/mini/account.html" })
-  .done(function(template) {
-    var account_info = Hogan.compile(template);
-    // Fetch the user information
-    $.ajax({ url: rg_options.api + '/_api/user/_entity/'+$.cookie('uid')})
-    .done(function(user_info) {
-      // Add the compiled and rendered template to the page
-      $('.account-information').html(account_info.render(user_info));
-      // Set default to inline editing for bootstrap editable
-      $.fn.editable.defaults.mode = 'inline';
-      // Make fields editable
-      $('.account-information .editable').editable({
-          type: 'select',
-          ajaxOptions: {
-            type: 'put',
-            dataType: 'json'
-          },
-          pk: 1,
-          url: function(params) {
-            var obj = {};
-            obj[params.name] = params.value;
-            var token = $.cookie('token');
-            $.ajax({
-              url: rg_options.api + "/_api/user/_entity/"+$.cookie("uid")+"?merge=true",
-              type: 'PUT',
-              data: JSON.stringify(obj),
-              headers: { Authorization: token },
-              contentType: 'application/json',
-              success: function(result) {
-                console.log(result);
-              },
-              fail: function(result) {
-                console.log(result);
-              }
-            });
-            return;
-          }
-      });
-    });
+  var account_info = Hogan.compile($('#details-template').html());
+  console.log(rg_options.api);
+  var url_path = rg_options.api + '/_api/user/_entity/'
+  var pk = $.cookie('uid');
+
+  // Fetch the user information
+  $.ajaxSetup({ cache: false });
+  $.ajax({ url: url_path+pk})
+  .done(function(user_info) {
+    // Add the compiled and rendered template to the page
+    $('.account-information').html(account_info.render(user_info));
+    // Set default options.
+    $.fn.editable.defaults.pk = pk;
+    $.fn.editable.defaults.mode = 'inline';
+    $.fn.editable.defaults.url = url_path;
+    $.fn.editable.defaults.ajaxOptions = {
+      type: 'PUT',
+      dataType: 'json',
+      headers: { Authorization: token }
+    }
+
+    // Make fields editable
+    $('.account-information .editable').editable({});
+    $('.account-information #address').editable({value:user_info});
   });
 });
