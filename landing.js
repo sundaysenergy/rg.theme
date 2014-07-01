@@ -28,7 +28,7 @@ $(document).ready(function() {
 
   function loadBeautyMobile(item_template) {
     // Retrieve the JSON that we will use to generate the slideshow
-    $.getJSON(rg_options.api + '/beautyshots/index.json', function(data) {
+    $.getJSON(rg_options.cdn + '/beautyshots/index.json', function(data) {
       _.forEach(data, function(item) {
         item.pos = function() {
           return _.findIndex(data, {img:item.img});
@@ -48,7 +48,7 @@ $(document).ready(function() {
   // Function for loading the template into the document
   function loadBeauty(item_template) {
     // Retrieve the JSON that we will use to generate the slideshow
-    $.getJSON(rg_options.api + '/beautyshots/index.json', function(data) {
+    $.getJSON(rg_options.cdn + '/beautyshots/index.json', function(data) {
       // Split the screen into 5 sections to create our area map
       var section = parseInt($(window).width()/5);
       // Index our slides
