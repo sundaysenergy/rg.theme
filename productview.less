@@ -1072,8 +1072,14 @@ ul.collections {
 }
 
 .collection-category p ,
-.collection-category p a {
-  color: #262019;
+.collection-category p a,
+p a.collapse-collection {
+  color: @rg-black;
+}
+
+p a.collapse-collection:hover {
+  color: @rg-gray;
+  text-decoration: none;
 }
 
 ul.collection-controls {
