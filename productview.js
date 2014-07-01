@@ -207,7 +207,7 @@ $(document).ready(function() {
 
       $('[id^=collection-menu]').hide();
       $('#collection-row-loading').hide();
-      $('#products ul.list').removeClass('passementerie search-layout');
+      $('#products ul.list').removeClass('passementerie search-layout clearfix');
       $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       $('li.collection-category a').on('click', function() {
         $('ul.list li:visible .img,ul.list li:visible').attr('style','');
@@ -395,7 +395,7 @@ $(document).ready(function() {
       if (_.isUndefined(srch) == false) {
         // Show the search header bar and hide the others
         $('#products,#collection-menu-search,#collection-menu-search-collection').show();
-        $('#products ul.list').addClass('search-layout');
+        $('#products ul.list').addClass('search-layout clearfix');
         // Switch between search collections
         $("#collection-menu-search-collection button").on('click touch', function(e) {
           e.preventDefault();
@@ -1151,7 +1151,7 @@ $(document).ready(function() {
         if (_.isUndefined(hash.get('faves')) == false) {
           // Hide details for center slide in "horizontal" view
           productlist.page = rg_options.vertical_page;
-          $('#products > ul.list').removeClass('slider search-layout');
+          $('#products > ul.list').removeClass('slider search-layout clearfix');
           $('#products > ul.list').addClass('anon-favorites');
           $('ul.list li .item-spotlight').remove();
 
