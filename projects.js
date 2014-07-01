@@ -8,13 +8,11 @@ $(document).ready(function() {
   .done(function(project_list) {
     // Compile template and retrieve the list of lists
     var template = Hogan.compile(project_list);
-    $.getJSON(rg_options.api + '/_api/items/_index/' + $.cookie('uid') + '/list', { data_only: true }, function(data) {
+    $.getJSON(rg_options.api + '/_api/list/_me', {}, function(data) {
       /**** PROCESS EACH OF THE LISTS ****/
       _.forEach(data, function(list) {
-        var listname = (_.isUndefined(list.info)) ? '':list.info.name;
-        var longurl = rg_options.api+'/collection.html#lid='+list._id+'&name='+encodeURIComponent(listname);
-
-        list.sharelink = longurl;
+        list.name = list.name || '';
+        list.sharelink = rg_options.cdn+'/collection.html#lid='+list.id+'&name='+encodeURIComponent(list.name);
         $('ul.existing-projects').append(template.render(list));
 
         // Automatically select share links when you click on the input
@@ -23,7 +21,7 @@ $(document).ready(function() {
         });
 
         // Change the name of a list
-        $('#'+list._id+' button.edit-list').on('click touch', function(e) {
+        $('#'+list.id+' button.edit-list').on('click touch', function(e) {
           e.preventDefault();
           // Handle form submission
           $(this).siblings('form').show().on('submit', function(ev) {
@@ -31,7 +29,7 @@ $(document).ready(function() {
             var token = 'bearer ' + $.cookie('token');
             var projectname = $(this).find('input[type=text]').val();
             $.ajax({
-              url: rg_options.api + '/_api/items/_index/list/'+list._id,
+              url: rg_options.api + '/_api/list/_me/' + list.id,
               type: 'PUT',
               data: { info: { name:projectname } },
               headers: { Authorization: token },
@@ -50,7 +48,7 @@ $(document).ready(function() {
         });
 
         // Expand the list
-        $('#'+list._id+' .list-name').on('click touch', function(e) {
+        $('#'+list.id+' .list-name').on('click touch', function(e) {
           $('input.project-share').parent().hide();
 /*           $('input.project-share').siblings('label').hide(); */
           var longurl = $(this).parent().data('longurl');
@@ -83,9 +81,9 @@ $(document).ready(function() {
             .done(function (project_items) {
               // Compile the template for the list
               var template = Hogan.compile(project_items);
-              $.getJSON(rg_options.api + '/_api/items/_index/list/'+list._id+'/index.json',{}, function(data) {
+              $.getJSON(rg_options.api + '/_api/list/_me/' + list.id, {}, function(data) {
                 // Render the template with the objects from the list
-                $('#'+list._id+'_items').html(template.render({ items: _.keys(data) }));
+                $('#'+list.id+'_items').html(template.render({ items: _.keys(data) }));
                 // Handle removing items from the list
                 $('button.remove-trade-item').on('click touch', function(e) {
                   e.preventDefault();
@@ -93,7 +91,7 @@ $(document).ready(function() {
                   var $div = $(this).parent();
                   var token = 'bearer ' + $.cookie('token');
                   $.ajax({
-                    url: rg_options.api + '/_api/items/_index/list/' + list._id + '/' + id,
+                    url: rg_options.api + '/_api/list/_index/list/' + list.id + '/' + id,
                     type: 'DELETE',
                     headers: { Authorization: token },
                     success: function(result,i,o) {
@@ -109,7 +107,7 @@ $(document).ready(function() {
                 var item_sortable = new Sortable($('.trade-items')[0], {
                   onUpdate: function (evt) {
                     var obj = { entity: {} };
-                    // Collect the order of the items and build an object 
+                    // Collect the order of the items and build an object
                     $('ul.trade-items > li').each(function(i) {
                       console.log($(this));
                       var id = $(this).find('img').data('id');
@@ -119,7 +117,7 @@ $(document).ready(function() {
                     // Send a request to cape with the updated order
                     var token = 'bearer ' + $.cookie('token');
                     $.ajax({
-                      url: rg_options.api + '/_api/items/_index/list/'+list._id,
+                      url: rg_options.api + '/_api/items/_index/list/'+list.id,
                       type: 'PUT',
                       data: JSON.stringify(obj),
                       headers: { Authorization: token },
@@ -135,22 +133,22 @@ $(document).ready(function() {
                 });
               })
               .fail(function() {
-                $('#'+list._id+'_items').html(template.render({ nomatch: true }));
+                $('#'+list.id+'_items').html(template.render({ nomatch: true }));
               });
             });
           }
         });
         // Remove a list
-        $('#'+list._id+' button.delete-list').on('click touch', function(e) {
+        $('#'+list.id+' button.delete-list').on('click touch', function(e) {
           e.preventDefault();
           var token = 'bearer ' + $.cookie('token');
           $.ajax({
-            url: rg_options.api + '/_api/items/_index/list/'+list._id,
+            url: rg_options.api + '/_api/items/_index/list/'+list.id,
             type: 'DELETE',
             headers: { Authorization: token },
             success: function(result) {
               // Remove the item from the DOM
-              $('#'+list._id).remove();
+              $('#'+list.id).remove();
             },
             fail: function(result) {
               console.log(result);
@@ -199,14 +197,17 @@ $(document).ready(function() {
         // If we have a token and a project name, submit the project
         if ((_.isUndefined(token) == false) && (projectname.length > 0)) {
           $.ajax({
-            url: rg_options.api + '/_api/items/_index/list',
+            url: rg_options.api + '/_api/list/_me',
             type: 'post',
-            data: { info: { name:projectname } },
+            data: {
+              name:projectname,
+              api_id: 'items'
+            },
             headers: { Authorization: token },
             dataType: 'json',
             success: function (data) {
               // If the list was created, remove the form and show confirmation
-              if (_.isUndefined(data._id) == false) location.reload();
+              if (_.isUndefined(data.id) == false) location.reload();
             }
           });
         }
