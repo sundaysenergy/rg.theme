@@ -984,7 +984,7 @@ $(document).ready(function() {
           e.preventDefault();
           $(this).toggleClass( 'active' );
           $(this).siblings().removeClass( 'active' );
-          $('.item-spotlight .item-information').slideToggle();
+          $('.item-spotlight .item-information').toggle();
           $('#item-colors').hide();
           $('#project-list-select').hide();
           $('div.alert-dismissable button.close').trigger('click');
