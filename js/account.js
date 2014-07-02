@@ -6,7 +6,7 @@ $(document).ready(function() {
   // Fetch the template
   var account_info = Hogan.compile($('#details-template').html());
   console.log(rg_options.api);
-  var url_path = rg_options.api + '/_api/user/_entity/'
+  var url_path = rg_options.api + '/_api/user/'
   var pk = $.cookie('uid');
 
   // Fetch the user information
