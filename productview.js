@@ -1552,4 +1552,14 @@ $(document).ready(function() {
 $(window).resize(function() {
   var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
   $('ul.slider > li > img').width(slideWidth-10);
+
+  if ($(window).width() > 1536) {
+    $('.rulers img.ruler-cm').attr( 'src', '/media/ruler-cm-2560.png' );
+    $('.rulers img.ruler-inches').attr( 'src', '/media/ruler-inches-2560.png' );
+  }
+  else {
+    $('.rulers img.ruler-cm').attr( 'src', '/media/ruler-cm-1536.png' );
+    $('.rulers img.ruler-inches').attr( 'src', '/media/ruler-inches-1536.png' );
+  }
+
 });
