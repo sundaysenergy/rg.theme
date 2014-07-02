@@ -794,6 +794,16 @@ $(document).ready(function() {
             $(this).parent().prev("li").removeClass("active");
             return false;
           });
+          
+          if ($(window).width() > 1536) {
+            $('.rulers img.ruler-cm').attr( 'src', '/media/ruler-cm-2560.png' );
+            $('.rulers img.ruler-inches').attr( 'src', '/media/ruler-inches-2560.png' );
+          }
+          else {
+            $('.rulers img.ruler-cm').attr( 'src', '/media/ruler-cm-1536.png' );
+            $('.rulers img.ruler-inches').attr( 'src', '/media/ruler-inches-1536.png' );
+          }
+          
         }
         sessionStorage.detailedview = hash.get('detailedview');
       } else {
