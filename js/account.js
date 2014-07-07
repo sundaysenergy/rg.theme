@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var token = $.cookie('token');
+  var token = 'bearer ' + $.cookie('token');
   // Redirect to login page if we don't have a token
   if (!token) window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
 
@@ -11,7 +11,11 @@ $(document).ready(function() {
 
   // Fetch the user information
   $.ajaxSetup({ cache: false });
-  $.ajax({ url: url_path+pk})
+  $.ajax({
+    url: url_path+pk,
+    dataType: 'json',
+    headers: { Authorization: token }
+  })
   .done(function(user_info) {
     // Add the compiled and rendered template to the page
     $('.account-information').html(account_info.render(user_info));
