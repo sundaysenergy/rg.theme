@@ -106,18 +106,17 @@ $(document).ready(function() {
                 // Handle sorting items in the list
                 var item_sortable = new Sortable($('.trade-items')[0], {
                   onUpdate: function (evt) {
-                    var obj = { entity: {} };
+                    var obj = { entities: [] };
                     // Collect the order of the items and build an object
                     $('ul.trade-items > li').each(function(i) {
                       console.log($(this));
                       var id = $(this).find('img').data('id');
-                      var position = i+1;
-                      obj.entity[id] = position;
+                      obj.entities.push({id: id, order: i});
                     });
                     // Send a request to cape with the updated order
                     var token = 'bearer ' + $.cookie('token');
                     $.ajax({
-                      url: rg_options.api + '/_api/items/_index/list/'+list.id,
+                      url: rg_options.api + '/_api/list/' + list.id,
                       type: 'PUT',
                       data: JSON.stringify(obj),
                       headers: { Authorization: token },
@@ -143,7 +142,7 @@ $(document).ready(function() {
           e.preventDefault();
           var token = 'bearer ' + $.cookie('token');
           $.ajax({
-            url: rg_options.api + '/_api/items/_index/list/'+list.id,
+            url: rg_options.api + '/_api/list/' + list.id,
             type: 'DELETE',
             headers: { Authorization: token },
             success: function(result) {
@@ -200,7 +199,7 @@ $(document).ready(function() {
             url: rg_options.api + '/_api/list/_me',
             type: 'post',
             data: {
-              name:projectname,
+              name: projectname,
               api_id: 'items'
             },
             headers: { Authorization: token },
