@@ -2,15 +2,17 @@ $(document).ready(function() {
   // If we don't have an authentication token, redirect to the login page
   if (_.isUndefined($.cookie('token'))) window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
 
-  $.ajaxSetup({
-    cache: false,
-    headers: { Authorization: token }
-  });
+  var token = 'bearer ' + $.cookie('token');
+
   // Fetch our project list item template
   $.ajax({ url: rg_options.api + "/templates/mini/project_list.html" })
   .done(function(project_list) {
     // Compile template and retrieve the list of lists
     var template = Hogan.compile(project_list);
+    $.ajaxSetup({
+      cache: false,
+      headers: { Authorization: token }
+    });
     $.getJSON(rg_options.api + '/_api/list/_me', {}, function(data) {
       /**** PROCESS EACH OF THE LISTS ****/
       _.forEach(data, function(list) {
@@ -29,7 +31,6 @@ $(document).ready(function() {
           // Handle form submission
           $(this).siblings('form').show().on('submit', function(ev) {
             ev.preventDefault();
-            var token = 'bearer ' + $.cookie('token');
             var projectname = $(this).find('input[type=text]').val();
             $.ajax({
               url: rg_options.api + '/_api/list/_me/' + list.id,
@@ -91,7 +92,6 @@ $(document).ready(function() {
                   e.preventDefault();
                   var id = $(this).siblings('img').data('id');
                   var $div = $(this).parent();
-                  var token = 'bearer ' + $.cookie('token');
                   $.ajax({
                     url: rg_options.api + '/_api/list/_index/list/' + list.id + '/' + id,
                     type: 'DELETE',
@@ -115,7 +115,6 @@ $(document).ready(function() {
                       obj.entities.push({id: id, order: i});
                     });
                     // Send a request to cape with the updated order
-                    var token = 'bearer ' + $.cookie('token');
                     $.ajax({
                       url: rg_options.api + '/_api/list/' + list.id,
                       type: 'PUT',
@@ -140,7 +139,6 @@ $(document).ready(function() {
         // Remove a list
         $('#'+list.id+' button.delete-list').on('click touch', function(e) {
           e.preventDefault();
-          var token = 'bearer ' + $.cookie('token');
           $.ajax({
             url: rg_options.api + '/_api/list/' + list.id,
             type: 'DELETE',
@@ -165,7 +163,6 @@ $(document).ready(function() {
             var position = i+1;
             obj.entity[id] = position;
           });
-          var token = 'bearer ' + $.cookie('token');
           $.ajax({
             url: rg_options.api + '/_api/items/_index/' + $.cookie('uid') + '/list',
             type: 'PUT',
@@ -189,10 +186,9 @@ $(document).ready(function() {
       $('#new-project-name').closest('form').on('submit', function(e) {
         e.preventDefault();
         var projectname = $('#new-project-name').val();
-        var token = 'bearer ' + $.cookie('token');
         var $div = $(this).closest('div');
         // If we have a token and a project name, submit the project
-        if ((_.isUndefined(token) == false) && (projectname.length > 0)) {
+        if (token && (projectname.length > 0)) {
           $.ajax({
             url: rg_options.api + '/_api/list/_me',
             type: 'post',
