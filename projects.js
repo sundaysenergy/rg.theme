@@ -2,7 +2,10 @@ $(document).ready(function() {
   // If we don't have an authentication token, redirect to the login page
   if (_.isUndefined($.cookie('token'))) window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.pathname);
 
-  $.ajaxSetup({ cache: false });
+  $.ajaxSetup({
+    cache: false,
+    headers: { Authorization: token }
+  });
   // Fetch our project list item template
   $.ajax({ url: rg_options.api + "/templates/mini/project_list.html" })
   .done(function(project_list) {
@@ -32,7 +35,6 @@ $(document).ready(function() {
               url: rg_options.api + '/_api/list/_me/' + list.id,
               type: 'PUT',
               data: { info: { name:projectname } },
-              headers: { Authorization: token },
               success: function(result) {
                 location.reload();
                 console.log(result);
@@ -93,7 +95,6 @@ $(document).ready(function() {
                   $.ajax({
                     url: rg_options.api + '/_api/list/_index/list/' + list.id + '/' + id,
                     type: 'DELETE',
-                    headers: { Authorization: token },
                     success: function(result,i,o) {
                       $div.remove();
                       console.log(result,i,o);
@@ -119,7 +120,6 @@ $(document).ready(function() {
                       url: rg_options.api + '/_api/list/' + list.id,
                       type: 'PUT',
                       data: JSON.stringify(obj),
-                      headers: { Authorization: token },
                       contentType: 'application/json',
                       success: function(result) {
                         console.log(result);
@@ -144,7 +144,6 @@ $(document).ready(function() {
           $.ajax({
             url: rg_options.api + '/_api/list/' + list.id,
             type: 'DELETE',
-            headers: { Authorization: token },
             success: function(result) {
               // Remove the item from the DOM
               $('#'+list.id).remove();
@@ -171,7 +170,6 @@ $(document).ready(function() {
             url: rg_options.api + '/_api/items/_index/' + $.cookie('uid') + '/list',
             type: 'PUT',
             data: JSON.stringify(obj),
-            headers: { Authorization: token },
             contentType: 'application/json',
             success: function(result) {
               console.log(result);
@@ -202,7 +200,6 @@ $(document).ready(function() {
               name: projectname,
               api_id: 'items'
             },
-            headers: { Authorization: token },
             dataType: 'json',
             success: function (data) {
               // If the list was created, remove the form and show confirmation
