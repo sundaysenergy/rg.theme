@@ -235,7 +235,7 @@ $(document).ready(function() {
             $('.collection-view-items').hide();
             $('#collection-pager-bottom').hide();
           } else {
-            $('#collection-pager-bottom').insertAfter('#colletion-row-textile').show();
+            $('#collection-pager-bottom').insertAfter('#collection-row-textile').show();
           }
           // Move the inactive headers to a different container if they're not there already
           if ($('#collection-headers-after').find('#collection-menu-passementerie-inactive').length == 0) {
@@ -294,7 +294,7 @@ $(document).ready(function() {
             $('.collection-view-items').hide();
             $('#collection-pager-bottom').hide();
           } else {
-            $('#collection-pager-bottom').insertAfter('#colletion-row-leather').show();
+            $('#collection-pager-bottom').insertAfter('#collection-row-leather').show();
           }
           $('#collection-headers-after').addClass('border-top');
           $('#products,#collection-menu-leather,#collection-menu-main-inactive,#collection-menu-passementerie-inactive').show();
