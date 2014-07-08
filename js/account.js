@@ -5,18 +5,17 @@ $(document).ready(function() {
 
   // Fetch the template
   var account_info = Hogan.compile($('#details-template').html());
-  console.log(rg_options.api);
-  var url_path = rg_options.api + '/_api/user/'
+
   var pk = $.cookie('uid');
+  var url_path = rg_options.api + '/_api/user/' + pk
 
   // Fetch the user information
   $.ajaxSetup({ cache: false });
   $.ajax({
-    url: url_path+pk,
+    url: url_path,
     dataType: 'json',
     headers: { Authorization: token }
-  })
-  .done(function(user_info) {
+  }).done(function(user_info) {
     // Add the compiled and rendered template to the page
     $('.account-information').html(account_info.render(user_info));
     // Set default options.
