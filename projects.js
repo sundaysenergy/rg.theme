@@ -11,6 +11,7 @@ $(document).ready(function() {
   var template_project_items = Hogan.compile($('#template-list-items').html());
   $.ajaxSetup({
     cache: false,
+    dataType: 'json',
     headers: { Authorization: token }
   });
   $.getJSON(rg_options.api + '/_api/list/_me', {}, function(data) {
@@ -85,7 +86,7 @@ $(document).ready(function() {
             // Compile the template for the list
             $.getJSON(rg_options.api + '/_api/list/_me/' + list.id, {}, function(data) {
               // Render the template with the objects from the list
-              $('#'+list.id+'_items').html(template_project_items.render({ items: _.keys(data) }));
+              $('#'+list.id+'_items').html(template_project_items.render({ items: data.entities }));
               // Handle removing items from the list
               $('button.remove-trade-item').on('click touch', function(e) {
                 e.preventDefault();
@@ -190,12 +191,12 @@ $(document).ready(function() {
         $.ajax({
           url: rg_options.api + '/_api/list/_me',
           type: 'post',
-          data: {
+          contentType: 'application/json',
+          data: JSON.stringify({
             name: projectname,
             api_id: 'items',
             entities: []
-          },
-          dataType: 'json',
+          }),
           success: function (data) {
             // If the list was created, remove the form and show confirmation
             if (_.isUndefined(data.id) == false) location.reload();

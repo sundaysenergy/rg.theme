@@ -16,15 +16,19 @@ $(document).ready(function() {
   }
   var item_prices = [];
   var token = $.cookie('token');
+  var uid = $.cookie('uid');
 
   // If we have a token, get the pricelist to merge with the item list.
   if (_.isUndefined(token) == false) {
+    $.ajaxSetup({
+      dataType: 'json',
+      async: false,
+      headers: { Authorization: 'bearer '+token },
+      contentType: 'application/json'
+    });
     $.ajax({
       url: rg_options.api + '/_/items/price.json',
       type: 'GET',
-      async: false,
-      headers: { Authorization: 'bearer '+token },
-      contentType: 'application/json',
       success: function(result) {
         item_prices = result;
       }
@@ -78,8 +82,6 @@ $(document).ready(function() {
 
     // Function for adding favorites
     function addFaves($selector, itemno) {
-      var uid = $.cookie('uid');
-      var token = $.cookie('token');
       // Remove existing list selection
       $('#project-list-select').remove();
 
@@ -106,7 +108,7 @@ $(document).ready(function() {
       /*** PROJECT LISTS ***/
       } else {
         // Get a list of available projects
-        $.getJSON(rg_options.api + '/_api/items/_index/' + uid + '/list', { data_only: true }, function(data) {
+        $.getJSON(rg_options.api + '/_api/list/_me', {}, function(data) {
           // Add the compiled template to the body
           if ($('#project-list-select').length == 0 && _.isUndefined(hash.get('detailedview')) && $('#products ul.slider').length > 0) {
             $('ul.slider li:visible:nth-of-type(2)').append(project_list_select_template.render({lists:data}));
@@ -123,11 +125,13 @@ $(document).ready(function() {
               url: function(params) {
                 // Create the new list
                 $.ajax({
-                  url: rg_options.api + '/_api/items/_index/list',
-                  type: 'post',
-                  data: { info: { name:params.value } },
-                  headers: { Authorization: 'bearer '+token  },
-                  dataType: 'json',
+                  url: rg_options.api + '/_api/list/_me',
+                  type: 'POST',
+                  data: JSON.stringify({
+                    name:params.value,
+                    api_id: 'items',
+                    entities: []
+                  }),
                   success: function (data) {
                     // Add the new list to the select
                     $('<option/>', { value : data._id }).text(params.value).appendTo('#project-trade-list');
@@ -145,10 +149,11 @@ $(document).ready(function() {
             var listid = $('#project-trade-list').val();
             // Update the contents of the list
             $.ajax({
-              url: rg_options.api + '/_api/items/_index/list/'+listid+'/'+itemno,
+              url: rg_options.api + '/_index/list/' + listid + '/' + itemno,
               type: 'PUT',
-              headers: { Authorization: 'bearer '+token },
-              contentType: 'application/json',
+              data: JSON.stringify({
+                order: 101
+              }),
               success: function(result) {
                 $('#project-list-select').remove();
                 if ($('#anonymous-faves-alert').length == 0 && _.isUndefined(hash.get('detailedview')) && $('#products ul.slider').length > 0) {
@@ -159,10 +164,14 @@ $(document).ready(function() {
                 $('.alert-favorite').find('a').attr('href','/trade/projects.html');
               },
               fail: function(result) {
-                window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
+                console.log('fail');
+                console.log(result);
+                //window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
               },
               error: function(result) {
-                window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
+                console.log('error');
+                console.log(result);
+                //window.location = '/trade/login.html#destination=' + encodeURIComponent(window.location.href);
               }
             });
           });
@@ -437,7 +446,6 @@ $(document).ready(function() {
       if (_.isUndefined(lid) == false) {
         $('#collection-menu-project-list li:nth-of-type(3) > p').html(hash.get('name'));
         $('#products ul.list').addClass('project-list');
-        $.ajaxSetup({async:false});
         $.getJSON(rg_options.api + '/_api/items/_index/list/'+lid+'/index.json',{}, function(data) {
           project_items = _.keys(data);
           productlist.sort('id', {
@@ -446,7 +454,6 @@ $(document).ready(function() {
             }
           });
         });
-        $.ajaxSetup({async:false});
       } else {
         $('#products ul.list').removeClass('project-list');
       }
@@ -795,7 +802,7 @@ $(document).ready(function() {
             $(this).parent().prev("li").removeClass("active");
             return false;
           });
-          
+
           if ($(window).width() > 1536) {
             $('.rulers img.ruler-cm').attr( 'src', '/media/ruler-cm-2560.png' );
             $('.rulers img.ruler-inches').attr( 'src', '/media/ruler-inches-2560.png' );
@@ -804,7 +811,7 @@ $(document).ready(function() {
             $('.rulers img.ruler-cm').attr( 'src', '/media/ruler-cm-1536.png' );
             $('.rulers img.ruler-inches').attr( 'src', '/media/ruler-inches-1536.png' );
           }
-          
+
         }
         sessionStorage.detailedview = hash.get('detailedview');
       } else {
