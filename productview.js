@@ -18,14 +18,15 @@ $(document).ready(function() {
   var token = $.cookie('token');
   var uid = $.cookie('uid');
 
+  $.ajaxSetup({
+    dataType: 'json',
+    async: false,
+    headers: { Authorization: 'bearer '+token },
+    contentType: 'application/json'
+  });
+
   // If we have a token, get the pricelist to merge with the item list.
   if (_.isUndefined(token) == false) {
-    $.ajaxSetup({
-      dataType: 'json',
-      async: false,
-      headers: { Authorization: 'bearer '+token },
-      contentType: 'application/json'
-    });
     $.ajax({
       url: rg_options.api + '/_/items/price.json',
       type: 'GET',
@@ -443,7 +444,7 @@ $(document).ready(function() {
 
       // If we have a project list, retrieve the items in that list
       var project_items = [];
-      if (_.isUndefined(lid) == false) {
+      if (lid) {
         $('#collection-menu-project-list li:nth-of-type(3) > p').html(hash.get('name'));
         $('#products ul.list').addClass('project-list');
         $.getJSON(rg_options.api + '/_index/list/'+lid+'/index.json',{}, function(data) {

@@ -93,7 +93,7 @@ $(document).ready(function() {
                 var id = $(this).siblings('img').data('id');
                 var $div = $(this).parent();
                 $.ajax({
-                  url: rg_options.api + '/_api/list/_index/list/' + list.id + '/' + id,
+                  url: rg_options.api + '/_index/list/' + list.id + '/' + id,
                   type: 'DELETE',
                   success: function(result,i,o) {
                     $div.remove();
