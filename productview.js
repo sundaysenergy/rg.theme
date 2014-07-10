@@ -41,19 +41,18 @@ $(document).ready(function() {
 
     // Compile clientside templates
     var templates = combined.templates;
-    var dummy_template               = Hogan.compile(templates.bookends),
-        dummy_template_pass          = Hogan.compile(templates.bookends_passementerie),
-        detailed_favorites_template  = Hogan.compile(templates.detailed_faves_alert),
-        favorites_template           = Hogan.compile(templates.favorites),
-        item_template                = Hogan.compile(templates.item),
-        itemdel_template             = Hogan.compile(templates.itemdel),
-        item_mobile_template         = Hogan.compile(templates.item_mobile),
+    var item_template                = Hogan.compile(templates.item),
         item_passementerie           = Hogan.compile(templates.item_passementerie),
-        project_list_select_template = Hogan.compile(templates.project_list_select),
-        related_template             = Hogan.compile(templates.related_item),
+        item_mobile_template         = Hogan.compile(templates.item_mobile),
         spotlight_template           = Hogan.compile(templates.spotlight),
-        spotlight_pass_template      = Hogan.compile(templates.spotlight_passementerie);
-
+        spotlight_pass_template      = Hogan.compile(templates.spotlight_passementerie), //is this in use anymore?
+        dummy_template               = Hogan.compile(templates.bookends),
+        dummy_template_pass          = Hogan.compile(templates.bookends_passementerie),
+        favorites_template           = Hogan.compile(templates.favorites),
+        detailed_favorites_template  = Hogan.compile(templates.detailed_faves_alert),
+        itemdel_template             = Hogan.compile(templates.itemdel),
+        related_template             = Hogan.compile(templates.related_item),
+        project_list_select_template = Hogan.compile(templates.project_list_select);
 
     // Set our options for the main product list
     var options = {
@@ -203,6 +202,9 @@ $(document).ready(function() {
       item.contents = (item.contents) ? (item.contents.charAt(0) + item.contents.slice(1).toLowerCase()):'';
       item.name = (item.name) ? (item.name.charAt(0) + item.name.slice(1).toLowerCase()):'';
       item.color = (item.color) ? (item.color.charAt(0) + item.color.slice(1).toLowerCase()):'';
+      // these last 4 item things are what need my roman numeral js magic added to them, 
+      // capitalize only the roman numerals, and leave everything else the way it is working
+      // i am ignorant as to how however... http://www.ookb.co/romannums.html
     }); // end forEach()
 
     /*** CREATE A NEW PRODUCT LIST ***/
@@ -972,10 +974,6 @@ $(document).ready(function() {
               $('#products > ul.slider li:nth-child(2)').append(spotlight_pass_template.render(itemvals));
             }
           }
-          else {
-            // Spent an hour trying to figure out why this is required...
-            $('#products > ul.slider li:nth-child(2)').append(spotlight_pass_template.render([itemvals[0]]));
-          }
           $.fn.editable.defaults.mode = 'inline';
           // Make fields editable
         }
@@ -1241,6 +1239,8 @@ $(document).ready(function() {
               $('.item-passementerie').remove();
               $('.item-icons').find('.active').removeClass( 'active' );
             });
+            // Need to add something where clicking this button again removes the .item-passementerie details table as well
+            // https://www.pivotaltracker.com/story/show/73769540
           });
         }
       });
