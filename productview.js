@@ -202,7 +202,7 @@ $(document).ready(function() {
       item.contents = (item.contents) ? (item.contents.charAt(0) + item.contents.slice(1).toLowerCase()):'';
       item.name = (item.name) ? (item.name.charAt(0) + item.name.slice(1).toLowerCase()):'';
       item.color = (item.color) ? (item.color.charAt(0) + item.color.slice(1).toLowerCase()):'';
-      // these last 4 item things are what need my roman numeral js magic added to them, 
+      // these last 4 item things are what need my roman numeral js magic added to them,
       // capitalize only the roman numerals, and leave everything else the way it is working
       // i am ignorant as to how however... http://www.ookb.co/romannums.html
     }); // end forEach()
@@ -973,6 +973,10 @@ $(document).ready(function() {
             } else {
               $('#products > ul.slider li:nth-child(2)').append(spotlight_pass_template.render(itemvals));
             }
+          }
+          else {
+            // Spent an hour trying to figure out why this is required...
+            $('#products > ul.slider li:nth-child(2)').append(spotlight_pass_template.render([itemvals[0]]));
           }
           $.fn.editable.defaults.mode = 'inline';
           // Make fields editable
