@@ -1239,6 +1239,8 @@ $(document).ready(function() {
               $('.item-passementerie').remove();
               $('.item-icons').find('.active').removeClass( 'active' );
             });
+            // Need to add something where clicking this button again removes the .item-passementerie details table as well
+            // https://www.pivotaltracker.com/story/show/73769540
           });
         }
       });
