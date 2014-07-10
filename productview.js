@@ -972,6 +972,10 @@ $(document).ready(function() {
               $('#products > ul.slider li:nth-child(2)').append(spotlight_pass_template.render(itemvals));
             }
           }
+          else {
+            // Spent an hour trying to figure out why this is required...
+            $('#products > ul.slider li:nth-child(2)').append(spotlight_pass_template.render([itemvals[0]]));
+          }
           $.fn.editable.defaults.mode = 'inline';
           // Make fields editable
         }
