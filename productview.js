@@ -41,18 +41,19 @@ $(document).ready(function() {
 
     // Compile clientside templates
     var templates = combined.templates;
-    var item_template                = Hogan.compile(templates.item),
-        item_passementerie           = Hogan.compile(templates.item_passementerie),
-        item_mobile_template         = Hogan.compile(templates.item_mobile),
-        spotlight_template           = Hogan.compile(templates.spotlight),
-        spotlight_pass_template      = Hogan.compile(templates.spotlight_passementerie),
-        dummy_template               = Hogan.compile(templates.bookends),
+    var dummy_template               = Hogan.compile(templates.bookends),
         dummy_template_pass          = Hogan.compile(templates.bookends_passementerie),
-        favorites_template           = Hogan.compile(templates.favorites),
         detailed_favorites_template  = Hogan.compile(templates.detailed_faves_alert),
+        favorites_template           = Hogan.compile(templates.favorites),
+        item_template                = Hogan.compile(templates.item),
         itemdel_template             = Hogan.compile(templates.itemdel),
+        item_mobile_template         = Hogan.compile(templates.item_mobile),
+        item_passementerie           = Hogan.compile(templates.item_passementerie),
+        project_list_select_template = Hogan.compile(templates.project_list_select),
         related_template             = Hogan.compile(templates.related_item),
-        project_list_select_template = Hogan.compile(templates.project_list_select);
+        spotlight_template           = Hogan.compile(templates.spotlight),
+        spotlight_pass_template      = Hogan.compile(templates.spotlight_passementerie);
+
 
     // Set our options for the main product list
     var options = {
