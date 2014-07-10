@@ -976,6 +976,7 @@ $(document).ready(function() {
           }
           else {
             // Spent an hour trying to figure out why this is required...
+            // For some reason this needs to be rendered even when nothing is selected.
             $('#products > ul.slider li:nth-child(2)').append(spotlight_pass_template.render([itemvals[0]]));
           }
           $.fn.editable.defaults.mode = 'inline';
