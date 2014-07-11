@@ -747,12 +747,6 @@ $(document).ready(function() {
               $('#related-products > ul.list-inline').css('width', 90*thumbcount);
               // when or if there is only one page, then it needs a slightly different equation 
               
-              // to make the padding for the <> arrows (which don't show on just a single page) go away 
-              if (thumbcount <= 5) {
-                $('#related-products').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
-                $('#related-products .list').css('left', 20);
-              }
-
               $('#related-products .related-page-count').html(current_page + " / " + total_pages);
               $('.rel-previous, .rel-next').removeClass('disabled');
               $('.rel-next').off('click touch').on('click touch', function(e) {
@@ -763,6 +757,12 @@ $(document).ready(function() {
                 relatedlist.i = parseInt(relatedlist.i)+5;
                 relatedlist.update();
               });
+              // to make the padding for the <> arrows (which don't show on just a single page) go away 
+              if (total_pages <= 1) {
+                $('#related-products').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
+                $('#related-products .list').css('left', 20);
+              }
+
               $('.rel-previous').off('click touch').on('click touch', function(e) {
                 // Works the same way as the lines above. See comments there.
                 hash.add({dpos:parseInt(relatedlist.i)-5});
@@ -1082,12 +1082,12 @@ $(document).ready(function() {
             $('#item-colors').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
             $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
           }
+          $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
           // to make the padding for the <> arrows (which don't show on just a single page) go away 
-          if (thumbcount <= 5) {
+          if (total_pages <= 1) {
             $('#item-colors').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
             $('#item-colors .list').css('left', 20);
           }
-          $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
           $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
           $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
             // Add to the hash so that if we refresh the page it still has the correct starting position
