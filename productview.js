@@ -745,6 +745,12 @@ $(document).ready(function() {
               var thumbcount = $("#related-products > ul.list-inline").children("li").length;
               $('#related-products').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
               $('#related-products > ul.list-inline').css('width', 90*thumbcount);
+              // when or if there is only one page, then it needs a slightly different equation 
+              
+              // to make the padding for the <> arrows (which don't show on just a single page) go away 
+              if (thumbcount <= 5) {
+                $('#related-products').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
+              }
 
               $('#related-products .related-page-count').html(current_page + " / " + total_pages);
               $('.rel-previous, .rel-next').removeClass('disabled');
