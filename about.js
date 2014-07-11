@@ -2,9 +2,14 @@
 
 var aboutss = function() {
 
+  // measure the width of the window and then center #photostream (the slideshow wrapper)
   var ww = $(window).width();
   $('#photostream').width(ww).css('margin-left', (ww/2)*-1);
+  
+  // load images, stack them on top of each other...
+  // once they are all loaded, then take their measurements
 
+  // anounce which <li> bit we'll be using as the main ss elements
   var orig_li = $('#photostream ul li.orig');
   var accum_width = 0;
 
