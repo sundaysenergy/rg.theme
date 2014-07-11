@@ -750,6 +750,7 @@ $(document).ready(function() {
               // to make the padding for the <> arrows (which don't show on just a single page) go away 
               if (thumbcount <= 5) {
                 $('#related-products').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
+                $('#related-products .list').css('left', 20);
               }
 
               $('#related-products .related-page-count').html(current_page + " / " + total_pages);
@@ -1080,6 +1081,11 @@ $(document).ready(function() {
           } else {
             $('#item-colors').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
             $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
+          }
+          // to make the padding for the <> arrows (which don't show on just a single page) go away 
+          if (thumbcount <= 5) {
+            $('#item-colors').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
+            $('#item-colors .list').css('left', 20);
           }
           $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
           $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
