@@ -1,6 +1,23 @@
 {
-  "name" : "rg-theme",
+  "name": "cape-theme-deploy",
+  "version": "0.0.1",
+  "author": "Tim Lupfer <tim@sundaysenergy.com>",
+  "description": "Tools for deploying theme assets via Wercker.",
+  "contributors": [ 
+    {
+      "name": "Kai Curry",
+      "email": "kai@sundaysenergy.com"
+    } 
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sundaysenergy/wercker-helpers.git"
+  },
   "dependencies" : {
-    "wercker-helpers"   :  "https://github.com/sundaysenergy/wercker-helpers/tarball/master"
+    "findit2" : "0.x",
+    "pkgcloud" : "0.x",
+    "less" : "1.x",
+    "js-yaml" : "2.x",
+    "uglify-js" : "https://github.com/mishoo/UglifyJS2/tarball/master"
   }
 }
