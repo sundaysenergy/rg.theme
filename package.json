@@ -1,18 +1,14 @@
 {
-  "name": "cape-theme-deploy",
+  "name": "rh-theme",
   "version": "0.0.1",
   "author": "Tim Lupfer <tim@sundaysenergy.com>",
   "description": "Tools for deploying theme assets via Wercker.",
-  "contributors": [ 
+  "contributors": [
     {
       "name": "Kai Curry",
       "email": "kai@sundaysenergy.com"
-    } 
+    }
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sundaysenergy/wercker-helpers.git"
-  },
   "dependencies" : {
     "findit2" : "0.x",
     "pkgcloud" : "0.x",
