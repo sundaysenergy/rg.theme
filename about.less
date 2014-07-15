@@ -5,13 +5,13 @@
   height: 200px;
 }
 
-.about .text-area { margin-top: 225px; }
+/* .about .text-area { margin-top: 225px; } */
 
 @media (min-width: @screen-sm-min) {
   #film_roll, #film_roll * {
     height: 300px;
   }
-  .about .text-area { margin-top: 325px; }
+/*   .about .text-area { margin-top: 325px; } */
   .film_roll_pager {
     top: 270px;
   }
@@ -21,7 +21,7 @@
   #film_roll, #film_roll * {
     height: 400px;
   }
-  .about .text-area { margin-top: 425px; }
+/*   .about .text-area { margin-top: 425px; } */
   .film_roll_pager {
     top: 370px;
   }
@@ -71,6 +71,7 @@
   *display:inline;
   vertical-align:middle;
   zoom:1;
+  padding: 0 2.5px;
 }
 
 .film_roll_prev, .film_roll_next {
@@ -90,6 +91,7 @@
   padding: 5px 10px;
   font-size: 18px;
   text-shadow: none;
+  box-sizing: border-box;
 }
 
 .film_roll_prev:hover, .film_roll_next:hover {
@@ -100,7 +102,7 @@
  
 .film_roll_next {
   left: auto;
-  right: 15px;
+  right: 0;
 }
 
 .film_roll_pager {
@@ -111,7 +113,7 @@
 }
 
 @media (min-width: @screen-sm-min) {
-  .carousel-indicators {
+  .film_roll_pager {
     display: block;
   }
 }
