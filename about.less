@@ -21,6 +21,10 @@
   .about .text-area { margin-top: 425px; }
 }
 
+#film_roll, .film_roll_wrapper, .film_roll_shuttle {
+  z-index: 1;
+}
+
 .film_roll_wrapper {
   display: block;
   text-align: center;
@@ -28,13 +32,12 @@
   position: absolute;
   right: 0;
   left: 0;
-  z-index: auto;
   width: 100%;
   margin: 0 !important;
   padding: 0 !important;
   overflow: hidden;
   width: 100%;
- }
+}
  
 .film_roll_shuttle {
   text-align: left;
@@ -46,8 +49,7 @@
   bottom: auto;
   margin: 0 !important;
   padding: 0 !important;
-  z-index: auto;
- }
+}
  
 .film_roll_shuttle.vertical_center:before {
   content: '';
@@ -67,21 +69,21 @@
 
 .film_roll_prev, .film_roll_next {
   position: absolute;
-  top: 48%;
-  left: 15px;
-  width: 40px;
-  height: 40px;
-  margin: -20px 0 0 0;
-  padding: 0;
-  font-size: 60px;
-  font-weight: 100;
-  line-height: 30px;
-  color: white;
+  margin:0;
   text-align: center;
-  background: #222;
-  border: 3px solid white;
-  border-radius: 23px;
-  opacity: 0.5;
+  z-index: 10;
+  bottom: 0;
+  background: @rg-background;
+  background-image: none !important;
+  color: @rg-medium-gray !important;
+  opacity: 1 !important;
+  display: block;
+  top:initial;
+  width: 26px !important;
+  height:30px !important;
+  padding: 5px 10px;
+  font-size: 18px;
+  text-shadow: none;
 }
 
 .film_roll_prev:hover, .film_roll_next:hover {
@@ -97,6 +99,8 @@
 
 .film_roll_pager {
   text-align: center;
+  position: relative;
+  z-index: 99;
 }
 
 .film_roll_pager a {
