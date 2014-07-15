@@ -12,6 +12,9 @@
     height: 300px;
   }
   .about .text-area { margin-top: 325px; }
+  .film_roll_pager {
+    top: 270px;
+  }
 }
 
 @media (min-width: @screen-md-min) {
@@ -19,6 +22,9 @@
     height: 400px;
   }
   .about .text-area { margin-top: 425px; }
+  .film_roll_pager {
+    top: 370px;
+  }
 }
 
 #film_roll, .film_roll_wrapper, .film_roll_shuttle {
@@ -98,15 +104,22 @@
 }
 
 .film_roll_pager {
+  display: none;
   text-align: center;
   position: relative;
   z-index: 99;
 }
 
+@media (min-width: @screen-sm-min) {
+  .carousel-indicators {
+    display: block;
+  }
+}
+
 .film_roll_pager a {
   width: 5px;
-  height: 5px;
-  border: 2px solid #333;
+  height: 5px !important;
+  border: 2px solid @rg-background;
   border-radius: 5px;
   display: inline-block;
   margin: 0 5px 0 0;
@@ -114,126 +127,33 @@
 }
  
 .film_roll_pager a:hover {
-  background: #666;
+  background: @rg-gray;
 }
  
 .film_roll_pager a.active {
-  background: #333;
+  background: @rg-background;
 }
  
 .film_roll_pager span {
   display: none;
 }
  
- .film_roll_pager a, a.film_roll_prev, a.film_roll_next {
+.film_roll_pager a, a.film_roll_prev, a.film_roll_next {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
 
+/** End slideshow stuff **/
+
+.text-area p { margin-bottom: 1.25em; }
 
 
-/* old custom stuff to be included where needed */
 
 
-#photostream {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  left:50%;
-  margin-left: -50%;
-}
 
-#photostream, #photostream * {
-  text-align: center;
-  vertical-align: middle;
-}
+/* OLD slideshow controls */
 
-#slider1 {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  width: 100%;
-  overflow:hidden;
-}
-
-.slider ul {
-  list-style: none;
-  margin:0;
-  padding:0;
-  position: relative;
-  left:50%;
-  margin-left: -50%;
-  -webkit-transition: all 400ms;
-  -moz-transition: all 400ms;
-  -ms-transition: all 400ms;
-  -o-transition: all 400ms;
-  transition: all 400ms;
-}
-
-.slider li {
-  float:left;
-  margin:0 2.5px;
-  list-style:none;
-}
-
-.slider li img {
-  width: auto;
-}
-
-/* slideshow controls */
-
-.controls {
-  position: absolute;
-  left: 0;
-  right: 0;
-}
-
-.carousel-indicators {
-  display: none;
-}
-
-@media (min-width: @screen-sm-min) {
-  .carousel-indicators {
-    display: block;
-    bottom: 6px;
-    text-align: center;
-    margin-bottom: 2px
-  }
-}
-
-.carousel-indicators li {
-  background-color: @rg-background !important;
-  border: 4px solid transparent;
-  height: 4px;
-  margin: 4px;
-  width: 4px;
-}
-
-.carousel-indicators .active {
-  background-color: @rg-background !important;
-  border: none !important;
-  height: 16px;
-  margin: 0;
-  width: 16px;
-}
-
-.carousel-control {
-  bottom: 0;
-  background: @rg-background;
-  background-image: none !important;
-  color: @rg-medium-gray !important;
-  opacity: 1 !important;
-  display: block;
-  top:initial;
-  width: 26px;
-  height:30px;
-  padding: 5px 10px;
-  font-size: 18px;
-  text-shadow: none;
-}
 
 .carousel-control.prev-slide {
   left: 0;
@@ -260,7 +180,4 @@
   filter: alpha(opacity=100) !important;
 }
 
-/** End slideshow stuff **/
-
-.text-area p { margin-bottom: 1.25em; }
 
