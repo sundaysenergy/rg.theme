@@ -745,8 +745,8 @@ $(document).ready(function() {
               var thumbcount = $("#related-products > ul.list-inline").children("li").length;
               $('#related-products').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
               $('#related-products > ul.list-inline').css('width', 90*thumbcount);
-              // when or if there is only one page, then it needs a slightly different equation 
-              
+              // when or if there is only one page, then it needs a slightly different equation
+
               $('#related-products .related-page-count').html(current_page + " / " + total_pages);
               $('.rel-previous, .rel-next').removeClass('disabled');
               $('.rel-next').off('click touch').on('click touch', function(e) {
@@ -757,7 +757,7 @@ $(document).ready(function() {
                 relatedlist.i = parseInt(relatedlist.i)+5;
                 relatedlist.update();
               });
-              // to make the padding for the <> arrows (which don't show on just a single page) go away 
+              // to make the padding for the <> arrows (which don't show on just a single page) go away
               if (total_pages <= 1) {
                 $('#related-products').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
                 $('#related-products .list').css('left', 20);
@@ -1083,7 +1083,7 @@ $(document).ready(function() {
             $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
           }
           $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
-          // to make the padding for the <> arrows (which don't show on just a single page) go away 
+          // to make the padding for the <> arrows (which don't show on just a single page) go away
           if (total_pages <= 1) {
             $('#item-colors').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
             $('#item-colors .list').css('left', 20);
@@ -1550,7 +1550,7 @@ $(document).ready(function() {
 
     // Change viewing mode for passementerie on click
     $('a[href*="passementerie"]').on('click touch', function(e) {
-      $('#products').hide();
+      //$('#products').hide(); [#72916252]
       if (productlist.page == rg_options.horizontal_page) {
         productlist.page = rg_options.vertical_page;
         $('#products > ul.list').removeClass('slider');
@@ -1564,7 +1564,7 @@ $(document).ready(function() {
 
     // Change viewing mode back to 3up for textile and leather
     $('a[href*="leather"],a[href*="textile"]').on('click touch', function(e) {
-      $('#products').hide();
+      //$('#products').hide(); [#72916252]
       if (productlist.page == rg_options.vertical_page) {
         productlist.page = rg_options.horizontal_page;
         $('button.thumbs').show();
