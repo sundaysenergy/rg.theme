@@ -5,7 +5,7 @@ var aboutss = function() {
   // measure the width of the window and then center #photostream (the slideshow wrapper)
   var ww = $(window).width();
   $('#photostream').width(ww).css('margin-left', (ww/2)*-1);
-  
+
   // load images, stack them on top of each other...
   // once they are all loaded, then take their measurements
 
@@ -35,7 +35,7 @@ var aboutss = function() {
 
   orig_li.clone().addClass('-after').removeClass('orig').insertAfter( orig_li.filter( ':last' ) );
   orig_li.filter( ':first' ).before( orig_li.clone().addClass( '-before' ).removeClass('orig') );
-  
+
   orig_li.eq(0).addClass('active');
 
   // reposition

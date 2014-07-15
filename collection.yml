@@ -83,4 +83,5 @@ about:
     - variables.less
     - about.less
   js:
+    - js/jquery.film_roll.min.js
     - about.js
