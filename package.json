@@ -14,6 +14,7 @@
     "pkgcloud" : "0.x",
     "less" : "1.x",
     "js-yaml" : "2.x",
-    "uglify-js" : "https://github.com/mishoo/UglifyJS2/tarball/master"
+    "uglify-js" : "https://github.com/mishoo/UglifyJS2/tarball/master",
+    "wercker-helpers" : "https://github.com/sundaysenergy/wercker-helpers/tarball/master"
   }
 }
