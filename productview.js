@@ -734,6 +734,7 @@ $(document).ready(function() {
 
             // If we're in non-mobile mode
             if ($(window).width() > 768) {
+              sessionStorage.detailed_view_mobile = false;
               $('.itemoverlay').show().html(item_template.render(item));
               $('#related-products button.close').off('click touch').on('click touch', function(e) {
                 $('.itemoverlay #related-products').hide();
@@ -796,6 +797,7 @@ $(document).ready(function() {
               });
               relatedlist.update();
             } else {
+              sessionStorage.detailed_view_mobile = true;
               console.log("Loading the detailedview for <768");
               $('.itemoverlay').show().html(item_mobile_template.render(item));
             }
@@ -803,8 +805,13 @@ $(document).ready(function() {
 
           $(window).trigger('loadDetailView');
           $(window).resize(function() {
-            console.log("Trigger resizing");
-            if (_.isUndefined(hash.get('detailedview')) == false) {
+            var trigger_resize = false;
+            if (((sessionStorage.detailed_view_mobile == true) && ($(window).width() > 768)) ||
+                ((sessionStorage.detailed_view_mobile == false) && ($(window).width() <= 768))) {
+              trigger_resize = true;
+            }
+            sessionStorage.detailed_view_mobile = ($(window).width() <= 768);
+            if (_.isUndefined(hash.get('detailedview')) == false && trigger_resize) {
               $(window).trigger('loadDetailView');
             }
           });
