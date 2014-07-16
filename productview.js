@@ -796,7 +796,7 @@ $(document).ready(function() {
                 $ruler_cm.attr('src', $ruler_cm.attr('src').replace('2560.png', '1536.png'));
                 $ruler_in.attr('src', $ruler_in.attr('src').replace('2560.png', '1536.png'));
               }
-              
+
               // Update our rulers
               $("a.ruler-inches").off().on('click touch', function(e) {
                 e.preventDefault();
@@ -804,6 +804,7 @@ $(document).ready(function() {
                 $(".rulers img.ruler-cm").hide();
                 $(this).parent().addClass("active");
                 $(this).parent().next("li").removeClass("active");
+                sessionStorage.detailed_view_inches = true;
                 return false;
               });
 
@@ -813,8 +814,14 @@ $(document).ready(function() {
                 $(".rulers img.ruler-inches").hide();
                 $(this).parent().addClass("active");
                 $(this).parent().prev("li").removeClass("active");
+                sessionStorage.detailed_view_inches = false;
                 return false;
               });
+
+              if (sessionStorage.detailed_view_inches == false) {
+                $(".rulers img.ruler-cm").show();
+                $(".rulers img.ruler-inches").hide();
+              }
             } else {
               sessionStorage.detailed_view_mobile = true;
               sessionStorage.detailed_view_lastwidth = $(window).width();
