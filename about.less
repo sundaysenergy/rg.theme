@@ -129,13 +129,14 @@
 }
 
 .film_roll_pager a {
-  width: 5px;
-  height: 5px !important;
-  border: 2px solid @rg-background;
-  border-radius: 5px;
+  background: @rg-background;
+  border: 2px solid transparent;
+  border-radius: 16px;
   display: inline-block;
-  margin: 0 5px 0 0;
-  transition: all 1s ease;
+  width: 4px;
+  height: 4px !important;
+  margin: 6px;
+  vertical-align: middle
 }
  
 .film_roll_pager a:hover {
@@ -144,6 +145,10 @@
  
 .film_roll_pager a.active {
   background: @rg-background;
+  border: none !important; 
+  height: 16px !important; 
+  margin: 0 !important; 
+  width: 16px !important;
 }
  
 .film_roll_pager span {
