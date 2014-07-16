@@ -805,13 +805,9 @@ $(document).ready(function() {
           $(window).trigger('loadDetailView');
 
           $(window).resize(function() {
-            var trigger_resize = false;
-            if (((sessionStorage.detailed_view_mobile == true) && ($(window).width() > 768)) ||
-                ((sessionStorage.detailed_view_mobile == false) && ($(window).width() <= 768))) {
-              trigger_resize = true;
+            if(($(window).width() <= 768) != sessionStorage.detailed_view_mobile) {
+              console.log($(window).width(), sessionStorage.detailed_view_mobile);
             }
-            sessionStorage.detailed_view_mobile = ($(window).width() <= 768);
-            console.log(trigger_resize);
             if (_.isUndefined(hash.get('detailedview')) == false) {
               $(window).trigger('loadDetailView');
             }
