@@ -214,10 +214,10 @@ $(document).ready(function() {
           doc.line(31, pos, 265, pos);
           pos = pos + 9;
           doc.setFontSize(9);
-          doc.text(59, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     t 203-532-806");
+          doc.text(59, pos, "Rogers and Goffigon     41 Chestnut Street, Greenwich, CT 06830     t 203-532-806");
           pos = pos + 6;
           doc.setFontType("italic");
-          doc.text(49, pos, "Price list is up to date at time of download ("+moment().format('YYYY-MMM-DD')+") and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
+          doc.text(49, pos, "Price list is up to date at time of download ("+moment().format('YYYY-MMM-DD')+") and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information.");
           doc.setFontType("normal");
           doc.setFontSize(10);
           pos = 20;
@@ -227,10 +227,10 @@ $(document).ready(function() {
       doc.line(31, pos, 264, pos);
       pos = pos + 9;
       doc.setFontSize(9);
-      doc.text(59, pos, "Corporate Headquarters     41 Chestnut Street, Greenwich, CT 06830     t 203-532-8068");
+      doc.text(59, pos, "Rogers and Goffigon      41 Chestnut Street, Greenwich, CT 06830     t 203-532-8068");
       pos = pos + 6;
       doc.setFontType("italic");
-      doc.text(56, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information");
+      doc.text(56, pos, "Price list is up to date at time of download and subject to change. Please consult rogersandgoffigon.com for the most recent pricing information.");
       doc.save('RG-pricelist_'+moment().format('YYYY-MMM-DD')+'.pdf');
     });
     $('button.download-pdf-flash').off('click touch').on('click touch', function(e) {
