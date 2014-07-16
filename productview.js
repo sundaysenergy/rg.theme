@@ -841,13 +841,13 @@ $(document).ready(function() {
             if (sessionStorage.detailed_view_cm == 'true') {
               $(".rulers img.ruler-cm").show();
               $(".rulers img.ruler-inches").hide();
-              $('a.ruler-cm').addClass('active');
-              $('a.ruler-inches').removeClass('active');
+              $('a.ruler-cm').parent().addClass('active');
+              $('a.ruler-inches').parent().removeClass('active');
             } else {
               $(".rulers img.ruler-cm").hide();
               $(".rulers img.ruler-inches").show();
-              $('a.ruler-cm').removeClass('active');
-              $('a.ruler-inches').addClass('active');
+              $('a.ruler-cm').parent().removeClass('active');
+              $('a.ruler-inches').parent().addClass('active');
             }
           });
 
