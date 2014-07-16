@@ -716,6 +716,7 @@ $(document).ready(function() {
           item.pager = item.item.itemcolors().length > 5;
           // Show the detailed view mode and render the html from our mustache template
           $(window).on('loadDetailView', function() {
+            console.log("Loading the detailed view for >768");
             if ($(window).width() > 768) {
               $('.itemoverlay').show().html(item_template.render(item));
               $('#related-products button.close').off('click touch').on('click touch', function(e) {
@@ -779,6 +780,7 @@ $(document).ready(function() {
               });
               relatedlist.update();
             } else {
+              console.log("Loading the detailedview for <768");
               $('.itemoverlay').show().html(item_mobile_template.render(item));
             }
           });
