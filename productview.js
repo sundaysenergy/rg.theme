@@ -787,7 +787,6 @@ $(document).ready(function() {
               relatedlist.update();
             } else {
               sessionStorage.detailed_view_mobile = true;
-              console.log("Loading the detailedview for <768");
               $('.itemoverlay').show().html(item_mobile_template.render(item));
             }
           });
@@ -800,8 +799,8 @@ $(document).ready(function() {
               $ruler_cm = $('.rulers img.ruler-cm');
               $ruler_in = $('.rulers img.ruler-inches');
               if ($(window).width() > 1536) {
-                $ruler_cm.attr('src', $ruler_cm.attr('src').replace('1536.png', '2560.png'));
-                $ruler_in.attr('src', $ruler_in.attr('src').replace('1536.png', '2560.png'));
+                $('.rulers img.ruler-cm').attr('src', $ruler_cm.attr('src').replace('1536.png', '2560.png'));
+                $('.rulers img.ruler-inches').attr('src', $ruler_in.attr('src').replace('1536.png', '2560.png'));
               }
               else {
                 $ruler_cm.attr('src', $ruler_cm.attr('src').replace('2560.png', '1536.png'));
