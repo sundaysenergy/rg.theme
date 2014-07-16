@@ -804,14 +804,13 @@ $(document).ready(function() {
 
           $(window).trigger('loadDetailView');
 
+          // Trigger a reload of the detailed view
           $(window).resize(function() {
-            if(($(window).width() <= 768) != sessionStorage.detailed_view_mobile) {
-              console.log($(window).width(), sessionStorage.detailed_view_mobile);
-            }
-            if (_.isUndefined(hash.get('detailedview')) == false) {
+            if (_.isUndefined(hash.get('detailedview')) == falsen && ($(window).width() <= 768) != sessionStorage.detailed_view_mobile) {
               $(window).trigger('loadDetailView');
             }
           });
+
           // Things to do on closing the detailed view mode
           $('table button.close, li.close > button.close').off('click touch').on('click touch', function(e) {
             $('.itemoverlay').hide(); // Hide the item
@@ -846,16 +845,16 @@ $(document).ready(function() {
             return false;
           });
 
-          $ruler_cm = $('.rulers img.ruler-cm');
-          $ruler_in = $('.rulers img.ruler-inches');
-          if ($(window).width() > 1536) {
-            $ruler_cm.attr('src', $ruler_cm('src').replace('1536.png', '2560.png'));
-            $ruler_in.attr('src', $ruler_in('src').replace('1536.png', '2560.png'));
-          }
-          else {
-            $ruler_cm.attr('src', $ruler_cm('src').replace('2560.png', '1536.png'));
-            $ruler_in.attr('src', $ruler_in('src').replace('2560.png', '1536.png'));
-          }
+          // $ruler_cm = $('.rulers img.ruler-cm');
+          // $ruler_in = $('.rulers img.ruler-inches');
+          // if ($(window).width() > 1536) {
+          //   $ruler_cm.attr('src', $ruler_cm('src').replace('1536.png', '2560.png'));
+          //   $ruler_in.attr('src', $ruler_in('src').replace('1536.png', '2560.png'));
+          // }
+          // else {
+          //   $ruler_cm.attr('src', $ruler_cm('src').replace('2560.png', '1536.png'));
+          //   $ruler_in.attr('src', $ruler_in('src').replace('2560.png', '1536.png'));
+          // }
 
         }
         sessionStorage.detailedview = hash.get('detailedview');
