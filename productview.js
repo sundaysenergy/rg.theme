@@ -806,7 +806,7 @@ $(document).ready(function() {
 
           // Trigger a reload of the detailed view
           $(window).resize(function() {
-            if (_.isUndefined(hash.get('detailedview')) == falsen && ($(window).width() <= 768) != sessionStorage.detailed_view_mobile) {
+            if (_.isUndefined(hash.get('detailedview')) == false && ($(window).width() <= 768) != sessionStorage.detailed_view_mobile) {
               $(window).trigger('loadDetailView');
             }
           });
