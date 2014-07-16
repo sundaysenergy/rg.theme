@@ -720,16 +720,6 @@ $(document).ready(function() {
             // Resize stuff moved from bottom of file
             // var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
             // $('ul.slider > li > img').width(slideWidth-10);
-            // $ruler_cm = $('.rulers img.ruler-cm');
-            // $ruler_in = $('.rulers img.ruler-inches');
-            // if ($(window).width() > 1536) {
-            //   $ruler_cm.attr('src', $ruler_cm('src').replace('1536.png', '2560.png'));
-            //   $ruler_in.attr('src', $ruler_in('src').replace('1536.png', '2560.png'));
-            // }
-            // else {
-            //   $ruler_cm.attr('src', $ruler_cm('src').replace('2560.png', '1536.png'));
-            //   $ruler_in.attr('src', $ruler_in('src').replace('2560.png', '1536.png'));
-            // }
 
             // If we're in non-mobile mode
             if ($(window).width() > 768) {
@@ -795,6 +785,16 @@ $(document).ready(function() {
                 }
               });
               relatedlist.update();
+              $ruler_cm = $('.rulers img.ruler-cm');
+              $ruler_in = $('.rulers img.ruler-inches');
+              if ($(window).width() > 1536) {
+                $ruler_cm.attr('src', $ruler_cm.attr('src').replace('1536.png', '2560.png'));
+                $ruler_in.attr('src', $ruler_in.attr('src').replace('1536.png', '2560.png'));
+              }
+              else {
+                $ruler_cm.attr('src', $ruler_cm.attr('src').replace('2560.png', '1536.png'));
+                $ruler_in.attr('src', $ruler_in.attr('src').replace('2560.png', '1536.png'));
+              }
             } else {
               sessionStorage.detailed_view_mobile = true;
               console.log("Loading the detailedview for <768");
