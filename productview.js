@@ -724,6 +724,7 @@ $(document).ready(function() {
             // If we're in non-mobile mode
             if ($(window).width() > 768) {
               sessionStorage.detailed_view_mobile = false;
+              sessionStorage.detailed_view_lastwidth = $(window).width();
               $('.itemoverlay').show().html(item_template.render(item));
               $('#related-products button.close').off('click touch').on('click touch', function(e) {
                 $('.itemoverlay #related-products').hide();
@@ -785,17 +786,6 @@ $(document).ready(function() {
                 }
               });
               relatedlist.update();
-            } else {
-              sessionStorage.detailed_view_mobile = true;
-              $('.itemoverlay').show().html(item_mobile_template.render(item));
-            }
-          });
-
-          $(window).trigger('loadDetailView');
-
-          // Trigger a reload of the detailed view
-          $(window).resize(function() {
-            if (_.isUndefined(hash.get('detailedview')) == false) {
               $ruler_cm = $('.rulers img.ruler-cm');
               $ruler_in = $('.rulers img.ruler-inches');
               if ($(window).width() > 1536) {
@@ -806,6 +796,22 @@ $(document).ready(function() {
                 $ruler_cm.attr('src', $ruler_cm.attr('src').replace('2560.png', '1536.png'));
                 $ruler_in.attr('src', $ruler_in.attr('src').replace('2560.png', '1536.png'));
               }
+            } else {
+              sessionStorage.detailed_view_mobile = true;
+              sessionStorage.detailed_view_lastwidth = $(window).width();
+              $('.itemoverlay').show().html(item_mobile_template.render(item));
+            }
+          });
+
+          $(window).trigger('loadDetailView');
+
+          // Trigger a reload of the detailed view
+          $(window).resize(function() {
+            if (sessionStorage.detailed_view_lastwidth <= 1536 && ($(window).width() > 1536)) {
+              $(window).trigger('loadDetailView');
+            }
+            if (sessionStorage.detailed_view_lastwidth > 1536 && ($(window).width() <= 1536)) {
+              $(window).trigger('loadDetailView');
             }
             if (_.isUndefined(hash.get('detailedview')) == false && ($(window).width() <= 768) != sessionStorage.detailed_view_mobile) {
               $(window).trigger('loadDetailView');
