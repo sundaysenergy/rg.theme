@@ -717,6 +717,22 @@ $(document).ready(function() {
           // Show the detailed view mode and render the html from our mustache template
           $(window).on('loadDetailView', function() {
             console.log("Loading the detailed view for >768");
+
+            // Resize stuff moved from bottom of file
+            var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
+            $('ul.slider > li > img').width(slideWidth-10);
+            $ruler_cm = $('.rulers img.ruler-cm');
+            $ruler_in = $('.rulers img.ruler-inches');
+            if ($(window).width() > 1536) {
+              $ruler_cm.attr('src', $ruler_cm('src').replace('1536.png', '2560.png'));
+              $ruler_in.attr('src', $ruler_in('src').replace('1536.png', '2560.png'));
+            }
+            else {
+              $ruler_cm.attr('src', $ruler_cm('src').replace('2560.png', '1536.png'));
+              $ruler_in.attr('src', $ruler_in('src').replace('2560.png', '1536.png'));
+            }
+
+            // If we're in non-mobile mode
             if ($(window).width() > 768) {
               $('.itemoverlay').show().html(item_template.render(item));
               $('#related-products button.close').off('click touch').on('click touch', function(e) {
@@ -787,6 +803,7 @@ $(document).ready(function() {
 
           $(window).trigger('loadDetailView');
           $(window).resize(function() {
+            console.log("Trigger resizing");
             if (_.isUndefined(hash.get('detailedview')) == false) {
               $(window).trigger('loadDetailView');
             }
@@ -1591,20 +1608,4 @@ $(document).ready(function() {
       }
     });
   });
-});
-
-// I don't know where to put this
-$(window).resize(function() {
-  var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
-  $('ul.slider > li > img').width(slideWidth-10);
-  $ruler_cm = $('.rulers img.ruler-cm');
-  $ruler_in = $('.rulers img.ruler-inches');
-  if ($(window).width() > 1536) {
-    $ruler_cm.attr('src', $ruler_cm('src').replace('1536.png', '2560.png'));
-    $ruler_in.attr('src', $ruler_in('src').replace('1536.png', '2560.png'));
-  }
-  else {
-    $ruler_cm.attr('src', $ruler_cm('src').replace('2560.png', '1536.png'));
-    $ruler_in.attr('src', $ruler_in('src').replace('2560.png', '1536.png'));
-  }
 });
