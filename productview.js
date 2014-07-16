@@ -829,12 +829,7 @@ $(document).ready(function() {
 
           // Trigger a reload of the detailed view
           $(window).resize(function() {
-            console.log(sessionStorage.detailed_view_cm);
-            if (sessionStorage.detailed_view_cm) {
-              console.log(sessionStorage.detailed_view_cm);
-              $(".rulers img.ruler-cm").show();
-              $(".rulers img.ruler-inches").hide();
-            }
+
             if (sessionStorage.detailed_view_lastwidth <= 1536 && ($(window).width() > 1536)) {
               $(window).trigger('loadDetailView');
             }
@@ -843,6 +838,12 @@ $(document).ready(function() {
             }
             if (_.isUndefined(hash.get('detailedview')) == false && ($(window).width() <= 768) != sessionStorage.detailed_view_mobile) {
               $(window).trigger('loadDetailView');
+            }
+            console.log(sessionStorage.detailed_view_cm);
+            if (sessionStorage.detailed_view_cm) {
+              console.log("HUH",$(".rulers img.ruler-cm"));
+              $(".rulers img.ruler-cm").show();
+              $(".rulers img.ruler-inches").hide();
             }
           });
 
