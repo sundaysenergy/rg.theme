@@ -784,7 +784,7 @@ $(document).ready(function() {
           });
 
           $(window).trigger('loadDetailView');
-          $(window).on('resize', function() {
+          $(window).resize(function() {
             if (_.isUndefined(hash.get('detailedview')) == false) {
               $(window).trigger('loadDetailView');
             }
