@@ -717,10 +717,6 @@ $(document).ready(function() {
           // Show the detailed view mode and render the html from our mustache template
           $(window).on('loadDetailView', function() {
 
-            // Resize stuff moved from bottom of file
-            // var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
-            // $('ul.slider > li > img').width(slideWidth-10);
-
             // If we're in non-mobile mode
             if ($(window).width() > 768) {
               sessionStorage.detailed_view_mobile = false;
@@ -882,8 +878,6 @@ $(document).ready(function() {
       if (_.isUndefined(hash.get('collection')) == false && hash.get('collection') !== 'passementerie') {
         if (rg_options.horizontal_page === productlist.page) {
           var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
-          //var slideHeight = ((slideWidth*5)/7);
-          //$('ul.slider > li').height(slideHeight);
           $('ul.slider > li > img').width(slideWidth-10);
         }
       } else {
@@ -1620,3 +1614,10 @@ $(document).ready(function() {
     });
   });
 });
+
+// KB added this back, but we need to figure out where it goes, as this broke after doing everything else on 2014-07-16
+$(window).resize(function() {
+  var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
+  $('ul.slider > li > img').width(slideWidth-10);
+});
+
