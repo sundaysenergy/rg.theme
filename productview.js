@@ -716,7 +716,6 @@ $(document).ready(function() {
           item.pager = item.item.itemcolors().length > 5;
           // Show the detailed view mode and render the html from our mustache template
           $(window).on('loadDetailView', function() {
-            console.log("Loading the detailed view for >768");
 
             // Resize stuff moved from bottom of file
             // var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
@@ -804,6 +803,7 @@ $(document).ready(function() {
           });
 
           $(window).trigger('loadDetailView');
+
           $(window).resize(function() {
             var trigger_resize = false;
             if (((sessionStorage.detailed_view_mobile == true) && ($(window).width() > 768)) ||
@@ -811,7 +811,8 @@ $(document).ready(function() {
               trigger_resize = true;
             }
             sessionStorage.detailed_view_mobile = ($(window).width() <= 768);
-            if (_.isUndefined(hash.get('detailedview')) == false && trigger_resize) {
+            console.log(trigger_resize);
+            if (_.isUndefined(hash.get('detailedview')) == false) {
               $(window).trigger('loadDetailView');
             }
           });
