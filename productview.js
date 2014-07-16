@@ -823,6 +823,20 @@ $(document).ready(function() {
               sessionStorage.detailed_view_lastwidth = $(window).width();
               $('.itemoverlay').show().html(item_mobile_template.render(item));
             }
+            // Things to do on closing the detailed view mode
+            $('table button.close, li.close > button.close').off('click touch').on('click touch', function(e) {
+              $('.itemoverlay').hide(); // Hide the item
+              hash.remove('detailedview'); // Remove from the hash
+              hash.remove('dpos'); // Remove the position from the hash
+              $('html,body').css('overflow','hidden').height($(window).height()); // Reset the body and overflow
+              delete(sessionStorage.detailedview); // Remove the session value
+            });
+
+            // Add to favorites from detailed view
+            $('td.fav button.fav, li.fav button.fav').off().on('click touch', function(e) {
+              e.preventDefault();
+              addFaves($(this), id);
+            });
           });
 
           $(window).trigger('loadDetailView');
@@ -850,22 +864,6 @@ $(document).ready(function() {
               $('a.ruler-inches').parent().addClass('active');
             }
           });
-
-          // Things to do on closing the detailed view mode
-          $('table button.close, li.close > button.close').off('click touch').on('click touch', function(e) {
-            $('.itemoverlay').hide(); // Hide the item
-            hash.remove('detailedview'); // Remove from the hash
-            hash.remove('dpos'); // Remove the position from the hash
-            $('html,body').css('overflow','hidden').height($(window).height()); // Reset the body and overflow
-            delete(sessionStorage.detailedview); // Remove the session value
-          });
-
-          // Add to favorites from detailed view
-          $('td.fav button.fav, li.fav button.fav').off().on('click touch', function(e) {
-            e.preventDefault();
-            addFaves($(this), id);
-          });
-
         }
         sessionStorage.detailedview = hash.get('detailedview');
       } else {
