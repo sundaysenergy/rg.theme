@@ -826,6 +826,7 @@ $(document).ready(function() {
               hash.remove('dpos'); // Remove the position from the hash
               $('html,body').css('overflow','hidden').height($(window).height()); // Reset the body and overflow
               delete(sessionStorage.detailedview); // Remove the session value
+              delete(sessionStorage.detailed_view_cm);
             });
 
             // Add to favorites from detailed view
