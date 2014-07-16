@@ -83,6 +83,6 @@ about:
     - variables.less
     - about.less
   js:
-    - js/jquery.transit.min.js
+    #- js/jquery.transit.min.js
     - js/jquery.film_roll.min.js
     - about.js
