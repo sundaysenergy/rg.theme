@@ -804,7 +804,7 @@ $(document).ready(function() {
                 $(".rulers img.ruler-cm").hide();
                 $(this).parent().addClass("active");
                 $(this).parent().next("li").removeClass("active");
-                sessionStorage.detailed_view_inches = true;
+                sessionStorage.detailed_view_cm = false;
                 return false;
               });
 
@@ -814,7 +814,7 @@ $(document).ready(function() {
                 $(".rulers img.ruler-inches").hide();
                 $(this).parent().addClass("active");
                 $(this).parent().prev("li").removeClass("active");
-                sessionStorage.detailed_view_inches = false;
+                sessionStorage.detailed_view_cm = true;
                 return false;
               });
 
@@ -829,7 +829,9 @@ $(document).ready(function() {
 
           // Trigger a reload of the detailed view
           $(window).resize(function() {
-            if (sessionStorage.detailed_view_inches == false) {
+            console.log(sessionStorage.detailed_view_cm);
+            if (sessionStorage.detailed_view_cm) {
+              console.log(sessionStorage.detailed_view_cm);
               $(".rulers img.ruler-cm").show();
               $(".rulers img.ruler-inches").hide();
             }
