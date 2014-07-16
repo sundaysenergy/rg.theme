@@ -818,10 +818,6 @@ $(document).ready(function() {
                 return false;
               });
 
-              if (sessionStorage.detailed_view_inches == false) {
-                $(".rulers img.ruler-cm").show();
-                $(".rulers img.ruler-inches").hide();
-              }
             } else {
               sessionStorage.detailed_view_mobile = true;
               sessionStorage.detailed_view_lastwidth = $(window).width();
@@ -833,6 +829,10 @@ $(document).ready(function() {
 
           // Trigger a reload of the detailed view
           $(window).resize(function() {
+            if (sessionStorage.detailed_view_inches == false) {
+              $(".rulers img.ruler-cm").show();
+              $(".rulers img.ruler-inches").hide();
+            }
             if (sessionStorage.detailed_view_lastwidth <= 1536 && ($(window).width() > 1536)) {
               $(window).trigger('loadDetailView');
             }
