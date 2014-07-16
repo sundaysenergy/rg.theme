@@ -796,6 +796,25 @@ $(document).ready(function() {
                 $ruler_cm.attr('src', $ruler_cm.attr('src').replace('2560.png', '1536.png'));
                 $ruler_in.attr('src', $ruler_in.attr('src').replace('2560.png', '1536.png'));
               }
+              
+              // Update our rulers
+              $("a.ruler-inches").off().on('click touch', function(e) {
+                e.preventDefault();
+                $(".rulers img.ruler-inches").show();
+                $(".rulers img.ruler-cm").hide();
+                $(this).parent().addClass("active");
+                $(this).parent().next("li").removeClass("active");
+                return false;
+              });
+
+              $("a.ruler-cm").off().on('click touch', function(e) {
+                e.preventDefault();
+                $(".rulers img.ruler-cm").show();
+                $(".rulers img.ruler-inches").hide();
+                $(this).parent().addClass("active");
+                $(this).parent().prev("li").removeClass("active");
+                return false;
+              });
             } else {
               sessionStorage.detailed_view_mobile = true;
               sessionStorage.detailed_view_lastwidth = $(window).width();
@@ -810,7 +829,7 @@ $(document).ready(function() {
             if (sessionStorage.detailed_view_lastwidth <= 1536 && ($(window).width() > 1536)) {
               $(window).trigger('loadDetailView');
             }
-            if (sessionStorage.detailed_view_lastwidth > 1536 && ($(window).width() <= 1536)) {
+            else if (sessionStorage.detailed_view_lastwidth > 1536 && ($(window).width() <= 1536)) {
               $(window).trigger('loadDetailView');
             }
             if (_.isUndefined(hash.get('detailedview')) == false && ($(window).width() <= 768) != sessionStorage.detailed_view_mobile) {
@@ -831,25 +850,6 @@ $(document).ready(function() {
           $('td.fav button.fav, li.fav button.fav').off().on('click touch', function(e) {
             e.preventDefault();
             addFaves($(this), id);
-          });
-
-          // Update our rulers
-          $("a.ruler-inches").off().on('click touch', function(e) {
-            e.preventDefault();
-            $(".rulers img.ruler-inches").show();
-            $(".rulers img.ruler-cm").hide();
-            $(this).parent().addClass("active");
-            $(this).parent().next("li").removeClass("active");
-            return false;
-          });
-
-          $("a.ruler-cm").off().on('click touch', function(e) {
-            e.preventDefault();
-            $(".rulers img.ruler-cm").show();
-            $(".rulers img.ruler-inches").hide();
-            $(this).parent().addClass("active");
-            $(this).parent().prev("li").removeClass("active");
-            return false;
           });
 
         }
