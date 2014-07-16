@@ -1,10 +1,10 @@
 $(function() {
-  fr = new FilmRoll({
+  film_roll = new FilmRoll({
     container: '#film_roll',
     no_css: true
   });
 
-//Enable swiping...
+  //Enable swiping...
   $("#film_roll").swipe( {
     //Generic swipe handler for all directions
     swipe:function(event, direction, distance, duration, fingerCount) {
