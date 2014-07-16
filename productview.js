@@ -844,6 +844,14 @@ $(document).ready(function() {
               console.log("HUH",$(".rulers img.ruler-cm"));
               $(".rulers img.ruler-cm").show();
               $(".rulers img.ruler-inches").hide();
+              $('a.ruler-cm').addClass('active');
+              $('a.ruler-inches').removeClass('active');
+            } else {
+              console.log("HUH",$(".rulers img.ruler-cm"));
+              $(".rulers img.ruler-cm").hide();
+              $(".rulers img.ruler-inches").show();
+              $('a.ruler-cm').removeClass('active');
+              $('a.ruler-inches').addClass('active');
             }
           });
 
