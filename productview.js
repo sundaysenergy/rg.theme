@@ -814,13 +814,15 @@ $(document).ready(function() {
             return false;
           });
 
+          $ruler_cm = $('.rulers img.ruler-cm');
+          $ruler_in = $('.rulers img.ruler-inches');
           if ($(window).width() > 1536) {
-            $('.rulers img.ruler-cm').attr( 'src', '/media/ruler-cm-2560.png' );
-            $('.rulers img.ruler-inches').attr( 'src', '/media/ruler-inches-2560.png' );
+            $ruler_cm.attr('src', $ruler_cm('src').replace('1536.png', '2560.png'));
+            $ruler_in.attr('src', $ruler_in('src').replace('1536.png', '2560.png'));
           }
           else {
-            $('.rulers img.ruler-cm').attr( 'src', '/media/ruler-cm-1536.png' );
-            $('.rulers img.ruler-inches').attr( 'src', '/media/ruler-inches-1536.png' );
+            $ruler_cm.attr('src', $ruler_cm('src').replace('2560.png', '1536.png'));
+            $ruler_in.attr('src', $ruler_in('src').replace('2560.png', '1536.png'));
           }
 
         }
@@ -1584,14 +1586,14 @@ $(document).ready(function() {
 $(window).resize(function() {
   var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
   $('ul.slider > li > img').width(slideWidth-10);
-
+  $ruler_cm = $('.rulers img.ruler-cm');
+  $ruler_in = $('.rulers img.ruler-inches');
   if ($(window).width() > 1536) {
-    $('.rulers img.ruler-cm').attr( 'src', '/media/ruler-cm-2560.png' );
-    $('.rulers img.ruler-inches').attr( 'src', '/media/ruler-inches-2560.png' );
+    $ruler_cm.attr('src', $ruler_cm('src').replace('1536.png', '2560.png'));
+    $ruler_in.attr('src', $ruler_in('src').replace('1536.png', '2560.png'));
   }
   else {
-    $('.rulers img.ruler-cm').attr( 'src', '/media/ruler-cm-1536.png' );
-    $('.rulers img.ruler-inches').attr( 'src', '/media/ruler-inches-1536.png' );
+    $ruler_cm.attr('src', $ruler_cm('src').replace('2560.png', '1536.png'));
+    $ruler_in.attr('src', $ruler_in('src').replace('2560.png', '1536.png'));
   }
-
 });
