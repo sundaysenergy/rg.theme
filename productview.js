@@ -799,15 +799,18 @@ $(document).ready(function() {
                 }
               });
               relatedlist.update();
-              $ruler_cm = $('.rulers img.ruler-cm');
-              $ruler_in = $('.rulers img.ruler-inches');
+              $ruler_cm     = $('.rulers img.ruler-cm');
+              $ruler_in     = $('.rulers img.ruler-inches');
+              $full-pattern = $('.img-pattern-container > div.full-pattern');
               if ($(window).width() > 1536) {
                 $('.rulers img.ruler-cm').attr('src', $ruler_cm.attr('src').replace('1536.png', '2560.png'));
                 $('.rulers img.ruler-inches').attr('src', $ruler_in.attr('src').replace('1536.png', '2560.png'));
+                $('.img-pattern-container > div.full-pattern').attr('style', $ruler_cm.attr('style').replace('1536', '2560'));
               }
               else {
                 $ruler_cm.attr('src', $ruler_cm.attr('src').replace('2560.png', '1536.png'));
                 $ruler_in.attr('src', $ruler_in.attr('src').replace('2560.png', '1536.png'));
+                $('.img-pattern-container > div.full-pattern').attr('style', $ruler_cm.attr('style').replace('2560', '1536'));
               }
 
               // Update our rulers
