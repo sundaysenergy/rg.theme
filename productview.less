@@ -703,16 +703,31 @@ button.uppercase { font-size: 1em; }
   margin-left: 190px;
 }
 
-.itemoverlay .toggle-colors {
+.itemoverlay .toggle-colors,
+.itemoverlay .toggle-far {
   position: fixed;
   top: 90px;
-  left: 50%;
-  width: 100px;
-  margin-left: -50px;
   z-index: 99999;
 }
 
-.itemoverlay .toggle-colors button {
+.itemoverlay .toggle-colors {
+  left: 50%;
+  width: 100px;
+  margin-left: -50px;
+}
+
+.itemoverlay .toggle-colors.with-far {
+  left: 40%;
+}
+
+.itemoverlay .toggle-far {
+  left: 60%;
+  width: 200px;
+  margin-left: -100px;
+}
+
+.itemoverlay .toggle-colors button,
+.itemoverlay .toggle-far button {
   border: none;
   background: @rg-background;
   color: @rg-gray;
@@ -722,12 +737,16 @@ button.uppercase { font-size: 1em; }
   line-height: 14px;
   padding-top: 7px;
   padding-bottom: 6px;
+}
+
+.itemoverlay .toggle-colors button {
   width: 100px;
 }
 
 .item-favorite button:hover,
 .item-favorite button:active,
 .itemoverlay .toggle-colors button.active,
+.itemoverlay .toggle-far button.active,
 .item-icons button.active {
   background: #BAAC96;
   color: @rg-background;
