@@ -709,25 +709,29 @@ table.img-pattern-container,
   display: table;
 }
 
+table.img-pattern-container,
+table.img-pattern-container * {
+  box-sizing: border-box;  
+  text-align: center; 
+  border-collapse: collapse;
+  vertical-align: middle;
+}
+
 .img-pattern-container tbody,
 .img-pattern-container tr,
 .img-pattern-container td {
-  vertical-align: middle;
-  text-align: center;
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
-  border-collapse: collapse;
 }
 
 .img-pattern-container img {
   display: inline-block;
   vertical-align: middle;
-  max-height: 100%;
+  margin: 0;
   width: auto;
   max-width: 100%;
   height: auto;
-  margin: 0;
+  max-height: 100%;
 }
 
 .rulers img {
