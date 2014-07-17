@@ -728,18 +728,23 @@ $(document).ready(function() {
               });
               $('.toggle-colors button').on('click touch', function(e) {
                 e.preventDefault();
-                $(this).toggleClass( 'active' );
-                $('.toggle-far button').removeClass( 'active' );
+                $(this).toggleClass('active');
+                $('.toggle-far button').removeClass('active');
                 $('.itemoverlay #related-products').toggle();
+                $('.ruler-wrap').show();
+                $('.img-large-container').show();
+                $('.img-pattern-container').hide();
+                $('.toggle-far span.pattern').show();
+                $('.toggle-far span.detail').hide();
               });
               // added by KB in prep for multiple image views on some textiles 
               $('.toggle-far button').on('click touch', function(e) {
                 e.preventDefault();
-                $(this).toggleClass( 'active' );
+                $(this).toggleClass('active');
+                $(this).find('span').toggle();
                 $('.ruler-wrap').toggle();
                 $('.img-large-container').toggle();
                 $('.img-pattern-container').toggle();
-                $('.toggle-pattern span').toggle();
                 $('.toggle-colors button').removeClass('active');
                 $('.itemoverlay #related-products').hide();
               });

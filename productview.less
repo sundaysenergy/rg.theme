@@ -750,13 +750,17 @@ table.img-pattern-container,
 }
 
 .itemoverlay .toggle-colors.with-far {
-  left: 40%;
+  left: initial;
+  right: 50%;
+  margin-left: 0;
+  margin-right: 7px;
+  width: 150px;
 }
 
 .itemoverlay .toggle-far {
-  left: 60%;
-  width: 200px;
-  margin-left: -100px;
+  left: 50%;
+  width: 150px;
+  margin-left: 7px;
 }
 
 .itemoverlay .toggle-colors button,
@@ -772,8 +776,9 @@ table.img-pattern-container,
   padding-bottom: 6px;
 }
 
-.itemoverlay .toggle-colors button {
-  width: 100px;
+.itemoverlay .toggle-colors button,
+.itemoverlay .toggle-far button {
+  width: 100%;
 }
 
 .item-favorite button:hover,
