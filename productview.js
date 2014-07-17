@@ -802,7 +802,7 @@ $(document).ready(function() {
               $ruler_cm     = $('.rulers img.ruler-cm');
               $ruler_in     = $('.rulers img.ruler-inches');
               $full_pattern = $('.img-pattern-container > div.full-pattern');
-              console.log($full_pattern.attr('style');
+              console.log($full_pattern.attr('style'));
               if ($(window).width() > 1536) {
                 $('.rulers img.ruler-cm').attr('src', $ruler_cm.attr('src').replace('1536.png', '2560.png'));
                 $('.rulers img.ruler-inches').attr('src', $ruler_in.attr('src').replace('1536.png', '2560.png'));
