@@ -654,13 +654,20 @@ button.uppercase { font-size: 1em; }
 }
 
 .itemoverlay,
-.img-large-container {
+.img-large-container,
+.img-pattern-container {
   position: fixed;
   top:0;
   bottom:0;
   left:0;
   right:0;
   overflow: hidden;
+}
+
+.img-large-container,
+.img-pattern-container {
+  text-align: center;
+  vertical-align: middle;
 }
 
 .taller { 
@@ -695,6 +702,32 @@ button.uppercase { font-size: 1em; }
     width: 100%;
     max-width: 100%;
   }
+}
+
+table.img-pattern-container,
+.img-pattern-container tbody {
+  display: table;
+}
+
+.img-pattern-container tbody,
+.img-pattern-container tr,
+.img-pattern-container td {
+  vertical-align: middle;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-collapse: collapse;
+}
+
+.img-pattern-container img {
+  display: inline-block;
+  vertical-align: middle;
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
 }
 
 .rulers img {
@@ -955,7 +988,7 @@ ul.slider,
   background: url('img/nav-dd-up.png') center top no-repeat;
 }
 
-.itemoverlay table {
+.itemoverlay table.itemoverlay-header {
   border: 10px solid @rg-background;
   border-left-width: 20px;
   border-right-width: 20px;
