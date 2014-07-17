@@ -664,8 +664,7 @@ button.uppercase { font-size: 1em; }
   overflow: hidden;
 }
 
-.img-large-container,
-.img-pattern-container {
+.img-large-container {
   text-align: center;
   vertical-align: middle;
 }
@@ -704,6 +703,11 @@ button.uppercase { font-size: 1em; }
   }
 }
 
+/*
+table.img-pattern-container {
+  text-align: center;
+  vertical-align: middle;
+}
 table.img-pattern-container,
 .img-pattern-container tbody {
   display: table;
@@ -732,6 +736,18 @@ table.img-pattern-container * {
   max-width: 100%;
   height: auto;
   max-height: 100%;
+}
+*/
+
+.img-pattern-container {
+  height: 100%;
+  width: 100%;
+  background: #fcfbf8;
+}
+.img-pattern-container div {
+  height: 100%;
+  width: 100%;
+  background-size: contain;
 }
 
 .rulers img {
