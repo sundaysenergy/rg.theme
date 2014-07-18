@@ -36,6 +36,22 @@ $(document).ready(function() {
     });
   }
 
+  // try to capitalize roman numerals
+  var romannum = function() {
+    var lctxt    = $(this).text().toLowerCase();
+    var regex    = /\b[MDCLXVI]+\b/ig;
+    var testing  = lctxt.match(regex);
+  
+    if (testing != null ) {
+      console.log('something');
+      var rntxt    = testing[0].toUpperCase();
+      var finished = lctxt.replace(regex, rntxt);
+      $(this).text(finished);
+    } else {
+      console.log('nothing');
+    }
+  }
+
   /**** GET THE ITEMS INFORMATION FROM CAPE AND PROCESS IT ****/
   $.getJSON('/items/client_data.json', function(combined) {
 
@@ -748,6 +764,7 @@ $(document).ready(function() {
                 $('.toggle-colors button').removeClass('active');
                 $('.itemoverlay #related-products').hide();
               });
+              $('.itemoverlay .name p').romannum();
               // Get the position in the mini slider
               var n = hash.get('dpos');
               if (_.isUndefined(n)) n = 1;
@@ -1081,6 +1098,7 @@ $(document).ready(function() {
           $('#item-colors').hide();
           $('#project-list-select').hide();
           $('div.alert-dismissable button.close').trigger('click');
+          $('.item-information p span.name').romannum();
         });
 
         $('.item-spotlight button.item-toggle').click(function() {
@@ -1642,32 +1660,6 @@ $(window).resize(function() {
   var slideWidth  = $('ul.slider > li:nth-of-type(2)').width();
   $('ul.slider > li > img').width(slideWidth-10);
 });
-
-// try to capitalize roman numerals
-$(window).load(function() {
-  var romannum = function() {
-    var lctxt    = $(this).text().toLowerCase();
-    var regex    = /\b[MDCLXVI]+\b/ig;
-    var testing  = lctxt.match(regex);
   
-    if (testing != null ) {
-      console.log('something');
-      var rntxt    = testing[0].toUpperCase();
-      var finished = lctxt.replace(regex, rntxt);
-      $(this).text(finished);
-    } else {
-      console.log('nothing');
-    }
-  }
-  $('.itemoverlay .name p').each(function() {
-    romannum();
-  });
-  
-  $('.item-information p span.name').each(function() {
-    romannum();
-  });
-  
-});
-
 // figure out where to put this too:
 $('.item-spotlight.leather .item-information p.name strong').replace('Fabric', 'Leather');
