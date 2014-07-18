@@ -36,21 +36,6 @@ $(document).ready(function() {
     });
   }
 
-  // try to capitalize roman numerals
-  var romannum = function() {
-    var lctxt    = $(this).text().toLowerCase();
-    var regex    = /\b[MDCLXVI]+\b/ig;
-    var testing  = lctxt.match(regex);
-  
-    if (testing != null ) {
-      console.log('something');
-      var rntxt    = testing[0].toUpperCase();
-      var finished = lctxt.replace(regex, rntxt);
-      $(this).text(finished);
-    } else {
-      console.log('nothing');
-    }
-  }
 
   /**** GET THE ITEMS INFORMATION FROM CAPE AND PROCESS IT ****/
   $.getJSON('/items/client_data.json', function(combined) {
@@ -216,7 +201,8 @@ $(document).ready(function() {
                       };
       item.content = (item.content) ? (item.content.charAt(0) + item.content.slice(1).toLowerCase()):'';
       item.contents = (item.contents) ? (item.contents.charAt(0) + item.contents.slice(1).toLowerCase()):'';
-      item.name = (item.name) ? (item.name.charAt(0) + item.name.slice(1).toLowerCase()):'';
+      //item.name = (item.name) ? (item.name.charAt(0) + item.name.slice(1).toLowerCase()):'';
+      item.name = (item.name) ? (item.name.charAt(0) + item.name.slice(1).toLowerCase().replace(/\b[MDCLXVI]+\b/ig, item.name.slice(1).toLowerCase().match(/\b[MDCLXVI]+\b/ig)[0].toUpperCase())
       item.color = (item.color) ? (item.color.charAt(0) + item.color.slice(1).toLowerCase()):'';
       // these last 4 item things are what need my roman numeral js magic added to them,
       // capitalize only the roman numerals, and leave everything else the way it is working
@@ -764,7 +750,6 @@ $(document).ready(function() {
                 $('.toggle-colors button').removeClass('active');
                 $('.itemoverlay #related-products').hide();
               });
-              $('.itemoverlay .name p').romannum();
               // Get the position in the mini slider
               var n = hash.get('dpos');
               if (_.isUndefined(n)) n = 1;
@@ -1098,7 +1083,6 @@ $(document).ready(function() {
           $('#item-colors').hide();
           $('#project-list-select').hide();
           $('div.alert-dismissable button.close').trigger('click');
-          $('.item-information p span.name').romannum();
         });
 
         $('.item-spotlight button.item-toggle').click(function() {
@@ -1662,4 +1646,5 @@ $(window).resize(function() {
 });
   
 // figure out where to put this too:
-$('.item-spotlight.leather .item-information p.name strong').replace('Fabric', 'Leather');
+// $('.leather p.name strong').replace('Fabric', 'Leather');
+// $('.name.leather h3').replace('Fabric', 'Leather');
