@@ -713,22 +713,6 @@ $(document).ready(function() {
 
           item.pager = item.item.itemcolors().length > 5;
 
-          // try to capitalize roman numerals
-          var regex    = /\b[MDCLXVI]+\b/ig;
-          var testing  = $('.itemoverlay-header td.name span.roman').text().match(regex);
-      
-          if (testing != null ) {
-            console.log($('.itemoverlay-header td.name span.roman').text());
-            console.log('testing');
-            console.log('something');
-            var rntxt    = testing[0].toUpperCase();
-            $('.itemoverlay-header td.name span.roman').text($('.itemoverlay-header td.name span.roman').text().replace(regex, rntxt));
-          } else {
-            console.log('nothing');
-          }
-  
-          //$('.name.leather h3').replace('Fabric', 'Leather');
-  
           // Show the detailed view mode and render the html from our mustache template
           $(window).on('loadDetailView', function() {
 
@@ -737,6 +721,21 @@ $(document).ready(function() {
               sessionStorage.detailed_view_mobile = false;
               sessionStorage.detailed_view_lastwidth = $(window).width();
               $('.itemoverlay').show().html(item_template.render(item));
+              // try to capitalize roman numerals
+              var regex    = /\b[MDCLXVI]+\b/ig;
+              var testing  = $('.itemoverlay-header td.name span.roman').text().match(regex);
+          
+              if (testing != null ) {
+                console.log(testing);
+                console.log('roman numeralled!');
+                var rntxt    = testing[0].toUpperCase();
+                $('.itemoverlay-header td.name span.roman').text($('.itemoverlay-header td.name span.roman').text().replace(regex, rntxt));
+              } else {
+                console.log('nothing roman here...');
+              }
+      
+              //$('.name.leather h3').replace('Fabric', 'Leather');
+      
               $('#related-products button.close').off('click touch').on('click touch', function(e) {
                 $('.itemoverlay #related-products').hide();
                 $('.itemoverlay .toggle-colors button').removeClass('active');
