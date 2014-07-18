@@ -801,16 +801,16 @@ $(document).ready(function() {
               relatedlist.update();
               $ruler_cm     = $('.rulers img.ruler-cm');
               $ruler_in     = $('.rulers img.ruler-inches');
-              $full_pattern = $('.img-pattern-container > div.full-pattern');
+              //$full_pattern = $('.img-pattern-container > div.full-pattern'); I think these are crashing the overlay when not on a far image
               if ($(window).width() > 1536) {
                 $('.rulers img.ruler-cm').attr('src', $ruler_cm.attr('src').replace('1536.png', '2560.png'));
                 $('.rulers img.ruler-inches').attr('src', $ruler_in.attr('src').replace('1536.png', '2560.png'));
-                $full_pattern.attr('style', $full_pattern.attr('style').replace('1536', '2560'));
+                //$full_pattern.attr('style', $full_pattern.attr('style').replace('1536', '2560'));
               }
               else {
                 $ruler_cm.attr('src', $ruler_cm.attr('src').replace('2560.png', '1536.png'));
                 $ruler_in.attr('src', $ruler_in.attr('src').replace('2560.png', '1536.png'));
-                $full_pattern.attr('style', $full_pattern.attr('style').replace('2560', '1536'));
+                //$full_pattern.attr('style', $full_pattern.attr('style').replace('2560', '1536'));
               }
 
               // Update our rulers
