@@ -852,6 +852,19 @@ $(document).ready(function() {
               sessionStorage.detailed_view_mobile = true;
               sessionStorage.detailed_view_lastwidth = $(window).width();
               $('.itemoverlay').show().html(item_mobile_template.render(item));
+              // try to capitalize roman numerals
+              var regex    = /\b[MDCLXVI]+\b/ig;
+              var testing  = $('.itemoverlay-header td.name span.roman').text().match(regex);
+          
+              if (testing != null ) {
+                console.log(testing);
+                console.log('roman numeralled!');
+                var rntxt    = testing[0].toUpperCase();
+                $('.itemoverlay-header td.name span.roman').text($('.itemoverlay-header td.name span.roman').text().replace(regex, rntxt));
+              } else {
+                console.log('nothing roman here...');
+              }
+      
             }
             // Things to do on closing the detailed view mode
             $('table button.close, li.close > button.close').off('click touch').on('click touch', function(e) {
@@ -1048,6 +1061,19 @@ $(document).ready(function() {
           if (hash.get('collection')) {
             if (hash.get('collection') !== 'passementerie') {
               $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(itemvals));
+              // try to capitalize roman numerals
+              var regex    = /\b[MDCLXVI]+\b/ig;
+              var testing  = $('.itemoverlay-header td.name span.roman').text().match(regex);
+          
+              if (testing != null ) {
+                console.log(testing);
+                console.log('roman numeralled!');
+                var rntxt    = testing[0].toUpperCase();
+                $('.itemoverlay-header td.name span.roman').text($('.itemoverlay-header td.name span.roman').text().replace(regex, rntxt));
+              } else {
+                console.log('nothing roman here...');
+              }
+      
             } else {
               $('#products > ul.slider li:nth-child(2)').append(spotlight_pass_template.render(itemvals));
             }
