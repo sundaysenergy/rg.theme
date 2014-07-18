@@ -1072,20 +1072,6 @@ $(document).ready(function() {
             }
           }
           
-          // try to capitalize roman numerals
-          var regex    = /\b[MDCLXVI]+\b/ig;
-          var testing  = $('.item-information span.roman').text().match(regex);
-      
-          if (testing != null ) {
-            console.log(testing);
-            console.log('roman numeralled!');
-            var rntxt = testing[0].toUpperCase();
-            $('.item-information span.roman').text($('.item-information span.roman').text().replace(regex, rntxt));
-          } else {
-            console.log('nothing roman here');
-          }
-          // end roman nums 
-
           else {
             // Spent an hour trying to figure out why this is required...
             // For some reason this needs to be rendered even when nothing is selected.
@@ -1107,6 +1093,19 @@ $(document).ready(function() {
             // Nothing here yet
           } else {
             hash.add({detailedview:id});
+            // try to capitalize roman numerals
+            var regex    = /\b[MDCLXVI]+\b/ig;
+            var testing  = $('.item-information span.roman').text().match(regex);
+        
+            if (testing != null ) {
+              console.log(testing);
+              console.log('roman numeralled!');
+              var rntxt = testing[0].toUpperCase();
+              $('.item-information span.roman').text($('.item-information span.roman').text().replace(regex, rntxt));
+            } else {
+              console.log('nothing roman here');
+            }
+            // end roman nums 
           }
         });
         // Fallback click handler for ie9 since you can't attach to absolute positioned element
