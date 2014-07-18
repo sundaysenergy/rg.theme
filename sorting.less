@@ -2,3 +2,19 @@
 /* maybe this should be admin, not just sort... */
 /* anyway, it is a place to start. */
 
+ol#sortable-list {
+  margin: 0;
+  list-style-position:inside;
+  padding:0;
+  border-top: 1px solid @rg-gray;
+}
+
+ol#sortable-list li {
+  padding: 7px 0;
+  border-bottom: 1px solid @rg-gray;
+}
+
+ol#sortable-list li:hover {
+  background: lighten(@rg-gray, 60%);
+}
+
