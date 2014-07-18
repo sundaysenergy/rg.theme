@@ -733,13 +733,7 @@ $(document).ready(function() {
               } else {
                 console.log('nothing roman here...');
               }
-      
-              if {
-                
-              } else {
-                console
-              }
-              
+                    
               //$('.name.leather h3').replace('Fabric', 'Leather');
       
               $('#related-products button.close').off('click touch').on('click touch', function(e) {
