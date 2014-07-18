@@ -417,9 +417,9 @@ $(document).ready(function() {
         $('#collection-menu-search-collection button').removeClass('active');
         $('button[data-collection="'+hash.get('collection')+'"]').addClass('active');
         if (hash.get('collection') === 'passementerie') {
-          $('#products ul.list').addClass('passementerie').removeClass('search-layout');
+          $('#products ul.list').addClass('passementerie');
         } else {
-          $('#products ul.list').removeClass('passementerie').addClass('search-layout');
+          $('#products ul.list').removeClass('passementerie');
         }
         // View different page sizes of items
         $('#search-view-number a,.search-view-number a').each(function(i) {
