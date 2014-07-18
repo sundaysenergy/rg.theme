@@ -413,14 +413,14 @@ $(document).ready(function() {
           e.preventDefault();
           var col = $(this).data('collection');
           hash.add({collection: col });
-          if (col === 'passementerie') {
-            $('#products ul.list').addClass('passementerie').removeClass('search-layout');
-          } else {
-            $('#products ul.list').removeClass('passementerie').addClass('search-layout');
-          }
         });
         $('#collection-menu-search-collection button').removeClass('active');
         $('button[data-collection="'+hash.get('collection')+'"]').addClass('active');
+        if (hash.get('collection') === 'passementerie') {
+          $('#products ul.list').addClass('passementerie').removeClass('search-layout');
+        } else {
+          $('#products ul.list').removeClass('passementerie').addClass('search-layout');
+        }
         // View different page sizes of items
         $('#search-view-number a,.search-view-number a').each(function(i) {
           $(this).on('click touch', function(e) {
