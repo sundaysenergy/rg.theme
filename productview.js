@@ -202,23 +202,6 @@ $(document).ready(function() {
       item.content = (item.content) ? (item.content.charAt(0) + item.content.slice(1).toLowerCase()):'';
       item.contents = (item.contents) ? (item.contents.charAt(0) + item.contents.slice(1).toLowerCase()):'';
       item.name = (item.name) ? (item.name.charAt(0) + item.name.slice(1).toLowerCase()):'';
-      /*
-      // try to capitalize roman numerals
-      $('.pricelist-list table').find('td.name').each(function() {
-        var lctxt    = $(this).text().toLowerCase();
-        var regex    = /\b[MDCLXVI]+\b/ig;
-        var testing  = lctxt.match(regex);
-    
-        if (testing != null ) {
-          console.log('something');
-          var rntxt    = testing[0].toUpperCase();
-          var finished = lctxt.replace(regex, rntxt);
-          $(this).text(finished);
-        } else {
-          console.log('nothing');
-        }
-      });
-      */
       item.color = (item.color) ? (item.color.charAt(0) + item.color.slice(1).toLowerCase()):'';
     }); // end forEach()
 
@@ -709,7 +692,7 @@ $(document).ready(function() {
             $(this).attr('href', old_href+"&dpos="+n);
           }
         });
-
+        
         // If the detailedview hash item is not the same as the session item
         if (hash.get('detailedview') != sessionStorage.detailedview && _.isUndefined(hash.get('detailedview')) == false) {
           // Reset the body height and overflow
@@ -729,6 +712,25 @@ $(document).ready(function() {
           }
 
           item.pager = item.item.itemcolors().length > 5;
+
+          // try to capitalize roman numerals
+          $('.itemoverlay-header').find('td.name h3').each(function() {
+            var lctxt    = $(this).text().toLowerCase();
+            var regex    = /\b[MDCLXVI]+\b/ig;
+            var testing  = lctxt.match(regex);
+        
+            if (testing != null ) {
+              console.log('something');
+              var rntxt    = testing[0].toUpperCase();
+              var finished = lctxt.replace(regex, rntxt);
+              $(this).text(finished);
+            } else {
+              console.log('nothing');
+            }
+          });
+  
+          $('.name.leather h3').replace('Fabric', 'Leather');
+  
           // Show the detailed view mode and render the html from our mustache template
           $(window).on('loadDetailView', function() {
 
@@ -1659,5 +1661,4 @@ $(window).resize(function() {
 });
   
 // figure out where to put this too:
-// $('.leather p.name strong').replace('Fabric', 'Leather');
-// $('.name.leather h3').replace('Fabric', 'Leather');
+$('.leather p.name strong').replace('Fabric', 'Leather');
