@@ -202,7 +202,7 @@ $(document).ready(function() {
       item.content = (item.content) ? (item.content.charAt(0) + item.content.slice(1).toLowerCase()):'';
       item.contents = (item.contents) ? (item.contents.charAt(0) + item.contents.slice(1).toLowerCase()):'';
       //item.name = (item.name) ? (item.name.charAt(0) + item.name.slice(1).toLowerCase()):'';
-      item.name = (item.name) ? (item.name.charAt(0) + item.name.slice(1).toLowerCase().replace(/\b[MDCLXVI]+\b/ig, item.name.slice(1).toLowerCase().match(/\b[MDCLXVI]+\b/ig)[0].toUpperCase())
+      item.name = (item.name) ? (item.name.charAt(0) + item.name.slice(1).toLowerCase().replace(/\b[MDCLXVI]+\b/ig, item.name.slice(1).toLowerCase().match(/\b[MDCLXVI]+\b/ig)[0].toUpperCase()):'';
       item.color = (item.color) ? (item.color.charAt(0) + item.color.slice(1).toLowerCase()):'';
       // these last 4 item things are what need my roman numeral js magic added to them,
       // capitalize only the roman numerals, and leave everything else the way it is working
