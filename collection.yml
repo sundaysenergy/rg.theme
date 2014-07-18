@@ -86,3 +86,8 @@ about:
     #- js/jquery.transit.min.js
     - js/jquery.film_roll.min.js
     - about.js
+sorting:
+  css:
+    - variables.less
+    - sorting.less
+  
