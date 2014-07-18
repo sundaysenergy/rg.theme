@@ -733,9 +733,15 @@ $(document).ready(function() {
               } else {
                 console.log('nothing roman here...');
               }
-                    
-              //$('.name.leather h3').replace('Fabric', 'Leather');
-      
+
+              var leatherchck = $('.itemoverlay-header td.name').hasClass('leather');
+              if ( leatherchck === true) {
+                console.log('yep, it is leather');
+                $('.itemoverlay-header td.name h3').text('Leather');
+              } else {
+                console.log('nope, not leather');
+              }
+
               $('#related-products button.close').off('click touch').on('click touch', function(e) {
                 $('.itemoverlay #related-products').hide();
                 $('.itemoverlay .toggle-colors button').removeClass('active');
@@ -1128,6 +1134,14 @@ $(document).ready(function() {
           console.log('nothing roman here');
         }
         // end roman nums 
+
+        var leatherchck = $('.item-spotlight').hasClass('leather');
+        if ( leatherchck === true) {
+          console.log('yep, it is leather');
+          $('.item-spotlight p.name strong').text('Leather');
+        } else {
+          console.log('nope, this aint leather');
+        }
 
         // Handle closing the color list with an X
         $('#item-colors button.close').off('click touch').on('click touch', function(e) {
