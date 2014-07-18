@@ -201,12 +201,25 @@ $(document).ready(function() {
                       };
       item.content = (item.content) ? (item.content.charAt(0) + item.content.slice(1).toLowerCase()):'';
       item.contents = (item.contents) ? (item.contents.charAt(0) + item.contents.slice(1).toLowerCase()):'';
-      //item.name = (item.name) ? (item.name.charAt(0) + item.name.slice(1).toLowerCase()):'';
-      item.name = (item.name) ? (item.name.charAt(0) + item.name.slice(1).toLowerCase().replace(/\b[MDCLXVI]+\b/ig, item.name.slice(1).toLowerCase().match(/\b[MDCLXVI]+\b/ig)[0].toUpperCase())):'';
+      item.name = (item.name) ? (item.name.charAt(0) + item.name.slice(1).toLowerCase()):'';
+      /*
+      // try to capitalize roman numerals
+      $('.pricelist-list table').find('td.name').each(function() {
+        var lctxt    = $(this).text().toLowerCase();
+        var regex    = /\b[MDCLXVI]+\b/ig;
+        var testing  = lctxt.match(regex);
+    
+        if (testing != null ) {
+          console.log('something');
+          var rntxt    = testing[0].toUpperCase();
+          var finished = lctxt.replace(regex, rntxt);
+          $(this).text(finished);
+        } else {
+          console.log('nothing');
+        }
+      });
+      */
       item.color = (item.color) ? (item.color.charAt(0) + item.color.slice(1).toLowerCase()):'';
-      // these last 4 item things are what need my roman numeral js magic added to them,
-      // capitalize only the roman numerals, and leave everything else the way it is working
-      // i am ignorant as to how however... http://www.ookb.co/rg-romannums.html
     }); // end forEach()
 
     /*** CREATE A NEW PRODUCT LIST ***/
