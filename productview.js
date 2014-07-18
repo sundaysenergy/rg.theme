@@ -714,15 +714,15 @@ $(document).ready(function() {
           item.pager = item.item.itemcolors().length > 5;
 
           // try to capitalize roman numerals
-          var lctxt    = $('.itemoverlay-header h3').text();
           var regex    = /\b[MDCLXVI]+\b/ig;
-          var testing  = lctxt.match(regex);
+          var testing  = $('.itemoverlay-header td.name span.roman').text().match(regex);
       
           if (testing != null ) {
+            console.log($('.itemoverlay-header td.name span.roman').text());
+            console.log('testing');
             console.log('something');
             var rntxt    = testing[0].toUpperCase();
-            var finished = lctxt.replace(regex, rntxt);
-            $(this).text(finished);
+            $('.itemoverlay-header td.name span.roman').text($('.itemoverlay-header td.name span.roman').text().replace(regex, rntxt));
           } else {
             console.log('nothing');
           }
