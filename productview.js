@@ -414,9 +414,9 @@ $(document).ready(function() {
           var col = $(this).data('collection');
           hash.add({collection: col });
           if (col === 'passementerie') {
-            $('#products ul.list').addClass('passementerie');
+            $('#products ul.list').addClass('passementerie').removeClass('search-layout');
           } else {
-            $('#products ul.list').removeClass('passementerie');
+            $('#products ul.list').removeClass('passementerie').addClass('search-layout');
           }
         });
         $('#collection-menu-search-collection button').removeClass('active');
