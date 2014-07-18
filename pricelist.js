@@ -26,12 +26,11 @@ $(document).ready(function() {
   // Retrieve the pricelist json file and get started
   $.getJSON('/items/client_data.json', function(data) {
 
-    var regex    = /\b[MDCLXVI]+\b/ig;
     _.forEach(data.items, function(item) {
       item.tradeprice = _.bind(itemPrice, item_prices, item.id);
       item.content = (_.isUndefined(item.content)) ? '':(item.content.charAt(0) + item.content.slice(1).toLowerCase());
       item.contents = (_.isUndefined(item.contents)) ? '':(item.contents.charAt(0) + item.contents.slice(1).toLowerCase());
-      item.name = (_.isUndefined(item.name)) ? '':((item.name.charAt(0) + item.name.slice(1).toLowerCase()).replace(regex, item.name.toLowerCase().match(regex)[0].toUpperCase()));
+      item.name = (_.isUndefined(item.name)) ? '':((item.name.charAt(0) + item.name.slice(1).toLowerCase());
       item.color = (_.isUndefined(item.color)) ? '':(item.color.charAt(0) + item.color.slice(1).toLowerCase());
     });
 
