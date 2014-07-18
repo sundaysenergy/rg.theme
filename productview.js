@@ -898,16 +898,16 @@ $(document).ready(function() {
 
           // Trigger a reload of the detailed view
           $(window).resize(function() {
-            if (sessionStorage.detailed_view_lastwidth <= 1536 && ($(window).width() > 1536)) {
+            if (_.isUndefined(hash.get('detailedview')) == false && (sessionStorage.detailed_view_lastwidth <= 1536 && ($(window).width() > 1536))) {
               $(window).trigger('loadDetailView');
             }
-            else if (sessionStorage.detailed_view_lastwidth > 1536 && ($(window).width() <= 1536)) {
+            else if (_.isUndefined(hash.get('detailedview')) == false && (sessionStorage.detailed_view_lastwidth > 1536 && ($(window).width() <= 1536))) {
               $(window).trigger('loadDetailView');
             }
             if (_.isUndefined(hash.get('detailedview')) == false && ($(window).width() <= 768) != sessionStorage.detailed_view_mobile) {
               $(window).trigger('loadDetailView');
             }
-            if (sessionStorage.detailed_view_cm == 'true') {
+            if (sessionStorage.detailed_view_cm === 'true') {
               $(".rulers img.ruler-cm").show();
               $(".rulers img.ruler-inches").hide();
               $('a.ruler-cm').parent().addClass('active');
