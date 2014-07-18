@@ -1668,3 +1668,6 @@ $(window).load(function() {
   });
   
 });
+
+// figure out where to put this too:
+$('.item-spotlight.leather .item-information p.name strong').replace('Fabric', 'Leather');
