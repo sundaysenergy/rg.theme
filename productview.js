@@ -802,7 +802,6 @@ $(document).ready(function() {
               $ruler_cm     = $('.rulers img.ruler-cm');
               $ruler_in     = $('.rulers img.ruler-inches');
               $full_pattern = $('.img-pattern-container > div.full-pattern');
-              console.log($full_pattern.attr('style'));
               if ($(window).width() > 1536) {
                 $('.rulers img.ruler-cm').attr('src', $ruler_cm.attr('src').replace('1536.png', '2560.png'));
                 $('.rulers img.ruler-inches').attr('src', $ruler_in.attr('src').replace('1536.png', '2560.png'));
@@ -1645,17 +1644,27 @@ $(window).resize(function() {
 });
 
 // try to capitalize roman numerals
-$('.name p').each(function() {
-  var lctxt    = $(this).text().toLowerCase();
-  var regex    = /\b[MDCLXVI]+\b/ig;
-  var testing  = lctxt.match(regex);
-
-  if (testing != null ) {
-    console.log('something');
-    var rntxt    = testing[0].toUpperCase();
-    var finished = lctxt.replace(regex, rntxt);
-    $(this).text(finished);
-  } else {
-    console.log('nothing');
+$(window).load(function() {
+  var romannum = function() {
+    var lctxt    = $(this).text().toLowerCase();
+    var regex    = /\b[MDCLXVI]+\b/ig;
+    var testing  = lctxt.match(regex);
+  
+    if (testing != null ) {
+      console.log('something');
+      var rntxt    = testing[0].toUpperCase();
+      var finished = lctxt.replace(regex, rntxt);
+      $(this).text(finished);
+    } else {
+      console.log('nothing');
+    }
   }
+  $('.itemoverlay .name p').each(function() {
+    romannum();
+  });
+  
+  $('.item-information p span.name').each(function() {
+    romannum();
+  });
+  
 });
