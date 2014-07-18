@@ -1093,19 +1093,6 @@ $(document).ready(function() {
             // Nothing here yet
           } else {
             hash.add({detailedview:id});
-            // try to capitalize roman numerals
-            var regex    = /\b[MDCLXVI]+\b/ig;
-            var testing  = $('.item-information span.roman').text().match(regex);
-        
-            if (testing != null ) {
-              console.log(testing);
-              console.log('roman numeralled!');
-              var rntxt = testing[0].toUpperCase();
-              $('.item-information span.roman').text($('.item-information span.roman').text().replace(regex, rntxt));
-            } else {
-              console.log('nothing roman here');
-            }
-            // end roman nums 
           }
         });
         // Fallback click handler for ie9 since you can't attach to absolute positioned element
@@ -1133,6 +1120,20 @@ $(document).ready(function() {
         $('.item-spotlight button.item-toggle').click(function() {
           $('.item-spotlight .item-icons').find('button.active').removeClass('active');
         });
+
+        // try to capitalize roman numerals
+        var regex    = /\b[MDCLXVI]+\b/ig;
+        var testing  = $('.item-information span.roman').text().match(regex);
+    
+        if (testing != null ) {
+          console.log(testing);
+          console.log('roman numeralled!');
+          var rntxt = testing[0].toUpperCase();
+          $('.item-information span.roman').text($('.item-information span.roman').text().replace(regex, rntxt));
+        } else {
+          console.log('nothing roman here');
+        }
+        // end roman nums 
 
         // Handle closing the color list with an X
         $('#item-colors button.close').off('click touch').on('click touch', function(e) {
