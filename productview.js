@@ -855,6 +855,23 @@ $(document).ready(function() {
               e.preventDefault();
               addFaves($(this), id);
             });
+            
+            // try to capitalize roman numerals
+            $('.name').find('p').each(function() {
+              var lctxt    = $(this).text().toLowerCase();
+              var regex    = /\b[MDCLXVI]+\b/ig;
+              var testing  = lctxt.match(regex);
+          
+              if (testing != null ) {
+                console.log('something');
+                var rntxt    = testing[0].toUpperCase();
+                var finished = lctxt.replace(regex, rntxt);
+                $(this).text(finished);
+              } else {
+                console.log('nothing');
+              }
+            });
+
           });
 
           $(window).trigger('loadDetailView');
