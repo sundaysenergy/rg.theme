@@ -122,6 +122,23 @@ $(document).ready(function() {
       $('li.pagecount').html((parseInt(textiles.i / textiles.page) + 1))
       .append(' / ')
       .append(parseInt(textiles.matchingItems.length / textiles.page) + 1);
+
+      // try to capitalize roman numerals
+      $('.pricelist-list table').find('td.name').each(function() {
+        var lctxt    = $(this).text().toLowerCase();
+        var regex    = /\b[MDCLXVI]+\b/ig;
+        var testing  = lctxt.match(regex);
+    
+        if (testing != null ) {
+          console.log('something');
+          var rntxt    = testing[0].toUpperCase();
+          var finished = lctxt.replace(regex, rntxt);
+          $(this).text(finished);
+        } else {
+          console.log('nothing');
+        }
+      });
+  
     });
 
     // Manually update the list to trigger the button mods
