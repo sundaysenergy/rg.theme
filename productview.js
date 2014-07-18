@@ -734,6 +734,12 @@ $(document).ready(function() {
                 console.log('nothing roman here...');
               }
       
+              if {
+                
+              } else {
+                console
+              }
+              
               //$('.name.leather h3').replace('Fabric', 'Leather');
       
               $('#related-products button.close').off('click touch').on('click touch', function(e) {
@@ -1063,13 +1069,13 @@ $(document).ready(function() {
               $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(itemvals));
               // try to capitalize roman numerals
               var regex    = /\b[MDCLXVI]+\b/ig;
-              var testing  = $('item-information p.name span.roman').text().match(regex);
+              var testing  = $('.item-information p.name span.roman').text().match(regex);
           
               if (testing != null ) {
                 console.log(testing);
                 console.log('roman numeralled!');
                 var rntxt    = testing[0].toUpperCase();
-                $('item-information p.name span.roman').text($('item-information p.name span.roman').text().replace(regex, rntxt));
+                $('.item-information p.name span.roman').text($('.item-information p.name span.roman').text().replace(regex, rntxt));
               } else {
                 console.log('nothing roman here...');
               }
@@ -1683,5 +1689,3 @@ $(window).resize(function() {
   $('ul.slider > li > img').width(slideWidth-10);
 });
   
-// figure out where to put this too:
-//$('.leather p.name strong').replace('Fabric', 'Leather');
