@@ -765,7 +765,6 @@ $(document).ready(function() {
                 $('.ruler-wrap').toggle();
                 $('.img-large-container').toggle();
                 $('.img-pattern-container').toggle();
-                $('.toggle-colors button').removeClass('active');
                 $('.itemoverlay #related-products').hide();
               });
               // Get the position in the mini slider
