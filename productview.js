@@ -1067,19 +1067,21 @@ $(document).ready(function() {
           if (hash.get('collection')) {
             if (hash.get('collection') !== 'passementerie') {
               $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(itemvals));
+
               // try to capitalize roman numerals
               var regex    = /\b[MDCLXVI]+\b/ig;
-              var testing  = $('.item-information p.name span.roman').text().match(regex);
+              var testing  = $('.item-information span.roman').text().match(regex);
           
               if (testing != null ) {
                 console.log(testing);
                 console.log('roman numeralled!');
-                var rntxt    = testing[0].toUpperCase();
-                $('.item-information p.name span.roman').text($('.item-information p.name span.roman').text().replace(regex, rntxt));
+                var rntxt = testing[0].toUpperCase();
+                $('.item-information span.roman').text($('.item-information span.roman').text().replace(regex, rntxt));
               } else {
-                console.log('nothing roman here...');
+                console.log('nothing roman here');
               }
-      
+              // end roman nums 
+
             } else {
               $('#products > ul.slider li:nth-child(2)').append(spotlight_pass_template.render(itemvals));
             }
