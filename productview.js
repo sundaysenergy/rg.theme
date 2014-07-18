@@ -765,8 +765,8 @@ $(document).ready(function() {
               // added by KB in prep for multiple image views on some textiles 
               $('.toggle-far button').on('click touch', function(e) {
                 e.preventDefault();
-                $(this).toggleClass('active');
                 $(this).find('span').toggle();
+                $('.toggle-colors button').removeClass('active');
                 $('.ruler-wrap').toggle();
                 $('.img-large-container').toggle();
                 $('.img-pattern-container').toggle();
