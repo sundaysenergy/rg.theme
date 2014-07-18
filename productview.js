@@ -413,6 +413,11 @@ $(document).ready(function() {
           e.preventDefault();
           var col = $(this).data('collection');
           hash.add({collection: col });
+          if (col === 'passementerie') {
+            $('#products ul.list').addClass('passementerie');
+          } else {
+            $('#products ul.list').removeClass('passementerie');
+          }
         });
         $('#collection-menu-search-collection button').removeClass('active');
         $('button[data-collection="'+hash.get('collection')+'"]').addClass('active');
