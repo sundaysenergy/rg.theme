@@ -204,7 +204,7 @@ $(document).ready(function() {
       item.color = (item.color) ? (item.color.charAt(0) + item.color.slice(1).toLowerCase()):'';
       // these last 4 item things are what need my roman numeral js magic added to them,
       // capitalize only the roman numerals, and leave everything else the way it is working
-      // i am ignorant as to how however... http://www.ookb.co/romannums.html
+      // i am ignorant as to how however... http://www.ookb.co/rg-romannums.html
     }); // end forEach()
 
     /*** CREATE A NEW PRODUCT LIST ***/
