@@ -857,7 +857,7 @@ $(document).ready(function() {
             });
             
             // try to capitalize roman numerals
-            $('.name').find('p').each(function() {
+            $('.name p').each(function() {
               var lctxt    = $(this).text().toLowerCase();
               var regex    = /\b[MDCLXVI]+\b/ig;
               var testing  = lctxt.match(regex);
