@@ -285,12 +285,6 @@ $(document).ready(function() {
           }
           // Move the #products div after the passementerie header bar
           $('#products ul.list').addClass('passementerie');
-          // $('#products ul.passementerie li').each(function() {
-          //   var $image = $(this).find('.img');
-          //   if (_.isUndefined($image.attr('src')) == false) {
-          //     $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg'));
-          //   }
-          // });
           $('#products').insertAfter('#collection-menu-passementerie');
           $(window).trigger('resizeSlides');
         }
