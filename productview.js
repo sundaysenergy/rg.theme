@@ -930,38 +930,12 @@ $(document).ready(function() {
           $('ul.slider > li > img').width(slideWidth-10);
         }
       } else {
-        //this was the old passementerie script for their custom 3-up
-        //$('ul.passementerie li:visible .img:visible,ul.passementerie li:visible').attr('style','');
-        //var maxheight = $('ul.passementerie.slider li:visible:nth-of-type(2)').find('.img').height();
-        //console.log(maxheight);
-        //$('ul.passementerie.slider li:visible').each(function(index, value) {
-          //var $li = $(this);
-          //var $img = $li.find('.img');
-          //var margin = (($li.height() - $img.height())/2);
-          //$img.css('margin-top',margin); /* this is simpler for now with more reliable results, but I am setting the height initially of the ul and li in the css... will eventually need a dynamic solution */
-        //});
       }
     });
 
     /**** THINGS TO DO WHEN THE LIST UPDATES (i.e. position, items, or filters change) ****/
     productlist.on('updated', function() {
       $('ul.anon-favorites li').attr('style','');
-      // if (hash.get('collection') == 'passementerie') {
-      //   $('#products ul.passementerie li').each(function() {
-      //     var $image = $(this).find('.img');
-      //     if (_.isUndefined($image.attr('src')) == false) {
-      //       $image.attr('src', $image.attr('src').replace('640.jpg','1170.jpg'));
-      //     }
-      //   });
-      // } else {
-      //   // This was commented, but it was breaking toggling between passementerie and anything else.
-      //   $('#products ul.list li').each(function() {
-      //    var $image = $(this).find('.img');
-      //     if (_.isUndefined($image.attr('src')) == false) {
-      //       $image.attr('src', $image.attr('src').replace('1170.jpg','640.jpg'));
-      //     }
-      //   });
-      // }
       // Update i if we have fewer items than the starting position
       if (productlist.i > productlist.matchingItems.length) {
         productlist.i = productlist.matchingItems.length;
