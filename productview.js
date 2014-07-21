@@ -606,6 +606,7 @@ $(document).ready(function() {
                   }
                 }
               }
+
               /*** PROCESS USE ***/
               if (_.isUndefined(use) == false) {
                 var d = use.split(',');
@@ -1062,7 +1063,7 @@ $(document).ready(function() {
           } else {
             hash.add({detailedview:id});
           }
-        });
+        });// this ends the "load detailed view" code, start other "spotlight" code below here
 
         // Create click handlers for the icon and the close button
         $('.item-spotlight .item-icons button.item-details, .item-spotlight .item-information button.item-toggle').off().on('click touch', function(e) {
@@ -1110,6 +1111,7 @@ $(document).ready(function() {
           addFaves($(this), id);
         });
         // Handle related colors list
+        // okay so this toggles the colors view to show on textile and leather, how to replicate on pssementerie?
         var n = hash.get('cpos');
         if (_.isUndefined(n)) {
           n = 1;
