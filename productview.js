@@ -727,13 +727,6 @@ $(document).ready(function() {
               } else {}
               // end roman num
 
-/*
-              var leatherchck = $('.itemoverlay-header').hasClass('leather');
-              if ( leatherchck === true) {
-                $('.itemoverlay-header td.name h3').text('Leather');
-              } else {}
-*/
-
               $('#related-products button.close').off('click touch').on('click touch', function(e) {
                 $('.itemoverlay #related-products').hide();
                 $('.itemoverlay .toggle-colors button').removeClass('active');
@@ -1091,14 +1084,6 @@ $(document).ready(function() {
           $('.item-information span.roman').text($('.item-information span.roman').text().replace(regex, rntxt));
         } else {}
         // end roman nums 
-
-/*
-        var leatherchck = $('.item-spotlight').hasClass('leather');
-        if ( leatherchck === true) {
-          $('.item-spotlight p.name strong').text('Leather');
-        } else {
-        }
-*/
 
         // Handle closing the color list with an X
         $('#item-colors button.close').off('click touch').on('click touch', function(e) {
