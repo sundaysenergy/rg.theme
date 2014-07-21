@@ -1,8 +1,5 @@
 $.support.cors = true;
 
-// var spinwidth = $('.fa-cog').width();
-// $('.fa-cog').css('position','fixed').css('left',($(window).width()-spinwidth)/2).css('top',($(window).height()-spinwidth)/2);
-
 $(document).ready(function() {
 
   /**** DISPLAY & DATA RESETS on page load ****/
@@ -35,7 +32,6 @@ $(document).ready(function() {
       }
     });
   }
-
 
   /**** GET THE ITEMS INFORMATION FROM CAPE AND PROCESS IT ****/
   $.getJSON('/items/client_data.json', function(combined) {
@@ -1316,7 +1312,7 @@ $(document).ready(function() {
       $('#products ul.passementerie li').each(function(i,el) {
         var $li = $(this);
         if ($(this).find('.item-icons-passementerie').length == 0) {
-          $li.append('<div class="item-icons-passementerie item-icons pull-right"><button class="item-colors plain uppercase"> Colors </button> <button class="item-favorite plain hidden-xs"> <i class="fa fa-plus"></i> </button> <button class="item-details plain"> <i class="fa fa-align-justify"></i></button></div>');
+          $li.append('<div class="item-icons-passementerie item-icons pull-right hidden-xs"><button class="item-colors plain uppercase"> Colors </button> <button class="item-favorite plain hidden-xs"> <i class="fa fa-plus"></i> </button> <button class="item-details plain"> <i class="fa fa-align-justify"></i></button></div>');
           $li.find('.item-icons-passementerie .item-details').on('click touch', function(e) {
             e.preventDefault();
             $(this).toggleClass( 'active' );
@@ -1331,6 +1327,7 @@ $(document).ready(function() {
             });
             // Need to add something where clicking this button again removes the .item-passementerie details table as well
             // https://www.pivotaltracker.com/story/show/73769540
+            // Need to add functionality for [+] (add to faves) as well as the related colors
           });
         }
       });
@@ -1360,6 +1357,7 @@ $(document).ready(function() {
       if (productlist.page == rg_options.horizontal_page) { productlist.i = productlist.i-1; }
     });
 
+    // can this be deleted? what was this commented out for?
     /*
     $('.filter-attributes input[type=checkbox]').on('click touch', function() {
       $('.filter-attributes input[type=checkbox]').each(function() {
