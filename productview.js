@@ -731,21 +731,15 @@ $(document).ready(function() {
               var testing  = $('.itemoverlay-header td.name span.roman').text().match(regex);
           
               if (testing != null ) {
-                console.log(testing);
-                console.log('roman numeralled!');
                 var rntxt    = testing[0].toUpperCase();
                 $('.itemoverlay-header td.name span.roman').text($('.itemoverlay-header td.name span.roman').text().replace(regex, rntxt));
-              } else {
-                console.log('nothing roman here...');
-              }
+              } else {}
+              // end roman num
 
               var leatherchck = $('.itemoverlay-header td.name').hasClass('leather');
               if ( leatherchck === true) {
-                console.log('yep, it is leather');
                 $('.itemoverlay-header td.name h3').text('Leather');
-              } else {
-                console.log('nope, not leather');
-              }
+              } else {}
 
               $('#related-products button.close').off('click touch').on('click touch', function(e) {
                 $('.itemoverlay #related-products').hide();
@@ -867,13 +861,9 @@ $(document).ready(function() {
               var testing  = $('.itemoverlay-header td.name span.roman').text().match(regex);
           
               if (testing != null ) {
-                console.log(testing);
-                console.log('roman numeralled!');
                 var rntxt    = testing[0].toUpperCase();
                 $('.itemoverlay-header td.name span.roman').text($('.itemoverlay-header td.name span.roman').text().replace(regex, rntxt));
-              } else {
-                console.log('nothing roman here...');
-              }
+              } else {}
       
             }
             // Things to do on closing the detailed view mode
@@ -1130,21 +1120,15 @@ $(document).ready(function() {
         var testing  = $('.item-information span.roman').text().match(regex);
     
         if (testing != null ) {
-          console.log(testing);
-          console.log('roman numeralled!');
           var rntxt = testing[0].toUpperCase();
           $('.item-information span.roman').text($('.item-information span.roman').text().replace(regex, rntxt));
-        } else {
-          console.log('nothing roman here');
-        }
+        } else {}
         // end roman nums 
 
         var leatherchck = $('.item-spotlight').hasClass('leather');
         if ( leatherchck === true) {
-          console.log('yep, it is leather');
           $('.item-spotlight p.name strong').text('Leather');
         } else {
-          console.log('nope, this aint leather');
         }
 
         // Handle closing the color list with an X
@@ -1338,12 +1322,10 @@ $(document).ready(function() {
 
             var show_favtxt = function() {
               if ($prodlist.hasClass('anon-favorites')) {
-                console.log('show favtxt');
                 anontxt.show();
                 maintxt.hide();
               }
               else {
-                console.log('hide favtxt');
                 anontxt.hide();
                 maintxt.show();
               }
@@ -1652,12 +1634,10 @@ $(document).ready(function() {
 
     var show_favtxt = function() {
       if ($prodlist.hasClass('anon-favorites')) {
-        console.log('show favtxt');
         anontxt.show();
         maintxt.hide();
       }
       else {
-        console.log('hide favtxt');
         anontxt.hide();
         maintxt.show();
       }
