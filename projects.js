@@ -71,7 +71,9 @@ $(document).ready(function() {
             }
           )
           .done(function(response) {
-            $list.find('input.project-share').val(response.data.url).parent().show();
+            $list.find('input.project-share')
+            .val(response.data.url.replace('bit.ly', 'fav.rogersandgoffigon.com')).parent().show();
+
 /*
             var w = $('input.project-share:visible').siblings('label').show().width();
             $list.find('input.project-share').css('left', w+6);
