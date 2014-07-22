@@ -1382,7 +1382,7 @@ $(document).ready(function() {
 
             // try to vertically center the passementerie images that are less tall than the related-item containers
             $('.passementerie .trim-colors li.related-item img').each(function() {
-              var difference  = ($(this).parent().height())-($(this).height());
+              var difference  = 60-$(this).height();
               if (difference > 0) {
                 $(this).css('margin-top', difference/2);
               } else {}
