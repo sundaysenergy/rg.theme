@@ -1296,7 +1296,7 @@ $(document).ready(function() {
       }
 
       // here is where the new passementerie details seems to be controlled... anyway to align this close to how we're doing it for leather and textiles?
-      $('#products ul.passementerie > li').each(function(i,el) {
+      $('#products > ul.passementerie > li').each(function(i,el) {
         var $li = $(this);
         if ($(this).find('.item-icons-passementerie').length == 0) {
           $li.append('<div class="item-icons-passementerie item-icons pull-right hidden-xs"><button class="item-colors plain uppercase"> Colors </button> <button class="item-favorite plain"> <i class="fa fa-plus"></i> </button> <button class="item-details plain"> <i class="fa fa-align-justify"></i></button></div>');
