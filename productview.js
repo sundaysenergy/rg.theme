@@ -1322,6 +1322,7 @@ $(document).ready(function() {
             var item_data = productlist.get('id',id)[0].values();
             $('#item-colors').remove();
             console.log(item_data, item_data.itemcolors());
+            item_data.pager = item.itemcolors().length > 5;
             $li.append(passementerie_related_colors.render(item_data));
             var options = {
               valueNames: [ 'related-item' ],
