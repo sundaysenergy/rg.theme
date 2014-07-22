@@ -1353,7 +1353,7 @@ $(document).ready(function() {
               $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
               // to make the padding for the <> arrows (which don't show on just a single page) go away
               if (total_pages <= 1) {
-                $('#item-colors').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
+                $('#item-colors').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
                 $('#item-colors > ul.list-inline').css('left', 20);
               }
               $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
@@ -1381,11 +1381,15 @@ $(document).ready(function() {
             colorslist.update();
 
             // try to vertically center the passementerie images that are less tall than the related-item containers
-            $('.passementerie .trim-colors li.related-item img').each(function() {
-              var difference  = 60-$(this).height();
+            $('#item-colors li.related-item > img').each(function() {
+              var imgheight  = $(this).height();
+              var difference = 60-imgheight;
+              console.log(difference);
               if (difference > 0) {
                 $(this).css('margin-top', difference/2);
-              } else {}
+              } else {
+                $(this).css('margin-top', 0);
+              }
             });
 
             // toggle the image in the passementerie list position based on which color thumbnail you click on.
