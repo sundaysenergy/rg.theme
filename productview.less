@@ -171,12 +171,12 @@ button.slide {
   overflow: visible;
 }
 
-#products ul.search-layout.passementerie li:first-child,
-#collection-row-passementerie .passementerie li:first-child {
+#products ul.search-layout.passementerie > li:first-child,
+#collection-row-passementerie .passementerie > li:first-child {
   padding-top: 15px;
 }
-#products ul.search-layout.passementerie li:last-child,
-#collection-row-passementerie .passementerie li:last-child {
+#products ul.search-layout.passementerie > li:last-child,
+#collection-row-passementerie .passementerie > li:last-child {
   padding-bottom: 15px;
 }
 
@@ -190,10 +190,17 @@ a.collapse-collection {
   cursor: pointer;
 }
 
-.passementerie li div.item-spotlight,
-.passementerie li img  {
+.passementerie > li div.item-spotlight,
+.passementerie > li img  {
   cursor: default;
 }
+
+.passementerie .trim-colors li img  {
+  width: auto;
+  cursor: pointer;
+}
+
+
 
 /* ================================= */
 /* 3-up Slideshow on collection page */

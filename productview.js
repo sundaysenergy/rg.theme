@@ -1312,9 +1312,6 @@ $(document).ready(function() {
               $('.item-passementerie').remove();
               $('.item-icons').find('.active').removeClass( 'active' );
             });
-            // Need to add something where clicking this button again removes the .item-passementerie details table as well
-            // https://www.pivotaltracker.com/story/show/73769540
-            // Need to add functionality for [+] (add to faves) as well as the related colors
           });
           $li.find('button.item-colors').off('click touch').on('click touch', function(e) {
             e.preventDefault();
@@ -1373,6 +1370,13 @@ $(document).ready(function() {
               }
             });
             colorslist.update();
+
+            $('.passementerie .trim-colors .list > .related-item').click(function(e) {
+              e.preventDefault();
+              var imgswap = $(this).find('img').attr('src');
+              console.log(imgswap);
+              $(this).parent().parent().parent().find('img.img').attr('src',imgswap);
+            });
 
             $('#item-colors').show();
             $('#item-colors button.close').off('click touch').on('click touch', function(e) {
