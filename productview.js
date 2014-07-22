@@ -216,10 +216,10 @@ $(document).ready(function() {
 
       $('[id^=collection-menu]').hide();
       $('#collection-row-loading').hide();
-      $('#products ul.list').removeClass('passementerie search-layout clearfix');
+      $('#products > ul.list').removeClass('passementerie search-layout clearfix');
       $('ul.list li:visible .img,ul.list li:visible').attr('style','');
       $('li.collection-category a').on('click', function() {
-        $('ul.list li:visible .img,ul.list li:visible').attr('style','');
+        $('#products > ul.list li:visible .img, #products > ul.list li:visible').attr('style','');
       });
 
       $('a.collapse-collection').on('click touch', function(e) {
@@ -398,7 +398,7 @@ $(document).ready(function() {
       if (_.isUndefined(srch) == false) {
         // Show the search header bar and hide the others
         $('#products,#collection-menu-search,#collection-menu-search-collection').show();
-        $('#products ul.list').addClass('search-layout clearfix');
+        $('#products > ul.list').addClass('search-layout clearfix');
         // Switch between search collections
         $("#collection-menu-search-collection button").on('click touch', function(e) {
           e.preventDefault();
@@ -408,9 +408,9 @@ $(document).ready(function() {
         $('#collection-menu-search-collection button').removeClass('active');
         $('button[data-collection="'+hash.get('collection')+'"]').addClass('active');
         if (hash.get('collection') === 'passementerie') {
-          $('#products ul.list').addClass('passementerie');
+          $('#products > ul.list').addClass('passementerie');
         } else {
-          $('#products ul.list').removeClass('passementerie');
+          $('#products > ul.list').removeClass('passementerie');
         }
         // View different page sizes of items
         $('#search-view-number a,.search-view-number a').each(function(i) {
@@ -443,7 +443,7 @@ $(document).ready(function() {
       var project_items = [];
       if (lid) {
         $('#collection-menu-project-list li:nth-of-type(3) > p').html(hash.get('name'));
-        $('#products ul.list').addClass('project-list');
+        $('#products > ul.list').addClass('project-list');
         $.getJSON(rg_options.api + '/_index/list/'+lid+'/index.json',{}, function(data) {
           project_items = _.pluck(data, 'id');
           productlist.sort('id', {
@@ -453,7 +453,7 @@ $(document).ready(function() {
           });
         });
       } else {
-        $('#products ul.list').removeClass('project-list');
+        $('#products > ul.list').removeClass('project-list');
       }
 
       /*** IF VIEWING ANONYMOUS FAVORITES ***/
@@ -769,9 +769,9 @@ $(document).ready(function() {
                 var total_pages = parseInt(relatedlist.matchingItems.length / 5);
                 if (relatedlist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
                 // Resize color box
-                var thumbcount = $("#related-products > ul.list-inline").children("li").length;
+                var thumbcount = $("#related-products ul.list").children("li").length;
                 $('#related-products').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
-                $('#related-products > ul.list-inline').css('width', 90*thumbcount);
+                $('#related-products ul.list').css('width', 90*thumbcount);
                 // when or if there is only one page, then it needs a slightly different equation
 
                 $('#related-products .related-page-count').html(current_page + " / " + total_pages);
@@ -1354,7 +1354,7 @@ $(document).ready(function() {
               // to make the padding for the <> arrows (which don't show on just a single page) go away
               if (total_pages <= 1) {
                 $('#item-colors').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
-                $('#item-colors .list').css('left', 20);
+                $('#item-colors > ul.list-inline').css('left', 20);
               }
               $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
               $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
@@ -1381,7 +1381,7 @@ $(document).ready(function() {
             colorslist.update();
 
             // toggle the image in the passementerie list position based on which color thumbnail you click on.
-            $('.passementerie .trim-colors .list > .related-item').click(function(e) {
+            $('.passementerie .trim-colors ul.list-inline > .related-item').click(function(e) {
               e.preventDefault();
               var imgswap = $(this).find('img').attr('src');
               console.log(imgswap);
@@ -1640,7 +1640,7 @@ $(document).ready(function() {
           productlist.update();
         });
       });
-      $('ul.list li .item-spotlight').remove();
+      $('#products > ul.list li .item-spotlight').remove();
       hash.add({pos:pos});
       productlist.update();
       $(window).trigger('visRearrange');
