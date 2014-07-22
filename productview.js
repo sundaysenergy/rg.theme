@@ -1315,7 +1315,7 @@ $(document).ready(function() {
             // https://www.pivotaltracker.com/story/show/73769540
             // Need to add functionality for [+] (add to faves) as well as the related colors
           });
-          $li.find('button.item-colors', function(e) {
+          $li.find('button.item-colors').off('click touch').on('click touch', function(e) {
             e.preventDefault();
             console.log("Test", $li.find('.id'));
           });
