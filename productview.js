@@ -1320,8 +1320,8 @@ $(document).ready(function() {
             e.preventDefault();
             var id = $li.find('.id').html();
             var item_data = productlist.get('id',id)[0].values();
-            $li.append(passementerie_related_colors.render(item_data));
-            console.log(item_data.itemcolors(), passementerie_related_colors.render(item_data));
+            $('#related-products').remove();
+            $li.append(passementerie_related_colors.render(item_data)).show();
           });
         }
       });
