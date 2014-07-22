@@ -96,7 +96,7 @@ $(document).ready(function() {
         // Store unique values in localStorage as a comma separated list
         localStorage.faves = _.compact(_.uniq(current)).join(',');
         // Success message and update the share link
-        if ($('#anonymous-faves-alert').length == 0 && _.isUndefined(hash.get('detailedview')) && $('#products ul.slider').length > 0) {
+        if ($('#anonymous-faves-alert').length == 0 && _.isUndefined(hash.get('detailedview')) && $('#products > ul.slider').length > 0) {
           $('ul.slider li:visible:nth-of-type(2)').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
         } else {
           $('body').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
@@ -109,7 +109,7 @@ $(document).ready(function() {
         // Get a list of available projects
         $.getJSON(rg_options.api + '/_api/list/_me', {}, function(data) {
           // Add the compiled template to the body
-          if ($('#project-list-select').length == 0 && _.isUndefined(hash.get('detailedview')) && $('#products ul.slider').length > 0) {
+          if ($('#project-list-select').length == 0 && _.isUndefined(hash.get('detailedview')) && $('#products > ul.slider').length > 0) {
             $('ul.slider li:visible:nth-of-type(2)').append(project_list_select_template.render({lists:data}));
           } else {
             $('body').append(project_list_select_template.render({lists:data}));
@@ -155,7 +155,7 @@ $(document).ready(function() {
               }),
               success: function(result) {
                 $('#project-list-select').remove();
-                if ($('#anonymous-faves-alert').length == 0 && _.isUndefined(hash.get('detailedview')) && $('#products ul.slider').length > 0) {
+                if ($('#anonymous-faves-alert').length == 0 && _.isUndefined(hash.get('detailedview')) && $('#products > ul.slider').length > 0) {
                   $('ul.slider li:visible:nth-of-type(2)').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
                 } else {
                   $('body').append(detailed_favorites_template.render({message:'Item added to your favorites!'}));
@@ -285,7 +285,7 @@ $(document).ready(function() {
             $('#collection-menu-leather-inactive').appendTo('#collection-headers-after > div.inactive-headers');
           }
           // Move the #products div after the passementerie header bar
-          $('#products ul.list').addClass('passementerie');
+          $('#products > ul.list').addClass('passementerie');
           $('#products').insertAfter('#collection-menu-passementerie');
           $(window).trigger('resizeSlides');
         }
@@ -1272,7 +1272,7 @@ $(document).ready(function() {
               // alert("Item " + id + " removed from favorites!");
             });
 
-            var $prodlist = $('#products ul.list');
+            var $prodlist = $('#products > ul.list');
             var anontxt = $('#anon-fav-text');
             var maintxt = $('#main-text');
 
@@ -1379,18 +1379,6 @@ $(document).ready(function() {
               }
             });
             colorslist.update();
-
-            // try to vertically center the passementerie images that are less tall than the related-item containers
-            $('#item-colors li.related-item > img').each(function() {
-              var imgheight  = $(this).height();
-              var difference = 60-imgheight;
-              console.log(difference);
-              if (difference > 0) {
-                $(this).css('margin-top', difference/2);
-              } else {
-                $(this).css('margin-top', 0);
-              }
-            });
 
             // toggle the image in the passementerie list position based on which color thumbnail you click on.
             $('.passementerie .trim-colors ul.list-inline > .related-item').click(function(e) {
@@ -1678,7 +1666,7 @@ $(document).ready(function() {
       }, this), 0);
     });
 
-    var $prodlist = $('#products ul.list');
+    var $prodlist = $('#products > ul.list');
     var anontxt = $('#anon-fav-text');
     var maintxt = $('#main-text');
 
