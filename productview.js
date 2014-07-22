@@ -1310,6 +1310,7 @@ $(document).ready(function() {
             $li.append(item_passementerie.render(item_data));
             $li.find('.item-toggle').on('click touch', function(e) {
               $('.item-passementerie').remove();
+              $('#item-colors').remove();
               $('.item-icons').find('.active').removeClass( 'active' );
             });
           });
@@ -1318,6 +1319,8 @@ $(document).ready(function() {
             var id = $li.find('.id').html();
             var item_data = productlist.get('id',id)[0].values();
             $('#item-colors').remove();
+            $(this).toggleClass( 'active' );
+            $(this).siblings().removeClass( 'active' );
             item_data.pager = item_data.itemcolors().length > 5;
             $li.append(passementerie_related_colors.render(item_data));
             var options = {
@@ -1335,16 +1338,16 @@ $(document).ready(function() {
               var ww = $(window).width();
               var thumbcount = $("#item-colors > ul.list-inline").children("li").length;
               if ( ww <= 1100 ){
-                $('#item-colors').css('width', (160+60*(thumbcount-1))).css('margin-left',-80+(-30*(thumbcount-1)));
+                $('#item-colors').css('width', (200+60*(thumbcount-1))).css('margin-left',-100+(-30*(thumbcount-1)));
                 $('#item-colors > ul.list-inline').css('width', 60*thumbcount);
               } else {
-                $('#item-colors').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
+                $('#item-colors').css('width', (200+90*(thumbcount-1))).css('margin-left',-100+(-45*(thumbcount-1)));
                 $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
               }
               $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
               // to make the padding for the <> arrows (which don't show on just a single page) go away
               if (total_pages <= 1) {
-                $('#item-colors').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
+                $('#item-colors').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
                 $('#item-colors .list').css('left', 20);
               }
               $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
@@ -1381,6 +1384,8 @@ $(document).ready(function() {
             $('#item-colors').show();
             $('#item-colors button.close').off('click touch').on('click touch', function(e) {
               $('#item-colors').remove();
+              $('.item-passementerie').remove();
+              $('.item-icons').find('.active').removeClass( 'active' );
             });
           });
         }
