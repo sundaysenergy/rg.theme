@@ -1343,6 +1343,7 @@ $(document).ready(function() {
               // Set the width of the color swatch thing
               var ww = $(window).width();
               var thumbcount = $("#item-colors > ul.list-inline").children("li").length;
+
               // try to vertically center the passementerie images that are less tall than the related-item containers
               var centerhack = function() {
                 var imgheight  = $(this).height();
@@ -1354,16 +1355,17 @@ $(document).ready(function() {
                   $(this).css('margin-top', 0);
                 }
               }
+
               if ( ww <= 1100 ){
                 $('#item-colors').css('width', (200+60*(thumbcount-1))).css('margin-left',-100+(-30*(thumbcount-1)));
                 $('#item-colors > ul.list-inline').css('width', 60*thumbcount);
-                $('#item-colors li.related-item > img').each(function() {
+                $('#item-colors > ul.list-inline .related-item > img').each(function() {
                   centerhack();
                 });
               } else {
                 $('#item-colors').css('width', (200+90*(thumbcount-1))).css('margin-left',-100+(-45*(thumbcount-1)));
                 $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
-                $('#item-colors li.related-item > img').each(function() {
+                $('#item-colors > ul.list-inline .related-item > img').each(function() {
                   centerhack();
                 });
               }
@@ -1372,13 +1374,14 @@ $(document).ready(function() {
               if (total_pages <= 1) {
                 $('#item-colors').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
                 $('#item-colors > ul.list-inline').css('left', 20);
-                $('#item-colors li.related-item > img').each(function() {
+                $('#item-colors > ul.list-inline .related-item > img').each(function() {
                   centerhack();
                 });
               }
               $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
+
               // try to vertically center the passementerie images that are less tall than the related-item containers
-              $('#item-colors li.related-item > img').each(function() {
+              $('#item-colors > ul.list-inline .related-item > img').each(function() {
                 centerhack();
               });
 
