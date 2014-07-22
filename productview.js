@@ -1327,7 +1327,8 @@ $(document).ready(function() {
               page: 5,
               i: n
             };
-            var colorslist = new List('item-colors', options);
+            console.log(item_data, passementerie_related_colors.render(item_data));
+            // var colorslist = new List('item-colors', options);
             $('#item-colors').show();
             $('#item-colors button.close').off('click touch').on('click touch', function(e) {
               $('#item-colors').remove();
