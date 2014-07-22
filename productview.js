@@ -1344,8 +1344,23 @@ $(document).ready(function() {
               var ww = $(window).width();
               var thumbcount = $("#item-colors > ul.list-inline").children("li").length;
 
+              if ( ww <= 1100 ){
+                $('#item-colors').css('width', (200+60*(thumbcount-1))).css('margin-left',-100+(-30*(thumbcount-1)));
+                $('#item-colors > ul.list-inline').css('width', 60*thumbcount);
+              } else {
+                $('#item-colors').css('width', (200+90*(thumbcount-1))).css('margin-left',-100+(-45*(thumbcount-1)));
+                $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
+              }
+              $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
+              // to make the padding for the <> arrows (which don't show on just a single page) go away
+              if (total_pages <= 1) {
+                $('#item-colors').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
+                $('#item-colors > ul.list-inline').css('left', 20);
+              }
+              $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
+
               // try to vertically center the passementerie images that are less tall than the related-item containers
-              var centerhack = function() {
+              $('#item-colors > ul.list-inline .related-item > img').each(function() {
                 var imgheight  = $(this).height();
                 var difference = 60-imgheight;
                 console.log(difference);
@@ -1354,35 +1369,6 @@ $(document).ready(function() {
                 } else {
                   $(this).css('margin-top', 0);
                 }
-              }
-
-              if ( ww <= 1100 ){
-                $('#item-colors').css('width', (200+60*(thumbcount-1))).css('margin-left',-100+(-30*(thumbcount-1)));
-                $('#item-colors > ul.list-inline').css('width', 60*thumbcount);
-                $('#item-colors > ul.list-inline .related-item > img').each(function() {
-                  centerhack();
-                });
-              } else {
-                $('#item-colors').css('width', (200+90*(thumbcount-1))).css('margin-left',-100+(-45*(thumbcount-1)));
-                $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
-                $('#item-colors > ul.list-inline .related-item > img').each(function() {
-                  centerhack();
-                });
-              }
-              $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
-              // to make the padding for the <> arrows (which don't show on just a single page) go away
-              if (total_pages <= 1) {
-                $('#item-colors').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
-                $('#item-colors > ul.list-inline').css('left', 20);
-                $('#item-colors > ul.list-inline .related-item > img').each(function() {
-                  centerhack();
-                });
-              }
-              $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
-
-              // try to vertically center the passementerie images that are less tall than the related-item containers
-              $('#item-colors > ul.list-inline .related-item > img').each(function() {
-                centerhack();
               });
 
               $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
