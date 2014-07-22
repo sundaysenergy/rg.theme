@@ -1307,6 +1307,7 @@ $(document).ready(function() {
             var id = $li.find('.id').html();
             var item_data = productlist.get('id',id)[0].values();
             $('.item-passementerie').remove();
+            $('#item-colors').remove();
             $li.append(item_passementerie.render(item_data));
             $li.find('.item-toggle').on('click touch', function(e) {
               $('.item-passementerie').remove();
@@ -1319,6 +1320,7 @@ $(document).ready(function() {
             var id = $li.find('.id').html();
             var item_data = productlist.get('id',id)[0].values();
             $('#item-colors').remove();
+            $('.item-passementerie').remove();
             $(this).toggleClass( 'active' );
             $(this).siblings().removeClass( 'active' );
             item_data.pager = item_data.itemcolors().length > 5;
