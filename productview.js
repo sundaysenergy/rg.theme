@@ -1321,7 +1321,8 @@ $(document).ready(function() {
             var id = $li.find('.id').html();
             var item_data = productlist.get('id',id)[0].values();
             $('#related-products').remove();
-            $li.append(passementerie_related_colors.render(item_data)).show();
+            $li.append(passementerie_related_colors.render(item_data));
+            $('#related-products').show();
           });
         }
       });
