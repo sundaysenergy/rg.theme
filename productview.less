@@ -209,19 +209,26 @@ a.collapse-collection {
 }
 
 #item-colors .related-page-count {
-  position: absolute;
-  top: 11px;
+  position: relative;
+  top: -6px;
+  font-size: 12px;
 }
 
 #item-colors.trim-colors ul {
   left: 60px;
-  top: 20px;
+  top: 30px;
+}
+
+#item-colors.trim-colors ul li.related-item {
+  background: white;
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
 }
 
 /* ================================= */
 /* 3-up Slideshow on collection page */
 /* ================================= */
-/* Do this in a less hacky way for production */
 .slider { text-align: center; }
 
 .slider > li { 
@@ -903,6 +910,10 @@ table.img-pattern-container * {
   position: absolute;
   display: block;
   top: 57px;
+}
+
+#item-colors button.controls {
+  top: 47px;
 }
 
 button.previous:hover,

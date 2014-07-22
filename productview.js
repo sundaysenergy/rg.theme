@@ -1380,6 +1380,14 @@ $(document).ready(function() {
             });
             colorslist.update();
 
+            // try to vertically center the passementerie images that are less tall than the related-item containers
+            $('.passementerie .trim-colors li.related-item img').each(function() {
+              var difference  = ($(this).parent().height())-($(this).height());
+              if (difference > 0) {
+                $(this).css('margin-top', difference/2);
+              } else {}
+            });
+
             // toggle the image in the passementerie list position based on which color thumbnail you click on.
             $('.passementerie .trim-colors ul.list-inline > .related-item').click(function(e) {
               e.preventDefault();
