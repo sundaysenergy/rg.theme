@@ -49,7 +49,8 @@ $(document).ready(function() {
         detailed_favorites_template  = Hogan.compile(templates.detailed_faves_alert),
         itemdel_template             = Hogan.compile(templates.itemdel),
         related_template             = Hogan.compile(templates.related_item),
-        project_list_select_template = Hogan.compile(templates.project_list_select);
+        project_list_select_template = Hogan.compile(templates.project_list_select),
+        passementerie_related_colors = Hogan.compile(templates.passementerie_related_colors);
 
     // Set our options for the main product list
     var options = {
@@ -1318,7 +1319,8 @@ $(document).ready(function() {
           $li.find('button.item-colors').off('click touch').on('click touch', function(e) {
             e.preventDefault();
             var id = $li.find('.id').html();
-            console.log(productlist.get('id',id)[0].values());
+            var item_data = productlist.get('id',id)[0].values();
+            console.log(productlist.get('id',id)[0].values(), passementerie_related_colors.render(item_data));
           });
         }
       });
