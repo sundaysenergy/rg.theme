@@ -1325,10 +1325,54 @@ $(document).ready(function() {
             var options = {
               valueNames: [ 'related-item' ],
               page: 5,
-              i: n
+              i: 1
             };
-            console.log(item_data, passementerie_related_colors.render(item_data));
-            // var colorslist = new List('item-colors', options);
+            var colorslist = new List('item-colors', options);
+            
+            colorslist.on('updated', function() {
+              var current_page = parseInt(colorslist.i / 5 + 1);
+              var total_pages = parseInt(colorslist.matchingItems.length / 5);
+              if (colorslist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
+              // Set the width of the color swatch thing
+              var ww = $(window).width();
+              var thumbcount = $("#item-colors > ul.list-inline").children("li").length;
+              if ( ww <= 1100 ){
+                $('#item-colors').css('width', (160+60*(thumbcount-1))).css('margin-left',-80+(-30*(thumbcount-1)));
+                $('#item-colors > ul.list-inline').css('width', 60*thumbcount);
+              } else {
+                $('#item-colors').css('width', (160+90*(thumbcount-1))).css('margin-left',-80+(-45*(thumbcount-1)));
+                $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
+              }
+              $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
+              // to make the padding for the <> arrows (which don't show on just a single page) go away
+              if (total_pages <= 1) {
+                $('#item-colors').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
+                $('#item-colors .list').css('left', 20);
+              }
+              $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
+              $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
+                // Add to the hash so that if we refresh the page it still has the correct starting position
+                hash.add({cpos:parseInt(colorslist.i)+5});
+                // Manually update the list with a new start position since we'll ignore
+                // this code if session storage matches the view
+                colorslist.i = parseInt(colorslist.i)+5;
+                colorslist.update();
+              });
+              $('#item-colors .rel-previous').off('click touch').on('click touch', function(e) {
+                // Works the same way as the lines above. See comments there.
+                hash.add({cpos:parseInt(colorslist.i)-5});
+                colorslist.i = parseInt(colorslist.i)-5;
+                colorslist.update();
+              });
+              if (parseInt(colorslist.i)-1 == 0) {
+                $('#item-colors .rel-previous').addClass('disabled').off('click touch');
+              }
+              if ((parseInt(colorslist.i) + parseInt(colorslist.page)) > colorslist.matchingItems.length) {
+                $('#item-colors .rel-next').addClass('disabled').off('click touch');
+              }
+            });
+            colorslist.update();
+
             $('#item-colors').show();
             $('#item-colors button.close').off('click touch').on('click touch', function(e) {
               $('#item-colors').remove();
