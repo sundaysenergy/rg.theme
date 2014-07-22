@@ -1316,11 +1316,6 @@ $(document).ready(function() {
               $('#item-colors').remove();
               $('.item-icons').find('.active').removeClass( 'active' );
             });
-            if ( $(this).hasClass('active') === true) {
-              $('.item-passementerie').remove();
-              $('#item-colors').remove();
-              $('.item-icons').find('.active').removeClass( 'active' );
-            } else {}
           });
           
           // passementerie color related stuff
@@ -1399,11 +1394,6 @@ $(document).ready(function() {
               $('.item-passementerie').remove();
               $('.item-icons').find('.active').removeClass( 'active' );
             });
-            if ( $(this).hasClass('active') === true) {
-              $('.item-passementerie').remove();
-              $('#item-colors').remove();
-              $('.item-icons').find('.active').removeClass( 'active' );
-            } else {}
           });
         }
       });
