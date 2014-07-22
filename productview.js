@@ -1317,7 +1317,8 @@ $(document).ready(function() {
           });
           $li.find('button.item-colors').off('click touch').on('click touch', function(e) {
             e.preventDefault();
-            console.log("Test", $li.find('.id'));
+            var id = $li.find('.id').html();
+            console.log(productlist.get('id',id)[0].values());
           });
         }
       });
