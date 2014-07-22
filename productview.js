@@ -1317,7 +1317,7 @@ $(document).ready(function() {
           });
           $li.find('button.item-colors', function(e) {
             e.preventDefault();
-            console.log($li.find('.id'));
+            console.log("Test", $li.find('.id'));
           });
         }
       });
