@@ -1321,6 +1321,7 @@ $(document).ready(function() {
             var id = $li.find('.id').html();
             var item_data = productlist.get('id',id)[0].values();
             $('#item-colors').remove();
+            console.log(item_data, item_data.pager(), item_data.itemcolors());
             $li.append(passementerie_related_colors.render(item_data));
             var options = {
               valueNames: [ 'related-item' ],
@@ -1328,7 +1329,7 @@ $(document).ready(function() {
               i: 1
             };
             var colorslist = new List('item-colors', options);
-            
+
             colorslist.on('updated', function() {
               var current_page = parseInt(colorslist.i / 5 + 1);
               var total_pages = parseInt(colorslist.matchingItems.length / 5);
