@@ -1359,18 +1359,6 @@ $(document).ready(function() {
               }
               $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
 
-              // try to vertically center the passementerie images that are less tall than the related-item containers
-              $('#item-colors > ul.list-inline .related-item > img').each(function() {
-                var imgheight  = $(this).height();
-                var difference = 60-imgheight;
-                console.log(difference);
-                if (difference > 0) {
-                  $(this).css('margin-top', difference/2);
-                } else {
-                  $(this).css('margin-top', 0);
-                }
-              });
-
               $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
                 // Add to the hash so that if we refresh the page it still has the correct starting position
                 hash.add({cpos:parseInt(colorslist.i)+5});
@@ -1391,17 +1379,28 @@ $(document).ready(function() {
               if ((parseInt(colorslist.i) + parseInt(colorslist.page)) > colorslist.matchingItems.length) {
                 $('#item-colors .rel-next').addClass('disabled').off('click touch');
               }
+
+              // try to vertically center the passementerie images that are less tall than the related-item containers
+              $('#item-colors > ul.list-inline .related-item > img').each(function() {
+                var imgheight  = $(this).height();
+                var difference = 60-imgheight;
+                console.log(difference);
+                if (difference > 0) {
+                  $(this).css('margin-top', difference/2);
+                } else {
+                  $(this).css('margin-top', 0);
+                }
+              });
+
+              // toggle the image in the passementerie list position based on which color thumbnail you click on.
+              $('.passementerie .trim-colors ul.list-inline > .related-item').off('click touch').on('click touch', function(e) {
+                e.preventDefault();
+                var imgswap = $(this).find('img').attr('src');
+                $(this).parent().parent().parent().find('img.img').attr('src',imgswap);
+              });
+  
             });
             colorslist.update();
-
-            // toggle the image in the passementerie list position based on which color thumbnail you click on.
-            $('.passementerie .trim-colors ul.list-inline > .related-item').click(function(e) {
-              e.preventDefault();
-              var imgswap = $(this).find('img').attr('src');
-              console.log(imgswap);
-              $(this).parent().parent().parent().find('img.img').attr('src',imgswap);
-            });
-
             $('#item-colors').show();
             $('#item-colors button.close').off('click touch').on('click touch', function(e) {
               $('#item-colors').remove();
