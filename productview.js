@@ -1316,6 +1316,7 @@ $(document).ready(function() {
               $('#item-colors').remove();
               $('.item-icons').find('.active').removeClass( 'active' );
             });
+            // anyway to rewrite this so it grabs a new id from the image we swap in using the color popup functions below?
           });
           
           // passementerie color related stuff
