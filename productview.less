@@ -679,7 +679,9 @@ button.uppercase { font-size: 12px; }
   background: @rg-background;
 }
 
-.itemoverlay table.itemoverlay-header, .itemoverlay .ruler-wrap {
+.itemoverlay nav,
+.itemoverlay table.itemoverlay-header, 
+.itemoverlay .ruler-wrap {
   -webkit-box-shadow: @popup-box-shadow;
   -moz-box-shadow: @popup-box-shadow;
   box-shadow: @popup-box-shadow;
@@ -1397,5 +1399,8 @@ div.search-noresults {
   max-height: none;
   width: auto;
   max-width: none;
+  -webkit-transform:rotate(90deg); /* Chrome, and Safari */
+  -ms-transform:rotate(90deg); /* IE 9 */
+  -o-transform:rotate(90deg); /* Opera */
   transform: rotate(90deg);
 }
