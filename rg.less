@@ -1,5 +1,12 @@
   /* font stack?   font-family: "Adobe Caslon Pro", "adobe-caslon-pro", "Droid Serif", "Times New Roman", Times, Georgia, serif; */
 
+/*************************************************************************/
+/** try to get rid of some focus lines that pentagram doesn't like      **/
+/*************************************************************************/
+*:focus {
+  outline: 0;
+}
+
 button, a, map, map area {
   outline:none;
   -moz-user-select: none;
@@ -8,6 +15,27 @@ button, a, map, map area {
   -o-user-select: none;
   user-select: none;
 }
+
+a,
+object,
+embed { 
+  outline: 0;
+}
+
+input::-moz-focus-inner { 
+  border: 0; 
+}
+
+button::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner,
+input[type="file"] > input[type="button"]::-moz-focus-inner {
+    border: none;
+}
+/*************************************************************************/
+/** /end try to get rid of some focus lines that pentagram doesn't like **/
+/*************************************************************************/
 
 span.caret-up {
   display: inline-block;
@@ -714,17 +742,5 @@ input[name="item-search"]:focus {
     padding: 5px 10px 2px;
     line-height: 1.75;
   }
-}
-
-/** try to get rid of some focus lines that pentagram doesn't like **/
-
-a,
-object,
-embed { 
-  outline: 0;
-}
-
-input::-moz-focus-inner { 
-  border: 0; 
 }
 
