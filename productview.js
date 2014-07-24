@@ -1344,14 +1344,8 @@ $(document).ready(function() {
               // Set the width of the color swatch thing
               var ww = $(window).width();
               var thumbcount = $("#item-colors > ul.list-inline").children("li").length;
-
-              if ( ww <= 1100 ){
-                $('#item-colors').css('width', (200+60*(thumbcount-1))).css('margin-left',-100+(-30*(thumbcount-1)));
-                $('#item-colors > ul.list-inline').css('width', 60*thumbcount);
-              } else {
-                $('#item-colors').css('width', (200+90*(thumbcount-1))).css('margin-left',-100+(-45*(thumbcount-1)));
-                $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
-              }
+              $('#item-colors').css('width', (200+90*(thumbcount-1))).css('margin-left',-100+(-45*(thumbcount-1)));
+              $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
               $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
               // to make the padding for the <> arrows (which don't show on just a single page) go away
               if (total_pages <= 1) {
