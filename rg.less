@@ -715,3 +715,16 @@ input[name="item-search"]:focus {
     line-height: 1.75;
   }
 }
+
+/** try to get rid of some focus lines that pentagram doesn't like **/
+
+a,
+object,
+embed { 
+  outline: 0;
+}
+
+input::-moz-focus-inner { 
+  border: 0; 
+}
+
