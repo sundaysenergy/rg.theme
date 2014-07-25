@@ -1404,3 +1404,26 @@ div.search-noresults {
   -o-transform:rotate(-90deg); /* Opera */
   transform: rotate(-90deg);
 }
+
+
+/* Hide the original radios and checkboxes [https://www.pivotaltracker.com/story/show/73771096] */
+.filter-list fieldset label > input[type='checkbox'] {
+  /* Hide the input, but have it still be clickable */
+  opacity: 0;
+  float: left;
+  width: 11px;
+}
+
+.filter-list fieldset label {
+  clear: none;
+  /* Left padding makes room for image */
+  padding-left: 14px;
+  /* Make look clickable because they are */
+  cursor: pointer;
+  background: url(img/checkbox.png) left center no-repeat;
+}
+
+/* Change from unchecked to checked graphic */
+.filter-list fieldset label.checked {
+  background-image: url(img/checkbox-checked.png);
+}
