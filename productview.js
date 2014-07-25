@@ -1322,9 +1322,12 @@ $(document).ready(function() {
             $(this).siblings().removeClass( 'active' );
             var id = $li.find('.id').html();
             var item_data = productlist.get('id',id)[0].values();
+            var toggle_on = ($li.find('.item-passementerie').length == 0);
             $('.item-passementerie').remove();
             $('#item-colors').remove();
-            $li.append(item_passementerie.render(item_data));
+            if (toggle_on) {
+              $li.append(item_passementerie.render(item_data));
+            }
             $li.find('.item-toggle').on('click touch', function(e) {
               $('.item-passementerie').remove();
               $('#item-colors').remove();
