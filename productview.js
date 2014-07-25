@@ -868,7 +868,21 @@ $(document).ready(function() {
               e.preventDefault();
               addFaves($(this), id);
             });
+
+            if (hash.get('collection') === 'passementerie') {
+              var ww      = $(window).width();
+              var pio_img = $('.itemoverlay .img-large-container > img');
+              var ih      = pio_img.height();
             
+              if ( ih >= ww ) {
+                pio_img.height(ww-20).css('margin-top', ((ww-20)/2)*-1);
+                var iw = pio_img.width();
+                pio_img.css('margin-left', (iw/2)*-1);
+              } else {
+                pio_img.css('margin-top', (ih/2)*-1);
+              } 
+            }
+
           });
 
           $(window).trigger('loadDetailView');
