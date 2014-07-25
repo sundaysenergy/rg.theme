@@ -1033,6 +1033,7 @@ $(document).ready(function() {
           var itemvals = productlist.visibleItems[parseInt(n)].values();
           itemvals.pager = itemvals.itemcolors().length > 5;
           itemvals.repeat = (itemvals.repeat == '') ? false:itemvals.repeat;
+          // REMOVE REFERENCE TO PASSEMENTERIE — NO LONGER LOADING THIS WAY
           if (hash.get('collection')) {
             if (hash.get('collection') !== 'passementerie') {
               $('#products > ul.slider li:nth-child(2)').append(spotlight_template.render(itemvals));
@@ -1041,6 +1042,7 @@ $(document).ready(function() {
             }
           }
           
+          // REMOVE REFERENCE TO PASSEMENTERIE — NO LONGER LOADING THIS WAY?
           else {
             // Spent an hour trying to figure out why this is required...
             // For some reason this needs to be rendered even when nothing is selected.
@@ -1398,7 +1400,6 @@ $(document).ready(function() {
                 $('#item-colors > ul.list-inline .related-item > img').each(function() {
                   var imgheight  = $(this).height();
                   var difference = 60-imgheight;
-                  console.log(difference);
                   if (difference > 0) {
                     $(this).css('margin-top', difference/2);
                   } else {
