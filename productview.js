@@ -1341,84 +1341,87 @@ $(document).ready(function() {
             e.preventDefault();
             var id = $li.find('.id').html();
             var item_data = productlist.get('id',id)[0].values();
+            var toggle_on = ($li.find('#item-colors').length == 0);
             $('#item-colors').remove();
             $('.item-passementerie').remove();
             $(this).toggleClass( 'active' );
             $(this).siblings().removeClass( 'active' );
             item_data.pager = item_data.itemcolors().length > 5;
-            $li.append(passementerie_related_colors.render(item_data));
-            var options = {
-              valueNames: [ 'related-item' ],
-              page: 5,
-              i: 1
-            };
-            var colorslist = new List('item-colors', options);
+            if (toggle_on) {
+              $li.append(passementerie_related_colors.render(item_data));
+              var options = {
+                valueNames: [ 'related-item' ],
+                page: 5,
+                i: 1
+              };
+              var colorslist = new List('item-colors', options);
 
-            colorslist.on('updated', function() {
-              var current_page = parseInt(colorslist.i / 5 + 1);
-              var total_pages = parseInt(colorslist.matchingItems.length / 5);
-              if (colorslist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
-              // Set the width of the color swatch thing
-              var ww = $(window).width();
-              var thumbcount = $("#item-colors > ul.list-inline").children("li").length;
-              $('#item-colors').css('width', (200+90*(thumbcount-1))).css('margin-left',-100+(-45*(thumbcount-1)));
-              $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
-              $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
-              // to make the padding for the <> arrows (which don't show on just a single page) go away
-              if (total_pages <= 1) {
-                $('#item-colors').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
-                $('#item-colors > ul.list-inline').css('left', 20);
-              }
-              $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
-
-              $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
-                // Add to the hash so that if we refresh the page it still has the correct starting position
-                hash.add({cpos:parseInt(colorslist.i)+5});
-                // Manually update the list with a new start position since we'll ignore
-                // this code if session storage matches the view
-                colorslist.i = parseInt(colorslist.i)+5;
-                colorslist.update();
-              });
-              $('#item-colors .rel-previous').off('click touch').on('click touch', function(e) {
-                // Works the same way as the lines above. See comments there.
-                hash.add({cpos:parseInt(colorslist.i)-5});
-                colorslist.i = parseInt(colorslist.i)-5;
-                colorslist.update();
-              });
-              if (parseInt(colorslist.i)-1 == 0) {
-                $('#item-colors .rel-previous').addClass('disabled').off('click touch');
-              }
-              if ((parseInt(colorslist.i) + parseInt(colorslist.page)) > colorslist.matchingItems.length) {
-                $('#item-colors .rel-next').addClass('disabled').off('click touch');
-              }
-
-              // try to vertically center the passementerie images that are less tall than the related-item containers
-              $('#item-colors > ul.list-inline .related-item > img').each(function() {
-                var imgheight  = $(this).height();
-                var difference = 60-imgheight;
-                console.log(difference);
-                if (difference > 0) {
-                  $(this).css('margin-top', difference/2);
-                } else {
-                  $(this).css('margin-top', 0);
+              colorslist.on('updated', function() {
+                var current_page = parseInt(colorslist.i / 5 + 1);
+                var total_pages = parseInt(colorslist.matchingItems.length / 5);
+                if (colorslist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
+                // Set the width of the color swatch thing
+                var ww = $(window).width();
+                var thumbcount = $("#item-colors > ul.list-inline").children("li").length;
+                $('#item-colors').css('width', (200+90*(thumbcount-1))).css('margin-left',-100+(-45*(thumbcount-1)));
+                $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
+                $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
+                // to make the padding for the <> arrows (which don't show on just a single page) go away
+                if (total_pages <= 1) {
+                  $('#item-colors').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
+                  $('#item-colors > ul.list-inline').css('left', 20);
                 }
-              });
+                $('#item-colors .rel-previous, #item-colors .rel-next').removeClass('disabled');
 
-              // toggle the image in the passementerie list position based on which color thumbnail you click on.
-              $('.passementerie .trim-colors ul.list-inline > .related-item').off('click touch').on('click touch', function(e) {
-                e.preventDefault();
-                var imgswap = $(this).find('img').attr('src');
-                $(this).parent().parent().parent().find('img.img').attr('src',imgswap);
+                $('#item-colors .rel-next').off('click touch').on('click touch', function(e) {
+                  // Add to the hash so that if we refresh the page it still has the correct starting position
+                  hash.add({cpos:parseInt(colorslist.i)+5});
+                  // Manually update the list with a new start position since we'll ignore
+                  // this code if session storage matches the view
+                  colorslist.i = parseInt(colorslist.i)+5;
+                  colorslist.update();
+                });
+                $('#item-colors .rel-previous').off('click touch').on('click touch', function(e) {
+                  // Works the same way as the lines above. See comments there.
+                  hash.add({cpos:parseInt(colorslist.i)-5});
+                  colorslist.i = parseInt(colorslist.i)-5;
+                  colorslist.update();
+                });
+                if (parseInt(colorslist.i)-1 == 0) {
+                  $('#item-colors .rel-previous').addClass('disabled').off('click touch');
+                }
+                if ((parseInt(colorslist.i) + parseInt(colorslist.page)) > colorslist.matchingItems.length) {
+                  $('#item-colors .rel-next').addClass('disabled').off('click touch');
+                }
+
+                // try to vertically center the passementerie images that are less tall than the related-item containers
+                $('#item-colors > ul.list-inline .related-item > img').each(function() {
+                  var imgheight  = $(this).height();
+                  var difference = 60-imgheight;
+                  console.log(difference);
+                  if (difference > 0) {
+                    $(this).css('margin-top', difference/2);
+                  } else {
+                    $(this).css('margin-top', 0);
+                  }
+                });
+
+                // toggle the image in the passementerie list position based on which color thumbnail you click on.
+                $('.passementerie .trim-colors ul.list-inline > .related-item').off('click touch').on('click touch', function(e) {
+                  e.preventDefault();
+                  var imgswap = $(this).find('img').attr('src');
+                  $(this).parent().parent().parent().find('img.img').attr('src',imgswap);
+                });
+    
               });
-  
-            });
-            colorslist.update();
-            $('#item-colors').show();
-            $('#item-colors button.close').off('click touch').on('click touch', function(e) {
-              $('#item-colors').remove();
-              $('.item-passementerie').remove();
-              $('.item-icons').find('.active').removeClass( 'active' );
-            });
+              colorslist.update();
+              $('#item-colors').show();
+              $('#item-colors button.close').off('click touch').on('click touch', function(e) {
+                $('#item-colors').remove();
+                $('.item-passementerie').remove();
+                $('.item-icons').find('.active').removeClass( 'active' );
+              });
+            }
           });
         }
       });
