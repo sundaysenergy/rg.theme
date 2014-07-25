@@ -1417,13 +1417,17 @@ div.search-noresults {
 .filter-list fieldset label {
   clear: none;
   /* Left padding makes room for image */
-  padding-left: 14px;
+  padding-left: 11px;
   /* Make look clickable because they are */
   cursor: pointer;
-  background: url(img/checkbox.png) left center no-repeat;
+  background: url(img/checkbox.png) left 1px no-repeat;
 }
 
 /* Change from unchecked to checked graphic */
 .filter-list fieldset label.checked {
   background-image: url(img/checkbox-checked.png);
+}
+
+.filter-list fieldset label.disabled {
+  background: transparent;
 }
