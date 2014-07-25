@@ -726,7 +726,7 @@ $(document).ready(function() {
                 var rntxt    = testing[0].toUpperCase();
                 $('.itemoverlay-header td.name span.roman').text($('.itemoverlay-header td.name span.roman').text().replace(regex, rntxt));
               } else {}
-              // end roman num
+              // end roman num for the detail view
 
               $('#related-products button.close').off('click touch').on('click touch', function(e) {
                 $('.itemoverlay #related-products').hide();
@@ -851,8 +851,10 @@ $(document).ready(function() {
                 var rntxt    = testing[0].toUpperCase();
                 $('.itemoverlay-header td.name span.roman').text($('.itemoverlay-header td.name span.roman').text().replace(regex, rntxt));
               } else {}
-      
+              // end capitalizing of roman numarals in detail view...
+            
             }
+            
             // Things to do on closing the detailed view mode
             $('table button.close, li.close > button.close').off('click touch').on('click touch', function(e) {
               $('.itemoverlay').hide(); // Hide the item
@@ -1053,6 +1055,7 @@ $(document).ready(function() {
         }
         // For each visible li in the list, create a click handler that toggles visibility
         // and compiles the mustache for the current item.
+        // WHY DID THIS STOP WORKING ON MOBILE TOUCH SCREEN (AT LEAST MY IPHONE 4s)
         $('ul.slider li .img, ul.slider li, ul.list li .img').off('click touch');
         $('ul.slider li .item-spotlight').off('click touch').on('click touch', function(e) {
           if (e.target !== this) {
@@ -1100,7 +1103,7 @@ $(document).ready(function() {
           var rntxt = testing[0].toUpperCase();
           $('.item-information span.roman').text($('.item-information span.roman').text().replace(regex, rntxt));
         } else {}
-        // end roman nums 
+        // end roman nums for item-spotlight
 
         // Handle closing the color list with an X
         $('#item-colors button.close').off('click touch').on('click touch', function(e) {
