@@ -42,9 +42,7 @@ $(document).ready(function() {
         item_passementerie           = Hogan.compile(templates.item_passementerie),
         item_mobile_template         = Hogan.compile(templates.item_mobile),
         spotlight_template           = Hogan.compile(templates.spotlight),
-        spotlight_pass_template      = Hogan.compile(templates.spotlight_passementerie), //is this in use anymore?
         dummy_template               = Hogan.compile(templates.bookends),
-        dummy_template_pass          = Hogan.compile(templates.bookends_passementerie),
         favorites_template           = Hogan.compile(templates.favorites),
         detailed_favorites_template  = Hogan.compile(templates.detailed_faves_alert),
         itemdel_template             = Hogan.compile(templates.itemdel),
