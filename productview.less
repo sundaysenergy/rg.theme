@@ -969,6 +969,7 @@ button.next:hover,
   filter: alpha(opacity=100);
 }
 
+ul.slider,
 #related-products,
 .img-large-container {
   -moz-user-select: none; 
@@ -986,7 +987,7 @@ button.next:hover,
   margin-right: 15px;
 }
 
-.passementerie li .item-icons-passementerie {
+.passementerie > li .item-icons-passementerie {
   display: none;
   position: absolute;
   right: 10px;
@@ -995,12 +996,12 @@ button.next:hover,
   margin-top:-10px;
 }
 
-.passementerie li:hover .item-icons-passementerie {
+.passementerie > li:hover .item-icons-passementerie {
   display: block;
 }
 
-.passementerie li .add-fave,
-.passementerie li:hover .add-fave {
+.passementerie > li .add-fave,
+.passementerie > li:hover .add-fave {
   display: none;
 }
 
