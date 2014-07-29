@@ -867,7 +867,7 @@ table.img-pattern-container * {
   margin-left:-260px;
   padding:15px;
   width:520px;
-  z-index:100;
+  z-index:1120;
   position:absolute;
   left:50%;
   display: none;
@@ -929,6 +929,12 @@ button.next:hover,
 #item-colors button.right,
 #related-products button.right {
   right: 15px;
+}
+
+#item-colors button.disabled, #related-products button.disabled,
+#item-colors button.disabled:hover, #related-products button.disabled:hover {
+  color: @rg-gray;
+  cursor: auto;
 }
 
 #item-colors .related-page-count,
