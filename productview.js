@@ -1352,6 +1352,8 @@ $(document).ready(function() {
             $(this).toggleClass( 'active' );
             $(this).siblings().removeClass( 'active' );
 
+            item_data.pager = item_data.itemcolors().length > 5;
+
             // try to vertically center the passementerie images that are less tall than the related-item containers
             // this works for everything but the 1st page of thumbs on initial popup — where can it go instead?
             $('#item-colors > ul.list-inline .related-item > img').load().each(function() {
@@ -1364,7 +1366,6 @@ $(document).ready(function() {
               }
             });
 
-            item_data.pager = item_data.itemcolors().length > 5;
             if (toggle_on) {
               $li.append(passementerie_related_colors.render(item_data));
               var options = {
@@ -1372,20 +1373,9 @@ $(document).ready(function() {
                 page: 5,
                 i: 1
               };
+
               var colorslist = new List('item-colors', options);
 
-              // try to vertically center the passementerie images that are less tall than the related-item containers
-              // this works for everything but the 1st page of thumbs on initial popup — where can it go instead?
-              $('#item-colors > ul.list-inline .related-item > img').load().each(function() {
-                var imgheight  = $(this).height();
-                if (imgheight < 60) {
-                  var difference = 60-imgheight;
-                  $(this).css('margin-top', difference/2);
-                } else {
-                  $(this).css('margin-top', 0);
-                }
-              });
-  
               colorslist.on('updated', function() {
                 var current_page = parseInt(colorslist.i / 5 + 1);
                 var total_pages = parseInt(colorslist.matchingItems.length / 5);
@@ -1395,6 +1385,18 @@ $(document).ready(function() {
                 $('#item-colors').css('width', (200+90*(thumbcount-1))).css('margin-left',-100+(-45*(thumbcount-1)));
                 $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
                 $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
+                // try to vertically center the passementerie images that are less tall than the related-item containers
+                // this works for everything but the 1st page of thumbs on initial popup — where can it go instead?
+                $('#item-colors > ul.list-inline .related-item > img').load().each(function() {
+                  var imgheight  = $(this).height();
+                  if (imgheight < 60) {
+                    var difference = 60-imgheight;
+                    $(this).css('margin-top', difference/2);
+                  } else {
+                    $(this).css('margin-top', 0);
+                  }
+                });
+    
                 // to make the padding for the <> arrows (which don't show on just a single page) go away
                 if (total_pages <= 1) {
                   $('#item-colors').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
