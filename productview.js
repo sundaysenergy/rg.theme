@@ -1401,7 +1401,7 @@ $(document).ready(function() {
 
                 // try to vertically center the passementerie images that are less tall than the related-item containers
                 // this works for everything but the 1st page of thumbs on initial popup — where can it go instead?
-                $('#item-colors > ul.list-inline .related-item > img').each(function() {
+                $('#item-colors > ul.list-inline .related-item > img').load().each(function() {
                   var imgheight  = $(this).height();
                   var difference = 60-imgheight;
                   if (difference > 0) {
@@ -1420,18 +1420,6 @@ $(document).ready(function() {
     
               });
               
-              // try to vertically center the passementerie images that are less tall than the related-item containers
-              // this works for everything but the 1st page of thumbs on initial popup — where can it go instead?
-              $('#item-colors > ul.list-inline .related-item > img').each(function() {
-                var imgheight  = $(this).height();
-                var difference = 60-imgheight;
-                if (difference > 0) {
-                  $(this).css('margin-top', difference/2);
-                } else {
-                  $(this).css('margin-top', 0);
-                }
-              });
-
               colorslist.update();
               $('#item-colors').show();
               $('#item-colors button.close').off('click touch').on('click touch', function(e) {
