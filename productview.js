@@ -1366,11 +1366,22 @@ $(document).ready(function() {
                 var total_pages = parseInt(colorslist.matchingItems.length / 5);
                 if (colorslist.matchingItems.length % 5 > 0) total_pages = parseInt(total_pages) + 1;
                 // Set the width of the color swatch thing
-                var ww = $(window).width();
                 var thumbcount = $("#item-colors > ul.list-inline").children("li").length;
                 $('#item-colors').css('width', (200+90*(thumbcount-1))).css('margin-left',-100+(-45*(thumbcount-1)));
                 $('#item-colors > ul.list-inline').css('width', 90*thumbcount);
                 $('#item-colors .related-page-count').html(current_page + " / " + total_pages);
+                // try to vertically center the passementerie images that are less tall than the related-item containers
+                // this works for everything but the 1st page of thumbs on initial popup — where can it go instead?
+                $('#item-colors > ul.list-inline .related-item > img').load().each(function() {
+                  var imgheight       = $(this).height();
+                  var parentimgheight = $(this).parent().height();
+                  var difference = parentimgheight-imgheight;
+                  if (difference > 0) {
+                    $(this).css('margin-top', difference/2);
+                  } else {
+                    $(this).css('margin-top', 0);
+                  }
+                });
                 // to make the padding for the <> arrows (which don't show on just a single page) go away
                 if (total_pages <= 1) {
                   $('#item-colors').css('width', (120+90*(thumbcount-1))).css('margin-left',-60+(-45*(thumbcount-1)));
@@ -1402,8 +1413,9 @@ $(document).ready(function() {
                 // try to vertically center the passementerie images that are less tall than the related-item containers
                 // this works for everything but the 1st page of thumbs on initial popup — where can it go instead?
                 $('#item-colors > ul.list-inline .related-item > img').load().each(function() {
-                  var imgheight  = $(this).height();
-                  var difference = 60-imgheight;
+                  var imgheight       = $(this).height();
+                  var parentimgheight = $(this).parent().height();
+                  var difference = parentimgheight-imgheight;
                   if (difference > 0) {
                     $(this).css('margin-top', difference/2);
                   } else {
