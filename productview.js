@@ -1433,6 +1433,7 @@ $(document).ready(function() {
 
     $('ul.filter-list ul li.clear a').on('click touch', function(e) {
       hash.remove(['attributes', 'color', 'use', 'desc']);
+      $('.filter-attributes label').removeClass('checked');
     });
 
     // When we check or uncheck a box, recalculate search terms
