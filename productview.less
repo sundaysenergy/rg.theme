@@ -493,25 +493,35 @@ ul.collection-controls .pagecount {
   font-size: 11px;
 }
 
-.search-related #collection-menu-search {
-  margin-bottom: 30px !important;
-}
-
-/** Custom checkboxes **/
-/*
-.filter-list fieldset div .checkbox-inline input {
+/* Hide the original radios and checkboxes [https://www.pivotaltracker.com/story/show/73771096] */
+.filter-list fieldset label > input[type='checkbox'] {
+  /* Hide the input, but have it still be clickable */
   opacity: 0;
+  float: left;
+  width: 11px;
 }
 
 .filter-list fieldset label {
+  clear: none;
+  /* Left padding makes room for image */
+  padding-left: 11px;
+  /* Make look clickable because they are */
   cursor: pointer;
-  background: url('img/checkbox.png') left center no-repeat; 
+  background: transparent url('img/check-sprite.png') left top no-repeat;
 }
 
+/* Change from unchecked to checked graphic */
 .filter-list fieldset label.checked {
-  background-image: url('img/checkbox-checked.png);
+  background-position-y: -15px;
 }
-*/
+
+.filter-list fieldset label.disabled {
+  background-position-y: -30px;
+}
+
+.search-related #collection-menu-search {
+  margin-bottom: 30px !important;
+}
 
 @media (min-width: @screen-sm-min) { 
   .search-related #collection-menu-search {
@@ -1403,29 +1413,3 @@ div.search-noresults {
   transform: rotate(-90deg);
 }
 
-
-/* Hide the original radios and checkboxes [https://www.pivotaltracker.com/story/show/73771096] */
-.filter-list fieldset label > input[type='checkbox'] {
-  /* Hide the input, but have it still be clickable */
-  opacity: 0;
-  float: left;
-  width: 11px;
-}
-
-.filter-list fieldset label {
-  clear: none;
-  /* Left padding makes room for image */
-  padding-left: 11px;
-  /* Make look clickable because they are */
-  cursor: pointer;
-  background: url(img/checkbox.png) left 1px no-repeat;
-}
-
-/* Change from unchecked to checked graphic */
-.filter-list fieldset label.checked {
-  background-image: url(img/checkbox-checked.png);
-}
-
-.filter-list fieldset label.disabled {
-  background: transparent;
-}
