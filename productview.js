@@ -1356,8 +1356,8 @@ $(document).ready(function() {
             // this works for everything but the 1st page of thumbs on initial popup — where can it go instead?
             $('#item-colors > ul.list-inline .related-item > img').load().each(function() {
               var imgheight  = $(this).height();
-              var difference = 60-imgheight;
-              if (difference > 0) {
+              if (imgheight < 60) {
+                var difference = 60-imgheight;
                 $(this).css('margin-top', difference/2);
               } else {
                 $(this).css('margin-top', 0);
@@ -1378,14 +1378,14 @@ $(document).ready(function() {
               // this works for everything but the 1st page of thumbs on initial popup — where can it go instead?
               $('#item-colors > ul.list-inline .related-item > img').load().each(function() {
                 var imgheight  = $(this).height();
-                var difference = 60-imgheight;
-                if (difference > 0) {
+                if (imgheight < 60) {
+                  var difference = 60-imgheight;
                   $(this).css('margin-top', difference/2);
                 } else {
                   $(this).css('margin-top', 0);
                 }
               });
-
+  
               colorslist.on('updated', function() {
                 var current_page = parseInt(colorslist.i / 5 + 1);
                 var total_pages = parseInt(colorslist.matchingItems.length / 5);
@@ -1427,13 +1427,13 @@ $(document).ready(function() {
                 // this works for everything but the 1st page of thumbs on initial popup — where can it go instead?
                 $('#item-colors > ul.list-inline .related-item > img').load().each(function() {
                   var imgheight  = $(this).height();
-                  var difference = 60-imgheight;
-                  if (difference > 0) {
+                  if (imgheight < 60) {
+                    var difference = 60-imgheight;
                     $(this).css('margin-top', difference/2);
                   } else {
                     $(this).css('margin-top', 0);
                   }
-                });
+                });  
 
                 // toggle the image in the passementerie list position based on which color thumbnail you click on.
                 $('.passementerie .trim-colors ul.list-inline > .related-item').off('click touch').on('click touch', function(e) {
@@ -1457,8 +1457,8 @@ $(document).ready(function() {
             // this works for everything but the 1st page of thumbs on initial popup — where can it go instead?
             $('#item-colors > ul.list-inline .related-item > img').load().each(function() {
               var imgheight  = $(this).height();
-              var difference = 60-imgheight;
-              if (difference > 0) {
+              if (imgheight < 60) {
+                var difference = 60-imgheight;
                 $(this).css('margin-top', difference/2);
               } else {
                 $(this).css('margin-top', 0);
