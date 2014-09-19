@@ -90,7 +90,7 @@ $(document).ready(function() {
         $('.landing-popover').each(function(i, item) {
           $(this).off('click touch').on('click touch', function(e) {
             var item = $(this).attr('class').split(' ')[1];
-            window.location.href = '/collection.html#detailedview='+item.replace('popover-','');
+            window.location.href = '/app.html#detail/'+item.replace('popover-','').replace('-', '/');
           });
         });
       });
@@ -193,4 +193,3 @@ var itemMissing = function() {
 };
 
 itemMissing();
-
