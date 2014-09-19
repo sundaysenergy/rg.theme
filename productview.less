@@ -199,6 +199,8 @@ a.collapse-collection {
   width: auto;
   cursor: pointer;
   max-height: 100%;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .passementerie #item-colors {
@@ -221,9 +223,8 @@ a.collapse-collection {
 
 #item-colors.trim-colors ul li.related-item {
   background: white;
-  vertical-align: middle;
-  display: table-cell;
   text-align: center;
+  vertical-align: middle;
 }
 
 /* ================================= */
@@ -493,25 +494,35 @@ ul.collection-controls .pagecount {
   font-size: 11px;
 }
 
-.search-related #collection-menu-search {
-  margin-bottom: 30px !important;
-}
-
-/** Custom checkboxes **/
-/*
-.filter-list fieldset div .checkbox-inline input {
+/* Hide the original radios and checkboxes [https://www.pivotaltracker.com/story/show/73771096] */
+.filter-list fieldset label > input[type='checkbox'] {
+  /* Hide the input, but have it still be clickable */
   opacity: 0;
+  float: left;
+  width: 11px;
 }
 
 .filter-list fieldset label {
+  clear: none;
+  /* Left padding makes room for image */
+  padding-left: 10px;
+  /* Make look clickable because they are */
   cursor: pointer;
-  background: url('img/checkbox.png') left center no-repeat; 
+  background: transparent url('img/check-sprite.png') left top no-repeat;
 }
 
+/* Change from unchecked to checked graphic */
 .filter-list fieldset label.checked {
-  background-image: url('img/checkbox-checked.png);
+  background-position-y: -15px;
 }
-*/
+
+.filter-list fieldset label.disabled {
+  background-position-y: -30px;
+}
+
+.search-related #collection-menu-search {
+  margin-bottom: 30px !important;
+}
 
 @media (min-width: @screen-sm-min) { 
   .search-related #collection-menu-search {
@@ -571,8 +582,8 @@ ul.collection-controls .pagecount {
 
   .filter-list fieldset label {
     line-height: 14px;
-    margin: 0 0 8px;
-    padding: 0 0 0 5px;
+    margin: 0 0 7px;
+    padding: 1px 0 0 10px;
     text-align: left;
     text-transform: uppercase;
     /**/
@@ -933,7 +944,7 @@ button.next:hover,
 
 #item-colors button.disabled, #related-products button.disabled,
 #item-colors button.disabled:hover, #related-products button.disabled:hover {
-  color: @rg-gray;
+  color: #ccc;
   cursor: auto;
 }
 
@@ -1403,29 +1414,3 @@ div.search-noresults {
   transform: rotate(-90deg);
 }
 
-
-/* Hide the original radios and checkboxes [https://www.pivotaltracker.com/story/show/73771096] */
-.filter-list fieldset label > input[type='checkbox'] {
-  /* Hide the input, but have it still be clickable */
-  opacity: 0;
-  float: left;
-  width: 11px;
-}
-
-.filter-list fieldset label {
-  clear: none;
-  /* Left padding makes room for image */
-  padding-left: 11px;
-  /* Make look clickable because they are */
-  cursor: pointer;
-  background: url(img/checkbox.png) left 1px no-repeat;
-}
-
-/* Change from unchecked to checked graphic */
-.filter-list fieldset label.checked {
-  background-image: url(img/checkbox-checked.png);
-}
-
-.filter-list fieldset label.disabled {
-  background: transparent;
-}
