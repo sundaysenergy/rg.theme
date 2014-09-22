@@ -4,7 +4,8 @@ $(document).ready(function() {
     e.preventDefault();
     var collection = hash.get('collection');
     if (_.isUndefined(collection)) collection = 'textile';
-    window.location = '/collection.html#collection='+collection+'&search=' + encodeURIComponent($('#search-items').find('input').val());
+    window.location = '/app.html#collection/textile/12/' + encodeURIComponent($('#search-items').find('input').val());
+    // #collection/textile/12/sam/p1
   });
 
   // Expose a search box when clicking on the icon
