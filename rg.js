@@ -4,7 +4,7 @@ $(document).ready(function() {
     e.preventDefault();
     var collection = hash.get('collection');
     if (_.isUndefined(collection)) collection = 'textile';
-    window.location = '/app.html#collection/textile/12/' + encodeURIComponent($('#search-items').find('input').val());
+    window.location = '/app.html#collection/textile/12/' + encodeURIComponent($('#search-items').find('input').val())+'/p1';
     // #collection/textile/12/sam/p1
   });
 
