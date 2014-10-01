@@ -79,11 +79,11 @@ $(document).ready(function() {
         });
         // When you hover over an area, show information about the item
         $("area").hover(function() {
-          var itemid = $(this).data("id");
+          var itemid = $(this).data("id").replace('/', '-');
           $('.popover-'+itemid).show();
         // Hide on mouseout
         }, function() {
-          var itemid = $(this).data("id");
+          var itemid = $(this).data("id").replace('/', '-');
           $('.popover-'+itemid).hide();
         });
 
