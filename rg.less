@@ -3,6 +3,7 @@
 /*************************************************************************/
 /** try to get rid of some focus lines that pentagram doesn't like      **/
 /*************************************************************************/
+* { box-sizing: border-box; }
 *:focus {
   outline: 0 !important;
 }
@@ -61,7 +62,7 @@ span.caret-up {
   background-color: transparent;
   background-image: none;
   border: none !important;
-  border-top: none !important; 
+  border-top: none !important;
   border-bottom: none !important;
   border-radius: 0;
   -webkit-box-shadow: none;
@@ -191,7 +192,7 @@ main{
 
 .masthead nav .navwrap {
   height:auto;
-  width:100%; 
+  width:100%;
   padding-bottom: 20px;
   min-height:0%;
 }
@@ -259,7 +260,7 @@ main{
 @media (min-width: @screen-sm-min) {
 
   .navbar-header, .navbar-toggle, .navbar-footer { display: none; }
-  
+
   .masthead,
   .masthead:hover {
     -webkit-transition: none;
@@ -276,9 +277,9 @@ main{
     top:0;
     left:0;
     right:0;
-    z-index: 10; 
+    z-index: 10;
   }
-  
+
   .masthead,
   .masthead:hover,
   .masthead h1.sitename,
@@ -296,7 +297,7 @@ main{
 /*     background: url('img/nav-dd.png') center 10px no-repeat; */
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAANCAMAAACTkM4rAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADBQTFRF7ezp+vn25eTg4uHd9vXy8/Lu3dzY6unl2tnV1tXR09LO+Pf06Ofj/Pv42NfT/Pv4IPKc9wAAABB0Uk5T////////////////////AOAjXRkAAABYSURBVHjafI7bEoAgCAUBEQEt//9vu2tZ03lh2OGyUF+BT5RKbxPtCDy1AS/HYnG4CE3nLfK4lWjUzmOwlcU5YP+IYpxN8C6BoqL56ZVVeVRl/rcfswgwAL1TC/Q27UD7AAAAAElFTkSuQmCC) center 10px no-repeat;
   }
-  
+
   .landing nav:hover {
     background: none;
   }
@@ -309,7 +310,7 @@ main{
     left: 50%;
     text-align: center;
   }
-  
+
   .masthead nav ul li ul.trade-login li {
     display: inline-block;
     height: auto;
@@ -318,23 +319,23 @@ main{
     margin: 0 10px;
     width: auto;
   }
-  
+
   .masthead nav ul li ul.collection-filter li:first-child {
     margin-left: 0;
   }
-  
+
   .masthead nav ul li ul.collection-filter li:last-child {
     margin-right: 0;
   }
 }
 
-.masthead nav ul li ul.trade-login li a, 
+.masthead nav ul li ul.trade-login li a,
 .masthead nav ul li ul.collection-filter li a {
   color:#9a8669;
 }
 
 .masthead nav ul li ul.trade-login li.active a,
-.masthead nav ul li ul.trade-login li a.active, 
+.masthead nav ul li ul.trade-login li a.active,
 .masthead nav ul li ul.collection-filter li.active a,
 .masthead nav ul li ul.collection-filter li a.active {
   color:#725a38;
@@ -349,7 +350,7 @@ main{
   font-weight: bold;
 }
 
-.masthead nav ul li > ul.active, 
+.masthead nav ul li > ul.active,
 .masthead nav ul li:hover > ul {
   display: block;
   height: auto;
@@ -360,7 +361,7 @@ main{
 }
 
 @media (min-width: @screen-sm-min) {
-  .masthead nav ul li > ul.active, 
+  .masthead nav ul li > ul.active,
   .masthead nav ul li:hover > ul {
     min-height:25px;
     max-height:35px;
@@ -410,7 +411,7 @@ main{
 }
 
 /* Small devices (tablets, 768px and up) */
-@media (min-width: @screen-sm-min) { 
+@media (min-width: @screen-sm-min) {
   .masthead h1.sitename, .masthead h1.sitename a {
     width: 350px;
     -webkit-transition: all 0.5s ease-in-out;
@@ -419,7 +420,7 @@ main{
     -ms-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
   }
-  
+
   .masthead h1.sitename {
     -webkit-box-shadow: 0 0 10px 0 #eae8e3;
     -moz-box-shadow: 0 0 10px 0 #eae8e3;
@@ -427,7 +428,7 @@ main{
     margin: 40px auto 0;
     padding: 0;
   }
-  
+
   .masthead h1.sitename:hover {
     -webkit-box-shadow: 0 0 10px 0 #c8c8c8;
     -moz-box-shadow: 0 0 10px 0 #c8c8c8;
@@ -627,13 +628,13 @@ footer .link-two {
 main.contact { margin-top: 50px; }
 
 .contact section.border-top {
-  padding: 1em 0;
+  padding: 18px 0 9px;
 }
 
-.contact .toggle h2 { 
-  cursor: pointer; 
-  font-size: 1.2em;
-  line-height: 1;
+.contact .toggle h2 {
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 20px;
   margin: 0;
   padding: 0;
 }
@@ -693,6 +694,7 @@ main.contact { margin-top: 50px; }
 }
 
 li.showroom h3 {
+  max-width: 90%;
   color: @rg-black;
   font-size: 1em;
   font-weight: bold;
@@ -731,7 +733,7 @@ input[name="item-search"]:focus {
   box-shadow: none;
 }
 
-@-moz-document url-prefix() { 
+@-moz-document url-prefix() {
   .btn-sm, .btn-group-sm > .btn {
     padding: 5px 10px 2px;
     line-height: 1.75;
