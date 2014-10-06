@@ -74,6 +74,7 @@ $(document).ready(function() {
   }
 
   // Navigation menu sliding for landing page
+/*
   if (ww >= 769) {
     $.when($('.landing .navwrap').hide()).then(function () {
       $('.landing .masthead').hover(
@@ -92,6 +93,7 @@ $(document).ready(function() {
     });
   }
 
+*/
 });
 
 $(window).resize(function() {
@@ -108,6 +110,7 @@ $(window).resize(function() {
     $('body').removeClass('wider');
   }
 
+/*
   if (ww >= 769) {
     $.when($('.landing .navwrap').hide()).then(function () {
       $('.landing .masthead').hover(
@@ -124,4 +127,5 @@ $(window).resize(function() {
     });
   }
 
+*/
 });
